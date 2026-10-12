@@ -1,31 +1,31 @@
-import {interactionTarget,interactionLabel} from './interaction-target.js?v=3f2555acf3a9';
-import {waterSource,planWater} from './water.js?v=3f2555acf3a9';
-import {RESIDENCE} from './residence.js?v=3f2555acf3a9';
-import {PortfolioDesktop} from './portfolio.js?v=3f2555acf3a9';
+import {interactionTarget,interactionLabel} from './interaction-target.js?v=377894d17e99';
+import {waterSource,planWater} from './water.js?v=377894d17e99';
+import {RESIDENCE} from './residence.js?v=377894d17e99';
+import {PortfolioDesktop} from './portfolio.js?v=377894d17e99';
 const desktop=new PortfolioDesktop();
-import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=3f2555acf3a9';
-import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=3f2555acf3a9';
+import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=377894d17e99';
+import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=377894d17e99';
 let buildMode=null;
-import {isCookingAppliance,cookingLabel} from './cooking.js?v=3f2555acf3a9';
-import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=3f2555acf3a9';
-import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=3f2555acf3a9';
-import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=3f2555acf3a9';
-import {GameAudio} from './audio.js?v=3f2555acf3a9';
+import {isCookingAppliance,cookingLabel} from './cooking.js?v=377894d17e99';
+import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=377894d17e99';
+import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=377894d17e99';
+import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=377894d17e99';
+import {GameAudio} from './audio.js?v=377894d17e99';
 let gameAudio,craftRefresh=null,lastCraftSignature='';
-import {setComicCatalog} from './comic-identity.js?v=3f2555acf3a9';
-import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=3f2555acf3a9';
-import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=3f2555acf3a9';
-import {canToggleWindow,canClimbWindow} from './windows.js?v=3f2555acf3a9';
-import {doorToggle} from './doors.js?v=3f2555acf3a9';
-import {setItemCatalog,definition} from './inventory.js?v=3f2555acf3a9';
-import {World} from './world.js?v=3f2555acf3a9';
-import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=3f2555acf3a9';
-import {Renderer} from './render.js?v=3f2555acf3a9';
-import {CharacterRenderer} from './characters.js?v=3f2555acf3a9';
-import {GroundRenderer} from './ground-renderer.js?v=3f2555acf3a9';
-import {inventoryIcon} from './item-icons.js?v=3f2555acf3a9';
+import {setComicCatalog} from './comic-identity.js?v=377894d17e99';
+import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=377894d17e99';
+import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=377894d17e99';
+import {canToggleWindow,canClimbWindow} from './windows.js?v=377894d17e99';
+import {doorToggle} from './doors.js?v=377894d17e99';
+import {setItemCatalog,definition} from './inventory.js?v=377894d17e99';
+import {World} from './world.js?v=377894d17e99';
+import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=377894d17e99';
+import {Renderer} from './render.js?v=377894d17e99';
+import {CharacterRenderer} from './characters.js?v=377894d17e99';
+import {GroundRenderer} from './ground-renderer.js?v=377894d17e99';
+import {inventoryIcon} from './item-icons.js?v=377894d17e99';
 const $=s=>document.querySelector(s),keys=new Set();
-let focusTarget=null;
+let focusTarget=null,hudTray=null,lastActionsSignature='';
 let world,sim,renderer,character,panel=null,selected=null,nearby=[],lastUI=0,lastStream=0,lastSave=0,last=0,toastUntil=0,inventoryTab='player',lastInventorySignature='';
 const SAVE='sre-pz-'+RESIDENCE.id;
 const animationInspection=new URLSearchParams(location.search).has('inspectAnimation');
@@ -35,7 +35,7 @@ const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefine
 function craftItemName(type){try{return definition(type).name;}catch{return type;}}
 function button(text,fn){const b=el('button',text);b.onclick=fn;return b;}
 function save(){try{localStorage.setItem(SAVE,sim.serialize());toast('Progress saved locally');return true;}catch(e){toast(`Save failed: ${e.message}`);return false;}}
-function setPanel(name){panel=panel===name?null:name;$('#panel').hidden=!panel;$('#panel').classList.toggle('inventory-window',panel==='inventory');if(panel)renderPanel();$('#game').focus();}
+function setPanel(name){setHudTray(null);panel=panel===name?null:name;$('#panel').hidden=!panel;$('#panel').classList.toggle('inventory-window',panel==='inventory');if(panel)renderPanel();$('#game').focus();}
 function atlasIcon(name,label,size=40){const canvas=el('canvas',undefined,'item-icon');canvas.width=size;canvas.height=size;canvas.title=label;canvas.dataset.sprite=name;const region=renderer.atlas.regions[name];
  if(!region){renderer.missing.add(name);return canvas;}const paint=()=>{const image=renderer.images.get(region.page);if(!image)return;const c=canvas.getContext('2d'),scale=(size-8)/Math.max(region.ow,region.oh,32);c.clearRect(0,0,size,size);c.drawImage(image,region.x,region.y,region.w,region.h,(size-region.ow*scale)/2+region.ox*scale,(size-region.oh*scale)/2+region.oy*scale,region.w*scale,region.h*scale);canvas.dataset.painted='true';};
  if(renderer.page(region.page))paint();else renderer.loading.get(region.page)?.then(paint);return canvas;
@@ -124,15 +124,34 @@ function drawMap(canvas){const c=canvas.getContext('2d'),p=sim.state.player,scal
 function inventorySignature(){return JSON.stringify([sim.state.inventory,sim.state.player.readPages,sim.state.player.knownRecipes,inventoryTab,selected?.id,nearby.filter(o=>o.type==='container').map(o=>o.id),sim.state.player.capacity,Math.floor(sim.state.player.x),Math.floor(sim.state.player.y),sim.state.player.z]);}
 function updateUI(now){const p=sim.state.player,time=sim.state.time;$('#clock').textContent=`${String(Math.floor(time/60)%24).padStart(2,'0')}:${String(Math.floor(time)%60).padStart(2,'0')}`;$('#day').textContent=`Day ${Math.floor(time/1440)+1}`;$('#location').textContent=`${Math.floor(p.x)}, ${Math.floor(p.y)} · Floor ${p.z}`;
  const moodles=$('#moodles');moodles.replaceChildren();for(const[label,show,bad]of[['Hunger',p.hunger>30,p.hunger>70],['Thirst',p.thirst>30,p.thirst>70],['Tired',p.fatigue>40,p.fatigue>70],['Bleeding',p.bleeding>0,true],['Weight',sim.inventory.encumbrance()>p.capacity*.8,false],['Exhausted',p.endurance<25,true]])if(show)moodles.append(el('div',label,`moodle ${bad?'bad':''}`));
- nearby=world.interactions(p);const actions=$('#actions');actions.replaceChildren();for(const o of nearby.slice(0,4)){const state=world.state(o.x,o.y,o.z,o.tile);const verb=({computer:'Use computer',door:state.open?'Close door':'Open door',container:'Search',water:'Use water source',bed:'Rest',window:state.smashed?'Climb through':state.open?'Close window':'Open window',stairs:'Stairs'})[o.type];if(o.type!=='window'||canToggleWindow(o.props,state,o,p)){const b=button(`${verb} · ${o.name}`,()=>interact(o));if(o.type==='door'){const check=doorToggle(world,o,p,sim.inventory);if(!check.ok){b.disabled=true;b.title=check.reason;b.textContent+=` · ${check.reason}`;}}actions.append(b);}if(o.type==='window'&&canClimbWindow(o.props,state))actions.append(button(`Climb through · ${o.name}`,()=>sim.interact(o,'climb')));}
- actions.hidden=!nearby.length;const a=sim.action;$('#action-progress').hidden=!a;if(a){$('#action-progress span').textContent=a.name;$('#action-progress small').textContent=p.windowMotion?'Climbing through':'Move or press Esc to cancel';$('#action-progress progress').value=1-a.left/a.duration;}
+ nearby=world.interactions(p);renderNearbyActions();
+ const a=sim.action;$('#action-progress').hidden=!a;if(a){$('#action-progress span').textContent=a.name;$('#action-progress small').textContent=p.windowMotion?'Climbing through':'Move or press Esc to cancel';$('#action-progress progress').value=1-a.left/a.duration;}
  $('#pause').classList.toggle('active',sim.paused);$('#pause').textContent=sim.paused?'▶':'Ⅱ';
  if(p.hp<=0){$('#death').hidden=false;$('#death-info').textContent=`Survived ${Math.floor((time-540)/60)} hours · Killed ${p.kills} zombies`;}
  if(now>toastUntil)$('#toast').classList.remove('visible');
  if(panel==='crafting'&&lastCraftSignature!==inventorySignature()+!!sim.action)craftRefresh?.();
  if(panel==='water'||panel==='health'||panel==='inventory'&&lastInventorySignature!==inventorySignature())renderPanel();
 }
-function interact(o){if(!o||desktop.active)return;if(o.type==='computer'){if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;const paused=sim.paused;sim.cancel();sim.paused=true;keys.clear();desktop.open(()=>{sim.paused=paused;keys.clear();$('#game').focus();});return;}if(o.type==='water'){selected=o;panel='water';$('#panel').hidden=false;$('#panel').classList.remove('inventory-window');renderPanel();return;}if(o.type==='container'){selected=o;panel='inventory';$('#panel').hidden=false;$('#panel').classList.add('inventory-window');renderPanel();}else sim.interact(o);}
+function setHudTray(name){
+ hudTray=name;$('#actions').hidden=name!=='nearby';$('#controls-help').hidden=name!=='help';
+ $('#nearby-toggle').setAttribute('aria-expanded',String(name==='nearby'));$('#help-toggle').setAttribute('aria-expanded',String(name==='help'));
+}
+function renderNearbyActions(){
+ const actions=$('#actions'),p=sim.state.player;
+ const signature=JSON.stringify(nearby.map(o=>[o.id,world.state(o.x,o.y,o.z,o.tile),o.type==='door'?doorToggle(world,o,p,sim.inventory).reason:null]));
+ if(signature===lastActionsSignature)return;lastActionsSignature=signature;actions.replaceChildren();
+ const header=el('header','Nearby');header.append(button('×',()=>{setHudTray(null);$('#nearby-toggle').focus();}));header.lastChild.setAttribute('aria-label','Close nearby interactions');actions.append(header);
+ if(!nearby.length)actions.append(el('p','Move closer to a door, cabinet or another object.','muted'));
+ for(const o of nearby){const state=world.state(o.x,o.y,o.z,o.tile),verb=interactionLabel(o,state);
+  if(o.type!=='window'||canToggleWindow(o.props,state,o,p)){
+   const b=button('',()=>interact(o));b.className='nearby-action';b.append(el('span',verb));if(!verb.toLowerCase().includes(o.name.toLowerCase()))b.append(el('small',o.name));
+   if(o.type==='door'){const check=doorToggle(world,o,p,sim.inventory);if(!check.ok){b.disabled=true;b.title=check.reason;b.append(el('small',check.reason));}}
+   actions.append(b);
+  }
+  if(o.type==='window'&&canClimbWindow(o.props,state)){const b=button('Climb through',()=>{setHudTray(null);sim.interact(o,'climb');});b.className='nearby-action';actions.append(b);}
+ }
+}
+function interact(o){if(!o||desktop.active)return;if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;setHudTray(null);if(o.type==='computer'){if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;const paused=sim.paused;sim.cancel();sim.paused=true;keys.clear();desktop.open(()=>{sim.paused=paused;keys.clear();$('#game').focus();});return;}if(o.type==='water'){selected=o;panel='water';$('#panel').hidden=false;$('#panel').classList.remove('inventory-window');renderPanel();return;}if(o.type==='container'){selected=o;panel='inventory';$('#panel').hidden=false;$('#panel').classList.add('inventory-window');renderPanel();}else sim.interact(o);}
 function pause(){sim.paused=!sim.paused;keys.clear();toast(sim.paused?'Game paused':'Game resumed');}
 async function start(){
  const responses=await Promise.all(['private-assets/world/manifest.json','private-assets/world/properties.json','private-assets/atlas.json','private-assets/items.json','private-assets/trees/manifest.json','private-assets/comics.json','private-assets/recipes.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw new Error('Local assets have not been imported.Follow README run the asset, Map, character and item import scripts.');return r.json();}));
@@ -158,6 +177,7 @@ async function start(){
  }
  document.addEventListener('keydown',e=>{if(desktop.active)return;if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;const k=e.key.toLowerCase();keys.add(k);
   if([' ','arrowup','arrowdown','arrowleft','arrowright','tab'].includes(k))e.preventDefault();if(e.repeat)return;
+  if(k==='q'||k==='?'){setHudTray(hudTray===(k==='q'?'nearby':'help')?null:k==='q'?'nearby':'help');return;}if(k==='escape'&&hudTray){setHudTray(null);$('#game').focus();return;}
   if(k==='r'&&buildMode){buildMode.rotation=(buildMode.rotation+1)%buildMode.recipe.tiles.length;return;}if(k==='escape'&&buildMode){sim.cancel();buildMode=null;renderer.buildPreview=null;return;}if(k==='p')pause();if(k==='escape'){sim.cancel();if(panel)setPanel(panel);else pause();}
   const panelKey={i:'inventory',h:'health',c:'crafting',m:'map',j:'journal'};if(panelKey[k])setPanel(panelKey[k]);
   if(k==='e'&&!panel&&!buildMode)interact(interactionTarget(world.interactions(sim.state.player),sim.state.player,focusTarget));if(k===' '&&!sim.paused)sim.attack();
@@ -166,6 +186,8 @@ async function start(){
  $('#game').addEventListener('wheel',e=>{e.preventDefault();renderer.zoom=Math.min(3,Math.max(.6,renderer.zoom-e.deltaY*.001));},{passive:false});
  $('#game').addEventListener('mousemove',e=>{if(buildMode){const pos=renderer.unscreen(e.clientX,e.clientY,sim.state.player.z);buildMode.x=Math.floor(pos.x);buildMode.y=Math.floor(pos.y);return;}if(!keys.has('control'))return;const pos=renderer.unscreen(e.clientX,e.clientY,sim.state.player.z);sim.state.player.angle=Math.atan2(pos.y-sim.state.player.y,pos.x-sim.state.player.x);});
  $('#game').addEventListener('mousedown',e=>{if(e.button===0&&buildMode&&Number.isInteger(buildMode.x)){sim.build(buildMode.recipe.id,buildMode.x,buildMode.y,sim.state.player.z,buildMode.rotation);$('#game').focus();return;}if(e.button===0&&keys.has('control')&&!sim.paused)sim.attack();$('#game').focus();});
+ $('#nearby-toggle').onclick=()=>setHudTray(hudTray==='nearby'?null:'nearby');$('#help-toggle').onclick=()=>setHudTray(hudTray==='help'?null:'help');$('#close-help').onclick=()=>{setHudTray(null);$('#help-toggle').focus();};
+ document.addEventListener('pointerdown',e=>{if(hudTray&&!e.target.closest('#controls,#actions,#controls-help'))setHudTray(null);});
  $('#pause').onclick=pause;$('#close-panel').onclick=()=>setPanel(panel);document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>setPanel(b.dataset.panel));
  $('#import-save').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{if(f.size>10e6)throw new Error('Save file is too large');const imported=parseSave(await f.text(),{bounds:RESIDENCE.bounds});buildMode=null;renderer.buildPreview=null;sim.paused=true;await world.around(imported.player.x,imported.player.y);sim=new Simulation(world,imported,character.data);animationTrace=[];animationSignature='';sim.paused=true;window.pz.sim=sim;$('#death').hidden=true;save();toast('Save restored');}catch(err){toast(`Import failed: ${err.message}`);}e.target.value='';};
  $('#restart').onclick=()=>{sim=new Simulation(world,newState(manifest.spawn),character.data);animationTrace=[];animationSignature='';window.pz.sim=sim;$('#death').hidden=true;world.around(sim.state.player.x,sim.state.player.y).catch(e=>toast(e.message));save();};

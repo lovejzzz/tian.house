@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import {MODEL_PIXELS_PER_UNIT,CHARACTER_ELEVATION} from './character-projection.js?v=3f2555acf3a9';
-import {groundSelection,groundSceneMatrix} from './ground-models.js?v=3f2555acf3a9';
+import {MODEL_PIXELS_PER_UNIT,CHARACTER_ELEVATION} from './character-projection.js?v=377894d17e99';
+import {groundSelection,groundSceneMatrix} from './ground-models.js?v=377894d17e99';
 
 export class GroundRenderer{
  async init(){

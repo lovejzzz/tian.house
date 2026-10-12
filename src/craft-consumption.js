@@ -1,6 +1,6 @@
-import {definition} from './inventory.js?v=3f2555acf3a9';
-import {drainableUses} from './drainable.js?v=3f2555acf3a9';
-import {foodState,foodCurrentUses} from './food-use.js?v=3f2555acf3a9';
+import {definition} from './inventory.js?v=377894d17e99';
+import {drainableUses} from './drainable.js?v=377894d17e99';
+import {foodState,foodCurrentUses} from './food-use.js?v=377894d17e99';
 const f=Math.fround;
 const int=n=>Number.isNaN(n)?0:Math.max(-2147483648,Math.min(2147483647,Math.trunc(n)))||0;
 export function craftItemUses(item,p=definition(item.type).properties){return p.ItemType==='base:food'?foodCurrentUses(foodState(item,p)):p.ItemType==='base:drainable'?drainableUses(item,p):item.currentUses??1;}
