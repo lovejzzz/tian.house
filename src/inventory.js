@@ -1,12 +1,12 @@
-import {itemEnglishName} from './english.js';
-import {catalogCraftRegistry,resolveCraftItemInput} from './craft-resolve.js';
-import {initializeRecipeMagazine} from './recipe-knowledge.js';
-import {ordinaryCraftUse} from './item-use.js';
-import {drainableMaxUses,itemUseDelta,drainableUses,drainableFraction,updateDrainableWeight,validateDrainableWeight} from './drainable.js';
-import {copyDepletionCondition,validateDepletionTarget} from './depletion.js';
-import {foodState,foodCurrentUses,setFoodCurrentUses,multiplyFoodValues,validateFoodState} from './food-use.js';
-import {initializeComic} from './comic-identity.js';
-import {initializeModelIndex,validateModelState} from './item-model-state.js';
+import {itemEnglishName} from './english.js?v=deae64bf7064';
+import {catalogCraftRegistry,resolveCraftItemInput} from './craft-resolve.js?v=deae64bf7064';
+import {initializeRecipeMagazine} from './recipe-knowledge.js?v=deae64bf7064';
+import {ordinaryCraftUse} from './item-use.js?v=deae64bf7064';
+import {drainableMaxUses,itemUseDelta,drainableUses,drainableFraction,updateDrainableWeight,validateDrainableWeight} from './drainable.js?v=deae64bf7064';
+import {copyDepletionCondition,validateDepletionTarget} from './depletion.js?v=deae64bf7064';
+import {foodState,foodCurrentUses,setFoodCurrentUses,multiplyFoodValues,validateFoodState} from './food-use.js?v=deae64bf7064';
+import {initializeComic} from './comic-identity.js?v=deae64bf7064';
+import {initializeModelIndex,validateModelState} from './item-model-state.js?v=deae64bf7064';
 // Instance identities and container graph. Catalog data are source-static;
 // individual rules require separately recorded source-runtime comparisons.
 export const ALIASES={water:'Base.WaterBottle',beans:'Base.TinnedBeans',cereal:'Base.Cereal',bandage:'Base.Bandage',bat:'Base.BaseballBat',axe:'Base.Axe',knife:'Base.KitchenKnife',plank:'Base.Plank',nails:'Base.Nails',hammer:'Base.Hammer',rag:'Base.RippedSheets',seeds:'Base.TomatoSeed',book:'Base.BookCarpentry1',lighter:'Base.Lighter',rawfood:'Base.Steak',meal:'Base.Steak',pen:'Base.BluePen',opener:'Base.TinOpener',backpack:'Base.Bag_Schoolbag'};

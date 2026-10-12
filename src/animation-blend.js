@@ -1,6 +1,6 @@
-import {AnimationClock,sampleClip} from './animation-clock.js';
-import {windowPhase} from './window-traversal.js';
-import {windowTogglePhase,openingPose} from './window-toggle.js';
+import {AnimationClock,sampleClip} from './animation-clock.js?v=deae64bf7064';
+import {windowPhase} from './window-traversal.js?v=deae64bf7064';
+import {windowTogglePhase,openingPose} from './window-toggle.js?v=deae64bf7064';
 
 // PZMath.lerpFunc_EaseOutInQuad, preserving the source's float operations.
 export function animationWeight(raw){
