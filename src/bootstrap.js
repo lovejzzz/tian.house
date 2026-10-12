@@ -3,7 +3,7 @@ const status=document.querySelector('#load-status');
 const assetURL=new URL('../private-assets/',import.meta.url);
 const required=['world/manifest.json','world/properties.json','atlas.json','items.json','recipes.json','trees/manifest.json','characters/character.json','held-models/held-models.json','ground-models/held-models.json','comics.json','reading-audio/manifest.json'];
 const cacheName='pz-local-assets-v1:'+assetURL.pathname;
-async function launch(){await import('./main.js?v=896097f2da39');}
+async function launch(){await import('./main.js?v=57ae360d5df5');}
 async function boot(){
  // Hosted builds bypass the legacy folder-import cache without deleting local saves.
  const hosted=await fetch(new URL('../hosted-assets.json',import.meta.url),{cache:'no-store'});

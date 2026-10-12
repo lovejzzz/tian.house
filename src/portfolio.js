@@ -1,7 +1,7 @@
 export const PROJECTS=[
- {id:'folio',name:'Folio University',category:'WEB PROJECT',url:'https://folio.university/',symbol:'F',description:'Folio University',detail:'Visit the website to explore this project.',color:'#7b8461'},
- {id:'surge',name:'Surge Method',category:'iOS · FITNESS',url:'https://apps.apple.com/us/app/surge-method/id6758555101',symbol:'↗',description:'Build up your training volume at your own pace.',detail:'Rep-based and timed workouts, with wave and descending set plans. Workout history stays on your device.',color:'#a17247'},
- {id:'bebop',name:'Bebop Puzzle',category:'WEB · PUZZLE',url:'https://beboppuzzle.com/',symbol:'▦',description:'Bebop Puzzle',detail:'Visit the website to try this puzzle project.',color:'#698b88'},
+ {id:'folio',name:'Folio University',category:'WEB · EDUCATION',url:'https://folio.university/',symbol:'F',description:'Turn a course idea or existing teaching materials into a complete, connected course.',detail:'Folio drafts lesson plans, slides, quizzes, assignments and rubrics for teachers. Edit the results and export them to formats such as Word, PowerPoint, PDF or Google Docs.',color:'#7b8461'},
+ {id:'surge',name:'Surge Method',category:'iOS · FITNESS',url:'https://apps.apple.com/us/app/surge-method/id6758555101',symbol:'↗',description:'An iOS training app for building strength through bodyweight exercise.',detail:'Follow wave or descending sets, with rep-based and timed workouts that build from your own baseline. Your training history stays on your device, with no account required.',color:'#a17247'},
+ {id:'bebop',name:'Bebop Puzzle',category:'WEB · PUZZLE',url:'https://beboppuzzle.com/',symbol:'▦',description:'A browser game that turns jazz ear training into musical puzzles.',detail:'Play through challenges, try a daily puzzle, or explore your own ideas in Composer Mode.',color:'#698b88'},
 ];
 const KEY='tian-house-desktop-v1';
 const node=(tag,text,cls)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;if(cls)e.className=cls;return e;};

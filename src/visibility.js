@@ -32,7 +32,8 @@ export class Visibility {
  }
  // Presentation light may fade; authoritative visibility/occlusion stays unchanged.
  advance(sim,dt){
-  if(this.presentationState!==sim.state){this.light.clear();this.fade.clear();this.presentationState=sim.state;}
+  const initial=this.presentationState!==sim.state;
+  if(initial){this.light.clear();this.fade.clear();this.presentationState=sim.state;}
   const p=sim.state.player,delta=Math.min(.1,Math.max(0,dt)),levels=this.world.renderLevels(p.z),cx=Math.cos(p.angle),cy=Math.sin(p.angle);
   const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
   for(let x=Math.floor(p.x)-30;x<=p.x+30;x++)for(let y=Math.floor(p.y)-30;y<=p.y+30;y++)for(const z of levels){
@@ -42,7 +43,7 @@ export class Visibility {
    const cone=smooth((dot+.15)/.55),near=1-smooth((d-2)/2),range=1-smooth((d-20)/4);
    const lit=.25+.75*Math.max(near,cone)*range;
    const target=visible?lit:known?.25:0,wall=visible||boundary?Math.max(.4,lit):target;
-   const old=this.light.get(id)??[target,wall];
+   const old=this.light.get(id)??(initial?[target,wall]:[0,0]);
    this.light.set(id,old.map((v,i)=>{const t=i?wall:target;return v+(t-v)*(1-Math.exp(-delta/(t>v?.20:.55)));}));
   }
   for(const key of this.light.keys()){const [x,y,z]=key.split(',').map(Number);if(Math.abs(x-p.x)>32||Math.abs(y-p.y)>32||Math.abs(z-p.z)>2)this.light.delete(key);}
