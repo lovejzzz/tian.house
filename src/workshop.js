@@ -1,11 +1,11 @@
-import gardenEdition from './glasshouse-garden-v1.js?v=0140423a9cbf';
-import glasshouseFirstEdition from './glasshouse-v1.js?v=0140423a9cbf';
-import rosewoodHouse from './rosewood-house.js?v=0140423a9cbf';
-import {readHouseLibrary,saveHouseCopy} from './house-library.js?v=0140423a9cbf';
-import showcaseHouse from './showcase-house.js?v=0140423a9cbf';
-import {drawPool} from './workshop-outdoors.js?v=0140423a9cbf';
-import {WorkshopModel,workshopCatalog,captureHouse,floorName,FLOOR_MIN,FLOOR_MAX,validateHousePlan} from './workshop-model.js?v=0140423a9cbf';
-import {Renderer} from './render.js?v=0140423a9cbf';
+import gardenEdition from './glasshouse-garden-v1.js?v=7137f77ee6bb';
+import glasshouseFirstEdition from './glasshouse-v1.js?v=7137f77ee6bb';
+import rosewoodHouse from './rosewood-house.js?v=7137f77ee6bb';
+import {readHouseLibrary,saveHouseCopy} from './house-library.js?v=7137f77ee6bb';
+import showcaseHouse from './showcase-house.js?v=7137f77ee6bb';
+import {drawPool} from './workshop-outdoors.js?v=7137f77ee6bb';
+import {WorkshopModel,workshopCatalog,captureHouse,floorName,FLOOR_MIN,FLOOR_MAX,validateHousePlan} from './workshop-model.js?v=7137f77ee6bb';
+import {Renderer} from './render.js?v=7137f77ee6bb';
 const DRAFT='tian-house-workshop-v1',FAV='tian-house-workshop-favorites';
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(text,fn,cls)=>{const b=make('button',text,cls);b.type='button';b.onclick=fn;return b;};
@@ -26,7 +26,7 @@ export class HouseWorkshop{
   const footer=make('footer',undefined,'workshop-footer');this.message=make('span','Choose an object, then click to place it.');footer.append(this.message,make('span','R Rotate · Ctrl Z Undo · Space drag Pan · Scroll Zoom · Esc Cancel'));this.element.append(footer);
   this.bindInput();this.setLevel(this.z);this.renderCatalog();this.updateSelection();this.updateHistory();this.tick=now=>{if(!this.element)return;this.draw(now);this.raf=requestAnimationFrame(this.tick);};this.raf=requestAnimationFrame(this.tick);this.canvas.focus();if(this.draftWarning)this.status(this.draftWarning);
   // Vehicle resources are loaded independently; the building tools stay usable.
-  try{const response=await fetch('private-assets/workshop-vehicles/manifest.json');if(response.ok){const manifest=await response.json();this.vehicleManifest=manifest;for(const v of manifest.entries){const e={id:'vehicle:'+v.id,name:v.name,category:'Vehicles',parts:[],source:v.vehicle,vehicle:v,search:(v.name+' '+v.vehicle+' car vehicle').toLowerCase()};this.entries.push(e);this.byId.set(e.id,e);}const {WorkshopVehicles}=await import('./workshop-vehicles.js?v=0140423a9cbf');const vehicles=new WorkshopVehicles(manifest);await vehicles.init();if(!this.element){vehicles.dispose();return;}this.vehicles=vehicles;if(this.element)this.renderCatalog();}}catch(e){this.vehicleError=e.message;}
+  try{const response=await fetch('private-assets/workshop-vehicles/manifest.json');if(response.ok){const manifest=await response.json();this.vehicleManifest=manifest;for(const v of manifest.entries){const e={id:'vehicle:'+v.id,name:v.name,category:'Vehicles',parts:[],source:v.vehicle,vehicle:v,search:(v.name+' '+v.vehicle+' car vehicle').toLowerCase()};this.entries.push(e);this.byId.set(e.id,e);}const {WorkshopVehicles}=await import('./workshop-vehicles.js?v=7137f77ee6bb');const vehicles=new WorkshopVehicles(manifest);await vehicles.init();if(!this.element){vehicles.dispose();return;}this.vehicles=vehicles;if(this.element)this.renderCatalog();}}catch(e){this.vehicleError=e.message;}
  }
  saveHouse(){if(this.model.pending)this.model.cancel();try{saveHouseCopy(localStorage,this.model.export(),this.bounds);this.status('House saved to your library');this.openHouseLibrary();}catch(e){this.status('Could not save house · '+e.message+' · Export a backup');}}
  openHouseLibrary(){

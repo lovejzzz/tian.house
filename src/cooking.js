@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=0140423a9cbf';
+import {definition} from './inventory.js?v=7137f77ee6bb';
 export const isCookingAppliance=object=>/^(stove|microwave)$/.test(object.props?.container??'');
 export function ensureAppliance(container,kind='stove'){
  return container.appliance??={kind,on:false,temperature:20,targetTemperature:200};

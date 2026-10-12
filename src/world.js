@@ -1,7 +1,7 @@
-import {withinBounds} from './residence.js?v=0140423a9cbf';
-import {selectWindowApproach} from './window-approach.js?v=0140423a9cbf';
-import {windowLanding} from './windows.js?v=0140423a9cbf';
-import {stairType,stairHeight} from './stairs.js?v=0140423a9cbf';
+import {withinBounds} from './residence.js?v=7137f77ee6bb';
+import {selectWindowApproach} from './window-approach.js?v=7137f77ee6bb';
+import {windowLanding} from './windows.js?v=7137f77ee6bb';
+import {stairType,stairHeight} from './stairs.js?v=7137f77ee6bb';
 export const key = (x,y,z=0) => `${Math.floor(x)},${Math.floor(y)},${z}`;
 export class World {
   constructor(manifest,properties){this.manifest=manifest;this.properties=properties;this.cells=new Map();this.pending=new Map();this.changes={};this.builds=[];this.buildIndex=new Map();this.errors=[];this.revision=0;}

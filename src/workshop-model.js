@@ -1,7 +1,7 @@
-import {mountProblem} from './furnishing.js?v=0140423a9cbf';
-import {treeSprites} from './vegetation.js?v=0140423a9cbf';
-import {inventoryIcon} from './item-icons.js?v=0140423a9cbf';
-import {englishLabel} from './english.js?v=0140423a9cbf';
+import {mountProblem} from './furnishing.js?v=7137f77ee6bb';
+import {treeSprites} from './vegetation.js?v=7137f77ee6bb';
+import {inventoryIcon} from './item-icons.js?v=7137f77ee6bb';
+import {englishLabel} from './english.js?v=7137f77ee6bb';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;
