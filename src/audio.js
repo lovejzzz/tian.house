@@ -1,7 +1,7 @@
 // Local rendered source-event samples. Full FMOD variation, spatial/bus effects
 // and perceptual source parity remain separate acceptance obligations.
 export class GameAudio {
- constructor(){this.context=new AudioContext();this.buffers=new Map();this.errors=[];this.played=[];this.capture=null;}
+ constructor(){this.context=new AudioContext();this.buffers=new Map();this.errors=[];this.played=[];this.capture=null;this.volume=.65;}
  async load(base){
   const response=await fetch(new URL('manifest.json',base));if(!response.ok)throw Error('Reading audio has not been imported');
   const data=await response.json();
@@ -22,7 +22,7 @@ export class GameAudio {
  play(name){
   const buffer=this.buffers.get(name);if(!buffer){this.errors.push('Unknown audio event: '+name);return;}
   if(this.context.state!=='running'){this.errors.push('Audio has not been unlocked: '+name);return;}
-  const source=this.context.createBufferSource();source.buffer=buffer;source.connect(this.context.destination);if(this.capture)source.connect(this.capture.destination);source.onended=()=>source.disconnect();source.start();
+  const source=this.context.createBufferSource();source.buffer=buffer;const gain=this.context.createGain();gain.gain.value=this.volume;source.connect(gain);gain.connect(this.context.destination);if(this.capture)source.connect(this.capture.destination);source.onended=()=>{source.disconnect();gain.disconnect();};source.start();
   this.played.push({name,at:this.context.currentTime,duration:buffer.duration});if(this.played.length>40)this.played.shift();
  }
 }

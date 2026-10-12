@@ -1,12 +1,12 @@
-import {itemEnglishName} from './english.js?v=e25ddc7f50e3';
-import {catalogCraftRegistry,resolveCraftItemInput} from './craft-resolve.js?v=e25ddc7f50e3';
-import {initializeRecipeMagazine} from './recipe-knowledge.js?v=e25ddc7f50e3';
-import {ordinaryCraftUse} from './item-use.js?v=e25ddc7f50e3';
-import {drainableMaxUses,itemUseDelta,drainableUses,drainableFraction,updateDrainableWeight,validateDrainableWeight} from './drainable.js?v=e25ddc7f50e3';
-import {copyDepletionCondition,validateDepletionTarget} from './depletion.js?v=e25ddc7f50e3';
-import {foodState,foodCurrentUses,setFoodCurrentUses,multiplyFoodValues,validateFoodState} from './food-use.js?v=e25ddc7f50e3';
-import {initializeComic} from './comic-identity.js?v=e25ddc7f50e3';
-import {initializeModelIndex,validateModelState} from './item-model-state.js?v=e25ddc7f50e3';
+import {itemEnglishName} from './english.js?v=d3c0a2416139';
+import {catalogCraftRegistry,resolveCraftItemInput} from './craft-resolve.js?v=d3c0a2416139';
+import {initializeRecipeMagazine} from './recipe-knowledge.js?v=d3c0a2416139';
+import {ordinaryCraftUse} from './item-use.js?v=d3c0a2416139';
+import {drainableMaxUses,itemUseDelta,drainableUses,drainableFraction,updateDrainableWeight,validateDrainableWeight} from './drainable.js?v=d3c0a2416139';
+import {copyDepletionCondition,validateDepletionTarget} from './depletion.js?v=d3c0a2416139';
+import {foodState,foodCurrentUses,setFoodCurrentUses,multiplyFoodValues,validateFoodState} from './food-use.js?v=d3c0a2416139';
+import {initializeComic} from './comic-identity.js?v=d3c0a2416139';
+import {initializeModelIndex,validateModelState} from './item-model-state.js?v=d3c0a2416139';
 // Instance identities and container graph. Catalog data are source-static;
 // individual rules require separately recorded source-runtime comparisons.
 export const ALIASES={water:'Base.WaterBottle',beans:'Base.TinnedBeans',cereal:'Base.Cereal',bandage:'Base.Bandage',bat:'Base.BaseballBat',axe:'Base.Axe',knife:'Base.KitchenKnife',plank:'Base.Plank',nails:'Base.Nails',hammer:'Base.Hammer',rag:'Base.RippedSheets',seeds:'Base.TomatoSeed',book:'Base.BookCarpentry1',lighter:'Base.Lighter',rawfood:'Base.Steak',meal:'Base.Steak',pen:'Base.BluePen',opener:'Base.TinOpener',backpack:'Base.Bag_Schoolbag'};

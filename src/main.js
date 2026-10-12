@@ -1,29 +1,34 @@
-import {interactionTarget,interactionLabel} from './interaction-target.js?v=e25ddc7f50e3';
-import {waterSource,planWater} from './water.js?v=e25ddc7f50e3';
-import {RESIDENCE} from './residence.js?v=e25ddc7f50e3';
-import {PortfolioDesktop} from './portfolio.js?v=e25ddc7f50e3';
+import showcaseHouse from './showcase-house.js?v=d3c0a2416139';
+import {MainMenu} from './main-menu.js?v=d3c0a2416139';
+import {readPreferences} from './preferences.js?v=d3c0a2416139';
+import {prepareHouseState} from './workshop-apply.js?v=d3c0a2416139';
+import {interactionTarget,interactionLabel} from './interaction-target.js?v=d3c0a2416139';
+import {waterSource,planWater} from './water.js?v=d3c0a2416139';
+import {RESIDENCE} from './residence.js?v=d3c0a2416139';
+import {PortfolioDesktop} from './portfolio.js?v=d3c0a2416139';
 const desktop=new PortfolioDesktop();
-import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=e25ddc7f50e3';
-import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=e25ddc7f50e3';
-let buildMode=null;
-import {isCookingAppliance,cookingLabel} from './cooking.js?v=e25ddc7f50e3';
-import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=e25ddc7f50e3';
-import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=e25ddc7f50e3';
-import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=e25ddc7f50e3';
-import {GameAudio} from './audio.js?v=e25ddc7f50e3';
+import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=d3c0a2416139';
+import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=d3c0a2416139';
+let buildMode=null,workshop=null,itemCatalog=null,mainMenu=null;
+let preferences=readPreferences(),arriving=false;
+import {isCookingAppliance,cookingLabel} from './cooking.js?v=d3c0a2416139';
+import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=d3c0a2416139';
+import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=d3c0a2416139';
+import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=d3c0a2416139';
+import {GameAudio} from './audio.js?v=d3c0a2416139';
 let gameAudio,craftRefresh=null,lastCraftSignature='';
-import {setComicCatalog} from './comic-identity.js?v=e25ddc7f50e3';
-import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=e25ddc7f50e3';
-import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=e25ddc7f50e3';
-import {canToggleWindow,canClimbWindow} from './windows.js?v=e25ddc7f50e3';
-import {doorToggle} from './doors.js?v=e25ddc7f50e3';
-import {setItemCatalog,definition} from './inventory.js?v=e25ddc7f50e3';
-import {World} from './world.js?v=e25ddc7f50e3';
-import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=e25ddc7f50e3';
-import {Renderer} from './render.js?v=e25ddc7f50e3';
-import {CharacterRenderer} from './characters.js?v=e25ddc7f50e3';
-import {GroundRenderer} from './ground-renderer.js?v=e25ddc7f50e3';
-import {inventoryIcon} from './item-icons.js?v=e25ddc7f50e3';
+import {setComicCatalog} from './comic-identity.js?v=d3c0a2416139';
+import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=d3c0a2416139';
+import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=d3c0a2416139';
+import {canToggleWindow,canClimbWindow} from './windows.js?v=d3c0a2416139';
+import {doorToggle} from './doors.js?v=d3c0a2416139';
+import {setItemCatalog,definition} from './inventory.js?v=d3c0a2416139';
+import {World} from './world.js?v=d3c0a2416139';
+import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=d3c0a2416139';
+import {Renderer} from './render.js?v=d3c0a2416139';
+import {CharacterRenderer} from './characters.js?v=d3c0a2416139';
+import {GroundRenderer} from './ground-renderer.js?v=d3c0a2416139';
+import {inventoryIcon} from './item-icons.js?v=d3c0a2416139';
 const $=s=>document.querySelector(s),keys=new Set();
 let focusTarget=null,hudTray=null,lastActionsSignature='';
 let world,sim,renderer,character,panel=null,selected=null,nearby=[],lastUI=0,lastStream=0,lastSave=0,last=0,toastUntil=0,inventoryTab='player',lastInventorySignature='';
@@ -153,17 +158,28 @@ function renderNearbyActions(){
  }
 }
 function interact(o){if(!o||desktop.active)return;if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;setHudTray(null);if(o.type==='computer'){if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;const paused=sim.paused;sim.cancel();sim.paused=true;keys.clear();desktop.open(()=>{sim.paused=paused;keys.clear();$('#game').focus();});return;}if(o.type==='water'){selected=o;panel='water';$('#panel').hidden=false;$('#panel').classList.remove('inventory-window');renderPanel();return;}if(o.type==='container'){selected=o;panel='inventory';$('#panel').hidden=false;$('#panel').classList.add('inventory-window');renderPanel();}else sim.interact(o);}
+async function openWorkshop(){
+ if(workshop?.element||desktop.active)return;const paused=sim.paused;let applied=false;sim.cancel();sim.paused=true;keys.clear();setHudTray(null);panel=null;$('#panel').hidden=true;buildMode=null;
+ try{const {HouseWorkshop}=await import('./workshop.js?v=d3c0a2416139');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
+  onApply:async plan=>{const state=prepareHouseState(sim,plan,RESIDENCE.bounds,renderer.atlas);localStorage.setItem(SAVE+'-before-workshop',sim.serialize());localStorage.setItem(SAVE,JSON.stringify(state));sim=new Simulation(world,state,character.data);sim.paused=true;window.pz.sim=sim;renderer.visibility.reset?.();applied=true;toast('Your new house is ready');},
+  onClose:()=>{keys.clear();if(mainMenu?.active){if(applied)startGame();else{sim.paused=true;mainMenu.element.querySelector('[aria-label=Workshop]').focus();}}else{sim.paused=paused;$('#game').focus();}}});await workshop.open();}
+ catch(e){workshop?.close();sim.paused=paused;toast('Workshop could not open: '+e.message);console.error(e);}
+}
+function applyPreferences(value){preferences=value;gameAudio.volume=value.volume;renderer.zoom=value.zoom;}
+function startGame(){if(arriving)return;keys.clear();if(!mainMenu?.active){sim.paused=false;$('#game').focus();return;}arriving=true;sim.paused=true;document.body.classList.add('arriving');const p=sim.state.player;mainMenu.depart({camera:renderer.project(p.x,p.y,world.apparentZ(p)),zoom:preferences.zoom},()=>{arriving=false;document.body.classList.remove('arriving');sim.paused=false;keys.clear();$('#game').focus();});}
+function showMainMenu(){sim.cancel();sim.paused=true;keys.clear();setHudTray(null);panel=null;$('#panel').hidden=true;buildMode=null;$('#world-interaction').hidden=true;save();mainMenu.open();}
 function pause(){sim.paused=!sim.paused;keys.clear();toast(sim.paused?'Game paused':'Game resumed');}
 async function start(){
  const responses=await Promise.all(['private-assets/world/manifest.json','private-assets/world/properties.json','private-assets/atlas.json','private-assets/items.json','private-assets/trees/manifest.json','private-assets/comics.json','private-assets/recipes.json'].map(async url=>{const r=await fetch(url);if(!r.ok)throw new Error('Local assets have not been imported.Follow README run the asset, Map, character and item import scripts.');return r.json();}));
- const[manifest,props,atlas,catalog,trees,comics,recipeCatalog]=responses;setComicCatalog(comics);manifest.treeAdapter=trees;manifest.playableBounds=RESIDENCE.bounds;manifest.spawn=RESIDENCE.spawn;manifest.fixtures=RESIDENCE.fixtures;setItemCatalog(catalog);loadCraftingCatalog(recipeCatalog);loadBuildingCatalog(recipeCatalog);world=new World(manifest,props);
+ const[manifest,props,atlas,catalog,trees,comics,recipeCatalog]=responses;setComicCatalog(comics);manifest.treeAdapter=trees;manifest.playableBounds=RESIDENCE.bounds;manifest.spawn=RESIDENCE.spawn;manifest.fixtures=RESIDENCE.fixtures;setItemCatalog(catalog);itemCatalog=catalog;loadCraftingCatalog(recipeCatalog);loadBuildingCatalog(recipeCatalog);world=new World(manifest,props);
  let state=newState(manifest.spawn);const saved=localStorage.getItem(SAVE);if(saved){try{state=parseSave(saved,{bounds:RESIDENCE.bounds});}catch(e){toast(`Previous save was not loaded: ${e.message}`);}}
+ if(!saved)state=prepareHouseState(new Simulation(world,state),showcaseHouse,RESIDENCE.bounds,atlas);
  gameAudio=new GameAudio();await gameAudio.load(new URL('../private-assets/reading-audio/',import.meta.url));
  document.addEventListener('pointerdown',()=>gameAudio.unlock());document.addEventListener('keydown',()=>gameAudio.unlock());
  sim=new Simulation(world,state);character=new CharacterRenderer();$('#load-status').textContent='Loading character skeletons, clothing and map cells…';
  const ground=new GroundRenderer();
  await Promise.all([world.around(state.player.x,state.player.y),character.init(),ground.init()]);sim.animationData=character.data;
- renderer=new Renderer($('#game'),world,atlas,character);renderer.ground=ground;renderer.draw(sim);sourceToolIcons();
+ renderer=new Renderer($('#game'),world,atlas,character);renderer.ground=ground;applyPreferences(preferences);renderer.draw(sim);sourceToolIcons();
  for(const speed of [1,5,20]){const b=button(`×${speed}`,()=>{sim.speed=speed;toast(`Time speed ×${speed}`);});b.setAttribute('aria-label',`Time speed ${speed}×`);$('#topbar').append(b);}
  $('#load-status').textContent='Preparing floor, wall and furniture textures…';await Promise.all(renderer.loading.values());renderer.draw(sim);
  $('#loading').hidden=true;for(const id of ['topbar','tools','moodles','controls'])$('#'+id).hidden=false;
@@ -176,7 +192,7 @@ async function start(){
   controls.append(button('Record game audio',async()=>{try{await gameAudio.unlock();gameAudio.startCapture();toast('Recording game audio');}catch(e){toast(e.message);}}),button('Stop and export audio',async()=>{try{download(await gameAudio.stopCapture(),'pz-reading-audio.webm');}catch(e){toast(e.message);}}),button('Export audio event log',()=>download(new Blob([JSON.stringify({state:gameAudio.context.state,capture:gameAudio.lastCapture??null,loaded:[...gameAudio.buffers.keys()],played:gameAudio.played,errors:gameAudio.errors},null,2)],{type:'application/json'}),'pz-audio-events.json')));
   document.body.append(controls);
  }
- document.addEventListener('keydown',e=>{if(desktop.active)return;if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;const k=e.key.toLowerCase();if(k==='tab'||e.target.closest('button,a')&&[' ','enter'].includes(k))return;keys.add(k);
+ document.addEventListener('keydown',e=>{if(desktop.active||workshop?.element||mainMenu?.active)return;if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;const k=e.key.toLowerCase();if(k==='tab'||e.target.closest('button,a')&&[' ','enter'].includes(k))return;keys.add(k);
   if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();if(e.repeat)return;
   if(k==='q'||k==='?'){setHudTray(hudTray===(k==='q'?'nearby':'help')?null:k==='q'?'nearby':'help');return;}if(k==='escape'&&hudTray){setHudTray(null);$('#game').focus();return;}
   if(k==='r'&&buildMode){buildMode.rotation=(buildMode.rotation+1)%buildMode.recipe.tiles.length;return;}if(k==='escape'&&buildMode){sim.cancel();buildMode=null;renderer.buildPreview=null;return;}if(k==='p')pause();if(k==='escape'){sim.cancel();if(panel)setPanel(panel);else pause();}
@@ -189,10 +205,11 @@ async function start(){
  $('#game').addEventListener('mousedown',e=>{if(e.button===0&&buildMode&&Number.isInteger(buildMode.x)){sim.build(buildMode.recipe.id,buildMode.x,buildMode.y,sim.state.player.z,buildMode.rotation);$('#game').focus();return;}if(e.button===0&&keys.has('control')&&!sim.paused)sim.attack();$('#game').focus();});
  $('#nearby-toggle').onclick=()=>setHudTray(hudTray==='nearby'?null:'nearby');$('#help-toggle').onclick=()=>setHudTray(hudTray==='help'?null:'help');$('#close-help').onclick=()=>{setHudTray(null);$('#help-toggle').focus();};
  document.addEventListener('pointerdown',e=>{if(hudTray&&!e.target.closest('#controls,#actions,#controls-help'))setHudTray(null);});
+ $('#open-workshop').onclick=openWorkshop;$('#main-menu-toggle').onclick=showMainMenu;
  $('#pause').onclick=pause;$('#close-panel').onclick=()=>setPanel(panel);document.querySelectorAll('[data-panel]').forEach(b=>b.onclick=()=>setPanel(b.dataset.panel));
  $('#import-save').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{if(f.size>10e6)throw new Error('Save file is too large');const imported=parseSave(await f.text(),{bounds:RESIDENCE.bounds});buildMode=null;renderer.buildPreview=null;sim.paused=true;await world.around(imported.player.x,imported.player.y);sim=new Simulation(world,imported,character.data);animationTrace=[];animationSignature='';sim.paused=true;window.pz.sim=sim;$('#death').hidden=true;save();toast('Save restored');}catch(err){toast(`Import failed: ${err.message}`);}e.target.value='';};
  $('#restart').onclick=()=>{sim=new Simulation(world,newState(manifest.spawn),character.data);animationTrace=[];animationSignature='';window.pz.sim=sim;$('#death').hidden=true;world.around(sim.state.player.x,sim.state.player.y).catch(e=>toast(e.message));save();};
- updateUI(performance.now());$('#game').focus();enablePanelDrag();requestAnimationFrame(frame);
+ mainMenu=new MainMenu({world,renderer,bounds:RESIDENCE.bounds,getState:()=>sim.state,onStart:startGame,onWorkshop:openWorkshop,onPreferences:applyPreferences});sim.paused=true;mainMenu.open();updateUI(performance.now());enablePanelDrag();requestAnimationFrame(frame);
 }
 function updateWorldPrompt(){
  const hint=$('#world-interaction');hint.hidden=!focusTarget||!!panel||desktop.active||!!buildMode||!!sim.action||sim.state.player.hp<=0;
@@ -209,6 +226,8 @@ function enablePanelDrag(){const win=$('#panel'),header=win.querySelector(':scop
  const end=()=>drag=null;header.addEventListener('pointerup',end);header.addEventListener('lostpointercapture',end);
 }
 function frame(now){const dt=Math.min((now-last)/1000||0,.1);last=now;const sx=(keys.has('d')||keys.has('arrowright')?1:0)-(keys.has('a')||keys.has('arrowleft')?1:0),sy=(keys.has('s')||keys.has('arrowdown')?1:0)-(keys.has('w')||keys.has('arrowup')?1:0);
+ if(workshop?.element||mainMenu?.active&&!arriving){requestAnimationFrame(frame);return;}
+ if(arriving){renderer.draw(sim,null,dt);requestAnimationFrame(frame);return;}
  sim.tick(dt,{x:sx+sy,y:sy-sx,run:keys.has('shift'),sneak:keys.has('control')});
  for(const sound of sim.soundEvents.splice(0))gameAudio.play(sound);
  for(const message of sim.events.splice(0))if(message!=='hit'&&message!=='swing')toast(message);
