@@ -1,10 +1,17 @@
-// Static hosting entry point. Original-game assets remain local to this browser.
+// Hosted assets launch directly; code-only builds can still import a local folder.
 const status=document.querySelector('#load-status');
 const assetURL=new URL('../private-assets/',import.meta.url);
 const required=['world/manifest.json','world/properties.json','atlas.json','items.json','recipes.json','trees/manifest.json','characters/character.json','held-models/held-models.json','ground-models/held-models.json','comics.json','reading-audio/manifest.json'];
 const cacheName='pz-local-assets-v1:'+assetURL.pathname;
 async function launch(){await import('./main.js');}
 async function boot(){
+ // Hosted builds bypass the legacy folder-import cache without deleting local saves.
+ const hosted=await fetch(new URL('../hosted-assets.json',import.meta.url),{cache:'no-store'});
+ if(hosted.ok&&(await hosted.json()).available){
+  for(const r of await navigator.serviceWorker?.getRegistrations?.()??[])if(r.scope===new URL('../',import.meta.url).href)await r.unregister();
+  if(navigator.serviceWorker?.controller){location.reload();return;}
+  await launch();return;
+ }
  // Local development already has an asset directory; no service worker needed.
  if(!navigator.serviceWorker?.controller&&(await fetch(new URL('world/manifest.json',assetURL))).ok){await launch();return;}
  if(!('serviceWorker'in navigator))throw Error('This browser does not support local assets. Use desktop Chrome or Edge.');

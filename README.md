@@ -1,15 +1,13 @@
 # Tian’s House
 
-Playable work in progress; not a complete Project Zomboid recreation.
+An interactive personal portfolio in a single residence with a yard and garage. Work in progress; full Project Zomboid feature and visual parity are not complete.
 
-Open https://lovejzzz.github.io/tian.house/ in desktop Chrome or Edge. On the first visit, choose your locally converted `private-assets` directory. Its textures, maps, models and audio are stored only in your browser, never uploaded. The raw Steam installation folder is not the converted asset directory. Clearing site data removes cached assets and local saves; export saves before doing so.
+Open the website, enter the bedroom and choose **Use computer · Computer**. The CRT desktop includes Folio University, Surge Method and Bebop Puzzle. Links open in a new browser tab. The game and OS use English, and the entry greeting is **Welcome. Make yourself at home.**
 
-Controls: WASD movement, Shift run, E interact, Space attack, I inventory, H health, C crafting/building, M map, P pause. Building: click to place, R rotate, Esc cancel. Saves are local to this website; use the save panel to import/export JSON files.
+Runtime assets are hosted with the site, so visitors do not need to import a folder. The site includes converted assets from the owner-provided local Project Zomboid installation at the owner’s request for this noncommercial project. Original asset ownership and licensing remain with their respective owners; this repository does not grant a separate license to those assets. No game executable, player save, private research recording or account data is included.
 
-This repository contains independently implemented browser code and the Three.js dependency (MIT license in `vendor/three/LICENSE`). It does not contain original-game assets, game binaries, research captures or player saves. Current gameplay, art and behavior remain incomplete and are under development. This is an unofficial research project, not an official release.
+Controls: WASD movement, Shift run, E interact, Space attack, I inventory, H health, C crafting/building, M map, P pause. Building: click to place, R rotate, Esc cancel.
 
-## Portfolio experience
+Game saves, desktop windows and visited projects stay in the visitor’s browser. Export/import saves through the Save menu to transfer between domains or devices. Clearing site data removes local saves.
 
-The current map is one residence with a yard and garage. Start in the upstairs bedroom, choose **Use computer · Computer**, then open Folio University, Surge Method or Bebop Puzzle on the CRT desktop. Project links open in a new browser tab. Desktop window positions and visited projects stay in local storage. The residence uses a separate save slot from the earlier town build.
-
-The game and desktop use English. The entry greeting is “Welcome. Make yourself at home.” The planned custom domain is tian.house; it is not connected yet. A visitor-ready release still needs distributable artwork and an asset-free first-visit workflow.
+Three.js is included under its MIT license in `vendor/three/LICENSE`. This is an unofficial project, not an official Project Zomboid release.
