@@ -1,7 +1,7 @@
-import {windowBarricadeSprites} from './barricades.js?v=57ae360d5df5';
-import {Visibility} from './visibility.js?v=57ae360d5df5';
-import {treeSprites} from './vegetation.js?v=57ae360d5df5';
-import {windowSprite} from './windows.js?v=57ae360d5df5';
+import {windowBarricadeSprites} from './barricades.js?v=e25ddc7f50e3';
+import {Visibility} from './visibility.js?v=e25ddc7f50e3';
+import {treeSprites} from './vegetation.js?v=e25ddc7f50e3';
+import {windowSprite} from './windows.js?v=e25ddc7f50e3';
 export class Renderer{
  constructor(canvas,world,atlas,characters){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.world=world;this.visibility=new Visibility(world);this.atlas=atlas;this.characters=characters;this.images=new Map();this.loading=new Map();this.failed=new Set();this.zoom=1.55;this.camera={x:0,y:0};this.missing=new Set();this.unverifiedTrees=new Set();this.treeCount=0;this.frameTimes=[];this.drawn=0;}
  resize(){const d=Math.min(devicePixelRatio||1,2),w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(this.canvas.width!==w*d||this.canvas.height!==h*d){this.canvas.width=w*d;this.canvas.height=h*d;}this.dpr=d;this.width=w;this.height=h;}
