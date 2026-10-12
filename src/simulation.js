@@ -390,9 +390,9 @@ export class Simulation{
  }
  serialize(){const {windowMotion,windowToggle,windowApproach,windowTurn,buildMotion,readMotion,...player}=this.state.player;return JSON.stringify({...this.state,player,changes:this.world.changes});}
 }
-export function parseSave(text){const s=JSON.parse(text);if(![1,2].includes(s.version)||!s.player||!Array.isArray(s.zombies)||!s.changes)throw new Error('不支持的存档格式');
+export function parseSave(text,{bounds=[7680,11008,8960,12800]}={}){const s=JSON.parse(text);if(![1,2].includes(s.version)||!s.player||!Array.isArray(s.zombies)||!s.changes)throw new Error('不支持的存档格式');
  for(const field of['x','y','z','hp','hunger','thirst','fatigue','endurance'])if(!Number.isFinite(s.player[field]))throw new Error('存档角色数据无效');
- if(s.player.x<7680||s.player.x>=8960||s.player.y<11008||s.player.y>=12800)throw new Error('存档位置超出小镇');
+ if(s.player.x<bounds[0]||s.player.x>=bounds[2]||s.player.y<bounds[1]||s.player.y>=bounds[3])throw new Error('存档位置超出当前地图范围，请使用对应地图的存档');
  if(s.version===1){const inventory=inventoryState(),inv=new Inventory(inventory);for(const[type,n]of Object.entries(s.bag||{})){if(!Number.isInteger(n)||n<0||n>10000)throw Error('存档物品数据无效');for(let i=0;i<n;i++){const item=inv.create(type);if(item.fluid)item.fluid.amount=item.fluid.capacity;}}
   for(const[id,bag]of Object.entries(s.containers||{})){inv.container('world:'+id,id,50);for(const[type,n]of Object.entries(bag)){if(!Number.isInteger(n)||n<0||n>10000)throw Error('存档容器物品数据无效');for(let i=0;i<n;i++)inv.create(type,'world:'+id);}}
   const weapon=inv.find(s.player.weapon);if(weapon)inv.equip(weapon.id);s.inventory=inventory;s.version=2;delete s.bag;s.containers={};

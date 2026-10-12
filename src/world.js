@@ -1,3 +1,4 @@
+import {withinBounds} from './residence.js';
 import {selectWindowApproach} from './window-approach.js';
 import {windowLanding} from './windows.js';
 import {stairType,stairHeight} from './stairs.js';
@@ -13,7 +14,7 @@ export class World {
       const res=await fetch(`private-assets/world/${id}.json`);if(!res.ok)throw new Error(`地图 ${id} 读取失败`);
       const data=await res.json();const squares=new Map();let trees={};if(this.manifest.treeAdapter){const t=await fetch(`private-assets/trees/${id}.json`);if(!t.ok)throw Error(`树木数据 ${id} 读取失败`);trees=await t.json();}
       for(const row of data.squares){
-        const [x,y,z,room,...ids]=row;const tiles=ids.map(i=>data.names[i]);
+        const [x,y,z,room,...ids]=row;if(!withinBounds(x+cx*256,y+cy*256,this.manifest.playableBounds))continue;const tiles=ids.map(i=>data.names[i]);for(const f of this.manifest.fixtures||[])if(f.x===x+cx*256&&f.y===y+cy*256&&f.z===z&&!tiles.includes(f.tile))tiles.push(f.tile);
         squares.set(key(x,y,z),{x:x+cx*256,y:y+cy*256,z,room,tiles});
       }
       this.cells.set(id,{squares,names:data.names,trees,levels:[...new Set(data.squares.map(row=>row[2]))].sort((a,b)=>a-b)});this.revision++;
@@ -28,7 +29,7 @@ export class World {
     await Promise.all(jobs);
   }
   reindexBuilds(){this.buildIndex=new Map();for(const b of this.builds){const k=key(b.x,b.y,b.z);if(!this.buildIndex.has(k))this.buildIndex.set(k,[]);this.buildIndex.get(k).push(b.tile);}}
-  square(x,y,z=0){const cx=Math.floor(x/256),cy=Math.floor(y/256),base=this.cells.get(`${cx}_${cy}`)?.squares.get(key(x-cx*256,y-cy*256,z)),added=this.buildIndex.get(key(x,y,z));return base&&added?{...base,tiles:[...base.tiles,...added]}:base;}
+  square(x,y,z=0){if(!withinBounds(x,y,this.manifest.playableBounds))return undefined;const cx=Math.floor(x/256),cy=Math.floor(y/256),base=this.cells.get(`${cx}_${cy}`)?.squares.get(key(x-cx*256,y-cy*256,z)),added=this.buildIndex.get(key(x,y,z));return base&&added?{...base,tiles:[...base.tiles,...added]}:base;}
   hasRainBlockingTile(x,y,z){return (this.square(x,y,z)?.tiles||[]).some(tile=>{if(this.state(x,y,z,tile).destroyed)return false;const p=this.props(tile);return 'solidfloor'in p||'BlockRain'in p;});}
   hasRoof(x,y,z){const cell=this.cells.get(`${Math.floor(x/256)}_${Math.floor(y/256)}`);if(!cell)return false;
     // IsoChunk.loadInWorldStreamerThread scans rain-blocking levels > 0,
@@ -105,7 +106,7 @@ export class World {
       const sq=this.square(x,y,actor.z);if(!sq)continue;
       const distance=Math.hypot(x+.5-actor.x,y+.5-actor.y);if(distance>1.7)continue;
       for(const tile of sq.tiles){const p=this.props(tile);let type;
-        if('doorN'in p||'doorW'in p||p.type==='doorN'||p.type==='doorW')type='door';
+        if(p.CustomName==='Computer')type='computer';else if('doorN'in p||'doorW'in p||p.type==='doorN'||p.type==='doorW')type='door';
         else if(p.container)type='container';else if(p.waterPiped||'waterPiped'in p)type='water';
         else if(p.BedType)type='bed';else if(p.climbSheetN||p.climbSheetW||'windowN'in p||'windowW'in p)type='window';
         // Stairs are traversed by movement, not a no-op interaction button.
@@ -117,6 +118,6 @@ export class World {
           list.push({x,y,z:actor.z,tile,type,props:p,distance,name:p.CustomName||p.container||type,id:`${key(x,y,actor.z)}:${tile}`});
         }
       }
-    }return list.sort((a,b)=>a.distance-b.distance);
+    }return list.sort((a,b)=>(b.type==='computer')-(a.type==='computer')||a.distance-b.distance);
   }
 }

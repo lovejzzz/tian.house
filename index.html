@@ -1,11 +1,12 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Project Zomboid · Rosewood 浏览器复刻</title><link rel="stylesheet" href="style.css">
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title><link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="portfolio.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%235b6549'/%3E%3C/svg%3E">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script></head>
 <body>
 <canvas id="game" aria-label="Rosewood 单人生存游戏画面" tabindex="0"></canvas>
 <section id="loading"><div class="wordmark">PROJECT<br><strong>ZOMBOID</strong></div><p id="load-status">正在读取 Rosewood 原版地图与素材…</p><progress></progress><small>浏览器复刻 · 开发中 · 尚未达到原版功能与美术完整一致</small></section>
-<header id="topbar" hidden><div><b>ROSEWOOD, KY</b><span id="location"></span></div><div class="time"><b id="clock">09:00</b><span id="day">第 1 天</span><button id="pause" title="暂停 / 继续 [P]">Ⅱ</button></div></header>
+<header id="topbar" hidden><div><b>TIAN’S HOUSE</b><span id="location"></span></div><div class="time"><b id="clock">09:00</b><span id="day">第 1 天</span><button id="pause" title="暂停 / 继续 [P]">Ⅱ</button></div></header>
 <nav id="tools" hidden aria-label="生存菜单"><button data-panel="inventory" title="背包 [I]">▤<span>背包</span></button><button data-panel="health" title="健康 [H]">✚<span>健康</span></button><button data-panel="crafting" title="制作 [C]">⚒<span>制作</span></button><button data-panel="map" title="地图 [M]">▧<span>地图</span></button><button data-panel="journal" title="日志 [J]">☷<span>日志</span></button><button data-panel="save" title="存档">▣<span>存档</span></button></nav>
 <aside id="moodles" hidden></aside>
 <section id="panel" class="window" hidden><header><b id="panel-title"></b><button id="close-panel" aria-label="关闭">×</button></header><div id="panel-content"></div></section>
