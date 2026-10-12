@@ -1,30 +1,30 @@
-import {validateHousePlan} from './workshop-model.js?v=b18d5604f577';
-import {planWater,transferWater,validateWaterState} from './water.js?v=b18d5604f577';
-import {englishLabel} from './english.js?v=b18d5604f577';
-import {ensureMedical,injury,advanceMedical,validateMedical,planTreatment,treatWound,BODY_PARTS} from './medical.js?v=b18d5604f577';
-import {buildingRecipes,planBuilding,planBuildingMaterials,commitBuilding,validateBuildings} from './building.js?v=b18d5604f577';
-import {advanceCooking,ensureAppliance,isCookingAppliance,validateCookingState} from './cooking.js?v=b18d5604f577';
-import {craftingRecipes,planCraft,commitCraft} from './crafting.js?v=b18d5604f577';
-import {completeReadingKnowledge} from './recipe-knowledge.js?v=b18d5604f577';
-import {consumeCraftInputs} from './craft-consumption.js?v=b18d5604f577';
-import {readingSound,readingPageFlips} from './reading-sounds.js?v=b18d5604f577';
-import {ordinaryLiterature,applyLiteratureEffects,isLiteratureRead,addReadLiterature,advanceReadingClock,skillBook,readingComprehension,prepareBookReading,bookReadingDuration,updateBookPages,validateReadingState} from './reading.js?v=b18d5604f577';
-import {transferDuration} from './item-transfer.js?v=b18d5604f577';
-import {groundDropPlacement} from './ground-placement.js?v=b18d5604f577';
-import {damageCheck} from './item-wear.js?v=b18d5604f577';
-import {breakCarriedStoneHammer} from './item-breakage.js?v=b18d5604f577';
-import {weaponSprite} from './item-model-state.js?v=b18d5604f577';
-import {recipeWearModifier} from './recipe-wear.js?v=b18d5604f577';
-import {selectBarricadeInputs,barricadeInputsValid,barricadeInputScripts} from './recipe-inputs.js?v=b18d5604f577';
-import {awardWoodworkXp,validateWoodworkProgression} from './progression.js?v=b18d5604f577';
-import {startWindowTurn,advanceWindowTurn} from './window-turn.js?v=b18d5604f577';
-import {doorToggle} from './doors.js?v=b18d5604f577';
-import {canAddBarricadePlank,addBarricadePlank,woodBarricadeDuration} from './barricades.js?v=b18d5604f577';
-import {findTilePath} from './pathfinding.js?v=b18d5604f577';
-import {Inventory,inventoryState,definition,itemType,validateInventory} from './inventory.js?v=b18d5604f577';
-import {canToggleWindow,canClimbWindow,windowLanding,hasWindowBarricade,windowBarricadeSide} from './windows.js?v=b18d5604f577';
-import {windowTogglePhase,advanceWindowOpening,OPEN_STAGES} from './window-toggle.js?v=b18d5604f577';
-import {WINDOW_FINISH_TIME,windowPhase,advanceWindowPosition,windowRootDelta} from './window-traversal.js?v=b18d5604f577';
+import {validateHousePlan} from './workshop-model.js?v=0140423a9cbf';
+import {planWater,transferWater,validateWaterState} from './water.js?v=0140423a9cbf';
+import {englishLabel} from './english.js?v=0140423a9cbf';
+import {ensureMedical,injury,advanceMedical,validateMedical,planTreatment,treatWound,BODY_PARTS} from './medical.js?v=0140423a9cbf';
+import {buildingRecipes,planBuilding,planBuildingMaterials,commitBuilding,validateBuildings} from './building.js?v=0140423a9cbf';
+import {advanceCooking,ensureAppliance,isCookingAppliance,validateCookingState} from './cooking.js?v=0140423a9cbf';
+import {craftingRecipes,planCraft,commitCraft} from './crafting.js?v=0140423a9cbf';
+import {completeReadingKnowledge} from './recipe-knowledge.js?v=0140423a9cbf';
+import {consumeCraftInputs} from './craft-consumption.js?v=0140423a9cbf';
+import {readingSound,readingPageFlips} from './reading-sounds.js?v=0140423a9cbf';
+import {ordinaryLiterature,applyLiteratureEffects,isLiteratureRead,addReadLiterature,advanceReadingClock,skillBook,readingComprehension,prepareBookReading,bookReadingDuration,updateBookPages,validateReadingState} from './reading.js?v=0140423a9cbf';
+import {transferDuration} from './item-transfer.js?v=0140423a9cbf';
+import {groundDropPlacement} from './ground-placement.js?v=0140423a9cbf';
+import {damageCheck} from './item-wear.js?v=0140423a9cbf';
+import {breakCarriedStoneHammer} from './item-breakage.js?v=0140423a9cbf';
+import {weaponSprite} from './item-model-state.js?v=0140423a9cbf';
+import {recipeWearModifier} from './recipe-wear.js?v=0140423a9cbf';
+import {selectBarricadeInputs,barricadeInputsValid,barricadeInputScripts} from './recipe-inputs.js?v=0140423a9cbf';
+import {awardWoodworkXp,validateWoodworkProgression} from './progression.js?v=0140423a9cbf';
+import {startWindowTurn,advanceWindowTurn} from './window-turn.js?v=0140423a9cbf';
+import {doorToggle} from './doors.js?v=0140423a9cbf';
+import {canAddBarricadePlank,addBarricadePlank,woodBarricadeDuration} from './barricades.js?v=0140423a9cbf';
+import {findTilePath} from './pathfinding.js?v=0140423a9cbf';
+import {Inventory,inventoryState,definition,itemType,validateInventory} from './inventory.js?v=0140423a9cbf';
+import {canToggleWindow,canClimbWindow,windowLanding,hasWindowBarricade,windowBarricadeSide} from './windows.js?v=0140423a9cbf';
+import {windowTogglePhase,advanceWindowOpening,OPEN_STAGES} from './window-toggle.js?v=0140423a9cbf';
+import {WINDOW_FINISH_TIME,windowPhase,advanceWindowPosition,windowRootDelta} from './window-traversal.js?v=0140423a9cbf';
 // Browser implementation under development. Values below are provisional design
 // values, not claimed PZ-compatible until source-runtime differential validation.
 export const ITEMS={
@@ -254,6 +254,7 @@ export class Simulation{
   if(!this.world.interactions(p).some(o=>o.id===obj.id))return;
   const s=this.world.state(obj.x,obj.y,obj.z,obj.tile);
   if(obj.type==='door'){const result=doorToggle(this.world,obj,p,this.inventory);if(result.patch)this.world.change(obj.x,obj.y,obj.z,obj.tile,result.patch);if(!result.ok){this.log(result.reason);return;}if(obj.props.GarageDoor){const north='doorN'in obj.props,index=(Number(obj.props.GarageDoor)-1)%3;for(let i=0;i<3;i++){const x=obj.x+(north?i-index:0),y=obj.y+(north?0:i-index);for(const tile of this.world.square(x,y,obj.z)?.tiles||[]){const p=this.world.props(tile);if(p.GarageDoor&&('doorN'in p)===north&&((Number(p.GarageDoor)-1)%3)===i)this.world.change(x,y,obj.z,tile,result.patch);}}}this.log(s.open?'Close door':'Open door');}
+  if(obj.type==='light'){this.world.change(obj.x,obj.y,obj.z,obj.tile,{lightOff:!s.lightOff});this.log(s.lightOff?'Light on':'Light off');}
   if(obj.type==='water')this.takeWater(obj);
   if(obj.type==='bed'){
    if(this.state.zombies.some(z=>z.hp>0&&Math.hypot(z.x-p.x,z.y-p.y)<8)){this.log('There is danger nearby, You cannot sleep');return;}

@@ -1,7 +1,7 @@
-import {withinBounds} from './residence.js?v=b18d5604f577';
-import {selectWindowApproach} from './window-approach.js?v=b18d5604f577';
-import {windowLanding} from './windows.js?v=b18d5604f577';
-import {stairType,stairHeight} from './stairs.js?v=b18d5604f577';
+import {withinBounds} from './residence.js?v=0140423a9cbf';
+import {selectWindowApproach} from './window-approach.js?v=0140423a9cbf';
+import {windowLanding} from './windows.js?v=0140423a9cbf';
+import {stairType,stairHeight} from './stairs.js?v=0140423a9cbf';
 export const key = (x,y,z=0) => `${Math.floor(x)},${Math.floor(y)},${z}`;
 export class World {
   constructor(manifest,properties){this.manifest=manifest;this.properties=properties;this.cells=new Map();this.pending=new Map();this.changes={};this.builds=[];this.buildIndex=new Map();this.errors=[];this.revision=0;}
@@ -75,12 +75,19 @@ export class World {
       if('HoppableW'in p||'WallWTrans'in p||'collideW'in p||'WallW'in p||'WallNW'in p||'windowW'in p||'doorW'in p||p.type==='doorW')out.west=true;
     }return out;
   }
-  canStep(x,y,nx,ny,z=0){
+  canStep(x,y,nx,ny,z=0,ignoreWalls=false){
     const [bx,by,tx,ty]=[x,y,nx,ny].map(Math.floor),nextZ=this.stepLayer(x,y,nx,ny,z);const a=this.flags(bx,by,z),b=this.flags(tx,ty,nextZ);
     if(!b.floor||b.solid)return false;
-    if(tx>bx&&b.west||tx<bx&&a.west||ty>by&&b.north||ty<by&&a.north)return false;
+    if(!ignoreWalls&&(tx>bx&&b.west||tx<bx&&a.west||ty>by&&b.north||ty<by&&a.north))return false;
     if(tx!==bx&&ty!==by){if(!this.canStep(x,y,nx,y,z)||!this.canStep(x,y,x,ny,z))return false;}
     return true;
+  }
+  wallOverlap(x,y,z){
+    const r=.18,left=Math.floor(x-r),right=Math.floor(x+r),top=Math.floor(y-r),bottom=Math.floor(y+r);let depth=0;
+    // Test the whole footprint at wall ends, not only probes crossing an edge.
+    if(left!==right)for(let row=top;row<=bottom;row++)if(this.flags(right,row,z).west)depth=Math.max(depth,Math.min(x+r-right,right-(x-r)));
+    if(top!==bottom)for(let col=left;col<=right;col++)if(this.flags(col,bottom,z).north)depth=Math.max(depth,Math.min(y+r-bottom,bottom-(y-r)));
+    return depth;
   }
   move(actor,dx,dy){
     // Substep prevents tunnelling; four corner probes give the actor a physical footprint.
@@ -95,8 +102,13 @@ export class World {
         const yZ=this.stepLayer(actor.x,actor.y,actor.x,actor.y+oy,actor.z);
         const alternateZ=this.stepLayer(actor.x,actor.y+oy,actor.x+ox,actor.y+oy,yZ);
         const cornerZ=probeZ!==actor.z?probeZ:alternateZ;
-        if(!this.canStep(actor.x+ox,actor.y+oy,actor.x+ox+sx,actor.y+oy+sy,cornerZ)){ok=false;break;}
+        // Only the leading face crosses a wall. A trailing corner must be
+        // allowed to retreat from tiny pre-existing overlap in older saves.
+        const trailing=sx?Math.sign(ox)!==Math.sign(sx):Math.sign(oy)!==Math.sign(sy);
+        if(!this.canStep(actor.x+ox,actor.y+oy,actor.x+ox+sx,actor.y+oy+sy,cornerZ,trailing)){ok=false;break;}
       }
+      const nextZ=this.stepLayer(actor.x,actor.y,actor.x+sx,actor.y+sy,actor.z);
+      if(ok&&nextZ===actor.z&&this.wallOverlap(actor.x+sx,actor.y+sy,nextZ)>this.wallOverlap(actor.x,actor.y,actor.z)+1e-9)ok=false;
       if(ok){actor.z=this.stepLayer(actor.x,actor.y,actor.x+sx,actor.y+sy,actor.z);actor.x+=sx;actor.y+=sy;moved=true;}
     }return moved;
   }
@@ -121,7 +133,7 @@ export class World {
       const sq=this.square(x,y,actor.z);if(!sq)continue;
       const distance=Math.hypot(x+.5-actor.x,y+.5-actor.y);if(distance>1.7)continue;
       for(const tile of sq.tiles){const p=this.props(tile);let type;
-        if(p.CustomName==='Computer')type='computer';else if('doorN'in p||'doorW'in p||p.type==='doorN'||p.type==='doorW')type='door';
+        if(p.TianBrief)type='brief';else if(p.TianUtility==='water')type='water';else if(p.TianLight)type='light';else if(p.CustomName==='Computer')type='computer';else if('doorN'in p||'doorW'in p||p.type==='doorN'||p.type==='doorW')type='door';
         else if(p.container)type='container';else if(p.waterPiped||'waterPiped'in p)type='water';
         else if(p.BedType)type='bed';else if(p.climbSheetN||p.climbSheetW||'windowN'in p||'windowW'in p)type='window';
         // Stairs are traversed by movement, not a no-op interaction button.

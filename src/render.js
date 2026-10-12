@@ -1,10 +1,11 @@
-import {drawPool} from './workshop-outdoors.js?v=b18d5604f577';
-import {definition} from './inventory.js?v=b18d5604f577';
-import {inventoryIcon} from './item-icons.js?v=b18d5604f577';
-import {windowBarricadeSprites} from './barricades.js?v=b18d5604f577';
-import {Visibility} from './visibility.js?v=b18d5604f577';
-import {treeSprites} from './vegetation.js?v=b18d5604f577';
-import {windowSprite} from './windows.js?v=b18d5604f577';
+import {furnishingLift} from './furnishing.js?v=0140423a9cbf';
+import {drawPool} from './workshop-outdoors.js?v=0140423a9cbf';
+import {definition} from './inventory.js?v=0140423a9cbf';
+import {inventoryIcon} from './item-icons.js?v=0140423a9cbf';
+import {windowBarricadeSprites} from './barricades.js?v=0140423a9cbf';
+import {Visibility} from './visibility.js?v=0140423a9cbf';
+import {treeSprites} from './vegetation.js?v=0140423a9cbf';
+import {windowSprite} from './windows.js?v=0140423a9cbf';
 export class Renderer{
  constructor(canvas,world,atlas,characters){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.world=world;this.visibility=new Visibility(world);this.atlas=atlas;this.characters=characters;this.images=new Map();this.loading=new Map();this.failed=new Set();this.zoom=1.55;this.camera={x:0,y:0};this.missing=new Set();this.unverifiedTrees=new Set();this.treeCount=0;this.frameTimes=[];this.drawn=0;}
  resize(){const d=Math.min(devicePixelRatio||1,2),w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(this.canvas.width!==w*d||this.canvas.height!==h*d){this.canvas.width=w*d;this.canvas.height=h*d;}this.dpr=d;this.width=w;this.height=h;}
@@ -22,7 +23,12 @@ export class Renderer{
   }else c.drawImage(image,r.x,r.y,r.w,r.h,x-32+r.ox/s,y-96+r.oy/s,r.w/s,r.h/s);
   c.globalAlpha=1;this.drawn++;
  }
- async loadWorkshopVehicles(){if(this.vehicleLoading)return;this.vehicleLoading=true;try{const [manifest,{WorkshopVehicles}]=await Promise.all([fetch('private-assets/workshop-vehicles/manifest.json').then(r=>r.json()),import('./workshop-vehicles.js?v=b18d5604f577')]);const vehicles=new WorkshopVehicles(manifest);await vehicles.init();this.workshopVehicles=vehicles;}catch(e){this.vehicleError=e.message;console.error(e);}}
+ object(name,x,y,z,alpha=1,brightness=1,square=null,bounce=0){
+  const point=this.project(x,y,z),sq=square||this.world.square(x,y,z),lift=furnishingLift(name,sq,this.world.properties),prop=this.world.props(name);
+  this.sprite(name,point.x,point.y-lift+bounce,alpha,brightness*(prop.TianLight&&this.world.state(x,y,z,name).lightOff?.42:1));
+  if(prop.TianLight&&!this.world.state(x,y,z,name).lightOff&&brightness>0){const c=this.ctx,h=prop.TianMount==='table'?lift+20:prop.TianMount==='wall'?60:65;c.save();c.globalAlpha=alpha*brightness*(this.layerAlpha??1);const glow=c.createRadialGradient(point.x,point.y+12-h,0,point.x,point.y+12-h,22);glow.addColorStop(0,'#ffe6ac66');glow.addColorStop(1,'#ffe6ac00');c.fillStyle=glow;c.fillRect(point.x-22,point.y-10-h,44,44);c.restore();}
+ }
+ async loadWorkshopVehicles(){if(this.vehicleLoading)return;this.vehicleLoading=true;try{const [manifest,{WorkshopVehicles}]=await Promise.all([fetch('private-assets/workshop-vehicles/manifest.json').then(r=>r.json()),import('./workshop-vehicles.js?v=0140423a9cbf')]);const vehicles=new WorkshopVehicles(manifest);await vehicles.init();this.workshopVehicles=vehicles;}catch(e){this.vehicleError=e.message;console.error(e);}}
  groundIcon(item,pos){const name=inventoryIcon(item,definition(item.type).properties),r=this.atlas.regions[name]||this.atlas.regions.Question_On;if(!r)return;const image=this.page(r.page);if(!image)return;const s=Math.min(22/r.w,22/r.h);this.ctx.drawImage(image,r.x,r.y,r.w,r.h,pos.x-r.w*s/2,pos.y-r.h*s,r.w*s,r.h*s);}
  draw(sim,hover,dt=1/60){this.resize();const c=this.ctx,p=sim.state.player;const point=this.cinematicCamera||this.project(p.x,p.y,this.world.apparentZ(p));this.camera=point;this.visibility.update(sim);this.visibility.advance(sim,dt);this.drawn=0;this.treeCount=0;
   c.setTransform(this.dpr,0,0,this.dpr,0,0);c.fillStyle='#000';c.fillRect(0,0,this.width,this.height);
@@ -47,7 +53,7 @@ export class Renderer{
   if(this.world.housePlan?.vehicles?.length){this.loadWorkshopVehicles();for(const vehicle of this.world.housePlan.vehicles)if(vehicle.z===level&&Math.hypot(vehicle.x-p.x,vehicle.y-p.y)<rx)objects.push({...vehicle,depth:vehicle.x+vehicle.y,parked:true});}
   for(const z of sim.state.zombies)if(z.hp>0&&z.z===level&&this.visibility.visible.has(this.visibility.key(Math.floor(z.x),Math.floor(z.y),z.z))&&Math.hypot(z.x-p.x,z.y-p.y)<rx)objects.push({depth:z.x+z.y,actor:z,zombie:true});
   for(const item of Object.values(sim.state.inventory.items)){const tile=sim.state.inventory.containers[item.container]?.ground;if(!tile||tile.z!==level||!this.visibility.visible.has(this.visibility.key(tile.x,tile.y,tile.z))||Math.hypot(tile.x-p.x,tile.y-p.y)>rx)continue;const offset=item.groundOffset??{x:.5,y:.5,z:0},x=tile.x+offset.x,y=tile.y+offset.y;objects.push({depth:x+y-.01,x,y,z:tile.z+offset.z,groundItem:item});}
-  if(this.world.housePlan)for(const container of Object.values(sim.state.inventory.containers)){const match=/^world:(-?\d+),(-?\d+),(-?\d+):(.+)$/.exec(container.id);if(!match||Number(match[3])!==level||!container.items.length)continue;const x=Number(match[1]),y=Number(match[2]);if(!this.world.square(x,y,level)?.tiles.includes(match[4])||!this.visibility.visible.has(this.visibility.key(x,y,level)))continue;const items=container.items.map(id=>sim.state.inventory.items[id]).filter(Boolean);const seen=new Set(),display=items.filter(i=>{if(seen.has(i.type))return false;seen.add(i.type);return true;}).slice(0,3);objects.push({x,y,z:level,stocked:display,depth:x+y+.7});}
+  if(this.world.housePlan)for(const container of Object.values(sim.state.inventory.containers)){const match=/^world:(-?\d+),(-?\d+),(-?\d+):(.+)$/.exec(container.id);if(!match||Number(match[3])!==level||!container.items.length)continue;const x=Number(match[1]),y=Number(match[2]);if(this.world.props(match[4]).container!=='shelves'||!this.world.square(x,y,level)?.tiles.includes(match[4])||!this.visibility.visible.has(this.visibility.key(x,y,level)))continue;const items=container.items.map(id=>sim.state.inventory.items[id]).filter(Boolean);const seen=new Set(),display=items.filter(i=>{if(seen.has(i.type))return false;seen.add(i.type);return true;}).slice(0,3);objects.push({x,y,z:level,stocked:display,depth:x+y+.7});}
   if(p.z===level)objects.push({depth:p.x+p.y,actor:p});objects.sort((a,b)=>a.depth-b.depth);
   for(const obj of objects){if(obj.stocked){const pos=this.project(obj.x,obj.y,obj.z);obj.stocked.forEach((item,i)=>this.groundIcon(item,{x:pos.x+(i-(obj.stocked.length-1)/2)*10,y:pos.y-32}));continue;}if(obj.parked){const pos=this.project(obj.x,obj.y,obj.z),brightness=this.visibility.brightness(Math.floor(obj.x),Math.floor(obj.y),obj.z,sim.state.explored);if(brightness){const frame=this.workshopVehicles?.frame(obj.id,obj.rotation);if(frame){c.save();c.globalAlpha=brightness;c.drawImage(frame.image,pos.x-frame.anchor.x,pos.y-frame.anchor.y,frame.width,frame.height);c.restore();}}continue;}if(obj.groundItem){const frame=this.ground?.frame(obj.groundItem),pos=this.project(obj.x,obj.y,obj.z);if(frame)c.drawImage(frame.image,pos.x-frame.anchor.x,pos.y-frame.anchor.y,frame.width,frame.height);else this.groundIcon(obj.groundItem,pos);continue;}if(obj.actor){const a=obj.actor,pos=this.project(a.x,a.y,this.world.apparentZ(a));c.fillStyle='#0005';c.beginPath();c.ellipse(pos.x,pos.y,10,4,0,0,Math.PI*2);c.fill();const frame=this.characters.frame(a,sim.state.elapsed,obj.zombie,null,obj.zombie?null:sim.state.inventory);if(frame)c.drawImage(frame.image,pos.x-frame.anchor.x,pos.y-frame.anchor.y,frame.width,frame.height);continue;}
    const wall='wall'in obj.prop||'WallN'in obj.prop||'WallW'in obj.prop||'doorN'in obj.prop||'doorW'in obj.prop||'WindowN'in obj.prop||'WindowW'in obj.prop||obj.name.startsWith('walls_');
@@ -56,7 +62,7 @@ export class Renderer{
    else if(obj.state.open){const n=Number(name.split('_').at(-1));const alternate=name.replace(/_\d+$/,`_${n+(obj.prop?.GarageDoor?8:2)}`);if(this.atlas.regions[alternate])name=alternate;else alpha=.3;}
    if(wall){const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};const distance=Math.hypot(obj.x-p.x,obj.y-p.y),front=smooth((obj.x+obj.y-p.x-p.y+2)/3),proximity=1-smooth((distance-3)/3),cutaway=obj.z===p.z?front*proximity:0;alpha*=this.visibility.wallAlpha(`${obj.x},${obj.y},${obj.z}:${obj.name}`,1-.74*cutaway,dt);}
    const tree=this.world.tree(obj.x,obj.y,obj.z,obj.name);
-   if(tree){this.unverifiedTrees.add(obj.name);this.treeCount++;for(const layer of treeSprites(tree))this.sprite(layer,pos.x,pos.y,alpha,brightness);}else this.sprite(name,pos.x,pos.y,alpha,brightness);
+   if(tree){this.unverifiedTrees.add(obj.name);this.treeCount++;for(const layer of treeSprites(tree))this.sprite(layer,pos.x,pos.y,alpha,brightness);}else this.object(name,obj.x,obj.y,obj.z,alpha,brightness);
    if(obj.state.barricade){c.strokeStyle='#8e6c45';c.lineWidth=3;c.beginPath();c.moveTo(pos.x-16,pos.y-30);c.lineTo(pos.x+14,pos.y-17);c.stroke();}
   }
   }

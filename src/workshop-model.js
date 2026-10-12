@@ -1,6 +1,7 @@
-import {treeSprites} from './vegetation.js?v=b18d5604f577';
-import {inventoryIcon} from './item-icons.js?v=b18d5604f577';
-import {englishLabel} from './english.js?v=b18d5604f577';
+import {mountProblem} from './furnishing.js?v=0140423a9cbf';
+import {treeSprites} from './vegetation.js?v=0140423a9cbf';
+import {inventoryIcon} from './item-icons.js?v=0140423a9cbf';
+import {englishLabel} from './english.js?v=0140423a9cbf';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;
@@ -77,6 +78,7 @@ export class WorkshopModel{
  square(x,y,z,create=false){const k=tileKey(x,y,z);if(!this.squares.has(k)&&create){const s={x,y,z,room:z===0?-1:0,tiles:[]};this.squares.set(k,s);this.plan.squares.push(s);}return this.squares.get(k);}
  isFloor(tile){const p=this.properties[tile]||{};return !('FloorOverlay'in p||p.MoveType==='FloorRug')&&(tile==='workshop_pool_water'||'solidfloor'in p||tile.startsWith('floors_')||tile.startsWith('blends_'));}
  placement(entry,x,y,z){if(!entry)return {ok:false,reason:'Choose an object'};const cells=entry.parts?.length?entry.parts:[{dx:0,dy:0}];if(cells.some(p=>!this.inside(x+p.dx,y+p.dy,z))||entry.stairs&&(!this.inside(x+(entry.facing==='W'?-1:0),y+(entry.facing==='N'?-1:0),z+1)))return {ok:false,reason:'Outside this lot or above the top floor'};if(entry.vehicle){const size=[Math.max(1,entry.vehicle.extents[0]*entry.vehicle.scale),Math.max(1,entry.vehicle.extents[2]*entry.vehicle.scale)],turned=(entry.rotation??0)%2,w=size[turned?1:0],h=size[turned?0:1];if(x-w/2<this.bounds[0]||x+w/2>this.bounds[2]||y-h/2<this.bounds[1]||y+h/2>this.bounds[3])return {ok:false,reason:'The whole vehicle must fit inside the lot'};for(const v of this.plan.vehicles){const f=v.footprint||[2,4],r=v.rotation%2;if(v.z===z&&Math.abs(v.x-x)<(w+f[r?1:0])/2&&Math.abs(v.y-y)<(h+f[r?0:1])/2)return {ok:false,reason:'Leave space between vehicles'};}for(let cx=Math.floor(x-w/2);cx<x+w/2;cx++)for(let cy=Math.floor(y-h/2);cy<y+h/2;cy++){const sq=this.square(cx,cy,z);if(!sq?.tiles.some(t=>this.isFloor(t))||sq.tiles.some(t=>t==='workshop_pool_water'||'solid'in (this.properties[t]||{})||'solidtrans'in (this.properties[t]||{})))return {ok:false,reason:'Park on a clear, supported surface'};}}
+ for(const part of entry.parts||[]){const sq=this.square(x+part.dx,y+part.dy,z),tiles=[...(sq?.tiles||[]),...entry.parts.filter(p=>p.dx===part.dx&&p.dy===part.dy).map(p=>p.tile)];const reason=mountProblem(part.tile,{tiles},this.properties);if(reason)return {ok:false,reason};}
  return {ok:true};}
  place(entry,x,y,z){const check=this.placement(entry,x,y,z);if(!check.ok)return check;
   if(entry.vehicle){this.plan.vehicles.push({id:entry.vehicle.id,x,y,z,rotation:entry.rotation??0,footprint:[Math.max(1,entry.vehicle.extents[0]*entry.vehicle.scale),Math.max(1,entry.vehicle.extents[2]*entry.vehicle.scale)]});return {ok:true};}

@@ -7,5 +7,5 @@ export function interactionTarget(objects,player,previous=null){
  return retained&&retained.score<=ranked[0].score+.12?retained.o:ranked[0].o;
 }
 export function interactionLabel(object,state={}){
- return ({door:state.open?'Close door':'Open door',container:'Open',computer:'Use computer',water:'Use water source',bed:'Rest',window:state.smashed?'Climb through':state.open?'Close window':'Open window'})[object.type]??'Interact';
+ return ({brief:'Read shelter plan',light:state.lightOff?'Turn on':'Turn off',door:state.open?'Close door':'Open door',container:'Open',computer:'Use computer',water:'Use water source',bed:'Rest',window:state.smashed?'Climb through':state.open?'Close window':'Open window'})[object.type]??'Interact';
 }

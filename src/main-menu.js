@@ -1,8 +1,8 @@
-import {fullscreenCamera,arrivalFrame} from './arrival.js?v=b18d5604f577';
-import {Renderer} from './render.js?v=b18d5604f577';
-import {captureHouse} from './workshop-model.js?v=b18d5604f577';
-import {drawPool} from './workshop-outdoors.js?v=b18d5604f577';
-import {readPreferences,storePreferences} from './preferences.js?v=b18d5604f577';
+import {fullscreenCamera,arrivalFrame} from './arrival.js?v=0140423a9cbf';
+import {Renderer} from './render.js?v=0140423a9cbf';
+import {captureHouse} from './workshop-model.js?v=0140423a9cbf';
+import {drawPool} from './workshop-outdoors.js?v=0140423a9cbf';
+import {readPreferences,storePreferences} from './preferences.js?v=0140423a9cbf';
 const element=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 export class MainMenu{
  constructor({world,renderer,bounds,getState,onStart,onWorkshop,onPreferences}){Object.assign(this,{world,gameRenderer:renderer,bounds,getState,onStart,onWorkshop,onPreferences});this.preferences=readPreferences();this.active=false;}
@@ -33,7 +33,7 @@ export class MainMenu{
   if(this.plan.vehicles?.length)this.gameRenderer.loadWorkshopVehicles();
   for(const z of [...new Set(above.map(s=>s.z))]){r.layerAlpha=this.arrival&&z>this.getState().player.z?this.arrival.roof:1;const objects=[];for(const sq of above.filter(s=>s.z===z)){const p=r.project(sq.x,sq.y,sq.z);for(const tile of sq.tiles){const props=this.world.props(tile);if(tile==='workshop_pool_water')drawPool(c,p,0);else if('solidfloor'in props||'FloorOverlay'in props||tile.startsWith('floors_')||tile.startsWith('blends_'))r.sprite(tile,p.x,p.y);else objects.push({...sq,tile,depth:sq.x+sq.y+.5});}}
    for(const v of this.plan.vehicles||[])if(v.z===z)objects.push({...v,vehicle:true,depth:v.x+v.y});for(const item of this.plan.items||[])if(item.z===z&&!item.storageTile)objects.push({...item,item:true,depth:item.x+item.y+1});objects.sort((a,b)=>a.depth-b.depth);
-   for(const o of objects){const p=r.project(o.x,o.y,o.z);if(o.vehicle){const f=this.gameRenderer.workshopVehicles?.frame(o.id,o.rotation);if(f)c.drawImage(f.image,p.x-f.anchor.x,p.y-f.anchor.y,f.width,f.height);}else if(o.item)r.groundIcon(o,p);else r.sprite(o.tile,p.x,p.y);}}
+   for(const o of objects){const p=r.project(o.x,o.y,o.z);if(o.vehicle){const f=this.gameRenderer.workshopVehicles?.frame(o.id,o.rotation);if(f)c.drawImage(f.image,p.x-f.anchor.x,p.y-f.anchor.y,f.width,f.height);}else if(o.item)r.groundIcon(o,p);else r.object(o.tile,o.x,o.y,o.z,1,1,o);}}
 
   r.layerAlpha=1;c.globalAlpha=1;
  }

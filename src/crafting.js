@@ -1,10 +1,10 @@
-import {craftRecipeMetadata} from './craft-recipes.js?v=b18d5604f577';
-import {parseCraftItemInput} from './craft-inputs.js?v=b18d5604f577';
-import {Inventory,definition,resolveInventoryCraftInput} from './inventory.js?v=b18d5604f577';
-import {craftItemUses,craftRelativeScale,consumeCraftInputs} from './craft-consumption.js?v=b18d5604f577';
-import {craftRoutineStatus,craftDamageStatus,craftCookingStatus} from './craft-status.js?v=b18d5604f577';
-import {craftRecipeKnown} from './recipe-knowledge.js?v=b18d5604f577';
-import {isRecipeExcluded} from './recipe-inputs.js?v=b18d5604f577';
+import {craftRecipeMetadata} from './craft-recipes.js?v=0140423a9cbf';
+import {parseCraftItemInput} from './craft-inputs.js?v=0140423a9cbf';
+import {Inventory,definition,resolveInventoryCraftInput} from './inventory.js?v=0140423a9cbf';
+import {craftItemUses,craftRelativeScale,consumeCraftInputs} from './craft-consumption.js?v=0140423a9cbf';
+import {craftRoutineStatus,craftDamageStatus,craftCookingStatus} from './craft-status.js?v=0140423a9cbf';
+import {craftRecipeKnown} from './recipe-knowledge.js?v=0140423a9cbf';
+import {isRecipeExcluded} from './recipe-inputs.js?v=0140423a9cbf';
 let recipes=[];
 export const craftingRecipes=()=>recipes;
 export function loadCraftingCatalog(catalog){
