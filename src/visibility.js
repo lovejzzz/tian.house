@@ -33,11 +33,12 @@ export class Visibility {
  // Presentation light may fade; authoritative visibility/occlusion stays unchanged.
  advance(sim,dt){
   if(this.presentationState!==sim.state){this.light.clear();this.fade.clear();this.presentationState=sim.state;}
-  const p=sim.state.player,delta=Math.min(.1,Math.max(0,dt));
-  for(let x=Math.floor(p.x)-30;x<=p.x+30;x++)for(let y=Math.floor(p.y)-30;y<=p.y+30;y++)for(const z of this.world.renderLevels(p.z)){
+  const p=sim.state.player,delta=Math.min(.1,Math.max(0,dt)),levels=this.world.renderLevels(p.z),cx=Math.cos(p.angle),cy=Math.sin(p.angle);
+  const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+  for(let x=Math.floor(p.x)-30;x<=p.x+30;x++)for(let y=Math.floor(p.y)-30;y<=p.y+30;y++)for(const z of levels){
    const id=this.key(x,y,z),known=!!sim.state.explored?.[id],visible=this.visible.has(id),boundary=this.boundaries.has(id);
-   const d=Math.hypot(x+.5-p.x,y+.5-p.y),dot=((x+.5-p.x)*Math.cos(p.angle)+(y+.5-p.y)*Math.sin(p.angle))/Math.max(.001,d);
-   const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+   if(!known&&!visible&&!boundary&&!this.light.has(id))continue;
+   const d=Math.hypot(x+.5-p.x,y+.5-p.y),dot=((x+.5-p.x)*cx+(y+.5-p.y)*cy)/Math.max(.001,d);
    const cone=smooth((dot+.15)/.55),near=1-smooth((d-2)/2),range=1-smooth((d-20)/4);
    const lit=.25+.75*Math.max(near,cone)*range;
    const target=visible?lit:known?.25:0,wall=visible||boundary?Math.max(.4,lit):target;
