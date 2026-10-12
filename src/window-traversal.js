@@ -1,4 +1,4 @@
-import {rootInterval,projectRootDelta} from './root-motion.js?v=d3c0a2416139';
+import {rootInterval,projectRootDelta} from './root-motion.js?v=8bcdcfd7e2ed';
 // Normal, unobstructed player branch from the pinned climbwindow nodes and
 // ClimbThroughWindowState. Counter, fall, rope, injury and root rotation remain
 // separate obligations. This is not the complete source state machine.

@@ -1,10 +1,10 @@
-import {drawPool} from './workshop-outdoors.js?v=d3c0a2416139';
-import {definition} from './inventory.js?v=d3c0a2416139';
-import {inventoryIcon} from './item-icons.js?v=d3c0a2416139';
-import {windowBarricadeSprites} from './barricades.js?v=d3c0a2416139';
-import {Visibility} from './visibility.js?v=d3c0a2416139';
-import {treeSprites} from './vegetation.js?v=d3c0a2416139';
-import {windowSprite} from './windows.js?v=d3c0a2416139';
+import {drawPool} from './workshop-outdoors.js?v=8bcdcfd7e2ed';
+import {definition} from './inventory.js?v=8bcdcfd7e2ed';
+import {inventoryIcon} from './item-icons.js?v=8bcdcfd7e2ed';
+import {windowBarricadeSprites} from './barricades.js?v=8bcdcfd7e2ed';
+import {Visibility} from './visibility.js?v=8bcdcfd7e2ed';
+import {treeSprites} from './vegetation.js?v=8bcdcfd7e2ed';
+import {windowSprite} from './windows.js?v=8bcdcfd7e2ed';
 export class Renderer{
  constructor(canvas,world,atlas,characters){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.world=world;this.visibility=new Visibility(world);this.atlas=atlas;this.characters=characters;this.images=new Map();this.loading=new Map();this.failed=new Set();this.zoom=1.55;this.camera={x:0,y:0};this.missing=new Set();this.unverifiedTrees=new Set();this.treeCount=0;this.frameTimes=[];this.drawn=0;}
  resize(){const d=Math.min(devicePixelRatio||1,2),w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(this.canvas.width!==w*d||this.canvas.height!==h*d){this.canvas.width=w*d;this.canvas.height=h*d;}this.dpr=d;this.width=w;this.height=h;}
@@ -22,7 +22,7 @@ export class Renderer{
   }else c.drawImage(image,r.x,r.y,r.w,r.h,x-32+r.ox/s,y-96+r.oy/s,r.w/s,r.h/s);
   c.globalAlpha=1;this.drawn++;
  }
- async loadWorkshopVehicles(){if(this.vehicleLoading)return;this.vehicleLoading=true;try{const [manifest,{WorkshopVehicles}]=await Promise.all([fetch('private-assets/workshop-vehicles/manifest.json').then(r=>r.json()),import('./workshop-vehicles.js?v=d3c0a2416139')]);const vehicles=new WorkshopVehicles(manifest);await vehicles.init();this.workshopVehicles=vehicles;}catch(e){this.vehicleError=e.message;console.error(e);}}
+ async loadWorkshopVehicles(){if(this.vehicleLoading)return;this.vehicleLoading=true;try{const [manifest,{WorkshopVehicles}]=await Promise.all([fetch('private-assets/workshop-vehicles/manifest.json').then(r=>r.json()),import('./workshop-vehicles.js?v=8bcdcfd7e2ed')]);const vehicles=new WorkshopVehicles(manifest);await vehicles.init();this.workshopVehicles=vehicles;}catch(e){this.vehicleError=e.message;console.error(e);}}
  groundIcon(item,pos){const name=inventoryIcon(item,definition(item.type).properties),r=this.atlas.regions[name]||this.atlas.regions.Question_On;if(!r)return;const image=this.page(r.page);if(!image)return;const s=Math.min(22/r.w,22/r.h);this.ctx.drawImage(image,r.x,r.y,r.w,r.h,pos.x-r.w*s/2,pos.y-r.h*s,r.w*s,r.h*s);}
  draw(sim,hover,dt=1/60){this.resize();const c=this.ctx,p=sim.state.player;const point=this.cinematicCamera||this.project(p.x,p.y,this.world.apparentZ(p));this.camera=point;this.visibility.update(sim);this.visibility.advance(sim,dt);this.drawn=0;this.treeCount=0;
   c.setTransform(this.dpr,0,0,this.dpr,0,0);c.fillStyle='#000';c.fillRect(0,0,this.width,this.height);

@@ -1,6 +1,6 @@
-import {treeSprites} from './vegetation.js?v=d3c0a2416139';
-import {inventoryIcon} from './item-icons.js?v=d3c0a2416139';
-import {englishLabel} from './english.js?v=d3c0a2416139';
+import {treeSprites} from './vegetation.js?v=8bcdcfd7e2ed';
+import {inventoryIcon} from './item-icons.js?v=8bcdcfd7e2ed';
+import {englishLabel} from './english.js?v=8bcdcfd7e2ed';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;
