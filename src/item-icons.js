@@ -1,4 +1,4 @@
-import {modelList} from './item-model-state.js?v=377894d17e99';
+import {modelList} from './item-model-state.js?v=896097f2da39';
 
 // Item's initial icon is replaced by synchWithVisual only for a nonblank
 // indexed entry. Source texture availability is checked separately by the UI.

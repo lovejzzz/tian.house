@@ -1,29 +1,29 @@
-import {interactionTarget,interactionLabel} from './interaction-target.js?v=377894d17e99';
-import {waterSource,planWater} from './water.js?v=377894d17e99';
-import {RESIDENCE} from './residence.js?v=377894d17e99';
-import {PortfolioDesktop} from './portfolio.js?v=377894d17e99';
+import {interactionTarget,interactionLabel} from './interaction-target.js?v=896097f2da39';
+import {waterSource,planWater} from './water.js?v=896097f2da39';
+import {RESIDENCE} from './residence.js?v=896097f2da39';
+import {PortfolioDesktop} from './portfolio.js?v=896097f2da39';
 const desktop=new PortfolioDesktop();
-import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=377894d17e99';
-import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=377894d17e99';
+import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=896097f2da39';
+import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=896097f2da39';
 let buildMode=null;
-import {isCookingAppliance,cookingLabel} from './cooking.js?v=377894d17e99';
-import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=377894d17e99';
-import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=377894d17e99';
-import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=377894d17e99';
-import {GameAudio} from './audio.js?v=377894d17e99';
+import {isCookingAppliance,cookingLabel} from './cooking.js?v=896097f2da39';
+import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=896097f2da39';
+import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=896097f2da39';
+import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=896097f2da39';
+import {GameAudio} from './audio.js?v=896097f2da39';
 let gameAudio,craftRefresh=null,lastCraftSignature='';
-import {setComicCatalog} from './comic-identity.js?v=377894d17e99';
-import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=377894d17e99';
-import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=377894d17e99';
-import {canToggleWindow,canClimbWindow} from './windows.js?v=377894d17e99';
-import {doorToggle} from './doors.js?v=377894d17e99';
-import {setItemCatalog,definition} from './inventory.js?v=377894d17e99';
-import {World} from './world.js?v=377894d17e99';
-import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=377894d17e99';
-import {Renderer} from './render.js?v=377894d17e99';
-import {CharacterRenderer} from './characters.js?v=377894d17e99';
-import {GroundRenderer} from './ground-renderer.js?v=377894d17e99';
-import {inventoryIcon} from './item-icons.js?v=377894d17e99';
+import {setComicCatalog} from './comic-identity.js?v=896097f2da39';
+import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=896097f2da39';
+import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=896097f2da39';
+import {canToggleWindow,canClimbWindow} from './windows.js?v=896097f2da39';
+import {doorToggle} from './doors.js?v=896097f2da39';
+import {setItemCatalog,definition} from './inventory.js?v=896097f2da39';
+import {World} from './world.js?v=896097f2da39';
+import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=896097f2da39';
+import {Renderer} from './render.js?v=896097f2da39';
+import {CharacterRenderer} from './characters.js?v=896097f2da39';
+import {GroundRenderer} from './ground-renderer.js?v=896097f2da39';
+import {inventoryIcon} from './item-icons.js?v=896097f2da39';
 const $=s=>document.querySelector(s),keys=new Set();
 let focusTarget=null,hudTray=null,lastActionsSignature='';
 let world,sim,renderer,character,panel=null,selected=null,nearby=[],lastUI=0,lastStream=0,lastSave=0,last=0,toastUntil=0,inventoryTab='player',lastInventorySignature='';
@@ -135,6 +135,7 @@ function updateUI(now){const p=sim.state.player,time=sim.state.time;$('#clock').
 function setHudTray(name){
  hudTray=name;$('#actions').hidden=name!=='nearby';$('#controls-help').hidden=name!=='help';
  $('#nearby-toggle').setAttribute('aria-expanded',String(name==='nearby'));$('#help-toggle').setAttribute('aria-expanded',String(name==='help'));
+ if(name==='nearby')$('#actions .nearby-action:not(:disabled)')?.focus();if(name==='help')$('#close-help').focus();
 }
 function renderNearbyActions(){
  const actions=$('#actions'),p=sim.state.player;
@@ -175,8 +176,8 @@ async function start(){
   controls.append(button('Record game audio',async()=>{try{await gameAudio.unlock();gameAudio.startCapture();toast('Recording game audio');}catch(e){toast(e.message);}}),button('Stop and export audio',async()=>{try{download(await gameAudio.stopCapture(),'pz-reading-audio.webm');}catch(e){toast(e.message);}}),button('Export audio event log',()=>download(new Blob([JSON.stringify({state:gameAudio.context.state,capture:gameAudio.lastCapture??null,loaded:[...gameAudio.buffers.keys()],played:gameAudio.played,errors:gameAudio.errors},null,2)],{type:'application/json'}),'pz-audio-events.json')));
   document.body.append(controls);
  }
- document.addEventListener('keydown',e=>{if(desktop.active)return;if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;const k=e.key.toLowerCase();keys.add(k);
-  if([' ','arrowup','arrowdown','arrowleft','arrowright','tab'].includes(k))e.preventDefault();if(e.repeat)return;
+ document.addEventListener('keydown',e=>{if(desktop.active)return;if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;const k=e.key.toLowerCase();if(k==='tab'||e.target.closest('button,a')&&[' ','enter'].includes(k))return;keys.add(k);
+  if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();if(e.repeat)return;
   if(k==='q'||k==='?'){setHudTray(hudTray===(k==='q'?'nearby':'help')?null:k==='q'?'nearby':'help');return;}if(k==='escape'&&hudTray){setHudTray(null);$('#game').focus();return;}
   if(k==='r'&&buildMode){buildMode.rotation=(buildMode.rotation+1)%buildMode.recipe.tiles.length;return;}if(k==='escape'&&buildMode){sim.cancel();buildMode=null;renderer.buildPreview=null;return;}if(k==='p')pause();if(k==='escape'){sim.cancel();if(panel)setPanel(panel);else pause();}
   const panelKey={i:'inventory',h:'health',c:'crafting',m:'map',j:'journal'};if(panelKey[k])setPanel(panelKey[k]);
