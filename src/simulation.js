@@ -1,28 +1,29 @@
-import {englishLabel} from './english.js?v=deae64bf7064';
-import {ensureMedical,injury,advanceMedical,validateMedical,planTreatment,treatWound,BODY_PARTS} from './medical.js?v=deae64bf7064';
-import {buildingRecipes,planBuilding,planBuildingMaterials,commitBuilding,validateBuildings} from './building.js?v=deae64bf7064';
-import {advanceCooking,ensureAppliance,isCookingAppliance,validateCookingState} from './cooking.js?v=deae64bf7064';
-import {craftingRecipes,planCraft,commitCraft} from './crafting.js?v=deae64bf7064';
-import {completeReadingKnowledge} from './recipe-knowledge.js?v=deae64bf7064';
-import {consumeCraftInputs} from './craft-consumption.js?v=deae64bf7064';
-import {readingSound,readingPageFlips} from './reading-sounds.js?v=deae64bf7064';
-import {ordinaryLiterature,applyLiteratureEffects,isLiteratureRead,addReadLiterature,advanceReadingClock,skillBook,readingComprehension,prepareBookReading,bookReadingDuration,updateBookPages,validateReadingState} from './reading.js?v=deae64bf7064';
-import {transferDuration} from './item-transfer.js?v=deae64bf7064';
-import {groundDropPlacement} from './ground-placement.js?v=deae64bf7064';
-import {damageCheck} from './item-wear.js?v=deae64bf7064';
-import {breakCarriedStoneHammer} from './item-breakage.js?v=deae64bf7064';
-import {weaponSprite} from './item-model-state.js?v=deae64bf7064';
-import {recipeWearModifier} from './recipe-wear.js?v=deae64bf7064';
-import {selectBarricadeInputs,barricadeInputsValid,barricadeInputScripts} from './recipe-inputs.js?v=deae64bf7064';
-import {awardWoodworkXp,validateWoodworkProgression} from './progression.js?v=deae64bf7064';
-import {startWindowTurn,advanceWindowTurn} from './window-turn.js?v=deae64bf7064';
-import {doorToggle} from './doors.js?v=deae64bf7064';
-import {canAddBarricadePlank,addBarricadePlank,woodBarricadeDuration} from './barricades.js?v=deae64bf7064';
-import {findTilePath} from './pathfinding.js?v=deae64bf7064';
-import {Inventory,inventoryState,definition,itemType,validateInventory} from './inventory.js?v=deae64bf7064';
-import {canToggleWindow,canClimbWindow,windowLanding,hasWindowBarricade,windowBarricadeSide} from './windows.js?v=deae64bf7064';
-import {windowTogglePhase,advanceWindowOpening,OPEN_STAGES} from './window-toggle.js?v=deae64bf7064';
-import {WINDOW_FINISH_TIME,windowPhase,advanceWindowPosition,windowRootDelta} from './window-traversal.js?v=deae64bf7064';
+import {planWater,transferWater,validateWaterState} from './water.js?v=14ad0317050c';
+import {englishLabel} from './english.js?v=14ad0317050c';
+import {ensureMedical,injury,advanceMedical,validateMedical,planTreatment,treatWound,BODY_PARTS} from './medical.js?v=14ad0317050c';
+import {buildingRecipes,planBuilding,planBuildingMaterials,commitBuilding,validateBuildings} from './building.js?v=14ad0317050c';
+import {advanceCooking,ensureAppliance,isCookingAppliance,validateCookingState} from './cooking.js?v=14ad0317050c';
+import {craftingRecipes,planCraft,commitCraft} from './crafting.js?v=14ad0317050c';
+import {completeReadingKnowledge} from './recipe-knowledge.js?v=14ad0317050c';
+import {consumeCraftInputs} from './craft-consumption.js?v=14ad0317050c';
+import {readingSound,readingPageFlips} from './reading-sounds.js?v=14ad0317050c';
+import {ordinaryLiterature,applyLiteratureEffects,isLiteratureRead,addReadLiterature,advanceReadingClock,skillBook,readingComprehension,prepareBookReading,bookReadingDuration,updateBookPages,validateReadingState} from './reading.js?v=14ad0317050c';
+import {transferDuration} from './item-transfer.js?v=14ad0317050c';
+import {groundDropPlacement} from './ground-placement.js?v=14ad0317050c';
+import {damageCheck} from './item-wear.js?v=14ad0317050c';
+import {breakCarriedStoneHammer} from './item-breakage.js?v=14ad0317050c';
+import {weaponSprite} from './item-model-state.js?v=14ad0317050c';
+import {recipeWearModifier} from './recipe-wear.js?v=14ad0317050c';
+import {selectBarricadeInputs,barricadeInputsValid,barricadeInputScripts} from './recipe-inputs.js?v=14ad0317050c';
+import {awardWoodworkXp,validateWoodworkProgression} from './progression.js?v=14ad0317050c';
+import {startWindowTurn,advanceWindowTurn} from './window-turn.js?v=14ad0317050c';
+import {doorToggle} from './doors.js?v=14ad0317050c';
+import {canAddBarricadePlank,addBarricadePlank,woodBarricadeDuration} from './barricades.js?v=14ad0317050c';
+import {findTilePath} from './pathfinding.js?v=14ad0317050c';
+import {Inventory,inventoryState,definition,itemType,validateInventory} from './inventory.js?v=14ad0317050c';
+import {canToggleWindow,canClimbWindow,windowLanding,hasWindowBarricade,windowBarricadeSide} from './windows.js?v=14ad0317050c';
+import {windowTogglePhase,advanceWindowOpening,OPEN_STAGES} from './window-toggle.js?v=14ad0317050c';
+import {WINDOW_FINISH_TIME,windowPhase,advanceWindowPosition,windowRootDelta} from './window-traversal.js?v=14ad0317050c';
 // Browser implementation under development. Values below are provisional design
 // values, not claimed PZ-compatible until source-runtime differential validation.
 export const ITEMS={
@@ -72,6 +73,12 @@ export class Simulation{
   if(changes.on!==undefined)a.on=!!changes.on;
   if(changes.targetTemperature!==undefined&&Number.isFinite(changes.targetTemperature))a.targetTemperature=Math.max(50,Math.min(300,changes.targetTemperature));
   this.log(a.on?'Appliance heating started':'Appliance turned off');return true;
+ }
+ takeWater(object,itemId=null){
+  const plan=planWater(this.world,this.state,this.inventory,object,itemId);if(!plan.ok){this.log(plan.reason);return false;}
+  const name=itemId?'Fill '+definition(plan.item.type).name:'Drink from '+object.name;
+  if(!this.startAction(name,plan.duration,()=>this.log(name+' complete'),{target:object.id}))return false;
+  this.action.water={object,itemId,amount:plan.amount,transferred:0};return true;
  }
  startAction(name,seconds,complete,{target=null}={}){if(this.action||this.state.player.hp<=0)return false;this.action={name,duration:seconds,left:seconds,complete,target,origin:[this.state.player.x,this.state.player.y,this.state.player.z]};return true;}
  cancel(){if(this.state.player.windowMotion)return; if(this.action){if(this.action.reading)this.soundEvents.push(readingSound(this.action.reading.item.type,'Close'));delete this.state.player.windowToggle;delete this.state.player.windowApproach;delete this.state.player.windowTurn;delete this.state.player.buildMotion;delete this.state.player.readMotion;this.log(`${this.action.name} canceled`);this.action=null;}}
@@ -246,7 +253,7 @@ export class Simulation{
   if(!this.world.interactions(p).some(o=>o.id===obj.id))return;
   const s=this.world.state(obj.x,obj.y,obj.z,obj.tile);
   if(obj.type==='door'){const result=doorToggle(this.world,obj,p,this.inventory);if(result.patch)this.world.change(obj.x,obj.y,obj.z,obj.tile,result.patch);if(!result.ok){this.log(result.reason);return;}this.log(s.open?'Close door':'Open door');}
-  if(obj.type==='water')this.startAction('Drink',2,()=>{p.thirst=0;this.log('You had a drink');},{target:obj.id});
+  if(obj.type==='water')this.takeWater(obj);
   if(obj.type==='bed'){
    if(this.state.zombies.some(z=>z.hp>0&&Math.hypot(z.x-p.x,z.y-p.y)<8)){this.log('There is danger nearby, You cannot sleep');return;}
    this.startAction('Rest',8,()=>{p.fatigue=clamp(p.fatigue-65);p.endurance=100;this.state.time+=120;p.hunger=clamp(p.hunger+8);p.thirst=clamp(p.thirst+12);this.log('You rested for two hours');},{target:obj.id});
@@ -332,7 +339,14 @@ export class Simulation{
  tick(dt,input={}){if(this.paused||this.state.player.hp<=0)return;dt=Math.min(dt,.1)*this.speed;const s=this.state,p=s.player;s.elapsed+=dt;const previousTime=s.time;s.time+=dt*.7;advanceReadingClock(s,previousTime,s.time);advanceMedical(p,s.time-previousTime);advanceCooking(this.inventory,s.time-previousTime,{electricity:s.utilities?.electricity!==false,onEvent:message=>this.log(message)});this.attackCooldown=Math.max(0,this.attackCooldown-dt);
   let autoMoving=false;const traversing=!!p.windowMotion,move=!!(input.x||input.y)&&!traversing;if(move&&this.action)this.cancel();
   if(this.action){const a=this.action;
-   if(a.reading){
+   if(a.water){
+    const w=a.water,plan=planWater(this.world,s,this.inventory,w.object,w.itemId);
+    if(!plan.ok)this.cancel();
+    else {a.left=Math.max(0,a.left-dt);const target=w.amount*(1-a.left/a.duration);
+     w.transferred+=transferWater(this.world,s,this.inventory,w.object,w.itemId,Math.max(0,target-w.transferred));
+     if(a.left<=0||w.transferred>=w.amount-1e-7){this.action=null;a.complete();}
+    }
+   }else if(a.reading){
     const r=a.reading;
     if(!a.valid())this.cancel();
     else {
@@ -399,7 +413,7 @@ export function parseSave(text,{bounds=[7680,11008,8960,12800]}={}){const s=JSON
   const weapon=inv.find(s.player.weapon);if(weapon)inv.equip(weapon.id);s.inventory=inventory;s.version=2;delete s.bag;s.containers={};
  }
  s.builds??=[];validateBuildings(s.builds);
- validateInventory(s.inventory);validateCookingState(s.inventory);
+ validateInventory(s.inventory);validateCookingState(s.inventory);validateWaterState(s);
  validateMedical(s.player);
  validateWoodworkProgression(s.player);
  validateReadingState(s.player,s.inventory.items,s);

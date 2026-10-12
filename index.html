@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title><link rel="stylesheet" href="style.css?v=deae64bf7064">
-<link rel="stylesheet" href="portfolio.css?v=deae64bf7064">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title><link rel="stylesheet" href="style.css?v=14ad0317050c">
+<link rel="stylesheet" href="portfolio.css?v=14ad0317050c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%235b6549'/%3E%3C/svg%3E">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script></head>
 <body>
@@ -10,10 +10,11 @@
 <nav id="tools" hidden aria-label="Game menu"><button data-panel="inventory" title="Inventory [I]">▤<span>Inventory</span></button><button data-panel="health" title="Health [H]">✚<span>Health</span></button><button data-panel="crafting" title="Craft [C]">⚒<span>Craft</span></button><button data-panel="map" title="Map [M]">▧<span>Map</span></button><button data-panel="journal" title="Journal [J]">☷<span>Journal</span></button><button data-panel="save" title="Save">▣<span>Save</span></button></nav>
 <aside id="moodles" hidden></aside>
 <section id="panel" class="window" hidden><header><b id="panel-title"></b><button id="close-panel" aria-label="Close">×</button></header><div id="panel-content"></div></section>
+<button id="world-interaction" hidden><kbd>E</kbd><span>Open</span></button>
 <div id="actions" hidden></div><div id="action-progress" hidden><span></span><progress max="1"></progress><small>Move or press Esc to cancel</small></div>
 <div id="toast" role="status"></div>
 <footer id="controls" hidden><span><kbd>W A S D</kbd> Move</span><span><kbd>Shift</kbd> Run</span><span><kbd>Ctrl</kbd> Sneak</span><span><kbd>E</kbd> Interact</span><span><kbd>Space</kbd> Attack</span><span><kbd>Scroll</kbd> Zoom</span><span class="build-label">Development build · Recreation in progress</span></footer>
 <section id="death" class="window" hidden><header>This is how you died</header><div><h2>You did not survive.</h2><p id="death-info"></p><button id="restart">Start a new journey</button><p>You can export your previous save from the Save menu first.</p></div></section>
 <input id="import-save" type="file" accept="application/json,.json" hidden>
-<script type="module" src="src/bootstrap.js?v=deae64bf7064"></script>
+<script type="module" src="src/bootstrap.js?v=14ad0317050c"></script>
 </body></html>

@@ -1,7 +1,7 @@
-import {windowBarricadeSprites} from './barricades.js?v=deae64bf7064';
-import {Visibility} from './visibility.js?v=deae64bf7064';
-import {treeSprites} from './vegetation.js?v=deae64bf7064';
-import {windowSprite} from './windows.js?v=deae64bf7064';
+import {windowBarricadeSprites} from './barricades.js?v=14ad0317050c';
+import {Visibility} from './visibility.js?v=14ad0317050c';
+import {treeSprites} from './vegetation.js?v=14ad0317050c';
+import {windowSprite} from './windows.js?v=14ad0317050c';
 export class Renderer{
  constructor(canvas,world,atlas,characters){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.world=world;this.visibility=new Visibility(world);this.atlas=atlas;this.characters=characters;this.images=new Map();this.loading=new Map();this.failed=new Set();this.zoom=1.55;this.camera={x:0,y:0};this.missing=new Set();this.unverifiedTrees=new Set();this.treeCount=0;this.frameTimes=[];this.drawn=0;}
  resize(){const d=Math.min(devicePixelRatio||1,2),w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(this.canvas.width!==w*d||this.canvas.height!==h*d){this.canvas.width=w*d;this.canvas.height=h*d;}this.dpr=d;this.width=w;this.height=h;}
@@ -11,7 +11,7 @@ export class Renderer{
  page(name){if(this.images.has(name))return this.images.get(name);if(!this.loading.has(name)&&!this.failed.has(name)){
   const image=new Image();const promise=new Promise(resolve=>{image.onload=()=>{this.images.set(name,image);this.loading.delete(name);resolve();};image.onerror=()=>{this.failed.add(name);this.loading.delete(name);resolve();};});this.loading.set(name,promise);image.src=`private-assets/${name}`;
  }return null;}
- sprite(name,x,y,alpha=1,brightness=1){if(!alpha)return;const r=this.atlas.regions[name];if(!r){this.missing.add(name);return;}const image=this.page(r.page);if(!image)return;const s=r.scale||1;const c=this.ctx;c.globalAlpha=alpha;
+ sprite(name,x,y,alpha=1,brightness=1){if(!alpha)return;brightness=Math.round(Math.max(0,Math.min(1,brightness))*32)/32;const r=this.atlas.regions[name];if(!r){this.missing.add(name);return;}const image=this.page(r.page);if(!image)return;const s=r.scale||1;const c=this.ctx;c.globalAlpha=alpha;
   if(brightness<1){
    this.shaded??=new Map();const key=`${name}:${brightness}`;let shaded=this.shaded.get(key);
    if(!shaded){shaded=document.createElement('canvas');shaded.width=r.w;shaded.height=r.h;const ctx=shaded.getContext('2d');ctx.drawImage(image,r.x,r.y,r.w,r.h,0,0,r.w,r.h);ctx.globalCompositeOperation='source-atop';ctx.fillStyle=`rgba(0,0,0,${1-brightness})`;ctx.fillRect(0,0,r.w,r.h);this.shaded.set(key,shaded);if(this.shaded.size>512)this.shaded.delete(this.shaded.keys().next().value);}
@@ -19,7 +19,7 @@ export class Renderer{
   }else c.drawImage(image,r.x,r.y,r.w,r.h,x-32+r.ox/s,y-96+r.oy/s,r.w/s,r.h/s);
   c.globalAlpha=1;this.drawn++;
  }
- draw(sim,hover){this.resize();const c=this.ctx,p=sim.state.player;const point=this.project(p.x,p.y,this.world.apparentZ(p));this.camera=point;this.visibility.update(sim);this.drawn=0;this.treeCount=0;
+ draw(sim,hover,dt=1/60){this.resize();const c=this.ctx,p=sim.state.player;const point=this.project(p.x,p.y,this.world.apparentZ(p));this.camera=point;this.visibility.update(sim);this.visibility.advance(sim,dt);this.drawn=0;this.treeCount=0;
   c.setTransform(this.dpr,0,0,this.dpr,0,0);c.fillStyle='#000';c.fillRect(0,0,this.width,this.height);
   c.translate(this.width/2,this.height/2);c.scale(this.zoom,this.zoom);c.translate(-point.x,-point.y);
   const rx=Math.ceil(this.width/this.zoom/64+this.height/this.zoom/32)/2+5;
@@ -46,7 +46,7 @@ export class Renderer{
    const pos=this.project(obj.x,obj.y,obj.z),brightness=this.visibility.brightness(obj.x,obj.y,obj.z,sim.state.explored,wall);let name=obj.name,alpha=1;if(!brightness)continue;
    if('windowN'in obj.prop||'windowW'in obj.prop){const alternate=windowSprite(name,obj.prop,obj.state);if(this.atlas.regions[alternate])name=alternate;else this.missing.add(alternate);}
    else if(obj.state.open){const n=Number(name.split('_').at(-1));const alternate=name.replace(/_\d+$/,`_${n+2}`);if(this.atlas.regions[alternate])name=alternate;else alpha=.3;}
-   if(wall&&obj.z===p.z&&obj.x+obj.y>p.x+p.y-1&&Math.hypot(obj.x-p.x,obj.y-p.y)<5)alpha*=.26;
+   if(wall){const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};const distance=Math.hypot(obj.x-p.x,obj.y-p.y),front=smooth((obj.x+obj.y-p.x-p.y+2)/3),proximity=1-smooth((distance-3)/3),cutaway=obj.z===p.z?front*proximity:0;alpha*=this.visibility.wallAlpha(`${obj.x},${obj.y},${obj.z}:${obj.name}`,1-.74*cutaway,dt);}
    const tree=this.world.tree(obj.x,obj.y,obj.z,obj.name);
    if(tree){this.unverifiedTrees.add(obj.name);this.treeCount++;for(const layer of treeSprites(tree))this.sprite(layer,pos.x,pos.y,alpha,brightness);}else this.sprite(name,pos.x,pos.y,alpha,brightness);
    if(obj.state.barricade){c.strokeStyle='#8e6c45';c.lineWidth=3;c.beginPath();c.moveTo(pos.x-16,pos.y-30);c.lineTo(pos.x+14,pos.y-17);c.stroke();}
