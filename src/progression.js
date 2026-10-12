@@ -44,8 +44,8 @@ export function validateWoodworkProgression(player){
  const book=player.xpMultipliers?.woodwork;
  if(book===undefined)return;
  if(typeof book==='number'){
-  if(!Number.isFinite(book)||book<0)throw new Error('存档木工经验倍率无效');
+  if(!Number.isFinite(book)||book<0)throw new Error('Invalid saved carpentry XP multiplier');
   return; // Earlier saves have no book interval; do not invent one.
  }
- if(!book||typeof book!=='object'||!Number.isFinite(book.multiplier)||book.multiplier<0||!Number.isInteger(book.minLevel)||!Number.isInteger(book.maxLevel)||book.minLevel<1||book.maxLevel>10||book.minLevel>book.maxLevel)throw new Error('存档木工技能书区间无效');
+ if(!book||typeof book!=='object'||!Number.isFinite(book.multiplier)||book.multiplier<0||!Number.isInteger(book.minLevel)||!Number.isInteger(book.maxLevel)||book.minLevel<1||book.maxLevel>10||book.minLevel>book.maxLevel)throw new Error('Invalid saved carpentry book level range');
 }

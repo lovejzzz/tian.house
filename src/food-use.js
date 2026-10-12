@@ -33,5 +33,5 @@ export function foodState(item,p){
 }
 export function validateFoodState(item,p){
  const state=item.foodValues;if(state===undefined)return;
- if(p.ItemType!=='base:food'||!state||[...foodFloatFields,...foodIntFields,'baseHunger','uses','age','offAge','offAgeMax'].some(key=>!Number.isFinite(state[key]))||typeof state.cooked!=='boolean'||typeof state.burnt!=='boolean'||[...foodIntFields,'uses'].some(key=>!Number.isInteger(state[key])||state[key]<-2147483648||state[key]>2147483647))throw Error('食物用量状态无效');
+ if(p.ItemType!=='base:food'||!state||[...foodFloatFields,...foodIntFields,'baseHunger','uses','age','offAge','offAgeMax'].some(key=>!Number.isFinite(state[key]))||typeof state.cooked!=='boolean'||typeof state.burnt!=='boolean'||[...foodIntFields,'uses'].some(key=>!Number.isInteger(state[key])||state[key]<-2147483648||state[key]>2147483647))throw Error('Invalid food usage state');
 }

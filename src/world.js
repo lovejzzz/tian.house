@@ -11,8 +11,8 @@ export class World {
     if(this.pending.has(id))return this.pending.get(id);
     if(!this.manifest.cells.some(c=>c.x===cx&&c.y===cy))return;
     const task=(async()=>{
-      const res=await fetch(`private-assets/world/${id}.json`);if(!res.ok)throw new Error(`地图 ${id} 读取失败`);
-      const data=await res.json();const squares=new Map();let trees={};if(this.manifest.treeAdapter){const t=await fetch(`private-assets/trees/${id}.json`);if(!t.ok)throw Error(`树木数据 ${id} 读取失败`);trees=await t.json();}
+      const res=await fetch(`private-assets/world/${id}.json`);if(!res.ok)throw new Error(`Map ${id} could not be loaded`);
+      const data=await res.json();const squares=new Map();let trees={};if(this.manifest.treeAdapter){const t=await fetch(`private-assets/trees/${id}.json`);if(!t.ok)throw Error(`Tree data ${id} could not be loaded`);trees=await t.json();}
       for(const row of data.squares){
         const [x,y,z,room,...ids]=row;if(!withinBounds(x+cx*256,y+cy*256,this.manifest.playableBounds))continue;const tiles=ids.map(i=>data.names[i]);for(const f of this.manifest.fixtures||[])if(f.x===x+cx*256&&f.y===y+cy*256&&f.z===z&&!tiles.includes(f.tile))tiles.push(f.tile);
         squares.set(key(x,y,z),{x:x+cx*256,y:y+cy*256,z,room,tiles});

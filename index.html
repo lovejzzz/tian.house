@@ -1,19 +1,19 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title><link rel="stylesheet" href="style.css">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title><link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="portfolio.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%235b6549'/%3E%3C/svg%3E">
 <script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script></head>
 <body>
-<canvas id="game" aria-label="Rosewood 单人生存游戏画面" tabindex="0"></canvas>
-<section id="loading"><div class="wordmark">PROJECT<br><strong>ZOMBOID</strong></div><p id="load-status">正在读取 Rosewood 原版地图与素材…</p><progress></progress><small>浏览器复刻 · 开发中 · 尚未达到原版功能与美术完整一致</small></section>
-<header id="topbar" hidden><div><b>TIAN’S HOUSE</b><span id="location"></span></div><div class="time"><b id="clock">09:00</b><span id="day">第 1 天</span><button id="pause" title="暂停 / 继续 [P]">Ⅱ</button></div></header>
-<nav id="tools" hidden aria-label="生存菜单"><button data-panel="inventory" title="背包 [I]">▤<span>背包</span></button><button data-panel="health" title="健康 [H]">✚<span>健康</span></button><button data-panel="crafting" title="制作 [C]">⚒<span>制作</span></button><button data-panel="map" title="地图 [M]">▧<span>地图</span></button><button data-panel="journal" title="日志 [J]">☷<span>日志</span></button><button data-panel="save" title="存档">▣<span>存档</span></button></nav>
+<canvas id="game" aria-label="Tian’s House single-player game view" tabindex="0"></canvas>
+<section id="loading"><h1 class="wordmark">Welcome. Make yourself at home.</h1><p id="load-status">Loading Rosewood map and assets…</p><progress></progress><small>Browser recreation · In development · Full gameplay and visual parity are still in progress</small></section>
+<header id="topbar" hidden><div><b>TIAN’S HOUSE</b><span id="location"></span></div><div class="time"><b id="clock">09:00</b><span id="day">Day 1</span><button id="pause" title="Pause / Resume [P]">Ⅱ</button></div></header>
+<nav id="tools" hidden aria-label="Game menu"><button data-panel="inventory" title="Inventory [I]">▤<span>Inventory</span></button><button data-panel="health" title="Health [H]">✚<span>Health</span></button><button data-panel="crafting" title="Craft [C]">⚒<span>Craft</span></button><button data-panel="map" title="Map [M]">▧<span>Map</span></button><button data-panel="journal" title="Journal [J]">☷<span>Journal</span></button><button data-panel="save" title="Save">▣<span>Save</span></button></nav>
 <aside id="moodles" hidden></aside>
-<section id="panel" class="window" hidden><header><b id="panel-title"></b><button id="close-panel" aria-label="关闭">×</button></header><div id="panel-content"></div></section>
-<div id="actions" hidden></div><div id="action-progress" hidden><span></span><progress max="1"></progress><small>移动或按 Esc 取消</small></div>
+<section id="panel" class="window" hidden><header><b id="panel-title"></b><button id="close-panel" aria-label="Close">×</button></header><div id="panel-content"></div></section>
+<div id="actions" hidden></div><div id="action-progress" hidden><span></span><progress max="1"></progress><small>Move or press Esc to cancel</small></div>
 <div id="toast" role="status"></div>
-<footer id="controls" hidden><span><kbd>W A S D</kbd> 移动</span><span><kbd>Shift</kbd> 跑步</span><span><kbd>Ctrl</kbd> 潜行</span><span><kbd>E</kbd> 交互</span><span><kbd>空格</kbd> 攻击</span><span><kbd>滚轮</kbd> 缩放</span><span class="build-label">本地开发版 · 未完成复刻</span></footer>
-<section id="death" class="window" hidden><header>这就是你的死亡方式</header><div><h2>你没能活下来。</h2><p id="death-info"></p><button id="restart">开始新的旅程</button><p>原存档可先在存档菜单导出。</p></div></section>
+<footer id="controls" hidden><span><kbd>W A S D</kbd> Move</span><span><kbd>Shift</kbd> Run</span><span><kbd>Ctrl</kbd> Sneak</span><span><kbd>E</kbd> Interact</span><span><kbd>Space</kbd> Attack</span><span><kbd>Scroll</kbd> Zoom</span><span class="build-label">Development build · Recreation in progress</span></footer>
+<section id="death" class="window" hidden><header>This is how you died</header><div><h2>You did not survive.</h2><p id="death-info"></p><button id="restart">Start a new journey</button><p>You can export your previous save from the Save menu first.</p></div></section>
 <input id="import-save" type="file" accept="application/json,.json" hidden>
 <script type="module" src="src/bootstrap.js"></script>
 </body></html>

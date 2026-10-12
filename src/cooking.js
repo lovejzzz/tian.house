@@ -17,20 +17,20 @@ export function advanceCooking(inventory,minutes,{electricity=true,onEvent=()=>{
    item.cookingMinutes=(item.cookingMinutes??0)+minutes*appliance.temperature/200;
    const cook=Number(p.MinutesToCook??60),burn=Number(p.MinutesToBurn??120);
    if(!item.cooked&&item.cookingMinutes>=cook){
-    item.cooked=true;if(item.foodValues)item.foodValues.cooked=true;onEvent(`${definition(item.type).name}已煮熟`);
+    item.cooked=true;if(item.foodValues)item.foodValues.cooked=true;onEvent(`${definition(item.type).name} is cooked`);
     const outputs=String(p.ReplaceOnCooked??'').split(';').filter(Boolean).map(t=>t.includes('.')?t:`Base.${t}`);
     if(outputs.length){
      // Keep ingredients if the imported replacement definition is unavailable.
-     try{for(const type of outputs)definition(type);}catch{onEvent('烹饪产物定义缺失');continue;}
+     try{for(const type of outputs)definition(type);}catch{onEvent('Missing cooking output definition');continue;}
      for(const type of outputs)inventory.create(type,container.id,{favorite:item.favorite,cooked:true});inventory.remove(item.id);continue;
     }
    }
-   if(item.cookingMinutes>=burn){item.burnt=true;item.cooked=false;if(item.foodValues){item.foodValues.burnt=true;item.foodValues.cooked=false;}onEvent(`${definition(item.type).name}烧焦了`);}
+   if(item.cookingMinutes>=burn){item.burnt=true;item.cooked=false;if(item.foodValues){item.foodValues.burnt=true;item.foodValues.cooked=false;}onEvent(`${definition(item.type).name} burned`);}
   }
  }
 }
-export function cookingLabel(item){const p=definition(item.type).properties;if(p.ItemType!=='base:food')return null;if(item.burnt)return '烧焦';if(item.cooked)return '已煮熟';if(!p.IsCookable)return null;return `生 · 烹饪 ${Math.min(100,Math.floor((item.cookingMinutes??0)/Number(p.MinutesToCook??60)*100))}%`;}
+export function cookingLabel(item){const p=definition(item.type).properties;if(p.ItemType!=='base:food')return null;if(item.burnt)return 'Burnt';if(item.cooked)return 'Cooked';if(!p.IsCookable)return null;return `Raw · Cooking ${Math.min(100,Math.floor((item.cookingMinutes??0)/Number(p.MinutesToCook??60)*100))}%`;}
 export function validateCookingState(state){
- for(const container of Object.values(state.containers))if(container.appliance){const a=container.appliance;if(!['stove','microwave'].includes(a.kind)||typeof a.on!=='boolean'||!Number.isFinite(a.temperature)||a.temperature<0||a.temperature>400||!Number.isFinite(a.targetTemperature)||a.targetTemperature<50||a.targetTemperature>300)throw Error('炉灶存档状态无效');}
- for(const item of Object.values(state.items)){if(item.cookingMinutes!==undefined&&(!Number.isFinite(item.cookingMinutes)||item.cookingMinutes<0))throw Error('烹饪进度无效');for(const key of ['cooked','burnt'])if(item[key]!==undefined&&typeof item[key]!=='boolean')throw Error('食物烹饪状态无效');}
+ for(const container of Object.values(state.containers))if(container.appliance){const a=container.appliance;if(!['stove','microwave'].includes(a.kind)||typeof a.on!=='boolean'||!Number.isFinite(a.temperature)||a.temperature<0||a.temperature>400||!Number.isFinite(a.targetTemperature)||a.targetTemperature<50||a.targetTemperature>300)throw Error('Invalid saved appliance state');}
+ for(const item of Object.values(state.items)){if(item.cookingMinutes!==undefined&&(!Number.isFinite(item.cookingMinutes)||item.cookingMinutes<0))throw Error('Invalid cooking progress');for(const key of ['cooked','burnt'])if(item[key]!==undefined&&typeof item[key]!=='boolean')throw Error('Invalid food cooking state');}
 }

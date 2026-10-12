@@ -25,5 +25,5 @@ export function updateDrainableWeight(previous,{fullWeight,emptyWeight=0,hasRepl
 }
 export function validateDrainableWeight(item,properties){
  const state=item.drainableWeight;if(state===undefined)return;
- if(properties.ItemType!=='base:drainable'||!state||typeof state!=='object'||typeof state.customWeight!=='boolean'||['actualWeight','weight'].some(key=>!Number.isFinite(state[key])||state[key]<0))throw Error('可耗用品重量状态无效');
+ if(properties.ItemType!=='base:drainable'||!state||typeof state!=='object'||typeof state.customWeight!=='boolean'||['actualWeight','weight'].some(key=>!Number.isFinite(state[key])||state[key]<0))throw Error('Invalid drainable item weight state');
 }

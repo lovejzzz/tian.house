@@ -1,4 +1,4 @@
-# Rosewood browser game
+# Tian’s House
 
 Playable work in progress; not a complete Project Zomboid recreation.
 
@@ -10,4 +10,6 @@ This repository contains independently implemented browser code and the Three.js
 
 ## Portfolio experience
 
-The current map is one residence with a yard and garage. Start in the upstairs bedroom, choose **使用电脑 · Computer**, then open Folio University, Surge Method or Bebop Puzzle on the CRT desktop. Project links open in a new browser tab. Desktop window positions and visited projects stay in local storage. The residence uses a separate save slot from the earlier town build.
+The current map is one residence with a yard and garage. Start in the upstairs bedroom, choose **Use computer · Computer**, then open Folio University, Surge Method or Bebop Puzzle on the CRT desktop. Project links open in a new browser tab. Desktop window positions and visited projects stay in local storage. The residence uses a separate save slot from the earlier town build.
+
+The game and desktop use English. The entry greeting is “Welcome. Make yourself at home.” The planned custom domain is tian.house; it is not connected yet. A visitor-ready release still needs distributable artwork and an asset-free first-visit workflow.

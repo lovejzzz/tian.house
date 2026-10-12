@@ -68,28 +68,28 @@ export function updateBookPages(player,item,book,jobDelta){
 // Native page setters store signed Java ints without clamping to book length.
 // Keep representable values; the action's validity check handles overlong pages.
 export function validateReadingState(player,items,state={}){
- for(const field of ['knownRecipes','alreadyReadBooks'])if(player[field]!==undefined&&(!Array.isArray(player[field])||player[field].some(v=>typeof v!=='string')))throw new Error('存档配方阅读记录无效');
- if(player.knowAllRecipes!==undefined&&typeof player.knowAllRecipes!=='boolean')throw new Error('存档配方调试标志无效');
+ for(const field of ['knownRecipes','alreadyReadBooks'])if(player[field]!==undefined&&(!Array.isArray(player[field])||player[field].some(v=>typeof v!=='string')))throw new Error('Invalid saved recipe reading history');
+ if(player.knowAllRecipes!==undefined&&typeof player.knowAllRecipes!=='boolean')throw new Error('Invalid saved recipe debug flag');
  const integer=n=>Number.isInteger(n)&&n>=-2147483648&&n<=2147483647;
- if(state.nightsSurvived!==undefined&&!integer(state.nightsSurvived))throw new Error('存档存活日记录无效');
- for(const [key,max] of [['stress',1],['boredom',100],['unhappiness',100]])if(player[key]!==undefined&&(!Number.isFinite(player[key])||player[key]<0||player[key]>max))throw new Error('存档阅读情绪数据无效');
+ if(state.nightsSurvived!==undefined&&!integer(state.nightsSurvived))throw new Error('Invalid saved survival day count');
+ for(const [key,max] of [['stress',1],['boredom',100],['unhappiness',100]])if(player[key]!==undefined&&(!Number.isFinite(player[key])||player[key]<0||player[key]>max))throw new Error('Invalid saved reading mood data');
  for(const item of Object.values(items)){
-  if(item.modData!==undefined&&(!item.modData||typeof item.modData!=='object'||Array.isArray(item.modData)))throw new Error('存档物品附加数据无效');
-  if(item.modData?.literatureTitle!==undefined&&typeof item.modData.literatureTitle!=='string')throw new Error('存档文学标题无效');
-  if(item.modData?.learnedRecipe!==undefined&&typeof item.modData.learnedRecipe!=='string')throw new Error('存档物品配方标识无效');
-  if(item.displayName!==undefined&&typeof item.displayName!=='string')throw new Error('存档物品名称无效');
-  if(item.alreadyRead!==undefined&&typeof item.alreadyRead!=='boolean')throw new Error('存档已读状态无效');
+  if(item.modData!==undefined&&(!item.modData||typeof item.modData!=='object'||Array.isArray(item.modData)))throw new Error('Invalid saved item metadata');
+  if(item.modData?.literatureTitle!==undefined&&typeof item.modData.literatureTitle!=='string')throw new Error('Invalid saved literature title');
+  if(item.modData?.learnedRecipe!==undefined&&typeof item.modData.learnedRecipe!=='string')throw new Error('Invalid saved item recipe identifier');
+  if(item.displayName!==undefined&&typeof item.displayName!=='string')throw new Error('Invalid saved item name');
+  if(item.alreadyRead!==undefined&&typeof item.alreadyRead!=='boolean')throw new Error('Invalid saved read status');
  }
  if(player.readLiterature!==undefined){
   const memory=player.readLiterature;
-  if(!memory||typeof memory!=='object'||Array.isArray(memory)||Object.values(memory).some(day=>!integer(day)))throw new Error('存档文学阅读记录无效');
+  if(!memory||typeof memory!=='object'||Array.isArray(memory)||Object.values(memory).some(day=>!integer(day)))throw new Error('Invalid saved literature reading history');
  }
  if(player.readPages!==undefined){
   const pages=player.readPages;
-  if(!pages||typeof pages!=='object'||Array.isArray(pages))throw new Error('存档阅读记录无效');
-  for(const [type,count] of Object.entries(pages))if(!type||!integer(count))throw new Error('存档阅读页数无效');
+  if(!pages||typeof pages!=='object'||Array.isArray(pages))throw new Error('Invalid saved reading history');
+  for(const [type,count] of Object.entries(pages))if(!type||!integer(count))throw new Error('Invalid saved reading page count');
  }
- for(const item of Object.values(items))if(item.alreadyReadPages!==undefined&&!integer(item.alreadyReadPages))throw new Error('存档书籍页数无效');
+ for(const item of Object.values(items))if(item.alreadyReadPages!==undefined&&!integer(item.alreadyReadPages))throw new Error('Invalid saved book page count');
 }
 
 export function ordinaryLiterature(properties){

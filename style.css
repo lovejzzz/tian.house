@@ -18,3 +18,5 @@
 #panel.inventory-window{height:520px}.inventory-window #panel-content{height:calc(100% - 34px)}
 
 .craft-controls{display:flex;flex-wrap:wrap;gap:6px;position:sticky;top:0;background:#25281f;padding:8px 0;z-index:2}.craft-controls input,.craft-controls select{background:#171b16;color:#eee;border:1px solid #6c7160;padding:7px;min-width:0}.craft-controls input[type=number]{width:60px}.recipe strong,.recipe small{display:block;overflow-wrap:anywhere}.recipe{padding:10px 0;border-bottom:1px solid #4b5146}.recipe button:disabled{opacity:.45;cursor:not-allowed}
+
+.wordmark{font-family:Georgia,serif;font-weight:400;font-size:clamp(28px,4vw,52px);letter-spacing:-.025em;line-height:1.2;max-width:850px;padding:0 24px;text-wrap:balance}.moodle{width:58px;height:58px;font-size:10px}#tools button{width:58px}#loading>p,#loading>small{max-width:650px;text-align:center;padding:0 24px}

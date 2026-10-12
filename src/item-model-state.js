@@ -38,15 +38,15 @@ export function worldStaticModel(item,p){
  return (variants&&index>=0&&index<variants.length?variants[index]:null)??p.WorldStaticModel??null;
 }
 export function validateModelState(item,p){
- for(const field of ['weaponSprite','staticModel','worldStaticModel'])if(item[field]!=null&&typeof item[field]!=='string')throw Error('物品模型名称无效');
+ for(const field of ['weaponSprite','staticModel','worldStaticModel'])if(item[field]!=null&&typeof item[field]!=='string')throw Error('Invalid item model name');
  for(const field of ['weaponSpritesByIndex','staticModelsByIndex','worldStaticModelsByIndex','iconsForTexture']){
-  const list=item[field];if(list!=null&&(!Array.isArray(list)||list.some(v=>v!==null&&typeof v!=='string')))throw Error('物品模型变体无效');
+  const list=item[field];if(list!=null&&(!Array.isArray(list)||list.some(v=>v!==null&&typeof v!=='string')))throw Error('Invalid item model variant');
  }
  if(item.modelIndex!==undefined){
-  if(!Number.isInteger(item.modelIndex)||item.modelIndex< -1)throw Error('物品模型索引无效');
+  if(!Number.isInteger(item.modelIndex)||item.modelIndex< -1)throw Error('Invalid item model index');
   const weapons=p.ItemType==='base:weapon'?modelVariants(item,p,'weaponSpritesByIndex'):null;
-  if(weapons!=null&&item.modelIndex>=weapons.length&&item.modelIndex!==-1)throw Error('物品模型索引越界');
+  if(weapons!=null&&item.modelIndex>=weapons.length&&item.modelIndex!==-1)throw Error('Item model index out of range');
   const icons=Object.hasOwn(item,'iconsForTexture')?item.iconsForTexture:modelList(p.IconsForTexture);
-  if(icons?.length&&item.modelIndex>=icons.length)throw Error('物品图标索引越界');
+  if(icons?.length&&item.modelIndex>=icons.length)throw Error('Item icon index out of range');
  }
 }

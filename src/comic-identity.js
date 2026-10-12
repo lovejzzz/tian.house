@@ -1,6 +1,6 @@
 let catalog=null;
 export function setComicCatalog(data){
- if(data?.schema_version!==1||!Array.isArray(data.entries)||!data.entries.length||data.entries.some(e=>typeof e.key!=='string'||typeof e.title!=='string'||!Number.isInteger(e.issues)||e.issues<0||typeof e.inPrint!=='boolean'))throw Error('漫画目录无效');
+ if(data?.schema_version!==1||!Array.isArray(data.entries)||!data.entries.length||data.entries.some(e=>typeof e.key!=='string'||typeof e.title!=='string'||!Number.isInteger(e.issues)||e.issues<0||typeof e.inPrint!=='boolean'))throw Error('Invalid comic catalog');
  catalog=data;
 }
 export function comicIdentity(entry,issue,baseName,formats){
@@ -14,9 +14,9 @@ export function initializeComic(item,properties,baseName,randomInt=n=>Math.floor
  const callback=properties.OnCreate;
  if(!['ItemCodeOnCreate.onCreateComicBook','ItemCodeOnCreate.onCreateComicBookRetail'].includes(callback))return;
  if(item.modData?.literatureTitle!==undefined)return;
- if(!catalog)throw Error('漫画目录尚未载入');
+ if(!catalog)throw Error('Comic catalog is not loaded');
  const retail=callback.endsWith('Retail');
- if(retail&&!catalog.entries.some(e=>e.inPrint))throw Error('漫画目录没有在印系列');
+ if(retail&&!catalog.entries.some(e=>e.inPrint))throw Error('The comic catalog has no in-print series');
  let entry;do{entry=catalog.entries[randomInt(catalog.entries.length)];}while(retail&&!entry.inPrint);
  const issue=entry.issues?randomInt(entry.issues):0;
  const named=comicIdentity(entry,issue,baseName,catalog.formats);

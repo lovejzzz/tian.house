@@ -5,7 +5,7 @@ import {groundSelection,groundSceneMatrix} from './ground-models.js';
 export class GroundRenderer{
  async init(){
   const base=new URL('../private-assets/ground-models/',import.meta.url),response=await fetch(new URL('held-models.json',base));
-  if(!response.ok)throw Error('地面模型缺失，请导入 ground-models');
+  if(!response.ok)throw Error('Ground models are missing, Import ground-models');
   this.data=await response.json();this.models=new Map();this.cache=new Map();this.missing=new Set();
   this.renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,preserveDrawingBuffer:true});this.renderer.setSize(256,256);this.renderer.setClearColor(0,0);this.renderer.outputColorSpace=THREE.SRGBColorSpace;
   this.scene=new THREE.Scene();this.scene.add(new THREE.HemisphereLight(0xffffff,0x55534a,2.2));const sun=new THREE.DirectionalLight(0xfff4df,2.2);sun.position.set(-3,6,4);this.scene.add(sun);

@@ -11,7 +11,7 @@ import {HeldModels,heldSelection} from './held-models.js';
 export class CharacterRenderer {
  async init(){
   const assetBase=new URL('../private-assets/characters/',import.meta.url);
-  const res=await fetch(new URL('character.json',assetBase));if(!res.ok)throw new Error('角色资源缺失，请运行 import_characters.py');
+  const res=await fetch(new URL('character.json',assetBase));if(!res.ok)throw new Error('Character assets are missing, Run import_characters.py');
   const data=await res.json();this.data=data;this.cache=new Map();
   this.durations=Object.fromEntries(Object.entries(data.animations).map(([name,channels])=>[name,Math.max(...channels.flatMap(c=>c.times))]));
   this.clock=new AnimationBlend(this.durations,data.animationMetadata);
@@ -51,7 +51,7 @@ export class CharacterRenderer {
     const colors={body:0xffffff,shirt:0x729b87,trousers:0xffffff,hair:0x45372d};
     const material=new THREE.MeshLambertMaterial({map:texture,color:texture?0xffffff:colors[part.name],side:THREE.DoubleSide});
     const mesh=new THREE.SkinnedMesh(g,material);mesh.frustumCulled=false;group.add(mesh);
-    const skelBones=def.weights.map(w=>bones.get(w.bone));if(skelBones.some(b=>!b))throw new Error('角色骨骼映射不完整');
+    const skelBones=def.weights.map(w=>bones.get(w.bone));if(skelBones.some(b=>!b))throw new Error('Incomplete character bone mapping');
     group.updateMatrixWorld(true);
     mesh.bind(new THREE.Skeleton(skelBones,def.weights.map(w=>new THREE.Matrix4().fromArray(w.inverse))),new THREE.Matrix4());
    }
@@ -83,7 +83,7 @@ export class CharacterRenderer {
    this.mixers.push(mixer);this.actions.push(actions);
   }
   const heldBase=new URL('../private-assets/held-models/',import.meta.url),heldResponse=await fetch(new URL('held-models.json',heldBase));
-  if(!heldResponse.ok)throw Error('手持模型缺失，请运行 import_held_models.py');
+  if(!heldResponse.ok)throw Error('Held models are missing, Run import_held_models.py');
   this.heldModels=new HeldModels(await heldResponse.json(),this.bodyBones);await this.heldModels.init(heldBase,loader);
   this.ready=true;
  }

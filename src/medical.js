@@ -1,7 +1,7 @@
 import {definition} from './inventory.js';
 import {drainableUses} from './drainable.js';
-export const BODY_PARTS=Object.freeze({Hand_L:'左手',Hand_R:'右手',ForeArm_L:'左前臂',ForeArm_R:'右前臂',UpperArm_L:'左上臂',UpperArm_R:'右上臂',Torso_Upper:'上躯干',Torso_Lower:'下躯干',Head:'头部',Neck:'颈部',Groin:'腹股沟',UpperLeg_L:'左大腿',UpperLeg_R:'右大腿',LowerLeg_L:'左小腿',LowerLeg_R:'右小腿',Foot_L:'左脚',Foot_R:'右脚'});
-export const WOUND_NAMES={scratch:'擦伤',cut:'撕裂伤',bite:'咬伤'};
+export const BODY_PARTS=Object.freeze({Hand_L:'Left hand',Hand_R:'Right hand',ForeArm_L:'Left forearm',ForeArm_R:'Right forearm',UpperArm_L:'Left upper arm',UpperArm_R:'Right upper arm',Torso_Upper:'Upper torso',Torso_Lower:'Lower torso',Head:'Head',Neck:'Neck',Groin:'Groin',UpperLeg_L:'Left thigh',UpperLeg_R:'Right thigh',LowerLeg_L:'Left shin',LowerLeg_R:'Right shin',Foot_L:'Left foot',Foot_R:'Right foot'});
+export const WOUND_NAMES={scratch:'Scratch',cut:'Laceration',bite:'Bite'};
 // Gameplay scaffolding: wound duration and evolution are provisional, not native BodyPart parity.
 const durations={scratch:240,cut:720,bite:2880};
 export function ensureMedical(player){
@@ -9,7 +9,7 @@ export function ensureMedical(player){
  return player.medical;
 }
 export function injury(player,part,kind='scratch'){
- if(!BODY_PARTS[part]||!WOUND_NAMES[kind])throw Error('未知伤口类型');const medical=ensureMedical(player),old=medical.parts[part];
+ if(!BODY_PARTS[part]||!WOUND_NAMES[kind])throw Error('Unknown wound type');const medical=ensureMedical(player),old=medical.parts[part];
  medical.parts[part]={kind,remaining:Math.max(durations[kind],old?.remaining??0),bleeding:kind==='scratch'?1:kind==='cut'?2:3,bandage:null,alcohol:0,infection:old?.infection??0,pain:kind==='scratch'?10:25};syncBleeding(player);return medical.parts[part];
 }
 export function syncBleeding(player){player.bleeding=Object.values(ensureMedical(player).parts).reduce((n,w)=>n+(w.bandage?0:w.bleeding),0);}
@@ -19,11 +19,11 @@ export function medicalItems(inventory,action){return Object.values(inventory.st
  return p.ItemType==='base:drainable'&&Number(p.AlcoholPower)>0&&drainableUses(item,p)>0||item.fluid?.type==='RubbingAlcohol'&&item.fluid.amount>=.15;
  });}
 export function planTreatment(player,inventory,part,action,itemId){
- const wound=ensureMedical(player).parts[part];if(!wound)return {ok:false,reason:'这个部位没有伤口'};
- if(action==='remove')return wound.bandage?{ok:true,wound}:{ok:false,reason:'没有可拆除的绷带'};
- if(!['bandage','disinfect'].includes(action))return {ok:false,reason:'未知治疗操作'};
- if(wound.bandage)return {ok:false,reason:'请先拆除绷带'};
- const item=medicalItems(inventory,action).find(i=>i.id===itemId);if(!item)return {ok:false,reason:action==='bandage'?'需要可用绷带或碎布条':'需要酒精湿巾或消毒酒精'};
+ const wound=ensureMedical(player).parts[part];if(!wound)return {ok:false,reason:'There is no wound on this body part'};
+ if(action==='remove')return wound.bandage?{ok:true,wound}:{ok:false,reason:'There is no bandage to remove'};
+ if(!['bandage','disinfect'].includes(action))return {ok:false,reason:'Unknown treatment action'};
+ if(wound.bandage)return {ok:false,reason:'Remove the bandage first'};
+ const item=medicalItems(inventory,action).find(i=>i.id===itemId);if(!item)return {ok:false,reason:action==='bandage'?'Requires a usable bandage or ripped sheets':'Requires alcohol wipes or rubbing alcohol'};
  return {ok:true,wound,item};
 }
 export function treatWound(player,inventory,part,action,itemId,{random=Math.random}={}){
@@ -56,12 +56,12 @@ export function advanceMedical(player,minutes){
   if(w.remaining===0){w.bleeding=0;if(!w.bandage)delete medical.parts[part];}
  }syncBleeding(player);
 }
-export function woundDescription(w){return `${w.remaining>0?WOUND_NAMES[w.kind]:'伤口已愈合'} · ${w.bandage?(w.bandage.life>0?'已包扎':'绷带已脏'):(w.bleeding?'出血':'未包扎')}${w.infection>0?' · 伤口感染':''}${w.alcohol>0?' · 已消毒':''}`;}
+export function woundDescription(w){return `${w.remaining>0?WOUND_NAMES[w.kind]:'Wound healed'} · ${w.bandage?(w.bandage.life>0?'Bandaged':'Dirty bandage'):(w.bleeding?'Bleeding':'Unbandaged')}${w.infection>0?' · Wound infected':''}${w.alcohol>0?' · Disinfected':''}`;}
 export function validateMedical(player){
  if(player.medical===undefined)return;
- const m=player.medical;if(!m||!m.parts||typeof m.parts!=='object'||Array.isArray(m.parts))throw Error('存档医疗数据无效');
+ const m=player.medical;if(!m||!m.parts||typeof m.parts!=='object'||Array.isArray(m.parts))throw Error('Invalid saved medical data');
  for(const [part,w]of Object.entries(m.parts)){
-  if(!BODY_PARTS[part]||!w||!WOUND_NAMES[w.kind]||!['remaining','bleeding','alcohol','infection','pain'].every(k=>Number.isFinite(w[k])&&w[k]>=0&&w[k]<=100000))throw Error('存档伤口数据无效');
-  if(w.bandage!==null&&(!w.bandage||!Number.isFinite(w.bandage.life)||w.bandage.life<0||w.bandage.life>1000||!definition(w.bandage.type).properties.CanBandage))throw Error('存档绷带数据无效');
+  if(!BODY_PARTS[part]||!w||!WOUND_NAMES[w.kind]||!['remaining','bleeding','alcohol','infection','pain'].every(k=>Number.isFinite(w[k])&&w[k]>=0&&w[k]<=100000))throw Error('Invalid saved wound data');
+  if(w.bandage!==null&&(!w.bandage||!Number.isFinite(w.bandage.life)||w.bandage.life<0||w.bandage.life>1000||!definition(w.bandage.type).properties.CanBandage))throw Error('Invalid saved bandage data');
  }
 }

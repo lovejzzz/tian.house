@@ -29,15 +29,15 @@ export function doorInside(world,obj,actor){
 // Random initial locks, multi-tile obstruction and sounds are separate obligations.
 export function doorToggle(world,obj,actor,inventory){
  const state=world.state(obj.x,obj.y,obj.z,obj.tile),props=obj.props;
- if(state.destroyed)return {ok:false,reason:'门已损坏'};
- if(barricadePresent(state.barricade)||Object.values(state.barricades||{}).some(barricadePresent))return {ok:false,reason:'门已封堵'};
+ if(state.destroyed)return {ok:false,reason:'The door is destroyed'};
+ if(barricadePresent(state.barricade)||Object.values(state.barricades||{}).some(barricadePresent))return {ok:false,reason:'The door is barricaded'};
  const hoppable='HoppableN'in props||'HoppableW'in props;
  const inside=doorInside(world,obj,actor),key=doorKey(inventory,state.keyId);
  let locked=state.locked??('forceLocked'in props),lockedByKey=state.lockedByKey??('forceLocked'in props);
  if(hoppable||inside){locked=false;lockedByKey=false;}
  if(locked&&!lockedByKey&&Number.isInteger(state.keyId)&&state.keyId!==-1)lockedByKey=true;
  if(!state.open&&(lockedByKey||state.CustomLock===true)){
-  if(!key)return {ok:false,reason:'门已上锁',patch:{locked,lockedByKey}};
+  if(!key)return {ok:false,reason:'The door is locked',patch:{locked,lockedByKey}};
   locked=false;lockedByKey=false;
  }
  let allowLocked=!!key;
@@ -45,7 +45,7 @@ export function doorToggle(world,obj,actor,inventory){
   const north='doorN'in props||props.type==='doorN',value=north?actor.y:actor.x,edge=north?obj.y:obj.x;
   allowLocked='InteriorSide'in props?value>=edge:value<edge;
  }
- if(locked&&!allowLocked&&!state.open)return {ok:false,reason:'门已上锁',patch:{locked,lockedByKey}};
- if(state.obstructed)return {ok:false,reason:'门被障碍物挡住',patch:{locked,lockedByKey}};
+ if(locked&&!allowLocked&&!state.open)return {ok:false,reason:'The door is locked',patch:{locked,lockedByKey}};
+ if(state.obstructed)return {ok:false,reason:'The door is obstructed',patch:{locked,lockedByKey}};
  return {ok:true,patch:{open:!state.open,locked:false,lockedByKey:false}};
 }
