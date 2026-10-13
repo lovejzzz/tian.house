@@ -1,8 +1,8 @@
-import {correctSourceProperties} from './source-corrections.js?v=5eeb0ad8d444';
-import {withinBounds} from './residence.js?v=5eeb0ad8d444';
-import {selectWindowApproach} from './window-approach.js?v=5eeb0ad8d444';
-import {windowLanding} from './windows.js?v=5eeb0ad8d444';
-import {stairType,stairHeight} from './stairs.js?v=5eeb0ad8d444';
+import {correctSourceProperties} from './source-corrections.js?v=5c5c6755f6e4';
+import {withinBounds} from './residence.js?v=5c5c6755f6e4';
+import {selectWindowApproach} from './window-approach.js?v=5c5c6755f6e4';
+import {windowLanding} from './windows.js?v=5c5c6755f6e4';
+import {stairType,stairHeight} from './stairs.js?v=5c5c6755f6e4';
 export const key = (x,y,z=0) => `${Math.floor(x)},${Math.floor(y)},${z}`;
 export class World {
   constructor(manifest,properties){correctSourceProperties(properties);this.manifest=manifest;this.properties=properties;this.cells=new Map();this.pending=new Map();this.changes={};this.builds=[];this.buildIndex=new Map();this.errors=[];this.revision=0;}

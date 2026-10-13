@@ -1,4 +1,4 @@
-import {paneAxis} from './wall-joins.js?v=5eeb0ad8d444';
+import {paneAxis} from './wall-joins.js?v=5c5c6755f6e4';
 // Wall-face picking uses the same isometric projection as the rendered scene.
 // Return one intent consumed by both the preview and the click; no hidden snap.
 export function openingAxis(entry,properties){
@@ -37,4 +37,13 @@ export function resolveWallPlacement({entry,model,renderer,px,py,z}){
   if(!model.inside(x,y,z)||!hasWallFace(model.square(x,y,z)?.tiles,axis,model.properties))return {...target,snapped:true,placementProblem:'The whole opening needs a supporting wall'};
  }
  return {...target,snapped:true,placementProblem:null};
+}
+
+export function resolveOrientedPlacement(args,variants,auto=true){
+ let entry=args.entry,target=resolveWallPlacement(args);
+ if(auto&&target?.axis&&target.axis!==openingAxis(entry,args.model.properties)){
+  const next=variants.find(e=>openingAxis(e,args.model.properties)===target.axis);
+  if(next){entry=next;target=resolveWallPlacement({...args,entry});}
+ }
+ return {entry,target};
 }
