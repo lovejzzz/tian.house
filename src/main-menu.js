@@ -1,8 +1,8 @@
-import {fullscreenCamera,arrivalFrame} from './arrival.js?v=7137f77ee6bb';
-import {Renderer} from './render.js?v=7137f77ee6bb';
-import {captureHouse} from './workshop-model.js?v=7137f77ee6bb';
-import {drawPool} from './workshop-outdoors.js?v=7137f77ee6bb';
-import {readPreferences,storePreferences} from './preferences.js?v=7137f77ee6bb';
+import {fullscreenCamera,arrivalFrame} from './arrival.js?v=8beb3ba1d452';
+import {Renderer} from './render.js?v=8beb3ba1d452';
+import {captureHouse} from './workshop-model.js?v=8beb3ba1d452';
+import {drawPool} from './workshop-outdoors.js?v=8beb3ba1d452';
+import {readPreferences,storePreferences} from './preferences.js?v=8beb3ba1d452';
 const element=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 export class MainMenu{
  constructor({world,renderer,bounds,getState,onStart,onWorkshop,onPreferences}){Object.assign(this,{world,gameRenderer:renderer,bounds,getState,onStart,onWorkshop,onPreferences});this.preferences=readPreferences();this.active=false;}

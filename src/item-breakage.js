@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=7137f77ee6bb';
+import {definition} from './inventory.js?v=8beb3ba1d452';
 const maxCondition=item=>Number(definition(item.type).properties.ConditionMax)||10;
 // Stationary, direct-player-inventory StoneHammer callback. Ground placement is
 // supplied by the world layer; attacking/world-item/nested-container routes are

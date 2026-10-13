@@ -1,6 +1,6 @@
-import {validateHousePlan} from './workshop-model.js?v=7137f77ee6bb';
-import {World} from './world.js?v=7137f77ee6bb';
-import {Inventory,definition} from './inventory.js?v=7137f77ee6bb';
+import {validateHousePlan} from './workshop-model.js?v=8beb3ba1d452';
+import {World} from './world.js?v=8beb3ba1d452';
+import {Inventory,definition} from './inventory.js?v=8beb3ba1d452';
 // Build and validate a replacement state before touching the running simulation.
 export function prepareHouseState(sim,plan,bounds,atlas){
  validateHousePlan(plan,bounds);
@@ -16,6 +16,6 @@ export function prepareHouseState(sim,plan,bounds,atlas){
  // Only replace workshop props that are still on the ground and unchanged.
  // Player-carried items and filled containers remain in the save.
  for(const item of Object.values(inv.state.items))if(item.workshopPlaced&&(inv.state.containers[item.container]?.ground||item.workshopOrigin===item.container)&&!inv.state.containers[item.id]?.items.length)inv.remove(item.id);
- for(const item of plan.items){const props=item.storageTile?sim.world.props(item.storageTile):null,id=props?`world:${item.x},${item.y},${item.z}:${item.storageTile}`:`ground:${item.x},${item.y},${item.z}`,c=inv.container(id,props?.CustomName||'Ground',props?Number(props.ContainerCapacity)||50:10000);if(!props)c.ground={x:item.x,y:item.y,z:item.z};const created=inv.create(item.type,id,{workshopPlaced:true,workshopOrigin:id,...(props?{}:{groundOffset:{x:.5,y:.5,z:0}})});if(created.fluid)created.fluid.amount=created.fluid.capacity;}
+ for(const item of plan.items){const props=item.storageTile?sim.world.props(item.storageTile):null,id=props?`world:${item.x},${item.y},${item.z}:${item.storageTile}`:`ground:${item.x},${item.y},${item.z}`,c=inv.container(id,props?.CustomName||'Ground',props?Number(props.ContainerCapacity)||50:10000);if(!props)c.ground={x:item.x,y:item.y,z:item.z};const created=inv.create(item.type,id,{workshopPlaced:true,workshopOrigin:id,...(props?{}:{groundOffset:{x:.5,y:.5,z:0}})});if(created.fluid&&created.type==='Base.WaterBottle')created.fluid.amount=created.fluid.capacity;}
  return next;
 }

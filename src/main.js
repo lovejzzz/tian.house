@@ -1,36 +1,36 @@
-import {openShelterBrief} from './shelter-brief.js?v=7137f77ee6bb';
-import {installOriginalAssets} from './original-assets.js?v=7137f77ee6bb';
-import showcaseHouse from './showcase-house.js?v=7137f77ee6bb';
-import {MainMenu} from './main-menu.js?v=7137f77ee6bb';
-import {readPreferences} from './preferences.js?v=7137f77ee6bb';
-import {prepareHouseState} from './workshop-apply.js?v=7137f77ee6bb';
-import {interactionTarget,interactionLabel} from './interaction-target.js?v=7137f77ee6bb';
-import {waterSource,planWater} from './water.js?v=7137f77ee6bb';
-import {RESIDENCE} from './residence.js?v=7137f77ee6bb';
-import {PortfolioDesktop} from './portfolio.js?v=7137f77ee6bb';
+import {openShelterBrief} from './shelter-brief.js?v=8beb3ba1d452';
+import {installOriginalAssets} from './original-assets.js?v=8beb3ba1d452';
+import showcaseHouse from './showcase-house.js?v=8beb3ba1d452';
+import {MainMenu} from './main-menu.js?v=8beb3ba1d452';
+import {readPreferences} from './preferences.js?v=8beb3ba1d452';
+import {prepareHouseState} from './workshop-apply.js?v=8beb3ba1d452';
+import {interactionTarget,interactionLabel} from './interaction-target.js?v=8beb3ba1d452';
+import {waterSource,planWater} from './water.js?v=8beb3ba1d452';
+import {RESIDENCE} from './residence.js?v=8beb3ba1d452';
+import {PortfolioDesktop} from './portfolio.js?v=8beb3ba1d452';
 const desktop=new PortfolioDesktop();
-import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=7137f77ee6bb';
-import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=7137f77ee6bb';
+import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=8beb3ba1d452';
+import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=8beb3ba1d452';
 let buildMode=null,workshop=null,itemCatalog=null,mainMenu=null;
 let preferences=readPreferences(),arriving=false;
-import {isCookingAppliance,cookingLabel} from './cooking.js?v=7137f77ee6bb';
-import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=7137f77ee6bb';
-import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=7137f77ee6bb';
-import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=7137f77ee6bb';
-import {GameAudio} from './audio.js?v=7137f77ee6bb';
+import {isCookingAppliance,cookingLabel} from './cooking.js?v=8beb3ba1d452';
+import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=8beb3ba1d452';
+import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=8beb3ba1d452';
+import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=8beb3ba1d452';
+import {GameAudio} from './audio.js?v=8beb3ba1d452';
 let gameAudio,craftRefresh=null,lastCraftSignature='';
-import {setComicCatalog} from './comic-identity.js?v=7137f77ee6bb';
-import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=7137f77ee6bb';
-import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=7137f77ee6bb';
-import {canToggleWindow,canClimbWindow} from './windows.js?v=7137f77ee6bb';
-import {doorToggle} from './doors.js?v=7137f77ee6bb';
-import {setItemCatalog,definition} from './inventory.js?v=7137f77ee6bb';
-import {World} from './world.js?v=7137f77ee6bb';
-import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=7137f77ee6bb';
-import {Renderer} from './render.js?v=7137f77ee6bb';
-import {CharacterRenderer} from './characters.js?v=7137f77ee6bb';
-import {GroundRenderer} from './ground-renderer.js?v=7137f77ee6bb';
-import {inventoryIcon} from './item-icons.js?v=7137f77ee6bb';
+import {setComicCatalog} from './comic-identity.js?v=8beb3ba1d452';
+import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=8beb3ba1d452';
+import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=8beb3ba1d452';
+import {canToggleWindow,canClimbWindow} from './windows.js?v=8beb3ba1d452';
+import {doorToggle} from './doors.js?v=8beb3ba1d452';
+import {setItemCatalog,definition} from './inventory.js?v=8beb3ba1d452';
+import {World} from './world.js?v=8beb3ba1d452';
+import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=8beb3ba1d452';
+import {Renderer} from './render.js?v=8beb3ba1d452';
+import {CharacterRenderer} from './characters.js?v=8beb3ba1d452';
+import {GroundRenderer} from './ground-renderer.js?v=8beb3ba1d452';
+import {inventoryIcon} from './item-icons.js?v=8beb3ba1d452';
 const $=s=>document.querySelector(s),keys=new Set();
 let focusTarget=null,hudTray=null,lastActionsSignature='';
 let world,sim,renderer,character,panel=null,selected=null,nearby=[],lastUI=0,lastStream=0,lastSave=0,last=0,toastUntil=0,inventoryTab='player',lastInventorySignature='';
@@ -42,6 +42,8 @@ const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefine
 function craftItemName(type){try{return definition(type).name;}catch{return type;}}
 function button(text,fn){const b=el('button',text);b.onclick=fn;return b;}
 function save(){try{localStorage.setItem(SAVE,sim.serialize());toast('Progress saved locally');return true;}catch(e){toast(`Save failed: ${e.message}`);return false;}}
+window.addEventListener('pagehide',()=>{if(sim)save();});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='hidden'&&sim)save();});
 function setPanel(name){setHudTray(null);panel=panel===name?null:name;$('#panel').hidden=!panel;$('#panel').classList.toggle('inventory-window',panel==='inventory');if(panel)renderPanel();$('#game').focus();}
 function atlasIcon(name,label,size=40){const canvas=el('canvas',undefined,'item-icon');canvas.width=size;canvas.height=size;canvas.title=label;canvas.dataset.sprite=name;const region=renderer.atlas.regions[name];
  if(!region){renderer.missing.add(name);return canvas;}const paint=()=>{const image=renderer.images.get(region.page);if(!image)return;const c=canvas.getContext('2d'),scale=(size-8)/Math.max(region.ow,region.oh,32);c.clearRect(0,0,size,size);c.drawImage(image,region.x,region.y,region.w,region.h,(size-region.ow*scale)/2+region.ox*scale,(size-region.oh*scale)/2+region.oy*scale,region.w*scale,region.h*scale);canvas.dataset.painted='true';};
@@ -129,7 +131,7 @@ function drawMap(canvas){const c=canvas.getContext('2d'),p=sim.state.player,scal
  for(const cell of world.cells.values())for(const sq of cell.squares.values()){if(sq.z!==p.z)continue;const x=200+(sq.x-cx)*scale,y=180+(sq.y-cy)*scale;if(x<0||x>400||y<0||y>360)continue;const indoors=sq.tiles.some(t=>t.startsWith('floors_interior')),road=sq.tiles.some(t=>t.startsWith('blends_street'));c.fillStyle=indoors?'#806957':road?'#747568':'#a3aa7a';c.fillRect(x,y,scale,scale);}
  c.fillStyle='#b53f2b';c.beginPath();c.arc(200+(p.x-cx)*scale,180+(p.y-cy)*scale,4,0,Math.PI*2);c.fill();}
 function inventorySignature(){return JSON.stringify([sim.state.inventory,sim.state.player.readPages,sim.state.player.knownRecipes,inventoryTab,selected?.id,nearby.filter(o=>o.type==='container').map(o=>o.id),sim.state.player.capacity,Math.floor(sim.state.player.x),Math.floor(sim.state.player.y),sim.state.player.z]);}
-function updateUI(now){const p=sim.state.player,time=sim.state.time;$('#clock').textContent=`${String(Math.floor(time/60)%24).padStart(2,'0')}:${String(Math.floor(time)%60).padStart(2,'0')}`;$('#day').textContent=`Day ${Math.floor(time/1440)+1}`;$('#location').textContent=`${Math.floor(p.x)}, ${Math.floor(p.y)} · Floor ${p.z}`;
+function updateUI(now){for(const b of document.querySelectorAll('[data-speed]'))b.setAttribute('aria-pressed',String(Number(b.dataset.speed)===sim.speed));const p=sim.state.player,time=sim.state.time;$('#clock').textContent=`${String(Math.floor(time/60)%24).padStart(2,'0')}:${String(Math.floor(time)%60).padStart(2,'0')}`;$('#day').textContent=`Day ${Math.floor(time/1440)+1}`;$('#location').textContent=`${Math.floor(p.x)}, ${Math.floor(p.y)} · Floor ${p.z}`;
  const moodles=$('#moodles');moodles.replaceChildren();for(const[label,show,bad]of[['Hunger',p.hunger>30,p.hunger>70],['Thirst',p.thirst>30,p.thirst>70],['Tired',p.fatigue>40,p.fatigue>70],['Bleeding',p.bleeding>0,true],['Weight',sim.inventory.encumbrance()>p.capacity*.8,false],['Exhausted',p.endurance<25,true]])if(show)moodles.append(el('div',label,`moodle ${bad?'bad':''}`));
  nearby=world.interactions(p);renderNearbyActions();
  const a=sim.action;$('#action-progress').hidden=!a;if(a){$('#action-progress span').textContent=a.name;$('#action-progress small').textContent=p.windowMotion?'Climbing through':'Move or press Esc to cancel';$('#action-progress progress').value=1-a.left/a.duration;}
@@ -156,13 +158,14 @@ function renderNearbyActions(){
    if(o.type==='door'){const check=doorToggle(world,o,p,sim.inventory);if(!check.ok){b.disabled=true;b.title=check.reason;b.append(el('small',check.reason));}}
    actions.append(b);
   }
+  if(o.type==='bed'&&o.props.BedType!=='badBed'){const b=button('Sleep 8 hours',()=>{setHudTray(null);sim.interact(o,'sleep');});b.className='nearby-action';actions.append(b);}
   if(o.type==='window'&&canClimbWindow(o.props,state)){const b=button('Climb through',()=>{setHudTray(null);sim.interact(o,'climb');});b.className='nearby-action';actions.append(b);}
  }
 }
 function interact(o){if(!o||desktop.active)return;if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;setHudTray(null);if(o.type==='brief'){keys.clear();openShelterBrief(world,sim);return;}if(o.type==='computer'){if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;const paused=sim.paused;sim.cancel();sim.paused=true;keys.clear();desktop.open(()=>{sim.paused=paused;keys.clear();$('#game').focus();});return;}if(o.type==='water'){selected=o;panel='water';$('#panel').hidden=false;$('#panel').classList.remove('inventory-window');renderPanel();return;}if(o.type==='container'){selected=o;panel='inventory';$('#panel').hidden=false;$('#panel').classList.add('inventory-window');renderPanel();}else sim.interact(o);}
 async function openWorkshop(){
  if(workshop?.element||desktop.active)return;const paused=sim.paused;let applied=false;sim.cancel();sim.paused=true;keys.clear();setHudTray(null);panel=null;$('#panel').hidden=true;buildMode=null;
- try{const {HouseWorkshop}=await import('./workshop.js?v=7137f77ee6bb');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
+ try{const {HouseWorkshop}=await import('./workshop.js?v=8beb3ba1d452');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
   onApply:async plan=>{const state=prepareHouseState(sim,plan,RESIDENCE.bounds,renderer.atlas);localStorage.setItem(SAVE+'-before-workshop',sim.serialize());localStorage.setItem(SAVE,JSON.stringify(state));sim=new Simulation(world,state,character.data);sim.paused=true;window.pz.sim=sim;renderer.visibility.reset?.();applied=true;toast('Your new house is ready');},
   onClose:()=>{keys.clear();if(mainMenu?.active){if(applied)startGame();else{sim.paused=true;mainMenu.element.querySelector('[aria-label=Workshop]').focus();}}else{sim.paused=paused;$('#game').focus();}}});await workshop.open();}
  catch(e){workshop?.close();sim.paused=paused;toast('Workshop could not open: '+e.message);console.error(e);}
@@ -182,7 +185,7 @@ async function start(){
  const ground=new GroundRenderer();
  await Promise.all([world.around(state.player.x,state.player.y),character.init(),ground.init()]);sim.animationData=character.data;
  renderer=new Renderer($('#game'),world,atlas,character);renderer.ground=ground;applyPreferences(preferences);renderer.draw(sim);sourceToolIcons();
- for(const speed of [1,5,20]){const b=button(`×${speed}`,()=>{sim.speed=speed;toast(`Time speed ×${speed}`);});b.setAttribute('aria-label',`Time speed ${speed}×`);$('#topbar').append(b);}
+ for(const speed of [1,5,20,120]){const b=button(`×${speed}`,()=>{sim.speed=speed;toast(`Time speed ×${speed}`);});b.setAttribute('aria-label',`Time speed ${speed}×`);b.dataset.speed=speed;$('#topbar .time').append(b);}
  $('#load-status').textContent='Preparing floor, wall and furniture textures…';await Promise.all(renderer.loading.values());renderer.draw(sim);
  $('#loading').hidden=true;for(const id of ['topbar','tools','moodles','controls'])$('#'+id).hidden=false;
  // Developer inspection exposes live state, never a separate fake test world.

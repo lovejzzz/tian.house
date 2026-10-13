@@ -1,11 +1,11 @@
-import {definition} from './inventory.js?v=7137f77ee6bb';
+import {definition} from './inventory.js?v=8beb3ba1d452';
 export const isCookingAppliance=object=>/^(stove|microwave)$/.test(object.props?.container??'');
 export function ensureAppliance(container,kind='stove'){
  return container.appliance??={kind,on:false,temperature:20,targetTemperature:200};
 }
 // Functional thermal model, pending source-runtime calibration. Recipe cook/burn
 // thresholds come from the installed item definitions; heat transfer is provisional.
-export function advanceCooking(inventory,minutes,{electricity=true,onEvent=()=>{}}={}){
+export function advanceCooking(inventory,minutes,{electricity=true,onEvent=()=>{},onCooked=()=>{}}={}){
  if(!(minutes>0))return;
  for(const container of Object.values(inventory.state.containers)){
   const appliance=container.appliance;if(!appliance)continue;
@@ -17,7 +17,7 @@ export function advanceCooking(inventory,minutes,{electricity=true,onEvent=()=>{
    item.cookingMinutes=(item.cookingMinutes??0)+minutes*appliance.temperature/200;
    const cook=Number(p.MinutesToCook??60),burn=Number(p.MinutesToBurn??120);
    if(!item.cooked&&item.cookingMinutes>=cook){
-    item.cooked=true;if(item.foodValues)item.foodValues.cooked=true;onEvent(`${definition(item.type).name} is cooked`);
+    onCooked(item);item.cooked=true;if(item.foodValues)item.foodValues.cooked=true;onEvent(`${definition(item.type).name} is cooked`);
     const outputs=String(p.ReplaceOnCooked??'').split(';').filter(Boolean).map(t=>t.includes('.')?t:`Base.${t}`);
     if(outputs.length){
      // Keep ingredients if the imported replacement definition is unavailable.

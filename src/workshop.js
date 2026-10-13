@@ -1,11 +1,12 @@
-import gardenEdition from './glasshouse-garden-v1.js?v=7137f77ee6bb';
-import glasshouseFirstEdition from './glasshouse-v1.js?v=7137f77ee6bb';
-import rosewoodHouse from './rosewood-house.js?v=7137f77ee6bb';
-import {readHouseLibrary,saveHouseCopy} from './house-library.js?v=7137f77ee6bb';
-import showcaseHouse from './showcase-house.js?v=7137f77ee6bb';
-import {drawPool} from './workshop-outdoors.js?v=7137f77ee6bb';
-import {WorkshopModel,workshopCatalog,captureHouse,floorName,FLOOR_MIN,FLOOR_MAX,validateHousePlan} from './workshop-model.js?v=7137f77ee6bb';
-import {Renderer} from './render.js?v=7137f77ee6bb';
+import sanctuaryEdition from './glasshouse-sanctuary-v1.js?v=8beb3ba1d452';
+import gardenEdition from './glasshouse-garden-v1.js?v=8beb3ba1d452';
+import glasshouseFirstEdition from './glasshouse-v1.js?v=8beb3ba1d452';
+import rosewoodHouse from './rosewood-house.js?v=8beb3ba1d452';
+import {readHouseLibrary,saveHouseCopy} from './house-library.js?v=8beb3ba1d452';
+import showcaseHouse from './showcase-house.js?v=8beb3ba1d452';
+import {drawPool} from './workshop-outdoors.js?v=8beb3ba1d452';
+import {WorkshopModel,workshopCatalog,captureHouse,floorName,FLOOR_MIN,FLOOR_MAX,validateHousePlan} from './workshop-model.js?v=8beb3ba1d452';
+import {Renderer} from './render.js?v=8beb3ba1d452';
 const DRAFT='tian-house-workshop-v1',FAV='tian-house-workshop-favorites';
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(text,fn,cls)=>{const b=make('button',text,cls);b.type='button';b.onclick=fn;return b;};
@@ -26,13 +27,13 @@ export class HouseWorkshop{
   const footer=make('footer',undefined,'workshop-footer');this.message=make('span','Choose an object, then click to place it.');footer.append(this.message,make('span','R Rotate · Ctrl Z Undo · Space drag Pan · Scroll Zoom · Esc Cancel'));this.element.append(footer);
   this.bindInput();this.setLevel(this.z);this.renderCatalog();this.updateSelection();this.updateHistory();this.tick=now=>{if(!this.element)return;this.draw(now);this.raf=requestAnimationFrame(this.tick);};this.raf=requestAnimationFrame(this.tick);this.canvas.focus();if(this.draftWarning)this.status(this.draftWarning);
   // Vehicle resources are loaded independently; the building tools stay usable.
-  try{const response=await fetch('private-assets/workshop-vehicles/manifest.json');if(response.ok){const manifest=await response.json();this.vehicleManifest=manifest;for(const v of manifest.entries){const e={id:'vehicle:'+v.id,name:v.name,category:'Vehicles',parts:[],source:v.vehicle,vehicle:v,search:(v.name+' '+v.vehicle+' car vehicle').toLowerCase()};this.entries.push(e);this.byId.set(e.id,e);}const {WorkshopVehicles}=await import('./workshop-vehicles.js?v=7137f77ee6bb');const vehicles=new WorkshopVehicles(manifest);await vehicles.init();if(!this.element){vehicles.dispose();return;}this.vehicles=vehicles;if(this.element)this.renderCatalog();}}catch(e){this.vehicleError=e.message;}
+  try{const response=await fetch('private-assets/workshop-vehicles/manifest.json');if(response.ok){const manifest=await response.json();this.vehicleManifest=manifest;for(const v of manifest.entries){const e={id:'vehicle:'+v.id,name:v.name,category:'Vehicles',parts:[],source:v.vehicle,vehicle:v,search:(v.name+' '+v.vehicle+' car vehicle').toLowerCase()};this.entries.push(e);this.byId.set(e.id,e);}const {WorkshopVehicles}=await import('./workshop-vehicles.js?v=8beb3ba1d452');const vehicles=new WorkshopVehicles(manifest);await vehicles.init();if(!this.element){vehicles.dispose();return;}this.vehicles=vehicles;if(this.element)this.renderCatalog();}}catch(e){this.vehicleError=e.message;}
  }
  saveHouse(){if(this.model.pending)this.model.cancel();try{saveHouseCopy(localStorage,this.model.export(),this.bounds);this.status('House saved to your library');this.openHouseLibrary();}catch(e){this.status('Could not save house · '+e.message+' · Export a backup');}}
  openHouseLibrary(){
   if(this.libraryDialog)return;const dialog=make('dialog',undefined,'house-library-dialog');dialog.setAttribute('aria-label','House library');this.libraryDialog=dialog;const heading=make('header');heading.append(make('h2','Your houses'),button('Close library',()=>dialog.close()));dialog.append(heading,make('p','Keep the places you make. Saved copies stay in this browser; export a plan to keep a file backup.'));
   const grid=make('div',undefined,'house-library-grid');dialog.append(grid);let saved=[];try{saved=readHouseLibrary(localStorage,this.bounds);}catch(e){dialog.append(make('p',e.message+' · Existing library data has been preserved.'));}
-  const entries=[{id:'rosewood',plan:rosewoodHouse,description:'A familiar retreat with a pitched roof, garden and detached garage.'},{id:'glasshouse',plan:showcaseHouse,description:'Open living, a piano lounge, rooftop terrace and a stocked underground bunker.'},{id:'glasshouse-first',plan:glasshouseFirstEdition,description:'The original Glasshouse, preserved before the interior renovation.'},{id:'glasshouse-garden',plan:gardenEdition,description:'The first interior renovation, preserved with its original compact bunker.'},...saved];
+  const entries=[{id:'rosewood',plan:rosewoodHouse,description:'A familiar retreat with a pitched roof, garden and detached garage.'},{id:'glasshouse',plan:showcaseHouse,description:'Open living, a piano lounge, rooftop terrace and a stocked underground bunker.'},{id:'glasshouse-first',plan:glasshouseFirstEdition,description:'The original Glasshouse, preserved before the interior renovation.'},{id:'glasshouse-garden',plan:gardenEdition,description:'The first interior renovation, preserved with its original compact bunker.'},{id:'glasshouse-sanctuary-first',plan:sanctuaryEdition,description:'The furnished Sanctuary preserved before the occupancy supply corrections.'},...saved];
   for(const row of entries){const card=make('article',undefined,'house-library-card'),preview=make('canvas');preview.width=360;preview.height=220;preview.setAttribute('aria-label',row.plan.name+' preview');card.append(preview,make('small',row.savedAt?'SAVED COPY · '+new Date(row.savedAt).toLocaleString('en-US'):'HOUSE COLLECTION'),make('h3',row.plan.name),make('p',row.description||`${new Set(row.plan.squares.filter(s=>s.tiles.length).map(s=>s.z)).size} levels · ${row.plan.items.length} placed supplies`));
    card.append(button('Load '+row.plan.name,()=>{try{if(this.model.pending)this.model.cancel();saveHouseCopy(localStorage,this.model.export(),this.bounds);this.model.begin('Load saved house');this.model.plan=structuredClone(row.plan);this.model.index();this.model.commit();this.name.value=row.plan.name;this.setLevel(row.plan.spawn?.z??0);this.fitLot();this.save();dialog.close();this.status(row.plan.name+' loaded · Previous draft kept in your library');}catch(e){this.status('Could not preserve current draft · Export a backup before switching');dialog.append(make('p',e.message));}}),button('Export '+row.plan.name,()=>this.export(row.plan)));grid.append(card);requestAnimationFrame(()=>this.houseThumbnail(preview,row.plan));}
   dialog.onclose=()=>{dialog.remove();this.libraryDialog=null;this.canvas.focus();};this.element.append(dialog);dialog.showModal();
