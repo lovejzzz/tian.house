@@ -1,6 +1,6 @@
-import {deferredRotationSampler} from './deferred-animation.js?v=d56ad893ba51';
-import {closestBodyAngle,interpolateBodyAngle} from './turning.js?v=d56ad893ba51';
-import {animationWeight} from './animation-blend.js?v=d56ad893ba51';
+import {deferredRotationSampler} from './deferred-animation.js?v=48186978f89b';
+import {closestBodyAngle,interpolateBodyAngle} from './turning.js?v=48186978f89b';
+import {animationWeight} from './animation-blend.js?v=48186978f89b';
 const caches=new WeakMap();
 function sampler(data,clip){let cache=caches.get(data);if(!cache){cache={};caches.set(data,cache);}return cache[clip]??=(deferredRotationSampler(data.animations[clip].find(c=>c.bone==='Bip01'&&c.kind===0)));}
 function choose(delta){return `turnIdle${Math.abs(delta)*180/Math.PI>110?'180':'90'}${delta<0?'L':'R'}`;}

@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=d56ad893ba51';
+import {definition} from './inventory.js?v=48186978f89b';
 export function shelterStores(world,state){
  const tanks=(world.housePlan?.squares||[]).filter(s=>s.z===-1).flatMap(s=>s.tiles.filter(t=>world.props(t).TianUtility==='water').map(t=>Math.max(0,world.state(s.x,s.y,s.z,t).waterAmount??(Number(world.props(t).waterAmount)||0))));
  const food=Object.values(state.inventory.items).filter(i=>/^world:\d+,\d+,-1:tian_ration_/.test(i.container));

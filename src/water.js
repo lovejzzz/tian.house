@@ -1,4 +1,4 @@
-import {Inventory} from './inventory.js?v=d56ad893ba51';
+import {Inventory} from './inventory.js?v=48186978f89b';
 // Source-static basis: ISTakeWaterAction and IsoObject.getFluidAmount.
 // Plumbing networks, mixtures and native timing/animation still require validation.
 export function waterSource(world,state,object){
