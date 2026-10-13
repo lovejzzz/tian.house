@@ -1,10 +1,11 @@
-import {withinBounds} from './residence.js?v=a7f1fd2c93c8';
-import {selectWindowApproach} from './window-approach.js?v=a7f1fd2c93c8';
-import {windowLanding} from './windows.js?v=a7f1fd2c93c8';
-import {stairType,stairHeight} from './stairs.js?v=a7f1fd2c93c8';
+import {correctSourceProperties} from './source-corrections.js?v=1fc80f03a337';
+import {withinBounds} from './residence.js?v=1fc80f03a337';
+import {selectWindowApproach} from './window-approach.js?v=1fc80f03a337';
+import {windowLanding} from './windows.js?v=1fc80f03a337';
+import {stairType,stairHeight} from './stairs.js?v=1fc80f03a337';
 export const key = (x,y,z=0) => `${Math.floor(x)},${Math.floor(y)},${z}`;
 export class World {
-  constructor(manifest,properties){this.manifest=manifest;this.properties=properties;this.cells=new Map();this.pending=new Map();this.changes={};this.builds=[];this.buildIndex=new Map();this.errors=[];this.revision=0;}
+  constructor(manifest,properties){correctSourceProperties(properties);this.manifest=manifest;this.properties=properties;this.cells=new Map();this.pending=new Map();this.changes={};this.builds=[];this.buildIndex=new Map();this.errors=[];this.revision=0;}
   async load(cx,cy){
     const id=`${cx}_${cy}`;
     if(this.cells.has(id))return;

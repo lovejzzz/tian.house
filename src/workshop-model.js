@@ -1,23 +1,13 @@
-import {mountProblem} from './furnishing.js?v=a7f1fd2c93c8';
-import {treeSprites} from './vegetation.js?v=a7f1fd2c93c8';
-import {inventoryIcon} from './item-icons.js?v=a7f1fd2c93c8';
-import {englishLabel} from './english.js?v=a7f1fd2c93c8';
+import {category} from './workshop-categories.js?v=1fc80f03a337';
+import {doorOpening} from './wall-joins.js?v=1fc80f03a337';
+import {mountProblem} from './furnishing.js?v=1fc80f03a337';
+import {treeSprites} from './vegetation.js?v=1fc80f03a337';
+import {inventoryIcon} from './item-icons.js?v=1fc80f03a337';
+import {englishLabel} from './english.js?v=1fc80f03a337';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;
 const readable=s=>s.replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
-function category(tile,p){
- if('solidfloor'in p||'FloorOverlay'in p||tile.startsWith('floors_')||tile.startsWith('blends_'))return 'Floors & terrain';
- if(/stairs/i.test(Object.keys(p).join(' ')))return 'Stairs';
- if('doorN'in p||'doorW'in p||p.type==='doorN'||p.type==='doorW')return 'Doors & windows';
- if('windowN'in p||'windowW'in p||'WindowN'in p||'WindowW'in p)return 'Doors & windows';
- if(/wall|roof/i.test(tile)||'WallN'in p||'WallW'in p)return 'Walls & roofs';
- if(/vegetation|(?:^|_|\s)tree|plant|bush|flower|hedge/i.test(tile+' '+(p.CustomName||'')))return 'Garden';
- if(/outdoor|fencing|street|recreational|camping|barbecue|grill/i.test(tile+' '+(p.CustomName||'')))return 'Outdoor';
- if(/appliances|sink|bath|toilet/i.test(tile))return 'Appliances';
- if(p.IsMoveAble!==undefined||p.container||p.BedType||/furniture/.test(tile))return 'Furniture';
- return 'Decoration & tiles';
-}
 export function workshopCatalog(properties,atlas,itemCatalog){
  const entries=[],unavailable=[],used=new Set(),groups=new Map();
  for(const [tile,p]of Object.entries(properties)){
@@ -83,7 +73,7 @@ export class WorkshopModel{
  place(entry,x,y,z){const check=this.placement(entry,x,y,z);if(!check.ok)return check;
   if(entry.vehicle){this.plan.vehicles.push({id:entry.vehicle.id,x,y,z,rotation:entry.rotation??0,footprint:[Math.max(1,entry.vehicle.extents[0]*entry.vehicle.scale),Math.max(1,entry.vehicle.extents[2]*entry.vehicle.scale)]});return {ok:true};}
   if(entry.itemType){const storageTile=entry.storeInContainer?this.square(x,y,z)?.tiles.findLast(t=>this.properties[t]?.container):null;if(entry.storeInContainer&&!storageTile)return {ok:false,reason:'Choose a shelf, cabinet or other container'};this.plan.items.push({type:entry.itemType,x,y,z,...(storageTile?{storageTile}:{})});return {ok:true};}
-  for(const part of entry.parts){const s=this.square(x+part.dx,y+part.dy,z,true);if(this.isFloor(part.tile)){s.tiles=s.tiles.filter(t=>!this.isFloor(t));s.tiles.unshift(part.tile);continue;}const prop=this.properties[part.tile]||{};if('FloorOverlay'in prop||prop.MoveType==='FloorRug'){if(!s.tiles.includes(part.tile)){const i=s.tiles.findIndex(t=>!this.isFloor(t)&&!('FloorOverlay'in (this.properties[t]||{}))&&this.properties[t]?.MoveType!=='FloorRug');s.tiles.splice(i<0?s.tiles.length:i,0,part.tile);}continue;}for(const axis of ['N','W'])if(['Wall','door','window','Window','collide','Hoppable'].some(k=>k+axis in prop))s.tiles=s.tiles.filter(t=>!['Wall','door','window','Window','collide','Hoppable'].some(k=>k+axis in (this.properties[t]||{})));if(!s.tiles.includes(part.tile))s.tiles.push(part.tile);}
+  for(const part of entry.parts){const s=this.square(x+part.dx,y+part.dy,z,true);if(this.isFloor(part.tile)){s.tiles=s.tiles.filter(t=>!this.isFloor(t));s.tiles.unshift(part.tile);continue;}const prop=this.properties[part.tile]||{};if('FloorOverlay'in prop||prop.MoveType==='FloorRug'){if(!s.tiles.includes(part.tile)){const i=s.tiles.findIndex(t=>!this.isFloor(t)&&!('FloorOverlay'in (this.properties[t]||{}))&&this.properties[t]?.MoveType!=='FloorRug');s.tiles.splice(i<0?s.tiles.length:i,0,part.tile);}continue;}for(const axis of ['N','W'])if(['Wall','door','window','Window','collide','Hoppable'].some(k=>k+axis in prop)){const opening='door'+axis in prop&&!prop.GarageDoor?s.tiles.map(t=>'DoorWall'+axis in (this.properties[t]||{})?t:doorOpening(t,axis,this.properties)).find(Boolean):null;s.tiles=s.tiles.filter(t=>!['Wall','DoorWall','door','window','Window','collide','Hoppable'].some(k=>k+axis in (this.properties[t]||{})));if(opening)s.tiles.push(opening);}if(!s.tiles.includes(part.tile))s.tiles.push(part.tile);}
   if(entry.stairs){const north=entry.facing==='N',tx=x+(north?0:-1),ty=y+(north?-1:0);if(this.inside(tx,ty,z+1)){const landing=this.square(tx,ty,z+1,true);if(!landing.tiles.some(t=>this.isFloor(t)))landing.tiles.unshift('carpentry_02_58');}for(const p of entry.parts){const above=this.square(x+p.dx,y+p.dy,z+1);if(above)above.tiles=above.tiles.filter(t=>!this.isFloor(t));}}
   return {ok:true};
  }
