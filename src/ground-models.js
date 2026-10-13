@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import {attachmentMatrix} from './held-models.js?v=d62816232f3b';
-import {definition} from './inventory.js?v=d62816232f3b';
-import {weaponStaticModel,worldStaticModel} from './item-model-state.js?v=d62816232f3b';
-export {weaponStaticModel} from './item-model-state.js?v=d62816232f3b';
+import {attachmentMatrix} from './held-models.js?v=5eeb0ad8d444';
+import {definition} from './inventory.js?v=5eeb0ad8d444';
+import {weaponStaticModel,worldStaticModel} from './item-model-state.js?v=5eeb0ad8d444';
+export {weaponStaticModel} from './item-model-state.js?v=5eeb0ad8d444';
 
 // Model-local portion of ItemModelRenderer.init, after the source's identity
 // reset. World placement/camera rotation and shading are separate operations.

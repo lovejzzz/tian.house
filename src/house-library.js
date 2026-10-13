@@ -1,4 +1,4 @@
-import {validateHousePlan} from './workshop-model.js?v=d62816232f3b';
+import {validateHousePlan} from './workshop-model.js?v=5eeb0ad8d444';
 export const HOUSE_LIBRARY_KEY='tian-house-library-v1';
 export function readHouseLibrary(storage,bounds){
  const raw=storage.getItem(HOUSE_LIBRARY_KEY);if(!raw)return [];

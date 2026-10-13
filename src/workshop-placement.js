@@ -1,12 +1,13 @@
+import {paneAxis} from './wall-joins.js?v=5eeb0ad8d444';
 // Wall-face picking uses the same isometric projection as the rendered scene.
 // Return one intent consumed by both the preview and the click; no hidden snap.
 export function openingAxis(entry,properties){
  if(!entry?.parts?.length)return null;
  const p=properties[entry.parts[0].tile]||{};
- return ['N','W'].find(a=>['door','window','Window'].some(k=>k+a in p))||null;
+ return paneAxis(entry.parts[0].tile,properties)||['N','W'].find(a=>['door','window','Window'].some(k=>k+a in p))||null;
 }
 export function hasWallFace(tiles,axis,properties){
- return (tiles||[]).some(t=>['Wall','DoorWall','door','window','Window'].some(k=>k+axis in (properties[t]||{}))||'WallNW'in (properties[t]||{}));
+ return (tiles||[]).some(t=>paneAxis(t,properties)===axis||['Wall','DoorWall','door','window','Window'].some(k=>k+axis in (properties[t]||{}))||'WallNW'in (properties[t]||{}));
 }
 export function wallFacePolygon(project,x,y,z,axis,height=96){
  const p=project(x,y,z),q=project(x+(axis==='N'?1:0),y+(axis==='W'?1:0),z);

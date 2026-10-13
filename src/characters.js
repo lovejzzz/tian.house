@@ -1,10 +1,10 @@
-import {resolveBoneMask} from './bone-mask.js?v=d62816232f3b';
+import {resolveBoneMask} from './bone-mask.js?v=5eeb0ad8d444';
 import * as THREE from 'three';
-import {characterProjection,characterModelTransform,CHARACTER_ELEVATION,CHARACTER_TEXTURE} from './character-projection.js?v=d62816232f3b';
-import {AnimationBlend} from './animation-blend.js?v=d62816232f3b';
-import {sampleClip} from './animation-clock.js?v=d62816232f3b';
-import {counterRotationTrack,deferredRotationSampler} from './deferred-animation.js?v=d62816232f3b';
-import {HeldModels,heldSelection} from './held-models.js?v=d62816232f3b';
+import {characterProjection,characterModelTransform,CHARACTER_ELEVATION,CHARACTER_TEXTURE} from './character-projection.js?v=5eeb0ad8d444';
+import {AnimationBlend} from './animation-blend.js?v=5eeb0ad8d444';
+import {sampleClip} from './animation-clock.js?v=5eeb0ad8d444';
+import {counterRotationTrack,deferredRotationSampler} from './deferred-animation.js?v=5eeb0ad8d444';
+import {HeldModels,heldSelection} from './held-models.js?v=5eeb0ad8d444';
 
 // Original mesh topology, UVs, weights and animation keys, decoded from local X
 // assets. Rasterization is a browser adapter; calibration is still in progress.

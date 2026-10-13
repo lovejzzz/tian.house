@@ -1,18 +1,18 @@
-import {catalogFacet,windowConditions,catalogWindow} from './catalog-navigation.js?v=d62816232f3b';
-import {resolveWallPlacement,wallFacePolygon} from './workshop-placement.js?v=d62816232f3b';
-import {icon,iconButton,categoryIcons} from './workshop-icons.js?v=d62816232f3b';
-import stockedEdition from './glasshouse-stocked-v1.js?v=d62816232f3b';
-import {wallJoins} from './wall-joins.js?v=d62816232f3b';
-import {panCamera,wheelMotion,zoomCamera} from './workshop-camera.js?v=d62816232f3b';
-import sanctuaryEdition from './glasshouse-sanctuary-v1.js?v=d62816232f3b';
-import gardenEdition from './glasshouse-garden-v1.js?v=d62816232f3b';
-import glasshouseFirstEdition from './glasshouse-v1.js?v=d62816232f3b';
-import rosewoodHouse from './rosewood-house.js?v=d62816232f3b';
-import {readHouseLibrary,saveHouseCopy,createHouseDraft} from './house-library.js?v=d62816232f3b';
-import showcaseHouse from './showcase-house.js?v=d62816232f3b';
-import {drawPool} from './workshop-outdoors.js?v=d62816232f3b';
-import {WorkshopModel,workshopCatalog,captureHouse,floorName,FLOOR_MIN,FLOOR_MAX,validateHousePlan} from './workshop-model.js?v=d62816232f3b';
-import {Renderer} from './render.js?v=d62816232f3b';
+import {catalogFacet,windowConditions,catalogWindow} from './catalog-navigation.js?v=5eeb0ad8d444';
+import {resolveWallPlacement,wallFacePolygon} from './workshop-placement.js?v=5eeb0ad8d444';
+import {icon,iconButton,categoryIcons} from './workshop-icons.js?v=5eeb0ad8d444';
+import stockedEdition from './glasshouse-stocked-v1.js?v=5eeb0ad8d444';
+import {wallJoins} from './wall-joins.js?v=5eeb0ad8d444';
+import {panCamera,wheelMotion,zoomCamera} from './workshop-camera.js?v=5eeb0ad8d444';
+import sanctuaryEdition from './glasshouse-sanctuary-v1.js?v=5eeb0ad8d444';
+import gardenEdition from './glasshouse-garden-v1.js?v=5eeb0ad8d444';
+import glasshouseFirstEdition from './glasshouse-v1.js?v=5eeb0ad8d444';
+import rosewoodHouse from './rosewood-house.js?v=5eeb0ad8d444';
+import {readHouseLibrary,saveHouseCopy,createHouseDraft} from './house-library.js?v=5eeb0ad8d444';
+import showcaseHouse from './showcase-house.js?v=5eeb0ad8d444';
+import {drawPool} from './workshop-outdoors.js?v=5eeb0ad8d444';
+import {WorkshopModel,workshopCatalog,captureHouse,floorName,FLOOR_MIN,FLOOR_MAX,validateHousePlan} from './workshop-model.js?v=5eeb0ad8d444';
+import {Renderer} from './render.js?v=5eeb0ad8d444';
 const DRAFT='tian-house-workshop-v1',FAV='tian-house-workshop-favorites';
 const make=(tag,text,cls)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;if(cls)n.className=cls;return n;};
 const button=(text,fn,cls)=>{const b=make('button',text,cls);b.type='button';b.onclick=fn;return b;};
@@ -39,7 +39,7 @@ export class HouseWorkshop{
   this.tooltip=make('div','','workshop-tooltip');this.tooltip.hidden=true;this.tooltip.setAttribute('role','tooltip');this.element.append(this.tooltip);const hint=e=>{const b=e.target.closest('[data-tip]');if(!b||this.libraryDialog)return;const r=b.getBoundingClientRect();this.tooltip.textContent=b.dataset.tip;this.tooltip.hidden=false;this.tooltip.style.left=Math.max(8,Math.min(innerWidth-this.tooltip.offsetWidth-8,r.left+r.width/2-this.tooltip.offsetWidth/2))+'px';this.tooltip.style.top=(r.bottom+this.tooltip.offsetHeight+12<innerHeight?r.bottom+7:r.top-this.tooltip.offsetHeight-7)+'px';};this.element.addEventListener('pointerover',hint);this.element.addEventListener('focusin',hint);for(const event of ['pointerout','focusout','pointerdown'])this.element.addEventListener(event,()=>this.tooltip.hidden=true);
   this.bindInput();this.setLevel(this.z);this.renderCatalog();this.updateSelection();this.updateHistory();this.tick=now=>{if(!this.element)return;this.draw(now);this.raf=requestAnimationFrame(this.tick);};this.raf=requestAnimationFrame(this.tick);this.canvas.focus();if(this.draftWarning)this.status(this.draftWarning);
   // Vehicle resources are loaded independently; the building tools stay usable.
-  try{const response=await fetch('private-assets/workshop-vehicles/manifest.json');if(response.ok){const manifest=await response.json();this.vehicleManifest=manifest;for(const v of manifest.entries){const e={id:'vehicle:'+v.id,name:v.name,category:'Vehicles',parts:[],source:v.vehicle,vehicle:v,search:(v.name+' '+v.vehicle+' car vehicle').toLowerCase()};this.entries.push(e);this.byId.set(e.id,e);}const {WorkshopVehicles}=await import('./workshop-vehicles.js?v=d62816232f3b');const vehicles=new WorkshopVehicles(manifest);await vehicles.init();if(!this.element){vehicles.dispose();return;}this.vehicles=vehicles;if(this.element)this.renderCatalog();}}catch(e){this.vehicleError=e.message;}
+  try{const response=await fetch('private-assets/workshop-vehicles/manifest.json');if(response.ok){const manifest=await response.json();this.vehicleManifest=manifest;for(const v of manifest.entries){const e={id:'vehicle:'+v.id,name:v.name,category:'Vehicles',parts:[],source:v.vehicle,vehicle:v,search:(v.name+' '+v.vehicle+' car vehicle').toLowerCase()};this.entries.push(e);this.byId.set(e.id,e);}const {WorkshopVehicles}=await import('./workshop-vehicles.js?v=5eeb0ad8d444');const vehicles=new WorkshopVehicles(manifest);await vehicles.init();if(!this.element){vehicles.dispose();return;}this.vehicles=vehicles;if(this.element)this.renderCatalog();}}catch(e){this.vehicleError=e.message;}
  }
  saveHouse(){if(this.model.pending)this.model.cancel();try{saveHouseCopy(localStorage,this.model.export(),this.bounds);this.status('House saved to your library');this.openHouseLibrary();}catch(e){this.status('Could not save house · '+e.message+' · Export a backup');}}
  newHouse(){try{createHouseDraft(localStorage,this.model,this.bounds);this.name.value=this.model.plan.name;this.selected=null;this.hover=null;this.setLevel(0);this.setTool('room');this.updateSelection();this.fitLot();this.save();this.libraryDialog?.close();this.status('Draw your first room · Previous house saved in your library');this.name.focus();this.name.select();}catch(e){this.status('Could not preserve this house · Export a backup before creating a new one');this.libraryError.textContent=e.message;}}

@@ -1,6 +1,6 @@
-import {validateHousePlan} from './workshop-model.js?v=d62816232f3b';
-import {World} from './world.js?v=d62816232f3b';
-import {Inventory,definition} from './inventory.js?v=d62816232f3b';
+import {validateHousePlan} from './workshop-model.js?v=5eeb0ad8d444';
+import {World} from './world.js?v=5eeb0ad8d444';
+import {Inventory,definition} from './inventory.js?v=5eeb0ad8d444';
 // Build and validate a replacement state before touching the running simulation.
 export function prepareHouseState(sim,plan,bounds,atlas){
  validateHousePlan(plan,bounds);
