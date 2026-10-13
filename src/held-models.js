@@ -1,6 +1,6 @@
 import * as THREE from 'three';
-import {definition} from './inventory.js?v=f4b5e8b81f1e';
-import {weaponSprite} from './item-model-state.js?v=f4b5e8b81f1e';
+import {definition} from './inventory.js?v=d62816232f3b';
+import {weaponSprite} from './item-model-state.js?v=d62816232f3b';
 export const HAND_BONES={primary:'Bip01_Prop1',secondary:'Bip01_Prop2'};
 export function heldSelection(inventory,override){
  // An action override replaces BOTH hands; null means empty, not fallback.

@@ -12,3 +12,10 @@
 .workshop-tooltip{position:fixed;z-index:240;pointer-events:none;background:#e4dfc8;color:#263326;border:1px solid #f1ecd5;box-shadow:0 4px 18px #0004;border-radius:4px;padding:7px 10px;font-size:11px;max-width:240px}.house-workshop .workshop-card[aria-pressed=true]{background:#36452f;border-color:#d0c7a1;color:#eef0e1}
 /* Keep catalog navigation legible; page changes always start at the first card. */
 .workshop-opening-filter{flex-shrink:0;margin-top:9px;width:100%;min-height:32px;font-size:11px;padding:5px 8px}.workshop-opening-filter[hidden]{display:none}.workshop-pagination{display:grid;grid-template-columns:34px minmax(0,1fr) 34px;gap:4px;flex-shrink:0}.workshop-result-range{grid-column:1/-1;text-align:center;font-size:10px;color:#b8c3ac}.workshop-pagination select{min-width:0;width:100%;font-size:11px;text-align:center;padding:6px 2px}.workshop-cards{overflow-y:scroll;scrollbar-gutter:stable;scrollbar-color:#879375 #17221c}.workshop-cards::-webkit-scrollbar{width:8px}.workshop-cards::-webkit-scrollbar-track{background:#17221c}.workshop-cards::-webkit-scrollbar-thumb{background:#879375;border-radius:5px;border:2px solid #17221c}
+/* Continuous catalog: stable full-length scroll track, bounded live previews. */
+.workshop-filters{display:flex;flex-wrap:wrap;gap:5px;flex-shrink:0;margin-top:8px}
+.workshop-filters select{min-width:0;flex:1 1 110px;width:100%;font-size:11px;padding:6px}
+.workshop-filters select[hidden]{display:none}
+.workshop-cards{display:block;position:relative;overflow-anchor:none;scroll-behavior:auto}
+.workshop-card-track{position:relative;width:100%}
+.workshop-card-track>.workshop-card{position:absolute}

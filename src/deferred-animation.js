@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {counterRotateBone,deferredRotationZ,closestBodyAngle,unwrapDeferredRotations} from './turning.js?v=f4b5e8b81f1e';
+import {counterRotateBone,deferredRotationZ,closestBodyAngle,unwrapDeferredRotations} from './turning.js?v=d62816232f3b';
 
 export function counterRotationTrack(name,times,values){
  const track=new THREE.QuaternionKeyframeTrack(name,times,values);
