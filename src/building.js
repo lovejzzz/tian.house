@@ -1,6 +1,6 @@
-import {parseCraftItemInput} from './craft-inputs.js?v=1fc80f03a337';
-import {resolveInventoryCraftInput} from './inventory.js?v=1fc80f03a337';
-import {planCraft,commitCraft} from './crafting.js?v=1fc80f03a337';
+import {parseCraftItemInput} from './craft-inputs.js?v=d56ad893ba51';
+import {resolveInventoryCraftInput} from './inventory.js?v=d56ad893ba51';
+import {planCraft,commitCraft} from './crafting.js?v=d56ad893ba51';
 const specs=[
  {id:'Wood_Crate_Lvl1',name:'Wooden crate',kind:'crate',tiles:['carpentry_01_19']},
  {id:'WoodFloorLvl1',name:'Wooden floor',kind:'floor',tiles:['carpentry_02_58']},
