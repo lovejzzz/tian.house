@@ -1,7 +1,7 @@
-import {mountProblem} from './furnishing.js?v=5f91ffa3a52a';
-import {treeSprites} from './vegetation.js?v=5f91ffa3a52a';
-import {inventoryIcon} from './item-icons.js?v=5f91ffa3a52a';
-import {englishLabel} from './english.js?v=5f91ffa3a52a';
+import {mountProblem} from './furnishing.js?v=a7f1fd2c93c8';
+import {treeSprites} from './vegetation.js?v=a7f1fd2c93c8';
+import {inventoryIcon} from './item-icons.js?v=a7f1fd2c93c8';
+import {englishLabel} from './english.js?v=a7f1fd2c93c8';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;
@@ -88,7 +88,7 @@ export class WorkshopModel{
   return {ok:true};
  }
  erase(x,y,z,{all=false}={}){const vehicle=this.plan.vehicles.findLastIndex(v=>Math.hypot(v.x-x,v.y-y)<1.5&&v.z===z);if(vehicle>=0){this.plan.vehicles.splice(vehicle,1);return;}const s=this.square(x,y,z);const index=this.plan.items.findLastIndex(i=>i.x===x&&i.y===y&&i.z===z&&!i.storageTile);if(index>=0){this.plan.items.splice(index,1);return;}if(s){if(all)s.tiles=[];else s.tiles.pop();}}
- blank(){this.begin('New empty lot');this.plan.squares=[];this.plan.items=[];this.plan.vehicles=[];this.plan.spawn=null;this.index();for(let x=this.bounds[0];x<this.bounds[2];x++)for(let y=this.bounds[1];y<this.bounds[3];y++)this.square(x,y,0,true).tiles=['blends_natural_01_16'];this.commit();}
+ blank(name='Untitled house'){this.begin('New house');this.plan.name=name;this.plan.squares=[];this.plan.items=[];this.plan.vehicles=[];this.plan.spawn=null;this.index();for(let x=this.bounds[0];x<this.bounds[2];x++)for(let y=this.bounds[1];y<this.bounds[3];y++)this.square(x,y,0,true).tiles=['blends_natural_01_16'];this.commit();}
  export(){return structuredClone(this.plan);}
 }
 export function captureHouse(world,state,bounds){

@@ -1,37 +1,37 @@
-import {bindInputLifecycle} from './input-lifecycle.js?v=5f91ffa3a52a';
-import {openShelterBrief} from './shelter-brief.js?v=5f91ffa3a52a';
-import {installOriginalAssets} from './original-assets.js?v=5f91ffa3a52a';
-import showcaseHouse from './showcase-house.js?v=5f91ffa3a52a';
-import {MainMenu} from './main-menu.js?v=5f91ffa3a52a';
-import {readPreferences} from './preferences.js?v=5f91ffa3a52a';
-import {prepareHouseState} from './workshop-apply.js?v=5f91ffa3a52a';
-import {interactionTarget,interactionLabel} from './interaction-target.js?v=5f91ffa3a52a';
-import {waterSource,planWater} from './water.js?v=5f91ffa3a52a';
-import {RESIDENCE} from './residence.js?v=5f91ffa3a52a';
-import {PortfolioDesktop} from './portfolio.js?v=5f91ffa3a52a';
+import {bindInputLifecycle} from './input-lifecycle.js?v=a7f1fd2c93c8';
+import {openShelterBrief} from './shelter-brief.js?v=a7f1fd2c93c8';
+import {installOriginalAssets} from './original-assets.js?v=a7f1fd2c93c8';
+import showcaseHouse from './showcase-house.js?v=a7f1fd2c93c8';
+import {MainMenu} from './main-menu.js?v=a7f1fd2c93c8';
+import {readPreferences} from './preferences.js?v=a7f1fd2c93c8';
+import {prepareHouseState} from './workshop-apply.js?v=a7f1fd2c93c8';
+import {interactionTarget,interactionLabel} from './interaction-target.js?v=a7f1fd2c93c8';
+import {waterSource,planWater} from './water.js?v=a7f1fd2c93c8';
+import {RESIDENCE} from './residence.js?v=a7f1fd2c93c8';
+import {PortfolioDesktop} from './portfolio.js?v=a7f1fd2c93c8';
 const desktop=new PortfolioDesktop();
-import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=5f91ffa3a52a';
-import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=5f91ffa3a52a';
+import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=a7f1fd2c93c8';
+import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=a7f1fd2c93c8';
 let buildMode=null,workshop=null,itemCatalog=null,mainMenu=null;
 let preferences=readPreferences(),arriving=false;
-import {isCookingAppliance,cookingLabel} from './cooking.js?v=5f91ffa3a52a';
-import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=5f91ffa3a52a';
-import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=5f91ffa3a52a';
-import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=5f91ffa3a52a';
-import {GameAudio} from './audio.js?v=5f91ffa3a52a';
+import {isCookingAppliance,cookingLabel} from './cooking.js?v=a7f1fd2c93c8';
+import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=a7f1fd2c93c8';
+import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=a7f1fd2c93c8';
+import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=a7f1fd2c93c8';
+import {GameAudio} from './audio.js?v=a7f1fd2c93c8';
 let gameAudio,craftRefresh=null,lastCraftSignature='';
-import {setComicCatalog} from './comic-identity.js?v=5f91ffa3a52a';
-import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=5f91ffa3a52a';
-import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=5f91ffa3a52a';
-import {canToggleWindow,canClimbWindow} from './windows.js?v=5f91ffa3a52a';
-import {doorToggle} from './doors.js?v=5f91ffa3a52a';
-import {setItemCatalog,definition} from './inventory.js?v=5f91ffa3a52a';
-import {World} from './world.js?v=5f91ffa3a52a';
-import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=5f91ffa3a52a';
-import {Renderer} from './render.js?v=5f91ffa3a52a';
-import {CharacterRenderer} from './characters.js?v=5f91ffa3a52a';
-import {GroundRenderer} from './ground-renderer.js?v=5f91ffa3a52a';
-import {inventoryIcon} from './item-icons.js?v=5f91ffa3a52a';
+import {setComicCatalog} from './comic-identity.js?v=a7f1fd2c93c8';
+import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=a7f1fd2c93c8';
+import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=a7f1fd2c93c8';
+import {canToggleWindow,canClimbWindow} from './windows.js?v=a7f1fd2c93c8';
+import {doorToggle} from './doors.js?v=a7f1fd2c93c8';
+import {setItemCatalog,definition} from './inventory.js?v=a7f1fd2c93c8';
+import {World} from './world.js?v=a7f1fd2c93c8';
+import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=a7f1fd2c93c8';
+import {Renderer} from './render.js?v=a7f1fd2c93c8';
+import {CharacterRenderer} from './characters.js?v=a7f1fd2c93c8';
+import {GroundRenderer} from './ground-renderer.js?v=a7f1fd2c93c8';
+import {inventoryIcon} from './item-icons.js?v=a7f1fd2c93c8';
 const $=s=>document.querySelector(s),keys=new Set();
 let inputLifecycle=null;
 let focusTarget=null,hudTray=null,lastActionsSignature='';
@@ -167,7 +167,7 @@ function renderNearbyActions(){
 function interact(o){if(!o||desktop.active)return;if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;setHudTray(null);if(o.type==='brief'){keys.clear();openShelterBrief(world,sim);return;}if(o.type==='computer'){if(!world.interactions(sim.state.player).some(v=>v.id===o.id))return;const paused=sim.paused;sim.cancel();sim.paused=true;keys.clear();desktop.open(()=>{sim.paused=paused;keys.clear();$('#game').focus();});return;}if(o.type==='water'){selected=o;panel='water';$('#panel').hidden=false;$('#panel').classList.remove('inventory-window');renderPanel();return;}if(o.type==='container'){selected=o;panel='inventory';$('#panel').hidden=false;$('#panel').classList.add('inventory-window');renderPanel();}else sim.interact(o);}
 async function openWorkshop(){
  if(workshop?.element||desktop.active)return;const paused=sim.paused;let applied=false;sim.cancel();sim.paused=true;keys.clear();setHudTray(null);panel=null;$('#panel').hidden=true;buildMode=null;
- try{const {HouseWorkshop}=await import('./workshop.js?v=5f91ffa3a52a');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
+ try{const {HouseWorkshop}=await import('./workshop.js?v=a7f1fd2c93c8');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
   onApply:async plan=>{const state=prepareHouseState(sim,plan,RESIDENCE.bounds,renderer.atlas);localStorage.setItem(SAVE+'-before-workshop',sim.serialize());localStorage.setItem(SAVE,JSON.stringify(state));sim=new Simulation(world,state,character.data);sim.paused=true;window.pz.sim=sim;renderer.visibility.reset?.();applied=true;toast('Your new house is ready');},
   onClose:()=>{keys.clear();if(mainMenu?.active){if(applied)startGame();else{sim.paused=true;mainMenu.element.querySelector('[aria-label=Workshop]').focus();}}else{sim.paused=paused;$('#game').focus();}}});await workshop.open();}
  catch(e){workshop?.close();sim.paused=paused;toast('Workshop could not open: '+e.message);console.error(e);}
