@@ -1,0 +1,21 @@
+// Source wall faces stop short of the SE vertex; its separate cap closes the joint.
+// Derived at render time so old saves, new rooms, undo and previews all agree.
+const families=new WeakMap();
+function capsFor(properties){
+ if(families.has(properties))return families.get(properties);
+ const caps=new Map();for(const p of Object.values(properties))if(p.CornerNorthWall&&p.CornerWestWall){
+  const cap=p.CornerNorthWall.replace(/_(\d+)$/,(_,n)=>'_'+(Number(n)+2));
+  if('WallSE'in (properties[cap]||{}))caps.set(p.CornerNorthWall,{west:p.CornerWestWall,cap});
+ }families.set(properties,caps);return caps;
+}
+export function wallJoins(squares,properties,atlas,lookup){
+ if(!properties)return [];
+ const caps=capsFor(properties),result=[],seen=new Set();
+ if(!lookup){const map=new Map(squares.map(s=>[`${s.x},${s.y},${s.z}`,s]));lookup=(x,y,z)=>map.get(`${x},${y},${z}`);}
+ for(const sq of squares)for(const tile of sq.tiles){const family=caps.get(tile);if(!family||!atlas.regions[family.cap])continue;
+  const x=sq.x+1,y=sq.y,z=sq.z,key=`${x},${y},${z}`;
+  if(seen.has(key)||!lookup(x,y-1,z)?.tiles.includes(family.west))continue;
+  if(lookup(x,y,z)?.tiles.some(t=>['WallSE','WallN','WallW','WallNW'].some(k=>k in (properties[t]||{}))))continue;
+  seen.add(key);result.push({x,y,z,tile:family.cap,name:family.cap,prop:properties[family.cap],state:{},depth:x+y+.5,tiles:[family.cap]});
+ }return result;
+}

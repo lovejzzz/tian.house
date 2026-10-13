@@ -1,7 +1,7 @@
-import {mountProblem} from './furnishing.js?v=8beb3ba1d452';
-import {treeSprites} from './vegetation.js?v=8beb3ba1d452';
-import {inventoryIcon} from './item-icons.js?v=8beb3ba1d452';
-import {englishLabel} from './english.js?v=8beb3ba1d452';
+import {mountProblem} from './furnishing.js?v=5f91ffa3a52a';
+import {treeSprites} from './vegetation.js?v=5f91ffa3a52a';
+import {inventoryIcon} from './item-icons.js?v=5f91ffa3a52a';
+import {englishLabel} from './english.js?v=5f91ffa3a52a';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;
@@ -53,7 +53,7 @@ export function workshopCatalog(properties,atlas,itemCatalog){
  for(const [species,name,evergreen]of trees)for(const stage of [2,3,4,5]){const layers=treeSprites({tileset:'e_'+species+'_1',stage,evergreen});if(layers.every(n=>atlas.regions[n]))entries.unshift({id:`tree:${species}:${stage}`,name:name+' · '+(['Young','Medium','Tall','Mature'][stage-2]),category:'Garden',parts:layers.map(tile=>({dx:0,dy:0,tile})),source:layers[0],group:null,tree:true});}
  const labels={'walls_commercial_02_0':'Floor-to-ceiling glass · West','walls_commercial_02_1':'Floor-to-ceiling glass · North','walls_exterior_house_01_32':'White exterior wall · West','walls_exterior_house_01_33':'White exterior wall · North','walls_commercial_03_0':'Concrete block wall · West','walls_commercial_03_1':'Concrete block wall · North'};
  const essentials=new Set(['floors_interior_tilesandwood_01_40','floors_exterior_tilesandstone_01_0','fixtures_doors_01_0','fixtures_doors_01_1','recreational_01_45','furniture_shelving_01_26','furniture_bedding_01_25','appliances_com_01_72','appliances_refrigeration_01_8','appliances_cooking_01_5','furniture_seating_indoor_02_24','furniture_storage_01_2','carpentry_02_21','carpentry_01_32',...Object.keys(labels)]);
- for(const entry of entries){if(labels[entry.source])entry.name=labels[entry.source];entry.essential=essentials.has(entry.source)||entry.stairs||entry.id.startsWith('garage:');}
+ for(const entry of entries){if(labels[entry.source])entry.name=labels[entry.source];entry.essential=entry.source?.startsWith('tian_glazing_')||essentials.has(entry.source)||entry.stairs||entry.id.startsWith('garage:');}
  for(const entry of entries)entry.search=[entry.name,entry.source,entry.category,entry.itemCategory,entry.facing].filter(Boolean).join(' ').toLowerCase();
  entries.unshift({id:'pool:water',name:'Swimming pool',category:'Pools',source:'Workshop water surface',parts:[{dx:0,dy:0,tile:'workshop_pool_water'}],search:'swimming pool water garden'});
  return {entries,unavailable};
