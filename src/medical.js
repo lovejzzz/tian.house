@@ -1,5 +1,5 @@
-import {definition} from './inventory.js?v=48186978f89b';
-import {drainableUses} from './drainable.js?v=48186978f89b';
+import {definition} from './inventory.js?v=f4b5e8b81f1e';
+import {drainableUses} from './drainable.js?v=f4b5e8b81f1e';
 export const BODY_PARTS=Object.freeze({Hand_L:'Left hand',Hand_R:'Right hand',ForeArm_L:'Left forearm',ForeArm_R:'Right forearm',UpperArm_L:'Left upper arm',UpperArm_R:'Right upper arm',Torso_Upper:'Upper torso',Torso_Lower:'Lower torso',Head:'Head',Neck:'Neck',Groin:'Groin',UpperLeg_L:'Left thigh',UpperLeg_R:'Right thigh',LowerLeg_L:'Left shin',LowerLeg_R:'Right shin',Foot_L:'Left foot',Foot_R:'Right foot'});
 export const WOUND_NAMES={scratch:'Scratch',cut:'Laceration',bite:'Bite'};
 // Gameplay scaffolding: wound duration and evolution are provisional, not native BodyPart parity.

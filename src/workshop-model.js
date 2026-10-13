@@ -1,9 +1,9 @@
-import {category} from './workshop-categories.js?v=48186978f89b';
-import {doorOpening} from './wall-joins.js?v=48186978f89b';
-import {mountProblem} from './furnishing.js?v=48186978f89b';
-import {treeSprites} from './vegetation.js?v=48186978f89b';
-import {inventoryIcon} from './item-icons.js?v=48186978f89b';
-import {englishLabel} from './english.js?v=48186978f89b';
+import {category} from './workshop-categories.js?v=f4b5e8b81f1e';
+import {doorOpening} from './wall-joins.js?v=f4b5e8b81f1e';
+import {mountProblem} from './furnishing.js?v=f4b5e8b81f1e';
+import {treeSprites} from './vegetation.js?v=f4b5e8b81f1e';
+import {inventoryIcon} from './item-icons.js?v=f4b5e8b81f1e';
+import {englishLabel} from './english.js?v=f4b5e8b81f1e';
 export const FLOOR_MIN=-2,FLOOR_MAX=3;
 export const floorName=z=>z<0?`Basement ${-z}`:z===0?'Ground':`Floor ${z+1}`;
 export const tileKey=(x,y,z)=>`${x},${y},${z}`;

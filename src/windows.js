@@ -1,4 +1,4 @@
-import {barricadePresent} from './barricades.js?v=48186978f89b';
+import {barricadePresent} from './barricades.js?v=f4b5e8b81f1e';
 // Source context-menu rule: WindowLocked is a sprite property, not a failed lock.
 export function windowBarricadeSide(obj,actor){
  const north='windowN'in obj.props||'WindowN'in obj.props;

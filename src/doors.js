@@ -1,5 +1,5 @@
-import {definition} from './inventory.js?v=48186978f89b';
-import {barricadePresent} from './barricades.js?v=48186978f89b';
+import {definition} from './inventory.js?v=f4b5e8b81f1e';
+import {barricadePresent} from './barricades.js?v=f4b5e8b81f1e';
 
 // ItemContainer.haveThisKeyId descends into key rings, not arbitrary bags.
 export function doorKey(inventory,keyId,container='player',seen=new Set()){
