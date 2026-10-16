@@ -1,0 +1,14 @@
+import fs from 'node:fs';import {gunzipSync} from 'node:zlib';import assert from 'node:assert/strict';
+import {StructuredWorkshopModel} from '../../src/structured-workshop-model.js';import {WorkshopCommands} from '../../src/workshop-commands.js';import {workshopCatalog} from '../../src/workshop-model.js';import {createScenePlacementValidator} from '../../src/scene-placement-validator.js';
+import {installOriginalAssets} from '../../src/original-assets.js';import {installStudioAssets} from '../../src/studio-assets.js';
+const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url))),props=read('../../private-assets/world/properties.json'),atlas=read('../../private-assets/atlas.json');installOriginalAssets(props,atlas);installStudioAssets(props,atlas);
+const manifest=read('../../assets/volume/build-report.json'),assets=manifest.assets.map(e=>JSON.parse(gunzipSync(fs.readFileSync(new URL('../../assets/volume/'+e.delivery,import.meta.url))))),plan=read('../413/resident-failure.json').housePlan;
+const entries=workshopCatalog(props,atlas,{}).entries,make=()=>new StructuredWorkshopModel(plan,plan.sceneDocument.bounds,props,entries,{validatePlacement:createScenePlacementValidator(assets)});
+const chair=plan.sceneDocument.objects.find(o=>o.x===8005&&o.y===11407);assert.ok(chair);console.log('chair',chair.id,chair.assetId);
+const model=make(),commands=new WorkshopCommands(model,new Map(entries.map(e=>[e.id,e]))),before=model.export();
+const request={requestId:'overlap',baseRevision:model.revision,operations:[{type:'objects.move',ids:[chair.id],dx:1,dy:0}]};
+const preview=commands.preview(request);assert.equal(preview.ok,false,JSON.stringify(preview));assert.match(preview.error,/intersects/);assert.deepEqual(model.export(),before);
+let writes=0;const result=await commands.commitAndSave(request,{save:async()=>writes++});assert.equal(result.ok,false);assert.equal(writes,0);assert.deepEqual(model.export(),before);
+const direct=make();direct.begin('Move furniture');assert.equal(direct.structure(request.operations[0]).ok,true);assert.equal(direct.commit(),false);assert.match(direct.lastError,/intersects/);assert.deepEqual(direct.export(),before);
+const clear=commands.commit({...request,requestId:'clear',operations:[{type:'objects.move',ids:[chair.id],dx:0,dy:1}]});assert.equal(clear.ok,true,JSON.stringify(clear));model.undo();assert.deepEqual(model.export(),before);
+console.log('PASS: direct model edit, command preview, staged save reject overlap; no writes; valid move and undo preserve source.');

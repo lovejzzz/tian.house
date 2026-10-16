@@ -1,0 +1,14 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {useFixtureCatalog} from './fixtures/catalog.mjs';import {Simulation,newState,parseSave} from '../src/simulation.js';import {advanceHandRinse,planHandRinse} from '../src/hand-rinsing.js';
+useFixtureCatalog();
+function fixture(){const object={id:'sink',type:'water',name:'Sink',x:8003,y:11396,z:1,tile:'sink',props:{CustomName:'Sink',waterPiped:'',waterAmount:'2'}};const world={changes:{},revision:0,reindexBuilds(){},interactions(){return [object]},state(){return this.changes.sink??{}},change(x,y,z,t,p){this.changes.sink={...this.changes.sink,...p}},move(){return false},lineClear(){return true}};const state=newState([8003.5,11396.5,1]),sim=new Simulation(world,state);sim.spawnNearby=()=>{};state.utilities={water:false};return {object,world,state,sim};}
+test('rinse spends finite clean water progressively without changing wounds, thirst or body hygiene',()=>{const {object,world,state}=fixture(),before=structuredClone(state.player);const r=advanceHandRinse(world,state,object,6);assert.ok(Math.abs(r.litres-.6)<1e-9);assert.equal(state.player.handHygiene,65);assert.equal(world.changes.sink.waterAmount,1.4);for(const key of ['hp','thirst','hygiene','wetness'])assert.equal(state.player[key],before[key]);advanceHandRinse(world,state,object,12);assert.equal(state.player.handHygiene,80);});
+test('rinse cancels on lost reach, preserves completed state and rejects tainted/non-sink water',()=>{const {object,world,state,sim}=fixture();assert.equal(sim.rinseHands(object),true);sim.tick(.1);const clean=state.player.handHygiene;world.interactions=()=>[];sim.tick(.1);assert.equal(sim.action,null);assert.equal(parseSave(sim.serialize()).player.handHygiene,clean);world.interactions=()=>[object];world.changes.sink={waterTainted:true};assert.equal(planHandRinse(world,state,object).ok,false);object.props.CustomName='Toilet';assert.equal(planHandRinse(world,state,object).ok,false);state.player.handHygiene=101;assert.throws(()=>parseSave(sim.serialize()),/handHygiene/);});
+test('exhausted reserve limits completed rinse and cleaner hands never become dirtier',()=>{const {object,world,state}=fixture();world.changes.sink={waterAmount:.1};state.player.handHygiene=95;const r=advanceHandRinse(world,state,object,12);assert.equal(r.litres,.1);assert.equal(state.player.handHygiene,95);assert.equal(planHandRinse(world,state,object).ok,false);});
+
+test('tap outlet follows transformed spout end instead of its midpoint',async()=>{
+ const {tapOutlet}=await import('../src/shower-effect.js');
+ const vertices=[[0,0,1],[.1,0,1],[0,.4,1],[.1,.4,1],[0,0,1.04],[.1,0,1.04],[0,.4,1.04],[.1,.4,1.04]],riser=[[0,0,.9],[.1,0,1]];
+ assert.deepEqual(tapOutlet(vertices,riser),[.05,.4,1]);
+ const rotate=p=>[10-p[1],20+p[0],p[2]+3];assert.deepEqual(tapOutlet(vertices.map(rotate),riser.map(rotate)),[9.6,20.05,4]);
+});

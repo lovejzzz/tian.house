@@ -1,0 +1,16 @@
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.187333ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.211709ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.204708ms)
+✔ soft filter chains existing shader work and retains narrow PCF fallback (0.588833ms)
+✔ shadow comparison setting survives rebuild without changing light energy (0.728958ms)
+✔ both PCF kernels use receiver-plane correction before depth comparison (0.137833ms)
+✔ shared actor adapter preserves gameplay state, scales body only and hides dead threats (2.046375ms)
+✔ volume actors own lit materials while retaining shared imported maps and geometry (0.584583ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 62.245583

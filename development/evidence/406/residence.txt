@@ -1,0 +1,59 @@
+- generic "Tian’s House single-player game view"
+- banner:
+  - text: TIAN’S HOUSE
+  - generic: 7996, 11406 · Floor 0
+  - generic: 05:03
+  - generic: Day 7
+  - button "▶"
+  - button "Time speed 1×" [pressed]: ×1
+  - button "Time speed 5×": ×5
+  - button "Time speed 20×": ×20
+  - button "Time speed 120×": ×120
+- navigation "Game menu":
+  - button "Inventory Inventory":
+    - generic "Inventory"
+    - generic: Inventory
+  - button "Health Health":
+    - generic "Health"
+    - generic: Health
+  - button "Craft Craft":
+    - generic "Craft"
+    - generic: Craft
+  - button "▧ Map":
+    - text: ▧
+    - generic: Map
+  - button "☷ Journal":
+    - text: ☷
+    - generic: Journal
+  - button "⌂ Workshop":
+    - text: ⌂
+    - generic: Workshop
+  - button "▣ Save":
+    - text: ▣
+    - generic: Save
+- complementary
+- status: Progress saved locally
+- contentinfo "Game assistance":
+  - button "Main menu": Menu
+  - button "Nearby interactions":
+    - text: Nearby
+    - generic: Q
+  - button "Controls":
+    - text: Controls
+    - generic: "?"
+- dialog "Your home":
+  - banner:
+    - heading "Hearth Studio" [level=2]
+    - generic "House options" [active]
+  - paragraph: Resident · Day 7 · 5:03 · Health 91 · Hunger 1.8 · Thirst 3.4 · Endurance 100
+  - button "Resume living"
+  - text: Time
+  - combobox "Time speed":
+    - option "1×" [selected]
+    - option "5×"
+    - option "20×"
+    - option "120×"
+  - button "Inventory"
+  - paragraph: Resident progress saved on this device
+  - generic "Rotatable wall structure"
+  - paragraph: WASD / arrows move in screen direction · Drag to orbit · Scroll to zoom

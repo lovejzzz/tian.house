@@ -1,0 +1,39 @@
+{
+  "beforeRevision": 570,
+  "afterRevision": 571,
+  "objectCount": 45,
+  "changes": [
+    {
+      "before": {
+        "id": "88666f1f-7529-4706-8eaf-163cffa2daf1",
+        "assetId": "tile:tian_studio_bar_stool_S_0",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8001,
+        "y": 11402,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "tian_studio_bar_stool_S_0"
+          }
+        ]
+      },
+      "after": {
+        "id": "88666f1f-7529-4706-8eaf-163cffa2daf1",
+        "assetId": "tile:tian_studio_bar_stool_E_0",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8000,
+        "y": 11404,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "tian_studio_bar_stool_E_0"
+          }
+        ]
+      }
+    }
+  ]
+}

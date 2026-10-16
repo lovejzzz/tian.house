@@ -1,0 +1,24 @@
+✔ door can be reached from either side but not another floor or far away (0.460792ms)
+✔ solid partition prevents reaching through walls (0.58ms)
+✔ pose cannot end intersecting the person in the doorway (1.992834ms)
+✔ interaction preparation retains raw floor polygon data for spawn consumers (0.581042ms)
+✔ real simulation advances without changing original save and uses calibrated coordinates (4.874709ms)
+✔ door changes come from game rules, including locked failure (2.140208ms)
+✔ visitor storage uses timed game transfers and preserves the same physical instance (4.161041ms)
+✔ physical movement cancels a timed action even after nearby queries sync coordinates (0.591333ms)
+✔ nearby facilities use real sleep actions and reject stale reach or unsupported actions (1.211958ms)
+✔ physical running consumes normal endurance without moving a second time (0.35925ms)
+✔ physical speeds respect exhaustion, sneaking, world scale, death and pause (0.214583ms)
+✔ moving out of accelerated rest restores real-time survival advancement (0.175042ms)
+✔ resident mode owns the existing character and restores serialized physical position and doors (0.457917ms)
+✔ resident status exposes the same nearby threat that prevents rest (0.296417ms)
+✔ selected time speed advances real needs and resets on movement and danger (0.564875ms)
+✔ context interaction chooses nearest usable facility instead of remote computer priority (0.200208ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 109.556792

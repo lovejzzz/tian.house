@@ -1,0 +1,356 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-bed",
+  "version": 14,
+  "generator": "src/domestic-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 1.8,
+    "depth": 1.95,
+    "height": 1.05,
+    "creaseDepth": 0.008
+  },
+  "materials": {
+    "timber": {
+      "color": 5784888,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "recreational_01_28",
+        "size": 128,
+        "patch": [
+          [
+            43,
+            60
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            33
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 1.0
+        },
+        "repeatMetres": [
+          0.32,
+          0.65
+        ],
+        "finish": {
+          "size": 256,
+          "metres": [
+            0.32,
+            0.65
+          ],
+          "relief": 0.00018,
+          "seed": 73
+        }
+      },
+      "bumpScale": 0,
+      "edgeRadius": 0.003
+    },
+    "linen": {
+      "color": 12498077,
+      "roughness": 0.93,
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "furniture_seating_indoor_02_24",
+        "size": 128,
+        "patch": [
+          [
+            12,
+            86
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 0.25
+        },
+        "repeatMetres": [
+          0.32,
+          0.18
+        ],
+        "weave": {
+          "size": 512,
+          "threads": [
+            128,
+            72
+          ],
+          "metres": [
+            0.32,
+            0.18
+          ],
+          "relief": 0.00065,
+          "irregularity": 0.35,
+          "seed": 41
+        },
+        "dyeVariation": {
+          "strength": 0.28,
+          "seed": 53
+        }
+      },
+      "bumpScale": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "cloth": {
+      "color": 6649450,
+      "roughness": 0.95,
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "furniture_seating_indoor_02_24",
+        "size": 128,
+        "patch": [
+          [
+            12,
+            86
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 0.25
+        },
+        "repeatMetres": [
+          0.32,
+          0.18
+        ],
+        "weave": {
+          "size": 512,
+          "threads": [
+            128,
+            72
+          ],
+          "metres": [
+            0.32,
+            0.18
+          ],
+          "relief": 0.00065,
+          "irregularity": 0.35,
+          "seed": 41
+        },
+        "dyeVariation": {
+          "strength": 0.28,
+          "seed": 61
+        }
+      },
+      "bumpScale": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "accent": {
+      "color": 9727311,
+      "roughness": 0.9
+    },
+    "enamel": {
+      "color": 10002074,
+      "roughness": 0.4,
+      "metalness": 0.25,
+      "edgeRadius": 0.002
+    },
+    "steel": {
+      "color": 10198944,
+      "roughness": 0.28,
+      "metalness": 0.8
+    },
+    "dark": {
+      "color": 2107172,
+      "roughness": 0.65
+    },
+    "glass": {
+      "color": 1581865,
+      "roughness": 0.18,
+      "metalness": 0.25
+    }
+  },
+  "migration": {
+    "W": [
+      "furniture_bedding_01_16",
+      "furniture_bedding_01_17",
+      "furniture_bedding_01_18",
+      "furniture_bedding_01_19"
+    ],
+    "N": [
+      "furniture_bedding_01_20",
+      "furniture_bedding_01_21",
+      "furniture_bedding_01_22",
+      "furniture_bedding_01_23"
+    ],
+    "S": [
+      "furniture_bedding_01_24",
+      "furniture_bedding_01_25",
+      "furniture_bedding_01_26",
+      "furniture_bedding_01_27"
+    ],
+    "E": [
+      "furniture_bedding_01_28",
+      "furniture_bedding_01_29",
+      "furniture_bedding_01_30",
+      "furniture_bedding_01_31"
+    ]
+  },
+  "sourceLayout": {
+    "W": [
+      {
+        "tile": "furniture_bedding_01_16",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_17",
+        "dx": 1,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_18",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_bedding_01_19",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "furniture_bedding_01_20",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_21",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_bedding_01_22",
+        "dx": 1,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_23",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "S": [
+      {
+        "tile": "furniture_bedding_01_24",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_25",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_bedding_01_26",
+        "dx": 1,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_27",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "furniture_bedding_01_28",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_29",
+        "dx": 1,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_bedding_01_30",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_bedding_01_31",
+        "dx": 1,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.09999999999999998,
+      0.025000000000000022
+    ],
+    "cells": [
+      2,
+      2
+    ]
+  },
+  "semantics": {
+    "kind": "bed",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Original approximate geometry; not recovered source artwork",
+      "No animated doors, upholstery deformation, wear or final visual acceptance",
+      "Interactions remain on authoritative source objects",
+      "Runtime textile colour includes authored yarn-dye variation; original imported pixels remain unchanged."
+    ],
+    "paletteEvidence": "Authored domestic palette: warm taupe/oat upholstery, muted sage linen and walnut/oak tones. Original texture detail retained; not measured colour reproduction.",
+    "edgeEvidence": "Authored 2\u20133mm manufacturing chamfers on simple hard box parts; existing non-box and textile forms preserved.",
+    "softContact": "Real-time damped cushion depression and procedural contact pose; conservative collision envelope; not cloth or biomechanical simulation."
+  },
+  "materialEvidence": {
+    "method": "Reviewed planar source patches; affine RGB gradient removed before tint modulation. Original dimensional geometry. Not recovered physical albedo.",
+    "wood": "recreational_01_28 back panel",
+    "cloth": "furniture_seating_indoor_02_24 upholstered front",
+    "limits": "Small source patches repeat with mirrored wrapping; original pixel resolution remains limited. Raster thumbnails do not include this runtime detail transfer.",
+    "weave": "Authored 2.5 mm nominal interlaced yarn relief and roughness, independent of source colour; not recovered source detail. Mip filtered at distance.",
+    "woodFinish": "Authored sub-millimetre pores and roughness independent of source colour; not scanned or recovered PBR."
+  },
+  "sourceFiles": [
+    "private-assets/Tiles2x-160.png",
+    "private-assets/Tiles2x-80.png",
+    "private-assets/atlas.json",
+    "src/textile-detail-volume.js",
+    "src/upholstery-volume.js",
+    "node_modules/three/package.json",
+    "node_modules/three/LICENSE",
+    "node_modules/three/build/three.module.js",
+    "node_modules/three/build/three.core.js",
+    "node_modules/three/examples/jsm/math/ConvexHull.js",
+    "src/wood-finish.js",
+    "src/material-relief.js",
+    "src/furniture-edge-finish.js"
+  ]
+}

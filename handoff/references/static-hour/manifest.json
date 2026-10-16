@@ -1,0 +1,34 @@
+[
+  {
+    "id": "archive-wide",
+    "file": "archive-wide.jpg",
+    "originalFilename": "ss_61eab051782ef1217bbb8fdeea3e75a166403be3.1920x1080.jpg",
+    "sha256": "81a278627f3f969cd4294852b5739d7af6f49aecb92ec1f10c51f1c44e249625",
+    "source": "User-provided Static Hour reference screenshot, 2026-10-14",
+    "use": "Visual reference only; not runtime textures or shipping assets"
+  },
+  {
+    "id": "break-room",
+    "file": "break-room.jpg",
+    "originalFilename": "ss_4eee1ba3929a6ae7a290a6d181df0e0bda862f17.1920x1080.jpg",
+    "sha256": "e73d859215571f7d4f02ebb52aeb4e05069b594092381d3e7ba49d9618da0a02",
+    "source": "User-provided Static Hour reference screenshot, 2026-10-14",
+    "use": "Visual reference only; not runtime textures or shipping assets"
+  },
+  {
+    "id": "newsroom",
+    "file": "newsroom.jpg",
+    "originalFilename": "ss_389f8a6332dcaa3b18b2d946840da790bebf344c.1920x1080.jpg",
+    "sha256": "9d88c05f2aedcd4efd48dfbbdba75cf8eb1f28f1e12f55d2da8459cd922aabb6",
+    "source": "User-provided Static Hour reference screenshot, 2026-10-14",
+    "use": "Visual reference only; not runtime textures or shipping assets"
+  },
+  {
+    "id": "archive-close",
+    "file": "archive-close.jpg",
+    "originalFilename": "ss_29426ec389af8bd2b8e506f151fd98a0b8b1c77a.1920x1080.jpg",
+    "sha256": "81cb47391348f515b00cd0a876973565739a171bdc0d00af67f42e275677b173",
+    "source": "User-provided Static Hour reference screenshot, 2026-10-14",
+    "use": "Visual reference only; not runtime textures or shipping assets"
+  }
+]

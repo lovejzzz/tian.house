@@ -1,0 +1,10 @@
+✔ convex placement accepts contact and rejects penetration, including far-origin geometry (2.415083ms)
+✔ chair cannot interpenetrate low tabletop, but assembly support contact and hollow gaps are allowed (0.569834ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 43.445666

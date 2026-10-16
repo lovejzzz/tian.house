@@ -1,0 +1,2 @@
+Static site code written to /Users/tianxing/Documents/ChatGPT/tian.house
+Included converted runtime assets; excluded saves, recordings and source binaries

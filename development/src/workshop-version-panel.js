@@ -1,0 +1,22 @@
+import {WorkshopVersions} from './workshop-versions.js';
+const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
+export async function openVersions(w){
+ if(w.versionsDialog)return;
+ const dialog=el('dialog');dialog.className='workshop-version-dialog';dialog.setAttribute('aria-label','House versions');w.versionsDialog=dialog;
+ const service=new WorkshopVersions(w.model,w.houseLibrary,w.persistence),header=el('header'),title=el('h2','Versions'),close=el('button','Close');close.setAttribute('aria-label','Close versions');header.append(title,close);
+ const form=el('form'),name=el('input'),save=el('button','Save version');name.setAttribute('aria-label','Version name');name.placeholder='Layout approved, before furnishing…';name.maxLength=100;save.type='submit';form.append(name,save);
+ const list=el('div');list.className='house-version-list';const status=el('p');status.setAttribute('role','status');status.setAttribute('aria-label','Version status');
+ let busy=false,selection=0;
+ const run=async action=>{if(busy)return;busy=true;w.libraryBusy=true;dialog.setAttribute('aria-busy','true');for(const e of dialog.querySelectorAll('button,input'))e.disabled=true;try{await action();}catch(e){status.textContent=e.message+' · Your working draft is unchanged';}finally{busy=false;w.libraryBusy=false;dialog.removeAttribute('aria-busy');for(const e of dialog.querySelectorAll('button,input'))e.disabled=false;}};
+ const render=async()=>{const versions=await w.houseLibrary.versions();list.replaceChildren();for(const v of versions){
+  const row=el('article'),choose=el('button',v.label);choose.className='house-version-choose';choose.setAttribute('aria-label','Inspect version: '+v.label);choose.setAttribute('aria-expanded','false');
+  const summary=el('small',v.houseName+' · '+new Date(v.savedAt).toLocaleString('en-US')+(v.kind==='checkpoint'?' · Recovery checkpoint':''));row.append(choose,summary);
+  choose.onclick=()=>run(async()=>{const token=++selection;for(const old of list.querySelectorAll('.house-version-detail'))old.remove();for(const b of list.querySelectorAll('.house-version-choose'))b.setAttribute('aria-expanded','false');const saved=await w.houseLibrary.version(v.id);if(token!==selection)return;choose.setAttribute('aria-expanded','true');const detail=el('div');detail.className='house-version-detail';const preview=el('canvas');preview.width=360;preview.height=220;preview.setAttribute('aria-label',v.label+' preview');const actions=el('div'),restore=el('button','Restore version'),branch=el('button','Create branch'),branchName=el('input');branchName.setAttribute('aria-label','Branch name');branchName.placeholder='Name for a new house';branchName.maxLength=60;
+   const load=branching=>run(async()=>{status.textContent='Preserving current work…';await service.restore({id:v.id,baseRevision:w.model.revision,...(branching?{branchName:branchName.value}:{})});w.name.value=w.model.plan.name;w.selected=null;w.roomSelection=null;w.objectSelection=[];w.updateSelection();w.updateHistory();w.setTool('select');w.setLevel(w.model.plan.spawn?.z??0);w.fitLot();w.saveStatus.textContent='Saved';w.saveStatus.title='Draft and undo history saved on this device';w.libraryDialog?.close();dialog.close();w.status(branching?'Branch created · Previous draft preserved in Versions':'Version restored · Previous draft preserved in Versions');});
+   restore.onclick=()=>load(false);branch.onclick=()=>load(true);actions.append(restore,branchName,branch);detail.append(preview,actions);row.append(detail);w.houseThumbnail(preview,saved.plan);status.textContent='Restoring or branching preserves your current draft first.';
+  });list.append(row);
+ }if(!versions.length)list.append(el('p','Save a named milestone to return to it later.'));};
+ form.onsubmit=e=>{e.preventDefault();run(async()=>{await service.save({label:name.value,baseRevision:w.model.revision});name.value='';await render();status.textContent='Version saved on this device';});};
+ close.onclick=()=>{if(!busy)dialog.close();};dialog.oncancel=e=>{if(busy)e.preventDefault();};dialog.onclose=()=>{selection++;dialog.remove();w.versionsDialog=null;};dialog.addEventListener('keydown',e=>e.stopPropagation());
+ dialog.append(header,el('p','Named milestones and recovery checkpoints. Your current house stays editable.'),form,list,status);w.element.append(dialog);dialog.showModal();await run(render);name.focus();
+}

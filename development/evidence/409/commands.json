@@ -1,0 +1,74 @@
+{
+  "requestId": "studio-media-wall-409",
+  "baseRevision": 571,
+  "operations": [
+    {
+      "type": "objects.move",
+      "ids": [
+        "98edb229-0253-4976-828d-0755607d8f0a"
+      ],
+      "dx": 10,
+      "dy": 0
+    },
+    {
+      "type": "objects.rotate",
+      "ids": [
+        "3eac7b0a-1883-41f6-a614-82681d413cf0"
+      ],
+      "turns": 2
+    },
+    {
+      "type": "objects.move",
+      "ids": [
+        "3eac7b0a-1883-41f6-a614-82681d413cf0"
+      ],
+      "dx": 0,
+      "dy": 3
+    },
+    {
+      "type": "objects.rotate",
+      "ids": [
+        "c7595c3b-3450-49ae-82fa-0203ced1ce2c"
+      ],
+      "turns": 2
+    },
+    {
+      "type": "objects.move",
+      "ids": [
+        "c7595c3b-3450-49ae-82fa-0203ced1ce2c"
+      ],
+      "dx": 0,
+      "dy": 3
+    },
+    {
+      "type": "objects.rotate",
+      "ids": [
+        "fa52224b-73bb-4de1-8c33-6dccb46a14c0"
+      ],
+      "turns": 2
+    },
+    {
+      "type": "objects.move",
+      "ids": [
+        "fa52224b-73bb-4de1-8c33-6dccb46a14c0"
+      ],
+      "dx": 0,
+      "dy": 3
+    },
+    {
+      "type": "objects.rotate",
+      "ids": [
+        "98edb229-0253-4976-828d-0755607d8f0a"
+      ],
+      "turns": 2
+    },
+    {
+      "type": "objects.move",
+      "ids": [
+        "98edb229-0253-4976-828d-0755607d8f0a"
+      ],
+      "dx": -10,
+      "dy": -2
+    }
+  ]
+}

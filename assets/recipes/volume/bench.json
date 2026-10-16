@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-park-bench",
+  "version": 2,
+  "generator": "src/frame-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 1.8,
+    "depth": 0.65,
+    "height": 1.1,
+    "member": 0.055,
+    "seatHeight": 0.625
+  },
+  "materials": {
+    "timber": {
+      "color": 7358758,
+      "roughness": 0.65,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    },
+    "steel": {
+      "color": 3621436,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    }
+  },
+  "migration": {
+    "S": [
+      "furniture_seating_outdoor_01_0",
+      "furniture_seating_outdoor_01_1"
+    ],
+    "E": [
+      "furniture_seating_outdoor_01_3",
+      "furniture_seating_outdoor_01_2"
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.1,
+      0.15
+    ],
+    "cells": [
+      2,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "bench",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "No source-style fidelity acceptance",
+      "Simplified structural template",
+      "Storage contents / seated animation not generated",
+      "Generic procedural grain; not source-matched timber, no end-grain or wear acceptance"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "furniture_seating_outdoor_01_0",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_seating_outdoor_01_1",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "furniture_seating_outdoor_01_3",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_seating_outdoor_01_2",
+        "dx": 0,
+        "dy": 1
+      }
+    ]
+  },
+  "sourceFiles": [
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

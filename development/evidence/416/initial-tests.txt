@@ -1,0 +1,24 @@
+✔ convex placement accepts contact and rejects penetration, including far-origin geometry (2.56125ms)
+✔ chair cannot interpenetrate low tabletop, but assembly support contact and hollow gaps are allowed (0.5685ms)
+✔ preview is isolated; commit is a single undoable transaction (2.231792ms)
+✔ a later failed placement rolls back the entire batch without history changes (0.532083ms)
+✔ stale versions and active manual edits cannot be overwritten (0.194333ms)
+✔ retry is idempotent even after undo; request ID reuse with another body fails (0.141917ms)
+✔ caller cannot inject assets or malformed coordinates (0.226833ms)
+✔ versioned batches use the same structural and furnishing rules as the editor (9.984834ms)
+✔ structural collision late in a command batch cannot leak earlier edits (0.628042ms)
+✔ manual structural commits invalidate a previously previewed batch (5.393542ms)
+✔ request receipts survive serialization and undo without replaying deleted construction (2.15925ms)
+✔ command adapters share receipts and corrupt receipt snapshots reject (2.554083ms)
+✔ persisted commit keeps live scene unchanged until storage succeeds and locks competing edits (1.792083ms)
+✔ storage failure preserves the entire live snapshot and permits retry through a healthy writer (3.14975ms)
+✔ persisted command forks full history without recompiling or mutating retained checkpoints (128.635084ms)
+✔ erased legacy floor overlay stays removed before subsequent structural operations (9.101875ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 220.287875

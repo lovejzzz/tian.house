@@ -1,0 +1,9 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {setPhysicalDimensions,validatePhysicalDimensions,scenePhysicalMetrics} from '../src/scene-physical-dimensions.js';
+const scene={units:{metresPerCell:1.2},rooms:[],objects:[],references:[]},d={storeyHeight:3.2,wallHeight:3,wallThickness:.25,slabThickness:.18,evidence:'approximate',description:'Design assumption, not measured'};
+test('physical dimensions preserve horizontal evidence, source and old defaults',()=>{const next=setPhysicalDimensions(scene,d);assert.equal(scene.physicalDimensions,undefined);assert.equal(scenePhysicalMetrics(next).cellSize,1.2);assert.equal(scenePhysicalMetrics(next).storeyHeight,3.2);assert.equal(scenePhysicalMetrics(setPhysicalDimensions(next,null)).dimensionsSaved,false);assert.equal(scenePhysicalMetrics({...scene,units:{metresPerCell:null}}).scaleCalibrated,false);});
+test('contradictory dimensions, invented fields, empty evidence and locked geometry reject',()=>{for(const patch of [{wallHeight:4},{slabThickness:4},{wallThickness:NaN},{evidence:'verified'},{description:''},{surprise:1}])assert.throws(()=>validatePhysicalDimensions({...d,...patch}));assert.throws(()=>setPhysicalDimensions({...scene,rooms:[{locked:true}]},d),/Unlock/);});
+test('physical dimension update clips a narrow corner jamb without altering source',()=>{
+ const source={...scene,units:{metresPerCell:1},levels:[{id:'g',index:0}],walls:[{id:'a',levelId:'g',axis:'N',x:0,y:0,tile:'wall'},{id:'b',levelId:'g',axis:'W',x:0,y:0,tile:'wall'}],openings:[{id:'o',hostWallId:'a',kind:'window',tile:'window'}]};
+ const next=setPhysicalDimensions(source,{...d,wallThickness:.4},{properties:{window:{TianWindowProfile:[.1,.2,.9,.8]}}});assert.equal(next.physicalDimensions.wallThickness,.4);assert.equal(source.physicalDimensions,undefined);
+});

@@ -1,0 +1,294 @@
+{
+  "original_request": "将 Project Zomboid 完整复刻为浏览器可玩的单人模式，包含一个小镇和完整游戏功能、美术；过程中及时改进 SRE 仓库并完整记录做了什么、困难、解决方法和最终成果。",
+  "source_build": "Steam 25485521",
+  "features": [
+    {
+      "id": "world",
+      "description": "经用户授权缩小至一栋原版住宅及小院、车库，包含楼层、房间、地形和边界；保留全部游戏系统。",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "world-source",
+        "world-browser"
+      ]
+    },
+    {
+      "id": "art-environment",
+      "description": "原版地面、建筑、家具、植被、道具美术",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "art-environment-source",
+        "art-environment-browser"
+      ]
+    },
+    {
+      "id": "art-character",
+      "description": "原版角色、服装、僵尸外观与骨骼动画",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "art-character-source",
+        "art-character-browser"
+      ]
+    },
+    {
+      "id": "art-interface",
+      "description": "原版界面、字体、图标与交互反馈",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "art-interface-source",
+        "art-interface-browser"
+      ]
+    },
+    {
+      "id": "lighting",
+      "description": "昼夜、室内外光照、视野、阴影与天气表现",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "lighting-source",
+        "lighting-browser"
+      ]
+    },
+    {
+      "id": "movement",
+      "description": "移动、碰撞、奔跑、潜行、翻越与楼梯",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "movement-source",
+        "movement-browser"
+      ]
+    },
+    {
+      "id": "inventory",
+      "description": "物品身份、容器、重量、嵌套背包、装备与转移",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "inventory-source",
+        "inventory-browser"
+      ]
+    },
+    {
+      "id": "needs",
+      "description": "饥渴、疲劳、耐力、温度、情绪与营养",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "needs-source",
+        "needs-browser"
+      ]
+    },
+    {
+      "id": "health",
+      "description": "身体部位、伤口、感染、疾病与治疗",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "health-source",
+        "health-browser"
+      ]
+    },
+    {
+      "id": "combat",
+      "description": "近战、推搡、枪械、瞄准、弹药与伤害",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "combat-source",
+        "combat-browser"
+      ]
+    },
+    {
+      "id": "zombies",
+      "description": "感知、寻路、追踪、群体、生成与迁移",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "zombies-source",
+        "zombies-browser"
+      ]
+    },
+    {
+      "id": "loot",
+      "description": "原版容器分布、战利品、腐败与刷新规则",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "loot-source",
+        "loot-browser"
+      ]
+    },
+    {
+      "id": "crafting",
+      "description": "原版配方、工具、材料、技能与制作动作",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "crafting-source",
+        "crafting-browser"
+      ]
+    },
+    {
+      "id": "building",
+      "description": "建造、拆解、搬运、路障、结构与多层空间",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "building-source",
+        "building-browser"
+      ]
+    },
+    {
+      "id": "vehicles",
+      "description": "驾驶、燃料、钥匙、部件、维修、碰撞与拖车",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "vehicles-source",
+        "vehicles-browser"
+      ]
+    },
+    {
+      "id": "farming",
+      "description": "耕作、浇水、病害、作物与收获",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "farming-source",
+        "farming-browser"
+      ]
+    },
+    {
+      "id": "animals",
+      "description": "动物、饲养、繁殖、捕猎与产物",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "animals-source",
+        "animals-browser"
+      ]
+    },
+    {
+      "id": "fishing-foraging",
+      "description": "钓鱼、采集、陷阱与生态",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "fishing-foraging-source",
+        "fishing-foraging-browser"
+      ]
+    },
+    {
+      "id": "utilities",
+      "description": "电力、水、停供、发电机、照明与家电",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "utilities-source",
+        "utilities-browser"
+      ]
+    },
+    {
+      "id": "fire",
+      "description": "火源、烹饪、火灾传播与灭火",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "fire-source",
+        "fire-browser"
+      ]
+    },
+    {
+      "id": "progression",
+      "description": "人物创建、职业、特质、技能、经验与书籍",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "progression-source",
+        "progression-browser"
+      ]
+    },
+    {
+      "id": "audio",
+      "description": "原版环境音、动作音效、音乐与空间反馈",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "audio-source",
+        "audio-browser"
+      ]
+    },
+    {
+      "id": "persistence",
+      "description": "世界持久化、物品及角色存档、读档与死亡",
+      "mode": "preserve",
+      "status": "implementing",
+      "acceptance": [
+        "persistence-source",
+        "persistence-browser"
+      ]
+    },
+    {
+      "id": "sandbox",
+      "description": "单人模式、沙盒参数、难度与时间控制",
+      "mode": "preserve",
+      "status": "researching",
+      "acceptance": [
+        "sandbox-source",
+        "sandbox-browser"
+      ]
+    }
+  ],
+  "limitations": [
+    {
+      "id": "full-runtime-parity",
+      "description": "已完成蓝笔取出/装备/回存的有限原版实机采样和模块差异闭环；全功能调查、原版与浏览器UI对照和完整验收仍未完成。",
+      "blocking": true
+    },
+    {
+      "id": "visual-parity",
+      "description": "角色、环境、界面、光照、动画和音频尚未完成原版同机位对照。",
+      "blocking": true
+    }
+  ],
+  "scope_amendments": [
+    {
+      "date": "2026-10-12",
+      "authorized_by": "user",
+      "request": "我想地图上来说只做一间房屋。但是功能齐全。",
+      "confirmation": "一栋住宅，带小院和车库，保留全部系统",
+      "world_scope": "One residence with small yard and garage",
+      "unchanged": "All installed-version single-player gameplay systems, art/audio and source-runtime acceptance; no system removed because of map reduction",
+      "status": "Scope adopted; playable boundary and source residence selection still to implement"
+    }
+  ],
+  "current_world_scope": "One residence with small yard and garage",
+  "product_direction": {
+    "date": "2026-10-12",
+    "purpose": "Interactive personal portfolio website",
+    "experience": "One residence with bedroom computer; activate computer to enter OS desktop; apps present user projects",
+    "multiplayer": false,
+    "accounts_required": false,
+    "save_storage": "visitor browser local storage with export/import",
+    "priority": "Bedroom computer → OS → project apps; preserve prior system obligations pending explicit further scope change",
+    "project_catalog": [
+      "https://folio.university/",
+      "https://apps.apple.com/us/app/surge-method/id6758555101",
+      "https://beboppuzzle.com/"
+    ],
+    "language": "English",
+    "entry_title": "Welcome. Make yourself at home.",
+    "domain": "tian.house"
+  },
+  "next_action": "Implement bedroom computer interaction, desktop OS and project app registry; collect user project URLs. Apply residence/yard/garage boundary.",
+  "deployment": {
+    "domain": "https://tian.house/",
+    "assets": "Hosted converted local runtime assets at user request",
+    "language": "English",
+    "status": "Live, HTTPS enforced; first visit, OS apps and save/reload verified"
+  }
+}

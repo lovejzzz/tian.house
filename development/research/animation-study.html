@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PZ 动画时序检查</title>
+<style>body{margin:24px;background:#171a19;color:#e7e9df;font:16px system-ui}main{max-width:960px;margin:auto}button{font:inherit;padding:8px 16px;margin-right:8px}canvas{width:100%;background:#242b27;margin:16px 0}pre{white-space:pre-wrap;color:#bfcebd}p{line-height:1.6}</style>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js"}}</script>
+<main><h1>动画片段与节点倍率检查</h1><p>与游戏共用角色渲染器。采用原版三个基础节点的播放倍率，检查片段时长、独立播放及暂停；专用片段可单次预览；翻窗按导入节点的 0.96 倍率预览；转身片段按 0.8 倍率预览，已将骨骼旋转提取到角色朝向并消除重复旋转，尚未接入游戏转身等待和完整状态图。此页不代表原版完整动画状态机、服装或光照一致。</p><button id="pause" disabled>暂停</button><button id="reset" disabled>重置</button><button id="toggle" disabled>左侧：待机 / 步行</button><button id="step" disabled>推进 0.15 秒</button><label>左侧片段 <select id="clip"><option value="">动作混合</option><option value="idleToRun">起跑片段</option><option value="runToStop">停跑片段</option><option value="climbWindowStart">翻窗开始</option><option value="climbWindowEnd">翻窗成功结束</option><option value="turnIdle90L">左转90°片段</option><option value="turnIdle90R">右转90°片段</option><option value="turnIdle180L">左转180°片段</option><option value="turnIdle180R">右转180°片段</option></select></label><canvas width="900" height="340" aria-label="待机、步行和奔跑三种动作预览"></canvas><pre id="state">正在加载本地角色资源…</pre></main>
+<script type="module">
+import {CharacterRenderer} from '../src/characters.js';
+const renderer=new CharacterRenderer(),canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('#state'),pause=document.querySelector('#pause'),reset=document.querySelector('#reset'),toggle=document.querySelector('#toggle'),step=document.querySelector('#step'),clip=document.querySelector('#clip');
+const makeActors=()=>[{angle:.7,moving:false},{angle:.7,moving:true},{angle:.7,moving:true,running:true}];let actors=makeActors(),time=0,last=0,paused=false,lastStatus=0;
+pause.onclick=()=>{paused=!paused;pause.textContent=paused?'继续':'暂停';};reset.onclick=()=>{actors=makeActors();time=0;};
+clip.onchange=()=>{time=0;actors=makeActors();paused=true;pause.textContent='继续';};
+toggle.onclick=()=>{actors[0].moving=!actors[0].moving;};step.onclick=()=>{paused=true;pause.textContent='继续';time+=.15;};
+try{await renderer.init();pause.disabled=reset.disabled=toggle.disabled=step.disabled=false;requestAnimationFrame(frame);}catch(e){status.textContent=e.stack;console.error(e);}
+function frame(now){if(!paused)time+=last?Math.min((now-last)/1000,.1):0;last=now;ctx.clearRect(0,0,900,340);const samples=[];
+ for(let i=0;i<3;i++){const x=150+i*300,y=245;ctx.strokeStyle='#789079';ctx.beginPath();ctx.moveTo(x,y-32);ctx.lineTo(x+64,y);ctx.lineTo(x,y+32);ctx.lineTo(x-64,y);ctx.closePath();ctx.stroke();const f=renderer.frame(actors[i],time,false,i===0&&clip.value?{clip:clip.value,elapsed:time*(renderer.data.animationMetadata[clip.value].speed??1)}:null);ctx.drawImage(f.image,x-f.anchor.x*2,y-f.anchor.y*2,f.width*2,f.height*2);samples.push({...renderer.lastSample});ctx.fillStyle='#e7e9df';ctx.font='20px system-ui';ctx.textAlign='center';ctx.fillText([clip.value?clip.selectedOptions[0].textContent:(actors[0].moving?'待机 → 步行':'步行 → 待机'),'步行','奔跑'][i],x,42);ctx.font='15px monospace';ctx.fillText(`${renderer.lastSample.time.toFixed(3)} / ${renderer.lastSample.duration.toFixed(3)} 秒`,x,310);}
+ if(now-lastStatus>100){status.textContent=JSON.stringify({paused,elapsed:Number(time.toFixed(4)),selectedMetadata:clip.value?renderer.data.animationMetadata[clip.value]:null,samples},null,2);lastStatus=now;}requestAnimationFrame(frame);
+}
+</script></html>

@@ -1,0 +1,21 @@
+✔ photos bind to openings and walls by identity, follow moved boundaries, and retain unresolved evidence after deletion (20.572291ms)
+✔ building component descriptors locate stairs at their source floor and roofs at their actual roof floor (2.861ms)
+✔ multiple photos can identify the same opening; scoped queries retain their evidence without raster payloads (4.5805ms)
+✔ reference import, metadata edit, undo and exported restoration share the command transaction (7.144125ms)
+✔ invalid photos, unsafe formats and unsubstantiated measurements reject; persistence failure is atomic (1.100625ms)
+✔ reference format follows raster bytes rather than misleading filename MIME (0.113042ms)
+✔ annotation bindings use stable room IDs, survive deletion as unresolved evidence, and undo restores them (7.747458ms)
+✔ working-copy provenance survives house export and rejects malformed source metadata (0.561833ms)
+✔ cached image validation still rejects changed bytes and invalid metadata (0.114ms)
+✔ scoped reads retain full room boundaries, openings, host families and stair endpoint levels (1.676875ms)
+✔ whole reads include legacy records; empty regions do not invent entities; invalid filters reject (0.437459ms)
+✔ scoped wall reads include attached fixtures and every wall supporting a wide fixture (0.146709ms)
+✔ full and scoped reads include freestanding roofs, physical dimensions and roof reference bindings (0.30075ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 106.369916

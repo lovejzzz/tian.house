@@ -1,0 +1,21 @@
+✔ grouping preserves instances and separates meaningful state (1.004167ms)
+✔ equipped items and owned containers retain individual rows (0.371833ms)
+✔ actions omit inert objects and sealed cans (0.220458ms)
+✔ real simulation advances without changing original save and uses calibrated coordinates (3.370167ms)
+✔ door changes come from game rules, including locked failure (1.417291ms)
+✔ visitor storage uses timed game transfers and preserves the same physical instance (3.604042ms)
+✔ physical movement cancels a timed action even after nearby queries sync coordinates (0.266708ms)
+✔ nearby facilities use real sleep actions and reject stale reach or unsupported actions (1.110541ms)
+✔ physical running consumes normal endurance without moving a second time (0.215542ms)
+✔ physical speeds respect exhaustion, sneaking, world scale, death and pause (0.186459ms)
+✔ moving out of accelerated rest restores real-time survival advancement (0.150625ms)
+✔ resident mode owns the existing character and restores serialized physical position and doors (0.375625ms)
+✔ resident status exposes the same nearby threat that prevents rest (0.243541ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 77.005292

@@ -1,0 +1,16 @@
+✔ plaster noise repeats without discontinuities at the physical tile boundary (23.318083ms)
+✔ plaster relief is cached in linear colour space and disposed with its maps (8.198791ms)
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.316334ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.137792ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.21ms)
+✔ reflection lookup remains in the room and floor even when another probe is closer (0.38175ms)
+✔ lighting fits far-world geometry, uses Z-up and changes actual light energy (1.330333ms)
+✔ clock changes source direction and intensity without losing the fitted far-world target (0.332875ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 94.877292

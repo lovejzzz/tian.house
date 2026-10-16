@@ -1,0 +1,49 @@
+{
+  "browserFrameCadence": {
+    "samples": 3565,
+    "p50Ms": 16.7,
+    "p95Ms": 25.3,
+    "p99Ms": 33.4,
+    "maxMs": 50.10000000000582,
+    "framesOver50ms": 1,
+    "framesOver100ms": 0
+  },
+  "lastFrame": {
+    "drawCalls": 3073,
+    "triangles": 771069
+  },
+  "allocatedResourceCounts": {
+    "geometries": 434,
+    "textures": 102
+  },
+  "gpuTime": "not measured",
+  "memoryBytes": "not measured",
+  "cpuFrameWork": {
+    "samples": 3565,
+    "p50Ms": 15.1,
+    "p95Ms": 18.4,
+    "p99Ms": 19.5,
+    "maxMs": 21,
+    "framesOver50ms": 0,
+    "framesOver100ms": 0
+  },
+  "conditions": "Live simulation and animation",
+  "durationMs": 60008.40000009537,
+  "lighting": {
+    "started": 4,
+    "completed": 4,
+    "busyAtStart": false,
+    "busyAtEnd": false
+  },
+  "viewport": {
+    "width": 625,
+    "height": 886,
+    "pixelRatio": 2,
+    "canvasWidth": 625,
+    "canvasHeight": 886,
+    "bufferWidth": 1250,
+    "bufferHeight": 1772
+  },
+  "cadenceMaxMs": 50.10000000000582,
+  "framesOver33ms": 45
+}

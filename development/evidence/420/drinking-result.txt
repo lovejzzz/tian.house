@@ -1,0 +1,22 @@
+    - combobox "Preview floor":
+    - combobox "Structure room":
+    - combobox "Lighting study":
+    - 'button "Lamps: on" [pressed]'
+    - button "Roof cutaway" [pressed]: "Roof: cutaway"
+    - button "Automatic wall cutaway" [pressed]: "Walls: auto"
+    - button "Live here"
+    - button "Frame house"
+    - button "Frame room"
+    - button "Close preview"
+    - paragraph: Temporary visitor · Day 1 · 10:20 · Health 100 · Hunger 7.1 · Thirst 0.8 · Endurance 100
+    - log "Recent life events": Drink from Sink complete
+    - button "Walk selected room" [disabled]
+    - button "Stop test walk"
+    - button "Nearby interaction": E · Use water · Sink
+    - text: Time
+    - combobox "Time speed":
+    - button "Inventory"
+    - paragraph
+    - generic "Rotatable wall structure" [active]
+    - paragraph: WASD / arrows move in screen direction · Drag to orbit · Scroll to zoom
+    - generic "Inspector & diagnostics"

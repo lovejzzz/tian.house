@@ -1,0 +1,5 @@
+{
+  "ok": false,
+  "revision": 581,
+  "error": "Furniture intersects the building. Choose a clear position."
+}

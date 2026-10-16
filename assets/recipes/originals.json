@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "recipes": [
+    {
+      "id": "cafe",
+      "version": 1,
+      "sourceKind": "procedural",
+      "generator": "tools/make_cafe_assets.py",
+      "module": "src/cafe-assets.js",
+      "page": "original-cafe.png",
+      "parameters": {},
+      "parameterContract": "Geometry and palette are versioned in the generator source; no external parameters yet.",
+      "seed": null,
+      "provenance": "Original Tian House code-drawn art",
+      "tags": [
+        "cafe",
+        "original"
+      ],
+      "material": null,
+      "delivery": "smallest-exact"
+    },
+    {
+      "id": "masonry",
+      "version": 1,
+      "sourceKind": "procedural",
+      "generator": "tools/make_masonry_assets.py",
+      "module": "src/masonry-assets.js",
+      "page": "original-masonry.png",
+      "parameters": {},
+      "parameterContract": "Geometry and palette are versioned in the generator source; no external parameters yet.",
+      "seed": "tian-masonry-{style}",
+      "provenance": "Original Tian House code-drawn art",
+      "tags": [
+        "masonry",
+        "original"
+      ],
+      "material": null,
+      "delivery": "smallest-exact"
+    },
+    {
+      "id": "architecture",
+      "version": 1,
+      "sourceKind": "procedural",
+      "generator": "tools/make_architectural_windows.py",
+      "module": "src/architectural-assets.js",
+      "page": "original-architecture.png",
+      "parameters": {},
+      "parameterContract": "Geometry and palette are versioned in the generator source; no external parameters yet.",
+      "seed": null,
+      "provenance": "Original Tian House code-drawn art",
+      "tags": [
+        "architecture",
+        "original"
+      ],
+      "material": null,
+      "delivery": "png",
+      "deliveryReason": "Chrome 155 canvas differs for WebP semi-transparent pixels despite exact offline RGBA; retain PNG."
+    },
+    {
+      "id": "house-details",
+      "version": 1,
+      "sourceKind": "procedural",
+      "generator": "tools/make_house_details.py",
+      "module": "src/house-detail-assets.js",
+      "page": "original-house-details.png",
+      "parameters": {},
+      "parameterContract": "Geometry and palette are versioned in the generator source; no external parameters yet.",
+      "seed": null,
+      "provenance": "Original Tian House code-drawn art",
+      "tags": [
+        "house-details",
+        "original"
+      ],
+      "material": null,
+      "delivery": "png",
+      "deliveryReason": "Chrome 155 canvas differs for WebP semi-transparent pixels despite exact offline RGBA; retain PNG."
+    },
+    {
+      "id": "interiors",
+      "version": 1,
+      "sourceKind": "procedural",
+      "generator": "tools/make_interior_rugs.py",
+      "module": "src/original-assets.js",
+      "page": "original-interiors.png",
+      "parameters": {},
+      "parameterContract": "Geometry and palette are versioned in the generator source; no external parameters yet.",
+      "seed": null,
+      "provenance": "Original Tian House code-drawn art",
+      "tags": [
+        "interiors",
+        "original"
+      ],
+      "material": null,
+      "delivery": "smallest-exact"
+    },
+    {
+      "id": "studio",
+      "version": 4,
+      "sourceKind": "procedural",
+      "generator": "tools/make_studio_assets.py",
+      "module": "src/studio-assets.js",
+      "page": "original-studio.png",
+      "parameters": {},
+      "seed": null,
+      "provenance": "Original dimensional geometry projected into catalogue sprites, not recovered PZ art",
+      "tags": [
+        "studio",
+        "original",
+        "prototype"
+      ],
+      "material": null,
+      "delivery": "smallest-exact",
+      "sourceFiles": [
+        "assets/recipes/volume/studio-bar-stool.json",
+        "assets/recipes/volume/studio-breakfast-bar.json",
+        "assets/recipes/volume/studio-floor-speaker.json",
+        "assets/recipes/volume/studio-functional-trainer.json",
+        "assets/recipes/volume/studio-media-console.json",
+        "assets/recipes/volume/studio-piano-bench.json",
+        "assets/recipes/volume/studio-sectional-sofa.json",
+        "assets/recipes/volume/studio-television-85.json",
+        "assets/recipes/volume/studio-upright-piano.json",
+        "assets/recipes/volume/studio-workstation.json",
+        "src/convex-solid.js",
+        "src/polygon-footprint.js",
+        "src/room-footprint.js",
+        "src/scene-slab-volumes.js",
+        "src/studio-furniture-volume.js",
+        "src/upholstery-volume.js",
+        "node_modules/three/package.json",
+        "node_modules/three/LICENSE",
+        "node_modules/three/build/three.module.js",
+        "node_modules/three/build/three.core.js",
+        "node_modules/three/examples/jsm/math/ConvexHull.js",
+        "src/textile-detail-volume.js",
+        "src/piano.js",
+        "assets/recipes/volume/studio-office-chair.json",
+        "src/domestic-furniture-volume.js",
+        "assets/recipes/volume/studio-storage-bed.json",
+        "assets/recipes/volume/studio-nightstand.json",
+        "assets/recipes/volume/studio-water-glass.json",
+        "src/furniture-edge-finish.js"
+      ]
+    }
+  ]
+}

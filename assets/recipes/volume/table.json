@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-timber-table",
+  "version": 2,
+  "generator": "src/table-volume.js",
+  "sourceKind": "procedural",
+  "provenance": "Original parametric Tian House geometry; legacy table mapping is an approximate interpretation, not recovered PZ geometry.",
+  "status": "prototype",
+  "parameters": {
+    "width": 1.8,
+    "depth": 0.8,
+    "height": 1.0625,
+    "topThickness": 0.055,
+    "cornerCut": 0.025,
+    "legWidth": 0.075,
+    "legInset": 0.09,
+    "apronHeight": 0.13
+  },
+  "materials": {
+    "timber": {
+      "color": 10582365,
+      "roughness": 0.65,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    }
+  },
+  "semantics": {
+    "kind": "table",
+    "mount": "floor",
+    "surface": "top",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "No source-style fidelity acceptance",
+      "Generic procedural grain; not source-matched timber, no end-grain or wear acceptance"
+    ]
+  },
+  "migration": {
+    "S": [
+      "carpentry_01_32",
+      "carpentry_01_33"
+    ],
+    "E": [
+      "carpentry_01_34",
+      "carpentry_01_35"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "carpentry_01_32",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "carpentry_01_33",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "carpentry_01_34",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "carpentry_01_35",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  }
+}

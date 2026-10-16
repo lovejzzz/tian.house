@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-kitchen-sink",
+  "version": 5,
+  "generator": "src/wet-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.78,
+    "depth": 0.8,
+    "height": 0.925
+  },
+  "materials": {
+    "timber": {
+      "color": 6378054,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      },
+      "edgeRadius": 0.003
+    },
+    "enamel": {
+      "color": 9475969,
+      "roughness": 0.38,
+      "edgeRadius": 0.002,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ceramic": {
+      "color": 14737361,
+      "roughness": 0.24
+    },
+    "stone": {
+      "color": 5659993,
+      "roughness": 0.55,
+      "edgeRadius": 0.002
+    },
+    "steel": {
+      "color": 10987684,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2238500,
+      "roughness": 0.8
+    }
+  },
+  "migration": {
+    "E": [
+      "fixtures_sinks_01_8"
+    ],
+    "S": [
+      "fixtures_sinks_01_9"
+    ],
+    "W": [
+      "fixtures_sinks_01_10"
+    ],
+    "N": [
+      "fixtures_sinks_01_11"
+    ]
+  },
+  "sourceLayout": {
+    "E": [
+      {
+        "tile": "fixtures_sinks_01_8",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "S": [
+      {
+        "tile": "fixtures_sinks_01_9",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "fixtures_sinks_01_10",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "fixtures_sinks_01_11",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.11,
+      0.11
+    ],
+    "cells": [
+      1,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "kitchen-sink",
+    "mount": "floor",
+    "geometryEvidence": "authored kitchen cabinet and inset sink assembly",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Chrome sink source supplies water interaction; supporting cabinet is an authored approximation, not extracted source geometry.",
+      "Static cabinet doors and tap; no plumbing animation."
+    ],
+    "paletteEvidence": "Authored domestic palette: warm taupe/oat upholstery, muted sage linen and walnut/oak tones. Original texture detail retained; not measured colour reproduction.",
+    "edgeEvidence": "Authored 2\u20133mm manufacturing chamfers on simple hard box parts; existing non-box and textile forms preserved.",
+    "supportHeight": 0.925,
+    "heightEvidence": "Authored 925 mm domestic worktop target; not a measurement recovered from source sprite."
+  },
+  "sourceFiles": [
+    "src/furniture-edge-finish.js",
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

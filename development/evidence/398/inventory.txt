@@ -1,0 +1,97 @@
+- generic "Tian’s House single-player game view"
+- banner:
+  - text: TIAN’S HOUSE
+  - generic: 8002, 11408 · Floor 0
+  - generic: 13:51
+  - generic: Day 4
+  - button "▶"
+  - button "Time speed 1×" [pressed]: ×1
+  - button "Time speed 5×": ×5
+  - button "Time speed 20×": ×20
+  - button "Time speed 120×": ×120
+- navigation "Game menu":
+  - button "Inventory Inventory":
+    - generic "Inventory"
+    - generic: Inventory
+  - button "Health Health":
+    - generic "Health"
+    - generic: Health
+  - button "Craft Craft":
+    - generic "Craft"
+    - generic: Craft
+  - button "▧ Map":
+    - text: ▧
+    - generic: Map
+  - button "☷ Journal":
+    - text: ☷
+    - generic: Journal
+  - button "⌂ Workshop":
+    - text: ⌂
+    - generic: Workshop
+  - button "▣ Save":
+    - text: ▣
+    - generic: Save
+- complementary
+- status
+- contentinfo "Game assistance":
+  - button "Main menu": Menu
+  - button "Nearby interactions":
+    - text: Nearby
+    - generic: Q
+  - button "Controls":
+    - text: Controls
+    - generic: "?"
+- dialog "Your home":
+  - heading "Hearth Studio" [level=2]
+  - 'button "Lamps: on" [pressed]'
+  - button "Roof cutaway" [pressed]: "Roof: cutaway"
+  - button "Automatic wall cutaway" [pressed]: "Walls: auto"
+  - button "Save progress"
+  - button "Overview"
+  - button "Main menu"
+  - paragraph: Resident · Day 4 · 14:03 · Health 60 · Hunger 11.5 · Thirst 2.5 · Endurance 100 · Danger nearby — rest unavailable
+  - button "Resume living"
+  - button "Pause" [disabled]
+  - text: Time
+  - combobox "Time speed":
+    - option "1×" [selected]
+    - option "5×"
+    - option "20×"
+    - option "120×"
+  - button "Inventory"
+  - generic "Rotatable wall structure"
+  - paragraph: Drag to orbit · Scroll to zoom · Click a wall or floor to select its room
+  - dialog "Visitor inventory":
+    - heading "Inventory" [level=2]
+    - paragraph: Resident · Paused — resume living to complete queued actions
+    - combobox "Nearby storage" [active]:
+      - option "No storage selected" [selected]
+    - region "Character health":
+      - heading "Health" [level=3]
+      - paragraph: Health 60.2 · Bleeding 0.0
+      - paragraph: No wounds
+    - region "Nearby facilities":
+      - heading "Nearby facilities" [level=3]
+      - generic: Sink
+      - generic: Mains water
+      - button "Drink water"
+      - button "Fill Tin Can"
+      - generic: Shower
+      - generic: Mains water
+      - button "Drink water"
+      - button "Fill Tin Can"
+      - generic: Toilet
+      - generic: Mains water
+      - button "Drink water"
+      - button "Fill Tin Can"
+    - region "Carried items":
+      - heading "Carried items" [level=3]
+      - generic: Water Bottle × 2 · 1000 / 1000 mL
+      - button "Drink Water Bottle"
+      - generic: Can Opener
+      - generic: Tin Can × 6 · 0 / 300 mL
+      - generic: Bandage (Dirty) × 6
+    - region "Storage contents":
+      - paragraph: Move near a cupboard, shelf or fridge to search it.
+    - status
+    - button "Return to house"

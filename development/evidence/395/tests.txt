@@ -1,0 +1,19 @@
+✔ plaster noise repeats without discontinuities at the physical tile boundary (23.996208ms)
+✔ plaster relief is cached in linear colour space and disposed with its maps (8.842375ms)
+✔ whole interior batch regenerates deterministic finite assemblies (23.240083ms)
+✔ curtains require their actual opening and use wall mounting instead of freestanding rotation (2.323834ms)
+✔ tabletop set refuses missing host, and wardrobe mapping keeps all source directions (1.828167ms)
+✔ architectural finishes are scoped so roof and wall source choices do not repaint floors (0.66725ms)
+✔ exterior window drapes face the occupied room instead of hanging outside (0.852584ms)
+✔ bathroom fixtures expose all wall faces and remain shallow enough for a compact bathroom (0.581292ms)
+✔ wood recipe regenerates bounded maps with stable detail and seed variation (13.016291ms)
+✔ material UVs stay attached through rotation and relocation with physical repeat scale (2.2675ms)
+✔ identical material recipes reuse two GPU maps and dispose them once (2.928791ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.946833

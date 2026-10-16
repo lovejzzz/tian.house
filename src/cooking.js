@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=5c5c6755f6e4';
+import {definition} from './inventory.js?v=ab55877942d1';
 export const isCookingAppliance=object=>/^(stove|microwave)$/.test(object.props?.container??'');
 export function ensureAppliance(container,kind='stove'){
  return container.appliance??={kind,on:false,temperature:20,targetTemperature:200};
@@ -29,7 +29,27 @@ export function advanceCooking(inventory,minutes,{electricity=true,onEvent=()=>{
   }
  }
 }
-export function cookingLabel(item){const p=definition(item.type).properties;if(p.ItemType!=='base:food')return null;if(item.burnt)return 'Burnt';if(item.cooked)return 'Cooked';if(!p.IsCookable)return null;return `Raw · Cooking ${Math.min(100,Math.floor((item.cookingMinutes??0)/Number(p.MinutesToCook??60)*100))}%`;}
+export function cookingLabel(item){
+ const p=definition(item.type).properties;
+ if(p.ItemType!=='base:food')return null;
+ if(item.burnt)return 'Burnt';
+ if(item.cooked)return 'Cooked';
+ if(!p.IsCookable)return null;
+ // Cookability alone does not establish that food is raw or unsafe to eat.
+ const raw=p.DangerousUncooked===true;
+ if(!(item.cookingMinutes>0))return raw?'Raw':null;
+ return `${raw?'Raw · ':''}Cooking ${Math.min(100,Math.floor(item.cookingMinutes/Number(p.MinutesToCook??60)*100))}%`;
+}
+// Estimate at the current temperature; warm-up/cooling makes this advisory,
+// never a promise or an automatic appliance shutoff.
+export function cookingAdvice(item,appliance){
+ const p=definition(item.type).properties;
+ if(p.ItemType!=='base:food'||!p.IsCookable||item.burnt||!appliance||appliance.temperature<60)return null;
+ const progress=item.cookingMinutes??0;
+ const threshold=Number(item.cooked?p.MinutesToBurn??120:p.MinutesToCook??60);
+ const minutes=Math.max(0,Math.ceil((threshold-progress)*200/appliance.temperature));
+ return item.cooked?`Ready — remove from oven · ~${minutes} game min before burning at current heat`:`~${minutes} game min until cooked at current heat`;
+}
 export function validateCookingState(state){
  for(const container of Object.values(state.containers))if(container.appliance){const a=container.appliance;if(!['stove','microwave'].includes(a.kind)||typeof a.on!=='boolean'||!Number.isFinite(a.temperature)||a.temperature<0||a.temperature>400||!Number.isFinite(a.targetTemperature)||a.targetTemperature<50||a.targetTemperature>300)throw Error('Invalid saved appliance state');}
  for(const item of Object.values(state.items)){if(item.cookingMinutes!==undefined&&(!Number.isFinite(item.cookingMinutes)||item.cookingMinutes<0))throw Error('Invalid cooking progress');for(const key of ['cooked','burnt'])if(item[key]!==undefined&&typeof item[key]!=='boolean')throw Error('Invalid food cooking state');}

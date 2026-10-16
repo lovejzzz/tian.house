@@ -1,0 +1,20 @@
+{
+  "requestId": "studio-exterior-lights-383",
+  "baseRevision": 562,
+  "operations": [
+    {
+      "type": "place",
+      "assetId": "tile:tian_directional_sconce_E",
+      "x": 8004,
+      "y": 11405,
+      "z": 0
+    },
+    {
+      "type": "place",
+      "assetId": "tile:tian_directional_sconce_E",
+      "x": 8004,
+      "y": 11408,
+      "z": 0
+    }
+  ]
+}

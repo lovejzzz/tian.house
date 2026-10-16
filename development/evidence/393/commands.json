@@ -1,0 +1,27 @@
+{
+  "requestId": "hearth-dressing-393",
+  "baseRevision": 568,
+  "operations": [
+    {
+      "type": "place",
+      "assetId": "tile:tian_art_abstract_W",
+      "x": 7994,
+      "y": 11404,
+      "z": 0
+    },
+    {
+      "type": "place",
+      "assetId": "tile:tian_art_abstract_N",
+      "x": 8000,
+      "y": 11401,
+      "z": 0
+    },
+    {
+      "type": "place",
+      "assetId": "tile:tian_detail_tea",
+      "x": 8001,
+      "y": 11403,
+      "z": 0
+    }
+  ]
+}

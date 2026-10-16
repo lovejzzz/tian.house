@@ -1,0 +1,2 @@
+chair c713c107-f136-4bc3-9022-c9f2cce876d6 tile:furniture_seating_indoor_02_3
+PASS: direct model edit, command preview, staged save reject overlap; no writes; valid move and undo preserve source.

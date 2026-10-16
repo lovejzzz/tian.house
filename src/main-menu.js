@@ -1,12 +1,12 @@
-import {wallJoins} from './wall-joins.js?v=5c5c6755f6e4';
-import {fullscreenCamera,arrivalFrame} from './arrival.js?v=5c5c6755f6e4';
-import {Renderer} from './render.js?v=5c5c6755f6e4';
-import {captureHouse} from './workshop-model.js?v=5c5c6755f6e4';
-import {drawPool} from './workshop-outdoors.js?v=5c5c6755f6e4';
-import {readPreferences,storePreferences} from './preferences.js?v=5c5c6755f6e4';
+import {wallJoins} from './wall-joins.js?v=ab55877942d1';
+import {fullscreenCamera,arrivalFrame} from './arrival.js?v=ab55877942d1';
+import {Renderer} from './render.js?v=ab55877942d1';
+import {captureHouse} from './workshop-model.js?v=ab55877942d1';
+import {drawPool} from './workshop-outdoors.js?v=ab55877942d1';
+import {readPreferences,storePreferences} from './preferences.js?v=ab55877942d1';
 const element=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 export class MainMenu{
- constructor({world,renderer,bounds,getState,onStart,onWorkshop,onPreferences}){Object.assign(this,{world,gameRenderer:renderer,bounds,getState,onStart,onWorkshop,onPreferences});this.preferences=readPreferences();this.active=false;}
+ constructor({world,renderer,bounds,getState,onStart,onWorkshop,onPreferences,onImportSave}){Object.assign(this,{world,gameRenderer:renderer,bounds,getState,onStart,onWorkshop,onPreferences,onImportSave});this.preferences=readPreferences();this.active=false;}
  open(){if(this.active)return;this.active=true;this.previousFocus=document.activeElement;this.previous=[...document.body.children].map(e=>[e,e.inert]);for(const[e]of this.previous)e.inert=true;
   const root=this.element=element('section',undefined,'home-menu');root.setAttribute('aria-label','Main menu');root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');document.body.append(root);
   const content=element('div',undefined,'home-menu-content');content.append(element('div','TIAN / HOUSE','home-menu-brand'),element('p','A place to wander. A place to make.','home-menu-eyebrow'));
@@ -25,7 +25,7 @@ export class MainMenu{
  settings(){if(this.settingsPanel)return;const panel=this.settingsPanel=element('section',undefined,'home-settings');panel.setAttribute('role','dialog');panel.setAttribute('aria-label','Settings');const head=element('header');head.append(element('h2','Settings'));const close=element('button','×');close.setAttribute('aria-label','Close settings');close.onclick=()=>{panel.remove();this.settingsPanel=null;this.element.querySelector('.home-menu-content').inert=false;this.element.querySelector('.home-menu-view').inert=false;this.element.querySelector('[aria-label="Settings"]').focus();};head.append(close);panel.append(head,element('p','Make yourself comfortable.'));
   const change=()=>{try{this.preferences=storePreferences(this.preferences);this.onPreferences(this.preferences);status.textContent='Saved on this device';}catch{status.textContent='Could not save settings on this device';}};
   for(const[id,label,min,max,step,suffix]of [['volume','Sound volume',0,1,.05,'%'],['zoom','Game zoom',.6,3,.05,'%']]){const row=element('label'),text=element('span',label),value=element('output',Math.round(this.preferences[id]*100)+'%'),input=element('input');input.type='range';input.min=min;input.max=max;input.step=step;input.value=this.preferences[id];input.setAttribute('aria-label',label);input.oninput=()=>{this.preferences[id]=Number(input.value);value.textContent=Math.round(input.value*100)+suffix;change();};text.append(value);row.append(text,input);panel.append(row);}
-  const label=element('label',undefined,'home-settings-check'),input=element('input');input.type='checkbox';input.checked=this.preferences.reducedMotion;input.onchange=()=>{this.preferences.reducedMotion=input.checked;change();};label.append(input,element('span','Reduce motion'));panel.append(label,element('small','Shortens camera travel and turns off placement dust, bounce and shake.'));const status=element('p','Saved on this device','home-settings-status');status.setAttribute('role','status');panel.append(status);this.element.append(panel);this.element.querySelector('.home-menu-content').inert=true;this.element.querySelector('.home-menu-view').inert=true;close.focus();
+  const label=element('label',undefined,'home-settings-check'),input=element('input');input.type='checkbox';input.checked=this.preferences.reducedMotion;input.onchange=()=>{this.preferences.reducedMotion=input.checked;change();};label.append(input,element('span','Reduce motion'));panel.append(label,element('small','Shortens camera travel and turns off placement dust, bounce and shake.'));const status=element('p','Saved on this device','home-settings-status');status.setAttribute('role','status');panel.append(status);if(this.onImportSave){const restore=element('button','Import resident save');restore.onclick=()=>this.onImportSave();panel.append(restore,element('small','Restore a resident, house and inventory from an exported JSON backup. This replaces the current resident.'));}this.element.append(panel);this.element.querySelector('.home-menu-content').inert=true;this.element.querySelector('.home-menu-view').inert=true;close.focus();
  }
  draw(){const r=this.preview;r.resize();if(!r.width||!r.height)return;const c=r.ctx;c.setTransform(r.dpr,0,0,r.dpr,0,0);c.clearRect(0,0,r.width,r.height);
   const above=this.plan.squares.filter(s=>s.z>=0),building=above.filter(s=>s.z>0||s.tiles.some(t=>/^(walls_|furniture_|roofs_)/.test(t)));const focus=building.length?building:above;if(!focus.length)return;

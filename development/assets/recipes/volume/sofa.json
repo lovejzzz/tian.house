@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-sofa",
+  "version": 7,
+  "generator": "src/domestic-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 1.9,
+    "depth": 0.9,
+    "height": 0.9,
+    "creaseDepth": 0.008
+  },
+  "materials": {
+    "timber": {
+      "color": 5784888,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    },
+    "linen": {
+      "color": 13946556,
+      "roughness": 0.93,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      },
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "furniture_seating_indoor_02_24",
+        "size": 128,
+        "patch": [
+          [
+            12,
+            86
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 0.25
+        },
+        "repeatMetres": [
+          0.32,
+          0.18
+        ],
+        "weave": {
+          "size": 512,
+          "threads": [
+            128,
+            72
+          ],
+          "metres": [
+            0.32,
+            0.18
+          ],
+          "relief": 0.00065,
+          "irregularity": 0.35,
+          "seed": 41
+        },
+        "dyeVariation": {
+          "strength": 0.28,
+          "seed": 53
+        }
+      },
+      "bumpScale": 0
+    },
+    "cloth": {
+      "color": 8030594,
+      "roughness": 0.95,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "accent": {
+      "color": 10122840,
+      "roughness": 0.9
+    },
+    "enamel": {
+      "color": 10002074,
+      "roughness": 0.4,
+      "metalness": 0.25
+    },
+    "steel": {
+      "color": 10198944,
+      "roughness": 0.28,
+      "metalness": 0.8
+    },
+    "dark": {
+      "color": 2107172,
+      "roughness": 0.65
+    },
+    "glass": {
+      "color": 1581865,
+      "roughness": 0.18,
+      "metalness": 0.25
+    }
+  },
+  "migration": {
+    "S": [
+      "furniture_seating_indoor_02_24",
+      "furniture_seating_indoor_02_25"
+    ],
+    "E": [
+      "furniture_seating_indoor_02_26",
+      "furniture_seating_indoor_02_27"
+    ],
+    "W": [
+      "furniture_seating_indoor_02_28",
+      "furniture_seating_indoor_02_29"
+    ],
+    "N": [
+      "furniture_seating_indoor_02_30",
+      "furniture_seating_indoor_02_31"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "furniture_seating_indoor_02_24",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_seating_indoor_02_25",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "furniture_seating_indoor_02_26",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_seating_indoor_02_27",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "furniture_seating_indoor_02_28",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "furniture_seating_indoor_02_29",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "furniture_seating_indoor_02_30",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_seating_indoor_02_31",
+        "dx": 1,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.050000000000000044,
+      0.04999999999999999
+    ],
+    "cells": [
+      2,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "sofa",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Original approximate geometry; not recovered source artwork",
+      "No animated doors, upholstery deformation, wear or final visual acceptance",
+      "Interactions remain on authoritative source objects",
+      "Textile colour detail sampled from reviewed PZ upholstery patch; weave relief is authored, not measured fabric or cloth simulation.",
+      "Runtime textile colour includes authored yarn-dye variation; original imported pixels remain unchanged."
+    ],
+    "softContact": "Real-time damped cushion depression and procedural contact pose; conservative collision envelope; not cloth or biomechanical simulation."
+  },
+  "sourceFiles": [
+    "src/textile-detail-volume.js",
+    "src/upholstery-volume.js",
+    "node_modules/three/package.json",
+    "node_modules/three/LICENSE",
+    "node_modules/three/build/three.module.js",
+    "node_modules/three/build/three.core.js",
+    "node_modules/three/examples/jsm/math/ConvexHull.js"
+  ]
+}

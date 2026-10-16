@@ -1,0 +1,14 @@
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.194583ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.215333ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.2065ms)
+✔ roof cutaway preserves shadow geometry and excludes hidden panels from picking (0.985375ms)
+✔ front wall planes fade coherently while rear planes and same-side walls remain solid (0.434667ms)
+✔ wall, door and mounted furniture fade together; collision and cast shadows stay intact (1.222917ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 75.911625

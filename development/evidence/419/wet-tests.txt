@@ -1,0 +1,14 @@
+✔ counter: reproducible four-direction plumbing/storage body (3.920208ms)
+✔ sink: reproducible four-direction plumbing/storage body (5.788333ms)
+✔ kitchen-sink: reproducible four-direction plumbing/storage body (2.9005ms)
+✔ toilet: reproducible four-direction plumbing/storage body (5.857583ms)
+✔ sink rim leaves a real basin cavity and counter preserves tabletop source height (0.799583ms)
+✔ kitchen sink has an open bowl above cabinet and matches adjacent counter height (0.471375ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59.355333

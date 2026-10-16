@@ -1,0 +1,26 @@
+{
+  "name": "pz-browser-research",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "python3 serve.py",
+    "test": "node --test tests/*.test.mjs",
+    "assets:check": "\"${TIAN_ASSET_PYTHON:-python3}\" tools/build_asset_library.py --check",
+    "assets:build": "\"${TIAN_ASSET_PYTHON:-python3}\" tools/build_asset_library.py --regenerate",
+    "assets:test": "\"${TIAN_ASSET_PYTHON:-python3}\" tools/test_asset_library.py",
+    "assets:verify": "npm run assets:imports:check && npm run assets:test && npm run assets:check && node tools/check_asset_browser.mjs",
+    "assets:imports:check": "python3 tools/test_imported_assets.py && python3 tests/test_importers.py && python3 tools/check_imported_assets.py && node tools/build_imported_catalog.mjs --check",
+    "assets:imports:catalog": "node tools/build_imported_catalog.mjs",
+    "assets:rebuild:verify": "npm run assets:build && npm run assets:volume:build && npm run assets:test && npm run assets:check",
+    "assets:volume:build": "node tools/build_volume_assets.mjs"
+  },
+  "dependencies": {
+    "assimpjs": "^0.0.10",
+    "hls.js": "1.6.16",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "fake-indexeddb": "^6.2.5"
+  }
+}

@@ -1,0 +1,63 @@
+import {chromium} from 'playwright';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const url=process.env.PZ_URL||'http://127.0.0.1:8876';
+const browser=await chromium.launch({headless:true,channel:'chrome'});
+const page=await browser.newPage({viewport:{width:1440,height:900}});
+const errors=[],assertions=[];
+page.on('pageerror',e=>errors.push(e.message));
+page.on('response',r=>{if(r.status()>=400)errors.push(`HTTP ${r.status()}: ${r.url()}`);});
+page.on('console',m=>{if(m.type()==='error'||m.type()==='warning')errors.push(m.text());});
+fs.mkdirSync('test-results',{recursive:true});
+try{
+ await page.goto(url);await page.waitForFunction(()=>window.pz?.ready,null,{timeout:60000});
+ await page.waitForFunction(()=>pz.renderer.loading.size===0);
+ assert.ok(await page.evaluate(()=>pz.renderer.drawn>100));assertions.push('Original map and imported atlas regions render in browser');
+ await page.screenshot({path:'test-results/rosewood-interior.png'});
+ const oldWater=await page.evaluate(()=>pz.sim.inventory.find('water').fluid.amount);
+ await page.keyboard.press('i');
+ await page.locator('.row[data-item-type="Base.WaterBottle"]').first().getByRole('button',{name:'Use  / Equip '}).click();
+ await page.waitForFunction(n=>pz.sim.inventory.find('water').fluid.amount===n-.25,oldWater,{timeout:10000});assertions.push('UI starts and completes consumption action with partial fluid use while preserving bottle identity');
+ const loot=page.getByRole('button',{name:'Take',exact:true}).first();
+ assert.ok(await loot.count(), 'Initial source-map location must expose a loot action; do not silently skip this workflow');
+ {
+  const before=await page.evaluate(()=>pz.sim.inventory.list().length);await loot.click();
+  await page.waitForFunction(n=>pz.sim.inventory.list().length===n+1,before,{timeout:10000});assertions.push('Nearby container UI transfers one item after a timed action');
+ }
+ // Seeded target-only setup; each subsequent action goes through the actual UI.
+ const seeded=await page.evaluate(()=>{const inv=pz.sim.inventory;return {pen:inv.create('pen').id,opener:inv.create('opener').id,bag:inv.create('backpack').id,cereal:inv.create('cereal').id,beans:inv.find('beans').id};});
+ const use=id=>page.locator(`.row[data-item-id="${id}"]`).first().getByRole('button',{name:'Use  / Equip '});
+ const options=id=>page.locator(`.item-options[data-item-id="${id}"]`);
+ await use(seeded.pen).click();
+ await page.waitForFunction(id=>pz.sim.state.inventory.equipment.primary===id,seeded.pen);
+ assert.equal(await page.evaluate(id=>pz.sim.inventory.carriedWeight(pz.sim.state.inventory.items[id]),seeded.pen),.03);
+ await options(seeded.pen).getByRole('button',{name:'Unequip',exact:true}).click();
+ assert.equal(await page.evaluate(()=>pz.sim.state.inventory.equipment.primary),undefined);assertions.push('Inventory UI equips and unequips a pen with 0.03 equipped encumbrance');
+ await options(seeded.beans).getByRole('button',{name:'Open can',exact:true}).click();
+ await page.waitForFunction(()=>!!pz.sim.inventory.find('Base.OpenBeans'),null,{timeout:10000});
+ assert.equal(await page.evaluate(id=>!!pz.sim.state.inventory.items[id],seeded.beans),false);assertions.push('Can opener UI replaces closed beans with an open can');
+ await options(seeded.cereal).getByRole('button',{name:'Eat one quarter',exact:true}).click();
+ await page.waitForFunction(id=>pz.sim.state.inventory.items[id].portion===.75,seeded.cereal,{timeout:10000});
+ await options(seeded.cereal).getByRole('button',{name:/^Put in /}).click();
+ await page.waitForFunction(({cereal,bag})=>pz.sim.state.inventory.items[cereal].container===bag,seeded,{timeout:10000});
+ await options(seeded.bag).getByRole('button',{name:'Open container',exact:true}).click();
+ await options(seeded.cereal).getByRole('button',{name:'Take to inventory',exact:true}).click();
+ await page.waitForFunction(id=>pz.sim.state.inventory.items[id].container==='player',seeded.cereal,{timeout:10000});
+ await page.getByRole('button',{name:'Back to inventory',exact:true}).click();
+ assert.equal(await page.evaluate(id=>pz.sim.state.inventory.items[id].portion,seeded.cereal),.75);assertions.push('Partial cereal survives nested-bag insertion and removal via UI');
+ await use(seeded.bag).click();await page.waitForFunction(id=>pz.sim.state.inventory.equipment.back===id,seeded.bag);assertions.push('Backpack can be equipped from the actual inventory UI');
+ await page.waitForFunction(()=>[...document.querySelectorAll('.inventory-pane .item-icon')].every(c=>c.dataset.painted==='true'));assertions.push('Imported item icons paint after asynchronous atlas loading without a panel rebuild');
+ await page.screenshot({path:'test-results/inventory-panes.png'});
+ await page.keyboard.press('i');const start=await page.evaluate(()=>({x:pz.sim.state.player.x,y:pz.sim.state.player.y}));
+ await page.keyboard.down('a');await page.waitForTimeout(800);await page.keyboard.up('a');
+ const end=await page.evaluate(()=>({x:pz.sim.state.player.x,y:pz.sim.state.player.y}));assert.ok(Math.hypot(start.x-end.x,start.y-end.y)>.2);assertions.push('Actual keyboard input moves the player through the loaded map');
+ await page.locator('[data-panel="save"]').click();await page.getByRole('button',{name:'Save progress',exact:true}).click();
+ const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('sre-pz-rosewood-v1')));await page.reload();await page.waitForFunction(()=>window.pz?.ready,null,{timeout:60000});
+ const restored=await page.evaluate(()=>({p:pz.sim.state.player,inventory:pz.sim.state.inventory}));assert.equal(restored.p.x,saved.player.x);assert.equal(restored.p.y,saved.player.y);assert.deepEqual(restored.inventory,saved.inventory);assertions.push('Reload restores persisted coordinates and inventory');
+ await page.keyboard.press('p');const clock=await page.evaluate(()=>pz.sim.state.time);await page.waitForTimeout(350);assert.equal(await page.evaluate(()=>pz.sim.state.time),clock);assertions.push('Pause stops the simulation clock');
+ await page.keyboard.press('m');await page.screenshot({path:'test-results/rosewood-map.png'});assertions.push('Map panel renders loaded original map cells');
+ assert.deepEqual(errors,[]);assertions.push('No browser console warnings or errors');
+ const metrics=await page.evaluate(()=>({missing_sprites:[...pz.renderer.missing],unverified_tree_templates:[...pz.renderer.unverifiedTrees],rendered_trees:pz.renderer.treeCount,loaded_pages:pz.renderer.images.size,drawn_sprites:pz.renderer.drawn,character_ready:pz.characters.ready,frame_ms:pz.renderer.frameTimes.slice(-120)}));
+ fs.writeFileSync('test-results/browser-result.json',JSON.stringify({schema_version:1,passed:true,kind:'target-only',environment:`Chrome ${browser.version()} headless 1440x900`,command:'node tests/browser.mjs',assertions,metrics,limitations:['Not original-game runtime differential evidence','Visual comparison to original has not been performed','Incomplete feature scope; provisional gameplay values']},null,2));
+ console.log(JSON.stringify({passed:true,assertions,metrics:{...metrics,frame_ms:undefined}},null,2));
+}catch(e){await page.screenshot({path:'test-results/browser-failure.png'});fs.writeFileSync('test-results/browser-failure.json',JSON.stringify({passed:false,error:e.stack,errors,assertions},null,2));throw e;}finally{await browser.close();}

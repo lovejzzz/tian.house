@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-toilet",
+  "version": 2,
+  "generator": "src/wet-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.55,
+    "depth": 0.85,
+    "height": 0.82
+  },
+  "materials": {
+    "timber": {
+      "color": 6378054,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    },
+    "enamel": {
+      "color": 13553087,
+      "roughness": 0.38,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ceramic": {
+      "color": 14737361,
+      "roughness": 0.24
+    },
+    "stone": {
+      "color": 5659993,
+      "roughness": 0.55
+    },
+    "steel": {
+      "color": 10987684,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2238500,
+      "roughness": 0.8
+    }
+  },
+  "migration": {
+    "S": [
+      "fixtures_bathroom_01_0"
+    ],
+    "E": [
+      "fixtures_bathroom_01_1"
+    ],
+    "W": [
+      "fixtures_bathroom_01_2"
+    ],
+    "N": [
+      "fixtures_bathroom_01_3"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "fixtures_bathroom_01_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "fixtures_bathroom_01_1",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "fixtures_bathroom_01_2",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "fixtures_bathroom_01_3",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.22499999999999998,
+      0.04
+    ],
+    "cells": [
+      1,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "toilet",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Approximate original geometry, not source-style fidelity",
+      "No plumbing animation or final material acceptance",
+      "Basin is a simplified open ring; source gameplay remains authoritative"
+    ]
+  },
+  "sourceFiles": [
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

@@ -1,0 +1,10 @@
+✔ sewn trim follows thin axis for seat and upright cushion without widening footprint (2.687416ms)
+✔ throw bends continuously over furniture edge, with no blocking collision (0.917167ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39.050583

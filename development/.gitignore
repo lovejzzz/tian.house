@@ -1,0 +1,4 @@
+private-assets/
+node_modules/
+test-results/
+*.log

@@ -1,0 +1,16 @@
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.508417ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.495417ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.231583ms)
+✔ soft filter chains existing shader work and retains narrow PCF fallback (0.673666ms)
+✔ shadow comparison setting survives rebuild without changing light energy (0.814292ms)
+✔ both PCF kernels use receiver-plane correction before depth comparison (0.146083ms)
+✔ lighting fits far-world geometry, uses Z-up and changes actual light energy (1.351125ms)
+✔ clock changes source direction and intensity without losing the fitted far-world target (0.329334ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 74.096583

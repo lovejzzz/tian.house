@@ -1,0 +1,2 @@
+import {readFileSync} from 'node:fs';import {gunzipSync} from 'node:zlib';
+export function readVolume(name){const base=new URL('../../assets/volume/',import.meta.url),manifest=JSON.parse(readFileSync(new URL('build-report.json',base)));const entry=manifest.assets.find(e=>e.name===name);if(!entry)throw Error(`Missing volume family ${name}`);return JSON.parse(gunzipSync(readFileSync(new URL(entry.delivery,base))));}

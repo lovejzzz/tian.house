@@ -1,0 +1,5 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {updateDrainableWeight,drainableFraction} from '../src/drainable.js';
+const bits=n=>{const b=new ArrayBuffer(4),d=new DataView(b);d.setFloat32(0,n);return d.getInt32(0);};
+const rows=fs.readFileSync(process.argv[2],'utf8').trim().split('\n').map(JSON.parse);
+for(const r of rows){const state=updateDrainableWeight({actualWeight:7.25,weight:6.25,customWeight:false},{fullWeight:r.full,emptyWeight:r.emptyWeight,hasReplacement:r.mode!=='none',replacementWeight:r.mode==='resolved'?.25:undefined,fraction:drainableFraction(r.uses,r.delta)});assert.deepEqual({actualBits:bits(state.actualWeight),weightBits:bits(state.weight),custom:state.customWeight},{actualBits:r.actualBits,weightBits:r.weightBits,custom:r.custom},JSON.stringify(r));}
+assert.equal(rows.length,216);console.log(JSON.stringify({passed:true,cases:rows.length,scope:'Native DrainableComboItem.updateWeight including actual replacement registry lookup; isolated component, not game UI/factory/full resource consumption.'},null,2));

@@ -1,0 +1,14 @@
+✔ low table support matches both imported facing surfaces and has solid authored geometry (3.308292ms)
+✔ inverse-isometric sampling keeps source color and directional variation deterministically (1.320542ms)
+✔ transparent atlas pixels cannot silently become black floor material (0.201834ms)
+✔ surface recipes are deterministic, distinct and shared through material cache (7.529667ms)
+✔ adjacent top-face triangles retain world UV phase independently of bounding shape (0.121042ms)
+✔ source material recipe changes appearance without changing support geometry or roof identity (0.148583ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60.996042

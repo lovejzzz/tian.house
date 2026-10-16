@@ -1,0 +1,1263 @@
+[
+  {
+    "request": {
+      "requestId": "hearth-0",
+      "baseRevision": 1,
+      "operations": [
+        {
+          "type": "room.add",
+          "room": {
+            "id": "hearth-main",
+            "name": "Living studio",
+            "levelId": "level:0",
+            "z": 0,
+            "rect": [
+              7994,
+              11401,
+              8004,
+              11407
+            ],
+            "floorTile": "floors_interior_tilesandwood_01_44",
+            "wallN": "tian_masonry_ivory_1",
+            "wallW": "tian_masonry_ivory_0"
+          }
+        },
+        {
+          "type": "room.add",
+          "room": {
+            "id": "hearth-bath",
+            "name": "Bathroom",
+            "levelId": "level:0",
+            "z": 0,
+            "rect": [
+              8001,
+              11407,
+              8004,
+              11409
+            ],
+            "floorTile": "floors_interior_tilesandwood_01_0",
+            "wallN": "tian_masonry_ivory_1",
+            "wallW": "tian_masonry_ivory_0"
+          }
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 2
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-1",
+      "baseRevision": 2,
+      "operations": [
+        {
+          "type": "opening.add",
+          "opening": {
+            "id": "hearth-entry",
+            "hostWallId": "wall:level:0:W:8004:11406",
+            "kind": "door",
+            "tile": "fixtures_doors_01_0"
+          }
+        },
+        {
+          "type": "opening.add",
+          "opening": {
+            "id": "hearth-bath-door",
+            "hostWallId": "wall:level:0:N:8002:11407",
+            "kind": "door",
+            "tile": "fixtures_doors_01_1"
+          }
+        },
+        {
+          "type": "opening.add",
+          "opening": {
+            "id": "hearth-window-n1",
+            "hostWallId": "wall:level:0:N:7995:11401",
+            "kind": "window",
+            "tile": "tian_glazing_N_1_0"
+          }
+        },
+        {
+          "type": "opening.add",
+          "opening": {
+            "id": "hearth-window-n3",
+            "hostWallId": "wall:level:0:N:7997:11401",
+            "kind": "window",
+            "tile": "tian_glazing_N_1_0"
+          }
+        },
+        {
+          "type": "opening.add",
+          "opening": {
+            "id": "hearth-window-n4",
+            "hostWallId": "wall:level:0:N:7998:11401",
+            "kind": "window",
+            "tile": "tian_glazing_N_1_0"
+          }
+        },
+        {
+          "type": "opening.add",
+          "opening": {
+            "id": "hearth-window-w",
+            "hostWallId": "wall:level:0:W:7994:11403",
+            "kind": "window",
+            "tile": "tian_glazing_W_1_0"
+          }
+        },
+        {
+          "type": "entry.set",
+          "x": 8003,
+          "y": 11406,
+          "z": 0
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 3
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-2",
+      "baseRevision": 3,
+      "operations": [
+        {
+          "type": "place",
+          "assetId": "tile:furniture_bedding_01_25",
+          "x": 7994,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:furniture_storage_01_5",
+          "x": 7996,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_workstation_W_0",
+          "x": 7994,
+          "y": 11403,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:furniture_seating_indoor_02_1",
+          "x": 7995,
+          "y": 11404,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_upright_piano_S_0",
+          "x": 7999,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_piano_bench_S_0",
+          "x": 7999,
+          "y": 11402,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_functional_trainer_W_0",
+          "x": 7994,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_media_console_N_0",
+          "x": 7997,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_floor_speaker_N_0",
+          "x": 7996,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_floor_speaker_N_0",
+          "x": 8000,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_sectional_sofa_S_0",
+          "x": 7997,
+          "y": 11403,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:appliances_refrigeration_01_9",
+          "x": 8003,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:fixtures_counters_01_3",
+          "x": 8003,
+          "y": 11402,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:fixtures_sinks_01_13",
+          "x": 8003,
+          "y": 11403,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:appliances_cooking_01_4",
+          "x": 8003,
+          "y": 11404,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_breakfast_bar_E_0",
+          "x": 8001,
+          "y": 11403,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_bar_stool_E_0",
+          "x": 8000,
+          "y": 11404,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_bar_stool_N_0",
+          "x": 8001,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:fixtures_bathroom_01_32",
+          "x": 8001,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:fixtures_sinks_01_28",
+          "x": 8002,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:fixtures_bathroom_01_3",
+          "x": 8003,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_floor_lamp",
+          "x": 7997,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:vegetation_indoor_01_10",
+          "x": 8003,
+          "y": 11405,
+          "z": 0
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 4
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-3",
+      "baseRevision": 4,
+      "operations": [
+        {
+          "type": "place",
+          "assetId": "tile:tian_studio_television_85_N_0",
+          "x": 7998,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_detail_lamp",
+          "x": 7994,
+          "y": 11404,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_detail_kitchen",
+          "x": 8003,
+          "y": 11402,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_wall_sconce_N",
+          "x": 7999,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_wall_sconce_N",
+          "x": 8002,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_wall_sconce_N",
+          "x": 8001,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_wall_sconce_N",
+          "x": 7997,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_wall_sconce_N",
+          "x": 8000,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_curtain_N",
+          "x": 7995,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_curtain_N",
+          "x": 7997,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_curtain_N",
+          "x": 7998,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_curtain_W",
+          "x": 7994,
+          "y": 11403,
+          "z": 0
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 5
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-4",
+      "baseRevision": 5,
+      "operations": [
+        {
+          "type": "roofVolume.add",
+          "roof": {
+            "id": "hearth-roof-0",
+            "name": "Hearth low-pitch roof",
+            "levelId": "level:0",
+            "elevationUnit": "storeys",
+            "vertices": [
+              [
+                7994,
+                11401
+              ],
+              [
+                8004,
+                11401
+              ],
+              [
+                8004,
+                11407
+              ],
+              [
+                7994,
+                11407
+              ]
+            ],
+            "profile": {
+              "axis": "Y",
+              "knots": [
+                [
+                  7994,
+                  1.04
+                ],
+                [
+                  8004,
+                  1.07
+                ]
+              ]
+            },
+            "baseElevation": 1,
+            "surfaceTile": "roofs_01_22",
+            "closureTile": "tian_masonry_ivory_1"
+          }
+        },
+        {
+          "type": "roofVolume.add",
+          "roof": {
+            "id": "hearth-roof-1",
+            "name": "Hearth low-pitch roof",
+            "levelId": "level:0",
+            "elevationUnit": "storeys",
+            "vertices": [
+              [
+                8001,
+                11407
+              ],
+              [
+                8004,
+                11407
+              ],
+              [
+                8004,
+                11409
+              ],
+              [
+                8001,
+                11409
+              ]
+            ],
+            "profile": {
+              "axis": "Y",
+              "knots": [
+                [
+                  8001,
+                  1.04
+                ],
+                [
+                  8004,
+                  1.07
+                ]
+              ]
+            },
+            "baseElevation": 1,
+            "surfaceTile": "roofs_01_22",
+            "closureTile": "tian_masonry_ivory_1"
+          }
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 6
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-5",
+      "baseRevision": 6,
+      "operations": [
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Bandage",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.AlcoholWipes",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.AlcoholWipes",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinnedBeans",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Rice",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.TinOpener",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Pot",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Fork",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Fork",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Spoon",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Spoon",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.KitchenKnife",
+          "x": 8003,
+          "y": 11402,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.WaterBottle",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.WaterBottle",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.WaterBottle",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.WaterBottle",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Apple",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Apple",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Apple",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Apple",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Apple",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Apple",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Cheese",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Cheese",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Chicken",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        },
+        {
+          "type": "place",
+          "assetId": "item:Base.Chicken",
+          "x": 8003,
+          "y": 11401,
+          "z": 0,
+          "storeInContainer": true
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 7
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-6",
+      "baseRevision": 7,
+      "operations": [
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8004,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8005,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8006,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8007,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8004,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8005,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8006,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8007,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8004,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8005,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8006,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8007,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8004,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8005,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8006,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8007,
+          "y": 11408,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8004,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8005,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8006,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8007,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8008,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8009,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8010,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8011,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8012,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8013,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8014,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8015,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8016,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8017,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8018,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8019,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8008,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8009,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8010,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8011,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8012,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8013,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8014,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8015,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8016,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8017,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8018,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:floors_exterior_tilesandstone_01_0",
+          "x": 8019,
+          "y": 11406,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:furniture_seating_outdoor_01_3",
+          "x": 8007,
+          "y": 11407,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:vegetation_indoor_01_10",
+          "x": 8007,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:vegetation_indoor_01_10",
+          "x": 8004,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_directional_sconce_E",
+          "x": 8004,
+          "y": 11405,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_directional_sconce_E",
+          "x": 8004,
+          "y": 11408,
+          "z": 0
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 8
+    }
+  },
+  {
+    "request": {
+      "requestId": "hearth-7",
+      "baseRevision": 8,
+      "operations": [
+        {
+          "type": "place",
+          "assetId": "tile:tian_art_abstract_W",
+          "x": 7994,
+          "y": 11404,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_art_abstract_N",
+          "x": 8000,
+          "y": 11401,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_detail_tea",
+          "x": 8001,
+          "y": 11403,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_bath_mirror_N",
+          "x": 8002,
+          "y": 11409,
+          "z": 0
+        },
+        {
+          "type": "place",
+          "assetId": "tile:tian_bath_towel_E",
+          "x": 8001,
+          "y": 11407,
+          "z": 0
+        }
+      ]
+    },
+    "result": {
+      "ok": true,
+      "changed": true,
+      "revision": 9
+    }
+  }
+]

@@ -1,0 +1,380 @@
+{
+  "revision": 568,
+  "bounds": [
+    7988,
+    11390,
+    8020,
+    11425
+  ],
+  "query": {
+    "level": 0,
+    "bounds": [
+      8001,
+      11407,
+      8004,
+      11409
+    ]
+  },
+  "partial": true,
+  "format": "scene-query",
+  "dependencyIds": [
+    "wall:level:0:N:8001:11409",
+    "wall:level:0:N:8002:11409",
+    "wall:level:0:W:8004:11407",
+    "wall:level:0:N:8003:11409",
+    "wall:level:0:W:8004:11408",
+    "hearth-bath-door",
+    "8f593ad0-c34a-452d-aecd-848c0c9d4778"
+  ],
+  "scene": {
+    "id": "669efdfc-ea31-4009-9614-52329302ea8f",
+    "units": {
+      "kind": "source-grid",
+      "metresPerCell": null,
+      "evidence": null
+    },
+    "levels": [
+      {
+        "id": "level:0",
+        "index": 0,
+        "elevation": null,
+        "height": null
+      }
+    ],
+    "rooms": [
+      {
+        "id": "hearth-bath",
+        "name": "Bathroom",
+        "levelId": "level:0",
+        "rect": [
+          8001,
+          11407,
+          8004,
+          11409
+        ],
+        "floorTile": "floors_interior_tilesandwood_01_0",
+        "wallIds": [
+          "wall:level:0:N:8001:11407",
+          "wall:level:0:W:8001:11407",
+          "wall:level:0:N:8001:11409",
+          "wall:level:0:W:8001:11408",
+          "wall:level:0:N:8002:11407",
+          "wall:level:0:N:8002:11409",
+          "wall:level:0:N:8003:11407",
+          "wall:level:0:W:8004:11407",
+          "wall:level:0:N:8003:11409",
+          "wall:level:0:W:8004:11408"
+        ]
+      }
+    ],
+    "walls": [
+      {
+        "id": "wall:level:0:N:8001:11407",
+        "levelId": "level:0",
+        "axis": "N",
+        "x": 8001,
+        "y": 11407,
+        "tile": "tian_masonry_ivory_1"
+      },
+      {
+        "id": "wall:level:0:N:8002:11407",
+        "levelId": "level:0",
+        "axis": "N",
+        "x": 8002,
+        "y": 11407,
+        "tile": "tian_masonry_ivory_1"
+      },
+      {
+        "id": "wall:level:0:N:8003:11407",
+        "levelId": "level:0",
+        "axis": "N",
+        "x": 8003,
+        "y": 11407,
+        "tile": "tian_masonry_ivory_1"
+      },
+      {
+        "id": "wall:level:0:W:8001:11407",
+        "levelId": "level:0",
+        "axis": "W",
+        "x": 8001,
+        "y": 11407,
+        "tile": "tian_masonry_ivory_0"
+      },
+      {
+        "id": "wall:level:0:N:8001:11409",
+        "levelId": "level:0",
+        "axis": "N",
+        "x": 8001,
+        "y": 11409,
+        "tile": "tian_masonry_ivory_1"
+      },
+      {
+        "id": "wall:level:0:W:8001:11408",
+        "levelId": "level:0",
+        "axis": "W",
+        "x": 8001,
+        "y": 11408,
+        "tile": "tian_masonry_ivory_0"
+      },
+      {
+        "id": "wall:level:0:N:8002:11409",
+        "levelId": "level:0",
+        "axis": "N",
+        "x": 8002,
+        "y": 11409,
+        "tile": "tian_masonry_ivory_1"
+      },
+      {
+        "id": "wall:level:0:W:8004:11407",
+        "levelId": "level:0",
+        "axis": "W",
+        "x": 8004,
+        "y": 11407,
+        "tile": "tian_masonry_ivory_0"
+      },
+      {
+        "id": "wall:level:0:N:8003:11409",
+        "levelId": "level:0",
+        "axis": "N",
+        "x": 8003,
+        "y": 11409,
+        "tile": "tian_masonry_ivory_1"
+      },
+      {
+        "id": "wall:level:0:W:8004:11408",
+        "levelId": "level:0",
+        "axis": "W",
+        "x": 8004,
+        "y": 11408,
+        "tile": "tian_masonry_ivory_0"
+      }
+    ],
+    "openings": [
+      {
+        "id": "hearth-bath-door",
+        "hostWallId": "wall:level:0:N:8002:11407",
+        "kind": "door",
+        "tile": "fixtures_doors_01_1"
+      }
+    ],
+    "objects": [
+      {
+        "id": "3da37459-76de-4bbd-b9fd-6b21679823ab",
+        "assetId": "tile:fixtures_bathroom_01_32",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8001,
+        "y": 11408,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "fixtures_bathroom_01_32"
+          }
+        ]
+      },
+      {
+        "id": "8caa3fba-7ecb-47a9-a385-5c5581d2f4e6",
+        "assetId": "tile:fixtures_sinks_01_28",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8002,
+        "y": 11408,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "fixtures_sinks_01_28"
+          }
+        ]
+      },
+      {
+        "id": "f76c68a3-f2f4-4a80-90cf-12933d93e472",
+        "assetId": "tile:fixtures_bathroom_01_3",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8003,
+        "y": 11408,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "fixtures_bathroom_01_3"
+          }
+        ]
+      },
+      {
+        "id": "19f297e3-58ae-4105-83bc-b1e77bd5f4e7",
+        "assetId": "tile:tian_wall_sconce_N",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8001,
+        "y": 11407,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "tian_wall_sconce_N"
+          }
+        ],
+        "wallMounts": [
+          {
+            "part": 0,
+            "wallId": "wall:level:0:N:8001:11407"
+          }
+        ]
+      },
+      {
+        "id": "8f593ad0-c34a-452d-aecd-848c0c9d4778",
+        "assetId": "tile:tian_directional_sconce_E",
+        "assetVersion": "source-v1",
+        "levelId": "level:0",
+        "x": 8004,
+        "y": 11408,
+        "parts": [
+          {
+            "dx": 0,
+            "dy": 0,
+            "tile": "tian_directional_sconce_E"
+          }
+        ],
+        "wallMounts": [
+          {
+            "part": 0,
+            "wallId": "wall:level:0:W:8004:11408"
+          }
+        ]
+      }
+    ],
+    "verticalLinks": [],
+    "roofVolumes": [
+      {
+        "id": "hearth-roof-1",
+        "name": "Hearth low-pitch roof",
+        "levelId": "level:0",
+        "elevationUnit": "storeys",
+        "vertices": [
+          [
+            8001,
+            11407
+          ],
+          [
+            8004,
+            11407
+          ],
+          [
+            8004,
+            11409
+          ],
+          [
+            8001,
+            11409
+          ]
+        ],
+        "profile": {
+          "axis": "Y",
+          "knots": [
+            [
+              8001,
+              1.04
+            ],
+            [
+              8004,
+              1.07
+            ]
+          ]
+        },
+        "baseElevation": 1,
+        "surfaceTile": "roofs_01_22",
+        "closureTile": "tian_masonry_ivory_1"
+      }
+    ],
+    "physicalDimensions": {
+      "storeyHeight": 3,
+      "wallHeight": 3,
+      "wallThickness": 0.2,
+      "slabThickness": 0.2,
+      "evidence": "approximate",
+      "description": "Provisional studio dimensions; not measured from an existing building."
+    },
+    "references": [],
+    "legacy": {
+      "squares": [
+        {
+          "id": "square:472",
+          "value": {
+            "x": 8001,
+            "y": 11407,
+            "z": 0,
+            "room": -1,
+            "tiles": [
+              "blends_natural_01_16"
+            ]
+          }
+        },
+        {
+          "id": "square:473",
+          "value": {
+            "x": 8001,
+            "y": 11408,
+            "z": 0,
+            "room": -1,
+            "tiles": [
+              "blends_natural_01_16"
+            ]
+          }
+        },
+        {
+          "id": "square:507",
+          "value": {
+            "x": 8002,
+            "y": 11407,
+            "z": 0,
+            "room": -1,
+            "tiles": [
+              "blends_natural_01_16"
+            ]
+          }
+        },
+        {
+          "id": "square:508",
+          "value": {
+            "x": 8002,
+            "y": 11408,
+            "z": 0,
+            "room": -1,
+            "tiles": [
+              "blends_natural_01_16"
+            ]
+          }
+        },
+        {
+          "id": "square:542",
+          "value": {
+            "x": 8003,
+            "y": 11407,
+            "z": 0,
+            "room": -1,
+            "tiles": [
+              "blends_natural_01_16"
+            ]
+          }
+        },
+        {
+          "id": "square:543",
+          "value": {
+            "x": 8003,
+            "y": 11408,
+            "z": 0,
+            "room": -1,
+            "tiles": [
+              "blends_natural_01_16"
+            ]
+          }
+        }
+      ],
+      "items": [],
+      "vehicles": []
+    }
+  }
+}

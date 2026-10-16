@@ -1,0 +1,12 @@
+✔ soft filter chains existing shader work and retains narrow PCF fallback (0.551125ms)
+✔ shadow comparison setting survives rebuild without changing light energy (0.703208ms)
+✔ distributed emitters preserve energy, cast shadows, and follow switches (1.275083ms)
+✔ limited shadow budget retains energy without exceeding allocation (0.226375ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.402875

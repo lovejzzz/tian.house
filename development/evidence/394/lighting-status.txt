@@ -1,0 +1,1 @@
+Spatial single-bounce study · 5 probes · 386 ms capture · distance-blended · no within-room visibility correction

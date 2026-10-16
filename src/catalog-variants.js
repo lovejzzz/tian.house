@@ -1,6 +1,8 @@
-import {paneAxis} from './wall-joins.js?v=5c5c6755f6e4';
-import {windowConditions} from './catalog-navigation.js?v=5c5c6755f6e4';
-export function entryFacing(e,properties){const p=properties[e?.source]||{};return e?.facing||paneAxis(e?.source||'',properties)||['N','W'].find(a=>['Wall','DoorWall','door','Window'].some(k=>k+a in p))||null;}
+import {paneAxis} from './wall-joins.js?v=ab55877942d1';
+import {windowConditions} from './catalog-navigation.js?v=ab55877942d1';
+export function entryFacing(e,properties){const p=properties[e?.source]||{};return e?.facing||p.Facing||paneAxis(e?.source||'',properties)||['N','W'].find(a=>['Wall','DoorWall','door','Window'].some(k=>k+a in p))||null;}
+// Reviewed against the sink volume recipe and source Facing/GroupName metadata.
+const reviewedFamilies=new Map([12,13,28,29].map(n=>['fixtures_sinks_01_'+n,'white-standing-sink']));
 // Preserve every source entry. Only the browser is grouped; saves keep sprite IDs.
 export function orientationFamilies(entries,properties){
  const conditions=windowConditions(properties),buckets=new Map(),byId=new Map();
@@ -10,7 +12,9 @@ export function orientationFamilies(entries,properties){
   if(e.stairs||e.id.startsWith('garage:'))key=e.group;
   else if(facing&&!e.itemType&&!e.tree&&!e.vehicle){
    const axis=['N','W'].find(a=>['Wall','DoorWall','door','window','Window'].some(k=>k+a in p))||paneAxis(e.source,properties);
-   if(p.CustomName||axis){
+   if(reviewedFamilies.has(e.source)){key=JSON.stringify(['reviewed',reviewedFamilies.get(e.source),e.category,e.parts.length]);}
+   else if(p.TianVariantFamily){key=JSON.stringify(['declared',p.TianVariantFamily,e.category,p.TianMount??null,e.parts.length]);}
+   else if(p.CustomName||axis){
     const kind=axis?['Wall','DoorWall','door','Window'].find(k=>k+axis in p)||'pane':'object';
     const stem=e.source.replace(/_[NW](?=_)/g,'_axis').replace(/_\d+$/,'');
     const style=p.GroupName?null:Math.floor(n/(4*Math.max(1,e.parts.length)));
@@ -25,7 +29,7 @@ export function orientationFamilies(entries,properties){
   // Repeated same-facing styles are separate families, never discarded.
   const families=[];
   for(const e of candidates.sort((a,b)=>Number(a.source.match(/_(\d+)$/)?.[1]||0)-Number(b.source.match(/_(\d+)$/)?.[1]||0))){
-   const facing=entryFacing(e,properties),family=families.find(f=>!f.some(v=>entryFacing(v,properties)===facing)&&Math.abs(Number(e.source.match(/_(\d+)$/)?.[1]||0)-Number(f[0].source.match(/_(\d+)$/)?.[1]||0))<=Math.max(8,e.parts.length*4));
+   const facing=entryFacing(e,properties),family=families.find(f=>!f.some(v=>entryFacing(v,properties)===facing)&&(reviewedFamilies.has(e.source)||Math.abs(Number(e.source.match(/_(\d+)$/)?.[1]||0)-Number(f[0].source.match(/_(\d+)$/)?.[1]||0))<=Math.max(8,e.parts.length*4)));
    if(family)family.push(e);else families.push([e]);
   }
   for(const family of families)for(const e of family)byId.set(e.id,family);

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-low-table",
+  "version": 1,
+  "generator": "src/table-volume.js",
+  "sourceKind": "procedural",
+  "provenance": "Original approximate low table geometry mapped to the imported Black Low Modern table; source Surface=15 defines the 15/32m support height.",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.8,
+    "depth": 0.65,
+    "height": 0.46875,
+    "topThickness": 0.035,
+    "cornerCut": 0.015,
+    "legWidth": 0.045,
+    "legInset": 0.065,
+    "apronHeight": 0.065
+  },
+  "materials": {
+    "timber": {
+      "color": 3422518,
+      "roughness": 0.78,
+      "metalness": 0
+    }
+  },
+  "semantics": {
+    "kind": "table",
+    "mount": "floor",
+    "surface": "top",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Approximate silhouette; no source-style fidelity acceptance",
+      "Painted wood finish; outdoor weather durability is not simulated"
+    ]
+  },
+  "migration": {
+    "S": [
+      "furniture_tables_low_01_19"
+    ],
+    "E": [
+      "furniture_tables_low_01_18"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "furniture_tables_low_01_19",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "furniture_tables_low_01_18",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0.1,
+      0.175
+    ]
+  }
+}

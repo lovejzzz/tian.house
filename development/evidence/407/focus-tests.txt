@@ -1,0 +1,18 @@
+✔ controller stops before thin wall while preserving tangential motion (1.344166ms)
+✔ controller handles two-wall corner and can move away afterwards (0.845333ms)
+✔ gravity lands on thin floor, stays stable, and resumes falling off the edge (0.969292ms)
+✔ upward motion stops at underside without falsely reporting grounded (0.330958ms)
+✔ frame partitioning yields the same floor landing and horizontal path (0.838042ms)
+✔ grounded body climbs generated flight to upper landing and descends without teleport (31.547291ms)
+✔ step-up rejects overheight and overhead obstruction (1.6875ms)
+✔ up walks toward the camera target and right follows the screen after orbit (0.371291ms)
+✔ orbit mapping preserves speed, diagonal normalization and opposite input (0.122ms)
+✔ blur leaves pointer targets stable; explicit stop survives inventory focus return (3.261125ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79.129584

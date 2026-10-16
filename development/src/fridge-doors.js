@@ -1,0 +1,12 @@
+import {definition} from './inventory.js';
+import * as THREE from 'three';
+// Inspection-only pose: closes before movement resumes; saved collision remains
+// the closed appliance. Door parts are never merged with the stationary shell.
+export function createFridgeDoors(group,draw){
+ let entries=[],frame=null,selected=null,last=0;
+ function tick(now){frame=null;const dt=Math.min(.05,(now-last)/1000);last=now;let moving=false;
+  for(const e of entries){const target=e.mesh.userData.objectId===selected?e.openAngle:0;e.angle+=(target-e.angle)*(1-Math.exp(-dt*14));if(Math.abs(target-e.angle)<.0005)e.angle=target;else moving=true;const q=new THREE.Quaternion().setFromAxisAngle(e.axis,e.angle);if(e.slide)e.mesh.position.copy(e.origin).addScaledVector(e.slide,e.angle);else{e.mesh.position.copy(e.origin).sub(e.hinge).applyQuaternion(q).add(e.hinge);e.mesh.quaternion.copy(q);}}
+  draw();if(moving)frame=requestAnimationFrame(tick);
+ }
+ return {rebuild(){if(frame!==null)cancelAnimationFrame(frame);frame=null;selected=null;entries=group.children.filter(m=>(m.userData.fridgeHinge||m.userData.lidHinge||m.userData.drawerSlide)).map(mesh=>({mesh,hinge:new THREE.Vector3(...(mesh.userData.lidHinge?.point||mesh.userData.fridgeHinge||[0,0,0])),axis:new THREE.Vector3(...(mesh.userData.lidHinge?.axis||[0,0,1])).normalize(),slide:mesh.userData.drawerSlide?new THREE.Vector3(...mesh.userData.drawerSlide):null,openAngle:mesh.userData.drawerSlide?1:mesh.userData.lidHinge?.angle??-Math.PI*.55,origin:mesh.position.clone(),angle:0}));for(const e of entries)if(Number.isInteger(e.mesh.userData.clothingSlot))e.mesh.visible=false;},contents(id,items){const slots=entries.filter(e=>e.mesh.userData.objectId===id&&Number.isInteger(e.mesh.userData.clothingSlot));if(!slots.length)return null;const clothing=items.filter(item=>{try{return definition(item.type).properties.ItemType==='base:clothing';}catch{return false;}}).sort((a,b)=>a.id.localeCompare(b.id));for(const e of slots)e.mesh.visible=e.mesh.userData.clothingSlot<clothing.length;return {displayed:clothing.slice(0,6).map(i=>({itemId:i.id})),unrepresented:items.filter(i=>!clothing.slice(0,6).includes(i)).map(i=>i.id)};},open(id){if(selected===id)return;selected=id;if(!id){if(frame!==null)cancelAnimationFrame(frame);frame=null;for(const e of entries){e.angle=0;e.mesh.position.copy(e.origin);e.mesh.quaternion.identity();}draw();return;}if(frame===null){last=performance.now();frame=requestAnimationFrame(tick);}},dispose(){if(frame!==null)cancelAnimationFrame(frame);frame=null;entries=[];}};
+}

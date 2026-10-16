@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-shower",
+  "version": 3,
+  "generator": "src/wet-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.9,
+    "depth": 0.9,
+    "height": 2.1
+  },
+  "materials": {
+    "timber": {
+      "color": 6378054,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    },
+    "enamel": {
+      "color": 13553087,
+      "roughness": 0.38,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ceramic": {
+      "color": 14737361,
+      "roughness": 0.24
+    },
+    "stone": {
+      "color": 5659993,
+      "roughness": 0.55
+    },
+    "steel": {
+      "color": 10987684,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2238500,
+      "roughness": 0.8
+    },
+    "glass": {
+      "color": 10399400,
+      "roughness": 0.25,
+      "opacity": 0.2
+    }
+  },
+  "migration": {
+    "S": [
+      "fixtures_bathroom_01_32"
+    ],
+    "E": [
+      "fixtures_bathroom_01_33"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "fixtures_bathroom_01_32",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "fixtures_bathroom_01_33",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0.05,
+      0.05
+    ]
+  },
+  "semantics": {
+    "kind": "shower",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Approximate open-front shower, not recovered source shape",
+      "No shower door or washing body animation",
+      "Flush tray/drain are surface finishes; the existing floor supports the character; glass alpha is not refraction"
+    ]
+  },
+  "sourceFiles": [
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

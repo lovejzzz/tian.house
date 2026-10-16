@@ -1,0 +1,1 @@
+Spatial two-bounce study · 10 probes · 10660 ms capture · occluded sky + distance/normal-blended diffuse + box-projected local reflections · experimental depth visibility (rebuilt) · no furniture reflection parallax

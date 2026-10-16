@@ -1,0 +1,4 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';import {drainableMaxUses,drainableUsesFromFraction,drainableFraction} from '../src/drainable.js';
+const rows=fs.readFileSync(process.argv[2],'utf8').trim().split('\n').map(JSON.parse);const view=new DataView(new ArrayBuffer(4));
+for(const r of rows){assert.equal(drainableMaxUses(r.delta),r.max,JSON.stringify(r));const uses=drainableUsesFromFraction(r.fraction,r.delta);assert.equal(uses,r.uses,JSON.stringify(r));view.setFloat32(0,drainableFraction(uses,r.delta));assert.equal(view.getInt32(0),r.fractionBits,JSON.stringify(r));}
+assert.equal(rows.length,72);console.log(JSON.stringify({passed:true,cases:72,floatResult:'exact IEEE754 binary32 bits',scope:'Drainable uses setters/getters, not factory, depletion replacement or crafting.'},null,2));

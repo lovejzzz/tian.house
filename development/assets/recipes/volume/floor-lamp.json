@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-floor-lamp",
+  "version": 5,
+  "generator": "src/lamp-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "height": 1.9,
+    "baseRadius": 0.18,
+    "baseHeight": 0.035,
+    "stemRadius": 0.012,
+    "shadeBottom": 1.55,
+    "shadeRadius": 0.28,
+    "shadeTopRadius": 0.17,
+    "segments": 24
+  },
+  "materials": {
+    "brass": {
+      "color": 11176277,
+      "roughness": 0.36,
+      "metalness": 0.65
+    },
+    "linen": {
+      "color": 14273712,
+      "roughness": 0.9,
+      "fixtureEmission": {
+        "color": 16764068,
+        "intensity": 0.22
+      },
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      },
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "furniture_seating_indoor_02_24",
+        "size": 128,
+        "patch": [
+          [
+            12,
+            86
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 0.25
+        },
+        "repeatMetres": [
+          0.24,
+          0.18
+        ],
+        "weave": {
+          "size": 512,
+          "threads": [
+            128,
+            96
+          ],
+          "metres": [
+            0.24,
+            0.18
+          ],
+          "relief": 0.0003,
+          "irregularity": 0.2,
+          "seed": 71
+        },
+        "dyeVariation": {
+          "strength": 0.08,
+          "seed": 53
+        }
+      },
+      "bumpScale": 0
+    },
+    "bulb": {
+      "color": 16772826,
+      "roughness": 0.5,
+      "fixtureEmission": {
+        "color": 16764068,
+        "intensity": 2
+      }
+    }
+  },
+  "semantics": {
+    "kind": "lamp",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Fine weave is filtered at play distance; near-view visual quality remains unaccepted",
+      "No source-style fidelity acceptance",
+      "Shade emission approximates diffuse transmission; no volumetric fabric scattering",
+      "Two source samples approximate a small emitter; shadow budget not accepted",
+      "Textile colour detail sampled from reviewed PZ upholstery patch; weave relief is authored, not measured fabric or cloth simulation.",
+      "Runtime textile colour includes authored yarn-dye variation; original imported pixels remain unchanged.",
+      "Up/down aperture lights approximate shade output; distribution is not photometrically calibrated"
+    ]
+  },
+  "migration": {
+    "S": [
+      "tian_floor_lamp"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_floor_lamp",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  }
+}

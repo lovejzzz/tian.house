@@ -1,5 +1,9 @@
 // One consistent, original line-icon vocabulary. Labels remain available to AT.
 const paths={
+ splitX:'M3 4h18v16H3z M12 4v16',splitY:'M3 4h18v16H3z M3 12h18',merge:'M3 4h18v16H3z M7 12h10 M10 9l-3 3 3 3 M14 9l3 3-3 3',
+ copy:'M8 8h12v13H8z M16 8V3H3v13h5',
+ multiselect:'M3 3h12v12H3z M9 9h12v12H9z',
+ reshape:'M5 5h14v14H5z M2 12h6 M16 12h6 M12 2v6 M12 16v6',
  home:'M3 11l9-8 9 8 M5 10v11h14V10 M10 21v-7h4v7',
  library:'M3 4h7v16H3z M14 4h7v16h-7z M6 8h1 M17 8h1',save:'M4 3h13l3 3v15H4z M7 3v6h9V3 M7 21v-8h10v8',exit:'M9 4H4v16h5 M13 7l5 5-5 5 M8 12h12',walk:'M13 4a1.5 1.5 0 1 0 0 .1 M11 8l-2 5 4 2 2 6 M10 13l-4 7 M11 8l5 4h4',
  select:'M5 3l14 10-7 1-3 7z',place:'M4 3l10 8-5 1-2 5z M18 13v8 M14 17h8',room:'M4 4h16v16H4z M4 8h4 M16 20v-4 M20 8h-4',area:'M3 9l9-5 9 5-9 5z M3 14l9 5 9-5',paint:'M5 3h14v6H5z M12 9v4H8v8h4',pool:'M4 5h3v8 M11 5h3v8 M7 8h7 M3 16q3-3 6 0t6 0t6 0 M3 20q3-3 6 0t6 0t6 0',erase:'M4 13l9-10 8 8-9 10H9z M8 9l8 8 M12 21h9',clear:'M4 4h5 M4 4v5 M20 4h-5 M20 4v5 M4 20h5 M4 20v-5 M20 20h-5 M20 20v-5 M9 9l6 6 M15 9l-6 6',entry:'M6 21V4h12v17 M3 21h18 M12 13h2',contents:'M3 7l9-4 9 4-9 4z M3 7v11l9 4 9-4V7 M12 11v11',

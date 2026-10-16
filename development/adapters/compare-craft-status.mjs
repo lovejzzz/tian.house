@@ -1,0 +1,4 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {parseCraftItemInput} from '../src/craft-inputs.js';import {craftRoutineStatus,craftDamageStatus,craftCookingStatus} from '../src/craft-status.js';
+let cases=0;for(const line of fs.readFileSync(process.argv[2],'utf8').split('\n')){if(!line.startsWith('{'))continue;const row=JSON.parse(line);if(!row.state)continue;const input=parseCraftItemInput(row.line);for(const [key,fn]of Object.entries({routine:craftRoutineStatus,damage:craftDamageStatus,cooking:craftCookingStatus}))assert.equal(fn(input,row.state),row[key],JSON.stringify({key,...row}));cases++;}
+assert.equal(cases,1664);console.log(JSON.stringify({passed:true,cases,assertions:cases*3,scope:'Native InputScript routine (null character), damage and cooking predicates on isolated ordinary/Food objects. No sealed/whole-food flags, player exclusions, type resolution, selection, Lua callback or gameplay acceptance.'},null,2));

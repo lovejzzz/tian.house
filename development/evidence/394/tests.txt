@@ -1,0 +1,15 @@
+✔ whole interior batch regenerates deterministic finite assemblies (20.667208ms)
+✔ curtains require their actual opening and use wall mounting instead of freestanding rotation (1.944958ms)
+✔ tabletop set refuses missing host, and wardrobe mapping keeps all source directions (1.260709ms)
+✔ architectural finishes are scoped so roof and wall source choices do not repaint floors (0.292125ms)
+✔ exterior window drapes face the occupied room instead of hanging outside (0.507625ms)
+✔ bathroom fixtures expose all wall faces and remain shallow enough for a compact bathroom (0.378541ms)
+✔ explicit wall face transforms fixture, collision and light toward the selected side (1.94825ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.416708

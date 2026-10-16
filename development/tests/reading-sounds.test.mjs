@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readingSound,readingPageFlips} from '../src/reading-sounds.js';
+test('sound family follows native case-sensitive type substring',()=>{assert.equal(readingSound('Base.ComicBook','Open'),'OpenBook');assert.equal(readingSound('Base.Magazine','Close'),'CloseMagazine');assert.equal(readingSound('Base.book','PageFlip'),'PageFlipMagazine');});
+test('page flip follows animation percent, speed, loop and interval boundaries',()=>{assert.equal(readingPageFlips(0,3.74),0);assert.equal(readingPageFlips(0,3.75),1);assert.equal(readingPageFlips(3.75,3.76),0);assert.equal(readingPageFlips(3.75,10),1);assert.equal(readingPageFlips(0,25),4);assert.equal(readingPageFlips(1,1),0);});

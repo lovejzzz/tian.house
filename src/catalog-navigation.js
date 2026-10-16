@@ -24,13 +24,13 @@ export function catalogFacet(e,properties,states){
  const p=properties[e.source]||{},s=[e.name,e.source,p.CustomName,p.GroupName].join(' ').toLowerCase();
  let type='Other';
  const rules={
-  Furniture:[['Beds',/bed|mattress/],['Seating',/chair|couch|sofa|bench|stool|seat|ottoman/],['Tables & desks',/table|desk|counter|workbench/],['Storage',/shel|cabinet|wardrobe|locker|drawer|crate|chest|rack/],['Music & games',/piano|jukebox|speaker|amplifier|dart|game|pool table/]],
-  Appliances:[['Bathroom',/toilet|bath|shower|sink/],['Laundry',/washer|washing|dryer/],['Kitchen',/oven|fridge|freezer|microwave|toaster|hood|dishwasher/],['Electronics',/computer|television|radio|monitor|terminal|phone|projector/],['Power & utilities',/generator|power|water|air|vent|conditioner|fireplace|extinguisher/]],
+  Furniture:[['Fitness',/functional trainer|fitness|exercise/],['Beds',/bed|mattress/],['Seating',/chair|couch|sofa|bench|stool|seat|ottoman/],['Tables & desks',/table|desk|counter|workbench|workstation|breakfast bar/],['Storage',/shel|cabinet|wardrobe|locker|drawer|crate|chest|rack|media console/],['Music & games',/piano|jukebox|speaker|amplifier|dart|game|pool table/]],
+  Appliances:[['Kitchen',/preparation sink|kitchen sink|scullery sink/],['Bathroom',/toilet|bath|shower|sink/],['Laundry',/washer|washing|dryer/],['Kitchen',/oven|fridge|freezer|microwave|toaster|hood|dishwasher/],['Electronics',/computer|television|radio|monitor|terminal|phone|projector/],['Power & utilities',/generator|power|water|air|vent|conditioner|fireplace|extinguisher/]],
   Garden:[['Trees',/tree/],['Hedges & shrubs',/hedge|bush|shrub/],['Flowers',/flower/],['Crops',/crop|farm|vegetable/],['Plants & ground cover',/plant|vegetation|grass/]],
   Outdoor:[['Fences & gates',/fenc|gate/],['Lighting',/lamp|light/],['Cooking & camping',/camp|barbecue|grill|cooking/],['Play & recreation',/swing|slide|play|recreation/],['Water & farming',/rain|compost|trough|scarecrow|standpipe/],['Street & yard',/street|road|dumpster|trash|gravestone/]],
-  'Walls & roofs':[['Roofs',/roof/],['Walls',/wall/]],
-  'Floors & terrain':[['Rugs',/rug|carpet/],['Wood',/wood/],['Tile & stone',/tile|stone|concrete/],['Terrain',/blend|grass|dirt|sand|gravel/]],
-  'Decoration & tiles':[['Lighting',/lamp|light|chandelier|candle/],['Wall art & signs',/painting|poster|picture|sign|notice|banner|flag|drawing|certificate/],['Mirrors & clocks',/mirror|clock/],['Tabletop objects',/book|mug|bowl|plate|vase|bottle|tabletop/],['Architectural details',/overlay|trim|detail/]],
+  'Walls & roofs':[['Guards & railings',/guard|railing|balustrade/],['Roofs',/roof/],['Walls',/wall/]],
+  'Floors & terrain':[['Platforms',/raised paving|platform/],['Drainage',/storm drain|drain grate/],['Paving',/running.bond paving|interlocking.*paving/],['Rugs',/rug|carpet/],['Wood',/wood/],['Tile & stone',/tile|stone|concrete/],['Terrain',/blend|grass|dirt|sand|gravel/]],
+  'Decoration & tiles':[['Lighting',/lamp|light|chandelier|candle/],['Wall art & signs',/painting|poster|picture|sign|notice|banner|flag|drawing|certificate/],['Mirrors & clocks',/mirror|clock/],['Tabletop objects',/book|mug|bowl|plate|vase|bottle|tabletop/],['Architectural details',/overlay|trim|detail|sill|conduit/]],
   Vehicles:[['Trailers',/trailer/],['Emergency',/ambulance|police|fire/],['Trucks & vans',/truck|van|bus/],['Cars',/car|sedan|sport|suv/]]
  };
  if(e.category==='Doors & windows')type=openingType(e,properties);
@@ -38,6 +38,7 @@ export function catalogFacet(e,properties,states){
  else if(e.itemType){const c=e.itemCategory||'';type=/Weapon|Ammo|Explosive/.test(c)?'Weapons & ammunition':/Food|Water$/.test(c)?'Food & drink':/FirstAid|Bandage/.test(c)?'Medical supplies':/Clothing|Accessory|ProtectiveGear|Appearance/.test(c)?'Clothing & accessories':/Container|Bag/.test(c)?'Bags & containers':/Literature|SkillBook|Cartography/.test(c)?'Books & maps':/Tool|Material|RecipeResource|Paint|VehicleMaintenance/.test(c)?'Tools & materials':/Cooking|Household|Furniture|LightSource|FireSource/.test(c)?'Household supplies':/Gardening|Fishing|Trapping|Camping/.test(c)?'Outdoor supplies':/Entertainment|Instrument|Sports|Memento|Teddy/.test(c)?'Leisure & keepsakes':/Electronics|Communications/.test(c)?'Electronics':/Animal/.test(c)?'Animals & animal parts':'Other items';}
  else if(e.category==='Stairs')type='Stairs';
  else if(e.category==='Pools')type='Pools';
+ else if(e.category==='Floors & terrain'){const label=[e.name,p.CustomName,p.GroupName].join(' ').toLowerCase().replace(/tilesandwood/g,'');type=rules[e.category].find(([,re])=>re.test(label))?.[0]||rules[e.category].find(([,re])=>re.test((e.source||'').replace(/tilesandwood/g,'')))?.[0]||'Other';}
  else type=(rules[e.category]||[]).find(([,re])=>re.test(s))?.[0]||'Other';
  let condition='Unspecified';
  if(type==='Windows')condition=states.get(e.source)||(/^tian_glazing_/.test(e.source)?'Intact':'Unspecified');

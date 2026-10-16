@@ -1,0 +1,12 @@
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (4.286959ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.098583ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.189375ms)
+✔ reflection lookup remains in the room and floor even when another probe is closer (0.413458ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.280791

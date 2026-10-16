@@ -1,0 +1,14 @@
+✔ game-clock cycle wraps days and transitions continuously across dawn and dusk (0.746125ms)
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.221959ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.18575ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.200125ms)
+✔ lighting fits far-world geometry, uses Z-up and changes actual light energy (1.368417ms)
+✔ clock changes source direction and intensity without losing the fitted far-world target (0.337041ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60.98025

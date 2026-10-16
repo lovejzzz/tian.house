@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-detail-books",
+  "version": 2,
+  "generator": "src/interior-details-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "kind": "books"
+  },
+  "materials": {
+    "wood": {
+      "color": 8872764,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "paper": {
+      "color": 14735809,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "linen": {
+      "color": 11976361,
+      "roughness": 0.92,
+      "metalness": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "book": {
+      "color": 5269082,
+      "roughness": 0.7,
+      "metalness": 0
+    },
+    "metal": {
+      "color": 7634553,
+      "roughness": 0.35,
+      "metalness": 0.65
+    },
+    "ceramic": {
+      "color": 15261640,
+      "roughness": 0.3,
+      "metalness": 0
+    },
+    "coffee": {
+      "color": 3155228,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "green": {
+      "color": 6977868,
+      "roughness": 0.8,
+      "metalness": 0
+    },
+    "terracotta": {
+      "color": 11166791,
+      "roughness": 0.8,
+      "metalness": 0
+    }
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "semantics": {
+    "kind": "books",
+    "mount": "table",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Original approximate geometric assembly, not source-fidelity art",
+      "No fabric weave, wear or animated contents",
+      "Individual props are parts of a source object, not separate gameplay items"
+    ]
+  },
+  "migration": {
+    "S": [
+      "tian_detail_books"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_detail_books",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  }
+}

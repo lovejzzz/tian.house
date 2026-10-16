@@ -1,0 +1,1 @@
+Spatial two-bounce study · 10 probes · 10468 ms capture · stages ms compile 505, visibility 0, faces 8343, readback 632, reflection 2 · occluded sky + distance/normal-blended diffuse + box-projected local reflections · experimental depth visibility (reused) · no furniture reflection parallax

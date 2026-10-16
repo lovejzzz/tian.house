@@ -1,0 +1,94 @@
+- generic "Tian’s House single-player game view"
+- banner:
+  - text: TIAN’S HOUSE
+  - generic: 7996, 11406 · Floor 0
+  - generic: 15:30
+  - generic: Day 8
+  - button "▶"
+  - button "Time speed 1×" [pressed]: ×1
+  - button "Time speed 5×": ×5
+  - button "Time speed 20×": ×20
+  - button "Time speed 120×": ×120
+- navigation "Game menu":
+  - button "Inventory Inventory":
+    - generic "Inventory"
+    - generic: Inventory
+  - button "Health Health":
+    - generic "Health"
+    - generic: Health
+  - button "Craft Craft":
+    - generic "Craft"
+    - generic: Craft
+  - button "▧ Map":
+    - text: ▧
+    - generic: Map
+  - button "☷ Journal":
+    - text: ☷
+    - generic: Journal
+  - button "⌂ Workshop":
+    - text: ⌂
+    - generic: Workshop
+  - button "▣ Save":
+    - text: ▣
+    - generic: Save
+- complementary:
+  - generic: Hunger
+  - generic: Tired
+- status: Progress saved locally
+- contentinfo "Game assistance":
+  - button "Main menu": Menu
+  - button "Nearby interactions":
+    - text: Nearby
+    - generic: Q
+  - button "Controls":
+    - text: Controls
+    - generic: "?"
+- dialog "Your home":
+  - banner:
+    - heading "Hearth Studio" [level=2]
+    - generic "House options"
+  - paragraph: Resident · Day 8 · 16:34 · Health 100 · Hunger 9.6 · Thirst 1.6 · Endurance 100
+  - log "Recent life events": Used Apple
+  - button "Pause"
+  - button "Nearby interaction": E · Rest · Chair
+  - text: Time
+  - combobox "Time speed":
+    - option "1×" [selected]
+    - option "5×"
+    - option "20×"
+    - option "120×"
+  - button "Inventory"
+  - paragraph: Resident progress saved on this device
+  - generic "Rotatable wall structure"
+  - paragraph: WASD / arrows move in screen direction · Drag to orbit · Scroll to zoom
+  - dialog "Inventory":
+    - heading "Inventory" [level=2]
+    - paragraph: Resident · Actions resume when you return to the house
+    - combobox "Nearby storage" [active]:
+      - option "No storage selected" [selected]
+    - region "Character health":
+      - heading "Health" [level=3]
+      - paragraph: Health 100.0 · Bleeding 0.0
+      - paragraph: No wounds
+    - region "Nearby facilities":
+      - heading "Nearby facilities" [level=3]
+      - generic: Chair
+      - button "Rest · 2 hours"
+      - generic: Bed
+      - button "Sleep · 8 hours"
+      - button "Rest · 2 hours"
+    - region "Carried items":
+      - heading "Carried items" [level=3]
+      - generic: Water Bottle × 2 · 1000 / 1000 mL
+      - button "Drink Water Bottle"
+      - generic: Can Opener
+      - generic: Tin Can × 10 · 0 / 300 mL
+      - generic: Bandage (Dirty) × 6
+      - generic: Canned Beans × 2
+      - button "Open Canned Beans"
+      - generic: Apple × 4
+      - button "Eat Apple"
+    - region "Storage contents":
+      - paragraph: Move near a cupboard, shelf or fridge to search it.
+    - status
+    - button "Return to house"

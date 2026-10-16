@@ -1,0 +1,82 @@
+[
+  {
+    "requestId": "bedroom-storage-502-a",
+    "baseRevision": 597,
+    "operations": [
+      {
+        "type": "objects.remove",
+        "ids": [
+          "470c5329-d090-47d5-856e-c6ff4e652457",
+          "20a50b20-5911-4a33-b682-645fd291abe5"
+        ]
+      },
+      {
+        "type": "place",
+        "assetId": "tile:tian_studio_storage_bed_S_0",
+        "x": 7994,
+        "y": 11401,
+        "z": 0
+      },
+      {
+        "type": "place",
+        "assetId": "tile:tian_studio_nightstand_S_0",
+        "x": 7996,
+        "y": 11401,
+        "z": 0
+      },
+      {
+        "type": "place",
+        "assetId": "tile:tian_detail_lamp",
+        "x": 7996,
+        "y": 11401,
+        "z": 0
+      },
+      {
+        "type": "place",
+        "assetId": "item:Base.Tshirt_ArmyGreen",
+        "x": 7994,
+        "y": 11401,
+        "z": 0,
+        "storeInContainer": true
+      },
+      {
+        "type": "place",
+        "assetId": "item:Base.Tshirt_CamoGreen",
+        "x": 7994,
+        "y": 11401,
+        "z": 0,
+        "storeInContainer": true
+      },
+      {
+        "type": "place",
+        "assetId": "item:Base.Tshirt_OliveDrab",
+        "x": 7994,
+        "y": 11401,
+        "z": 0,
+        "storeInContainer": true
+      }
+    ]
+  },
+  {
+    "requestId": "bedroom-storage-502-b",
+    "baseRevision": 598,
+    "operations": [
+      {
+        "type": "objects.nudge",
+        "ids": [
+          "39ef7531-0bd1-477b-9291-e953d3375cd5"
+        ],
+        "dx": -0.18,
+        "dy": -0.16,
+        "relativeToHost": true
+      },
+      {
+        "type": "place",
+        "assetId": "tile:tian_studio_water_glass_S_0",
+        "x": 7996,
+        "y": 11401,
+        "z": 0
+      }
+    ]
+  }
+]

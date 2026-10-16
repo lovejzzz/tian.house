@@ -1,0 +1,21 @@
+✔ garden stroke and vehicle placement are one undoable transaction; canceled move restores original (1.520833ms)
+✔ custom levels replace the source lot and basement stairs connect both directions (0.421166ms)
+✔ pool and parked vehicles block walking, including a rotated car footprint (0.188541ms)
+✔ plan validation rejects unsupported coordinates, duplicate squares and malformed vehicles (0.178708ms)
+✔ walkthrough validates before changing live state and keeps player possessions across repeated application (1.779833ms)
+✔ multipart source pieces remain accessible through grouped entries; missing assets are disclosed (1.673791ms)
+✔ stocked supplies roundtrip into real shelf containers without duplication (0.518917ms)
+✔ reflooring preserves furniture as the top selectable layer (0.100708ms)
+✔ a desk computer is reachable while an intervening wall still blocks it (0.43875ms)
+✔ a footprint straddling parallel stair lanes can leave the upper landing (1.2385ms)
+✔ rug overlays retain structural support and floor replacement keeps furniture and textiles (0.210041ms)
+✔ placing empty cookware does not conjure drinking water (0.233959ms)
+✔ resident edits preserve depleted and partly used stock and add only newly authored supplies (0.3485ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 79.457209

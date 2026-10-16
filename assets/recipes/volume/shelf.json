@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-shelf",
+  "version": 2,
+  "generator": "src/frame-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 1.8,
+    "depth": 0.55,
+    "height": 2.03125,
+    "member": 0.035,
+    "shelves": 5,
+    "shelfThickness": 0.025
+  },
+  "materials": {
+    "steel": {
+      "color": 7176569,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    }
+  },
+  "migration": {
+    "S": [
+      "furniture_shelving_01_26",
+      "furniture_shelving_01_27"
+    ],
+    "E": [
+      "furniture_shelving_01_25",
+      "furniture_shelving_01_24"
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.1,
+      0.225
+    ],
+    "cells": [
+      2,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "shelf",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "No source-style fidelity acceptance",
+      "No material texture; simplified structural template",
+      "Storage contents / seated animation not generated"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "furniture_shelving_01_26",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_shelving_01_27",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "furniture_shelving_01_25",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "furniture_shelving_01_24",
+        "dx": 0,
+        "dy": 1
+      }
+    ]
+  },
+  "sourceFiles": [
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

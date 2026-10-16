@@ -1,0 +1,30 @@
+[
+  {
+    "type": "place",
+    "assetId": "tile:furniture_tables_low_01_19",
+    "x": 8006,
+    "y": 11407,
+    "z": 0
+  },
+  {
+    "type": "place",
+    "assetId": "tile:furniture_seating_indoor_02_3",
+    "x": 8004,
+    "y": 11407,
+    "z": 0
+  },
+  {
+    "type": "place",
+    "assetId": "tile:vegetation_indoor_01_10",
+    "x": 8007,
+    "y": 11404,
+    "z": 0
+  },
+  {
+    "type": "place",
+    "assetId": "tile:vegetation_indoor_01_10",
+    "x": 8004,
+    "y": 11404,
+    "z": 0
+  }
+]

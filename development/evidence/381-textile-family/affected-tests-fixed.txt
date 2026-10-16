@@ -1,0 +1,24 @@
+✔ studio equipment keeps its dimensioned physical silhouette and actual empty spaces (337.39475ms)
+✔ all studio recipes generate finite supported convex parts with stable identifiers (919.100083ms)
+✔ every studio direction is one editable catalogue assembly matching its volume recipe (1740.283ms)
+✔ wall lighting on a south boundary points into the room instead of outside (1.518416ms)
+✔ studio upholstery has curved height sections without changing its authored footprint (275.901833ms)
+✔ sewn trim follows thin axis for seat and upright cushion without widening footprint (2.834833ms)
+✔ throw bends continuously over furniture edge, with no blocking collision (0.913708ms)
+✔ padded volumes keep authored bounds and use the visible hull for collision (35.794666ms)
+✔ sofa: delivery regenerates, all source directions preserve geometry and collision (232.094958ms)
+✔ sofa: invalid scale and altered multipart layout rejected (0.258666ms)
+✔ bed: delivery regenerates, all source directions preserve geometry and collision (165.438208ms)
+✔ bed: invalid scale and altered multipart layout rejected (0.098041ms)
+✔ oven: delivery regenerates, all source directions preserve geometry and collision (2.696125ms)
+✔ oven: invalid scale and altered multipart layout rejected (0.07175ms)
+✔ fridge: delivery regenerates, all source directions preserve geometry and collision (1.256292ms)
+✔ fridge: invalid scale and altered multipart layout rejected (0.053833ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3338.089583

@@ -1,0 +1,25 @@
+✔ swap occupied shelves atomically, stock follows its own container once, undo/reload preserve identity (22.801791ms)
+✔ mounted children follow support and cannot be transformed twice (14.501917ms)
+✔ invalid final overlap, unsupported destination and unavailable rotation leave history and scene unchanged (10.883875ms)
+✔ moving furniture keeps tabletop identity and shelf contents through export and undo (25.156458ms)
+✔ group movement fails atomically on collision or unsupported floor (11.366458ms)
+✔ mounted object cannot move independently of its support (7.19575ms)
+✔ stock moves once when translated containers overlap old container positions (12.983166ms)
+✔ erasing furniture removes mounted children, preserves loose supplies and supports undo (17.664834ms)
+✔ erasing a tabletop item keeps its supporting furniture (9.508875ms)
+✔ copy duplicates a group with independent identities, dependent objects and container stock (22.120208ms)
+✔ copy fails atomically on collision, repeated identities or unsupported child-only copies (9.395583ms)
+✔ preview and commit share validation without changing scene or history during preview (10.62ms)
+✔ multi-cell furniture cannot straddle shared room walls (9.04275ms)
+✔ tabletop rehosting preserves identity, rejects unsupported targets and restores through undo (23.687833ms)
+✔ verified rotation preserves identities, support and stock while changing source-facing sprites (91.050125ms)
+✔ unavailable rotation is rejected atomically and the session uses the same catalog resolver (159.306333ms)
+✔ cycling the available rotations does not drift the furniture group (105.074541ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 520.838834

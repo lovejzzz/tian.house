@@ -1,4 +1,4 @@
-import {rootInterval,projectRootDelta} from './root-motion.js?v=5c5c6755f6e4';
+import {rootInterval,projectRootDelta} from './root-motion.js?v=ab55877942d1';
 // Normal, unobstructed player branch from the pinned climbwindow nodes and
 // ClimbThroughWindowState. Counter, fall, rope, injury and root rotation remain
 // separate obligations. This is not the complete source state machine.
@@ -15,6 +15,12 @@ export function slideWindowAxis(current,target,thirtyFPSMultiplier){
  return f(c+(t>c?Math.min(step,delta):Math.max(-step,delta)));
 }
 export function advanceWindowPosition(player,motion,dt){
+ if(motion.continuous){
+  const phase=windowPhase(motion.elapsed),t=Math.max(0,Math.min(1,(motion.elapsed-WINDOW_START_TIME)/(WINDOW_FINISH_TIME-WINDOW_START_TIME))),e=t*t*(3-2*t);
+  player.x=motion.from.x+(motion.to.x-motion.from.x)*e;player.y=motion.from.y+(motion.to.y-motion.from.y)*e;
+  return phase;
+ }
+
  const north=motion.from.y!==motion.to.y,phase=windowPhase(motion.elapsed),axis=north?'y':'x',cross=north?'x':'y';
  if(!phase.started)player[cross]=slideWindowAxis(player[cross],motion.from[cross],dt*30);
  else {

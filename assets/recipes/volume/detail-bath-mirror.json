@@ -1,0 +1,132 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-detail-bath-mirror",
+  "version": 1,
+  "generator": "src/interior-details-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "kind": "bath-mirror"
+  },
+  "materials": {
+    "wood": {
+      "color": 8872764,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "paper": {
+      "color": 14735809,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "linen": {
+      "color": 11976361,
+      "roughness": 0.92,
+      "metalness": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "book": {
+      "color": 5269082,
+      "roughness": 0.7,
+      "metalness": 0
+    },
+    "metal": {
+      "color": 7634553,
+      "roughness": 0.35,
+      "metalness": 0.65
+    },
+    "ceramic": {
+      "color": 15261640,
+      "roughness": 0.3,
+      "metalness": 0
+    },
+    "coffee": {
+      "color": 3155228,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "green": {
+      "color": 6977868,
+      "roughness": 0.8,
+      "metalness": 0
+    },
+    "terracotta": {
+      "color": 11166791,
+      "roughness": 0.8,
+      "metalness": 0
+    },
+    "mirror": {
+      "color": 10596538,
+      "roughness": 0.18,
+      "metalness": 0.25
+    }
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "semantics": {
+    "kind": "bath-mirror",
+    "mount": "wall",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Original approximate bathroom fixture; not reference reconstruction",
+      "Mirror uses a tinted reflective material; no planar reflection",
+      "Cabinet contents use game inventory; no animated door"
+    ]
+  },
+  "migration": {
+    "N": [
+      "tian_bath_mirror_N"
+    ],
+    "W": [
+      "tian_bath_mirror_W"
+    ],
+    "S": [
+      "tian_bath_mirror_S"
+    ],
+    "E": [
+      "tian_bath_mirror_E"
+    ]
+  },
+  "sourceLayout": {
+    "N": [
+      {
+        "tile": "tian_bath_mirror_N",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_bath_mirror_W",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "S": [
+      {
+        "tile": "tian_bath_mirror_S",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "tian_bath_mirror_E",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  }
+}

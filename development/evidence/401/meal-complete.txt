@@ -1,0 +1,545 @@
+- generic "Tian’s House single-player game view"
+- banner:
+  - text: TIAN’S HOUSE
+  - generic: 8002, 11408 · Floor 0
+  - generic: 14:29
+  - generic: Day 4
+  - button "▶"
+  - button "Time speed 1×" [pressed]: ×1
+  - button "Time speed 5×": ×5
+  - button "Time speed 20×": ×20
+  - button "Time speed 120×": ×120
+- navigation "Game menu":
+  - button "Inventory Inventory":
+    - generic "Inventory"
+    - generic: Inventory
+  - button "Health Health":
+    - generic "Health"
+    - generic: Health
+  - button "Craft Craft":
+    - generic "Craft"
+    - generic: Craft
+  - button "▧ Map":
+    - text: ▧
+    - generic: Map
+  - button "☷ Journal":
+    - text: ☷
+    - generic: Journal
+  - button "⌂ Workshop":
+    - text: ⌂
+    - generic: Workshop
+  - button "▣ Save":
+    - text: ▣
+    - generic: Save
+- complementary
+- status: Progress saved locally
+- contentinfo "Game assistance":
+  - button "Main menu": Menu
+  - button "Nearby interactions":
+    - text: Nearby
+    - generic: Q
+  - button "Controls":
+    - text: Controls
+    - generic: "?"
+- dialog "Main menu":
+  - generic: TIAN / HOUSE
+  - paragraph: A place to wander. A place to make.
+  - heading "Welcome. Make yourself at home." [level=1]:
+    - generic: Welcome.
+    - generic: Make yourself
+    - generic: at home.
+  - navigation "Main menu actions":
+    - button "Start Game":
+      - generic: "01"
+      - generic: Start Game
+      - generic: ↗
+    - button "Workshop":
+      - generic: "02"
+      - generic: Workshop
+      - generic: ↗
+    - button "Settings":
+      - generic: "03"
+      - generic: Settings
+      - generic: ↗
+  - paragraph: Your progress stays with you, in this browser.
+  - img "Isometric preview of your house"
+  - generic: YOUR LITTLE CORNER OF THE WORLD
+  - generic: Explore it. Make it yours.
+- dialog "House workshop":
+  - banner:
+    - button "House library":
+      - generic: House library
+    - textbox "House name": Hearth Studio
+    - button "Reference photos":
+      - generic: Reference photos
+    - generic "Draft and undo history saved on this device · 9045 KiB stored / 140992 KiB before compression": ·Saved
+    - button "Save house":
+    - button "Walk through":
+      - generic: Walk through
+    - button "Return":
+  - navigation "Building tools":
+    - button "Select / Move" [pressed]:
+    - button "Room":
+    - button "Draw walls":
+    - button "Edit rooms":
+    - button "Select objects":
+    - button "Floor area":
+    - button "Paint":
+    - button "Pool":
+    - button "Erase":
+    - button "Clear area":
+    - button "Entry point":
+    - button "Contents":
+    - button "Undo":
+    - button "Redo" [disabled]:
+  - complementary:
+    - searchbox "Search workshop objects"
+    - navigation "Object categories":
+      - button "Essentials" [pressed]:
+      - button "Furniture":
+      - button "Walls & roofs":
+      - button "Doors & windows":
+      - button "Floors & terrain":
+      - button "Stairs":
+      - button "Appliances":
+      - button "Garden":
+      - button "Outdoor":
+      - button "Pools":
+      - button "Vehicles":
+      - button "Items":
+      - button "Decoration & tiles":
+      - button "Favorites":
+      - button "All":
+    - combobox "Object type":
+      - option "All types" [selected]
+      - option "Beds · 1"
+      - option "Doors · 2"
+      - option "Electronics · 1"
+      - option "Kitchen · 2"
+      - option "Music & games · 1"
+      - option "Seating · 1"
+      - option "Stairs · 9"
+      - option "Storage · 2"
+      - option "Tables & desks · 2"
+      - option "Tile & stone · 1"
+      - option "Walls · 2"
+      - option "Windows · 3"
+      - option "Wood · 1"
+    - combobox "Object condition":
+      - option "All conditions" [selected]
+      - option "Intact · 3"
+      - option "Unspecified · 25"
+    - paragraph: Essentials · 28
+    - generic "Workshop object catalog":
+      - button "Choose Wooden staircase · W":
+        - generic: Wooden staircase
+        - generic "W / N": ↻ 2
+      - button "Choose Three-panel garage door · W":
+        - generic: Three-panel garage door
+        - generic "W / N": ↻ 2
+      - button "Choose Exceptional Large Table · S":
+        - generic: Exceptional Large Table
+        - generic "S / E": ↻ 2
+      - button "Choose Large Modern Bed · S":
+        - generic: Large Modern Bed
+        - generic "W / N / S / E": ↻ 4
+      - button "Choose White Lazy Couch · S":
+        - generic: White Lazy Couch
+        - generic "S / E / W / N": ↻ 4
+      - button "Choose Large Metal Shelves · S":
+        - generic: Large Metal Shelves
+        - generic "E / S": ↻ 2
+      - button "Choose Fancy White Wardrobe · S":
+        - generic: Fancy White Wardrobe
+        - generic "E / S": ↻ 2
+      - button "Choose Black Grand Piano · S":
+        - generic: Black Grand Piano
+        - generic "S / E": ↻ 2
+      - button "Choose Tian Picture glazing · N":
+        - generic: Tian Picture glazing
+        - generic "N / W": ↻ 2
+      - button "Choose Desktop Computer · S":
+        - generic: Desktop Computer
+        - generic "S / E / N / W": ↻ 4
+      - button "Choose Grey Oven · S":
+        - generic: Grey Oven
+        - generic "E / S / W / N": ↻ 4
+      - button "Choose Steel Fridge · S":
+        - generic: Steel Fridge
+        - generic "S / E / N / W": ↻ 4
+  - generic "House building canvas"
+  - button "Floor down":
+  - combobox "Current floor":
+    - option "F4"
+    - option "F3"
+    - option "F2"
+    - option "G" [selected]
+    - option "B1"
+    - option "B2"
+  - button "Floor up":
+  - button "Copy layout from floor below":
+  - button "Fit lot":
+  - generic "View options":
+  - text: ✓ ✓ ✓ ✓
+  - contentinfo:
+    - status: Editing Ground
+    - generic "Workshop controls":
+  - dialog "3D structure preview":
+    - heading "Home · Hearth Studio" [level=2]
+    - combobox "Preview floor":
+      - option "Floor 0" [selected]
+    - combobox "Structure room":
+      - option "Living studio" [selected]
+      - option "Bathroom"
+    - combobox "Lighting study":
+      - option "Daylight"
+      - option "Moonlight"
+      - option "Game clock" [selected]
+    - 'button "Lamps: on" [pressed]'
+    - button "Roof cutaway" [pressed]: "Roof: cutaway"
+    - button "Automatic wall cutaway" [pressed]: "Walls: auto"
+    - button "Save progress" [active]
+    - button "Frame house"
+    - button "Frame room"
+    - button "Close preview"
+    - paragraph: Resident · Day 5 · 0:58 · Health 72 · Hunger 4.3 · Thirst 26.6 · Endurance 100 · Danger nearby — rest unavailable
+    - log "Recent life events": Used Canned Beans (Open)
+    - button "Resume living"
+    - button "Pause" [disabled]
+    - text: Time
+    - combobox "Time speed":
+      - option "1×" [selected]
+      - option "5×"
+      - option "20×"
+      - option "120×"
+    - button "Inventory"
+    - paragraph: Resident progress saved on this device
+    - generic "Rotatable wall structure"
+    - paragraph: Drag to orbit · Scroll to zoom · Click a wall or floor to select its room
+    - generic "Inspector & diagnostics"
+    - option "Select wall or floor" [selected]
+    - option "wall:level:0:N:7994:11401"
+    - option "wall:level:0:W:7994:11401"
+    - option "wall:level:0:W:7994:11402"
+    - option "wall:level:0:W:7994:11404"
+    - option "wall:level:0:W:7994:11405"
+    - option "wall:level:0:N:7994:11407"
+    - option "wall:level:0:W:7994:11406"
+    - option "wall:level:0:N:7995:11407"
+    - option "wall:level:0:N:7996:11401"
+    - option "wall:level:0:N:7996:11407"
+    - option "wall:level:0:N:7997:11407"
+    - option "wall:level:0:N:7998:11407"
+    - option "wall:level:0:N:7999:11401"
+    - option "wall:level:0:N:7999:11407"
+    - option "wall:level:0:N:8000:11401"
+    - option "wall:level:0:N:8000:11407"
+    - option "wall:level:0:N:8001:11401"
+    - option "wall:level:0:N:8001:11407"
+    - option "wall:level:0:N:8002:11401"
+    - option "wall:level:0:N:8002:11407"
+    - option "wall:level:0:N:8003:11401"
+    - option "wall:level:0:W:8004:11401"
+    - option "wall:level:0:W:8004:11402"
+    - option "wall:level:0:W:8004:11403"
+    - option "wall:level:0:W:8004:11404"
+    - option "wall:level:0:W:8004:11405"
+    - option "wall:level:0:N:8003:11407"
+    - option "wall:level:0:W:8004:11406"
+    - option "wall:level:0:W:8001:11407"
+    - option "wall:level:0:N:8001:11409"
+    - option "wall:level:0:W:8001:11408"
+    - option "wall:level:0:N:8002:11409"
+    - option "wall:level:0:W:8004:11407"
+    - option "wall:level:0:N:8003:11409"
+    - option "wall:level:0:W:8004:11408"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "wall-finish · undefined"
+    - option "Floor · Living studio"
+    - option "Floor · Bathroom"
+    - option "surface · blends_natural_01_16"
+    - option "surface · floors_exterior_tilesandstone_01_0"
+    - option "roof · hearth-roof-0"
+    - option "roof · hearth-roof-0"
+    - option "roof-closure · hearth-roof-0"
+    - option "roof-closure · hearth-roof-0"
+    - option "roof-closure · hearth-roof-0"
+    - option "roof · hearth-roof-1"
+    - option "roof · hearth-roof-1"
+    - option "roof-closure · hearth-roof-1"
+    - option "roof-closure · hearth-roof-1"
+    - option "roof-closure · hearth-roof-1"
+    - option "frame · hearth-window-w"
+    - option "glass · hearth-window-w"
+    - option "frame · hearth-window-n1"
+    - option "glass · hearth-window-n1"
+    - option "frame · hearth-window-n3"
+    - option "glass · hearth-window-n3"
+    - option "frame · hearth-window-n4"
+    - option "glass · hearth-window-n4"
+    - option "frame · hearth-bath-door"
+    - option "leaf · hearth-bath-door"
+    - option "frame · hearth-entry"
+    - option "leaf · hearth-entry"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 470c5329-d090-47d5-856e-c6ff4e652457"
+    - option "furniture · 20a50b20-5911-4a33-b682-645fd291abe5"
+    - option "furniture · 20a50b20-5911-4a33-b682-645fd291abe5"
+    - option "furniture · 20a50b20-5911-4a33-b682-645fd291abe5"
+    - option "furniture · 20a50b20-5911-4a33-b682-645fd291abe5"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 7d5321ee-35d7-4267-9214-4f01034b3117"
+    - option "furniture · 44031355-092b-49cd-9246-1f9f793818c9"
+    - option "furniture · a2c18d5c-57ef-4904-a471-29ae4d8d0e17"
+    - option "furniture · a2c18d5c-57ef-4904-a471-29ae4d8d0e17"
+    - option "furniture · a2c18d5c-57ef-4904-a471-29ae4d8d0e17"
+    - option "furniture · a2c18d5c-57ef-4904-a471-29ae4d8d0e17"
+    - option "furniture · ffb3b8a6-ee75-4fd7-b0c3-b16f84acf62f"
+    - option "furniture · ffb3b8a6-ee75-4fd7-b0c3-b16f84acf62f"
+    - option "furniture · ffb3b8a6-ee75-4fd7-b0c3-b16f84acf62f"
+    - option "furniture · ffb3b8a6-ee75-4fd7-b0c3-b16f84acf62f"
+    - option "furniture · edc6052a-d840-435e-a544-2843a0657d88"
+    - option "furniture · edc6052a-d840-435e-a544-2843a0657d88"
+    - option "furniture · edc6052a-d840-435e-a544-2843a0657d88"
+    - option "furniture · edc6052a-d840-435e-a544-2843a0657d88"
+    - option "furniture · 3eac7b0a-1883-41f6-a614-82681d413cf0"
+    - option "furniture · 3eac7b0a-1883-41f6-a614-82681d413cf0"
+    - option "furniture · 3eac7b0a-1883-41f6-a614-82681d413cf0"
+    - option "furniture · c7595c3b-3450-49ae-82fa-0203ced1ce2c"
+    - option "furniture · c7595c3b-3450-49ae-82fa-0203ced1ce2c"
+    - option "furniture · c7595c3b-3450-49ae-82fa-0203ced1ce2c"
+    - option "furniture · c7595c3b-3450-49ae-82fa-0203ced1ce2c"
+    - option "furniture · fa52224b-73bb-4de1-8c33-6dccb46a14c0"
+    - option "furniture · fa52224b-73bb-4de1-8c33-6dccb46a14c0"
+    - option "furniture · fa52224b-73bb-4de1-8c33-6dccb46a14c0"
+    - option "furniture · fa52224b-73bb-4de1-8c33-6dccb46a14c0"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · 98edb229-0253-4976-828d-0755607d8f0a"
+    - option "furniture · a59a1ae5-fa2c-4ccb-b3f5-82589af1f248"
+    - option "furniture · a59a1ae5-fa2c-4ccb-b3f5-82589af1f248"
+    - option "furniture · a59a1ae5-fa2c-4ccb-b3f5-82589af1f248"
+    - option "furniture · a443e55e-d131-47b4-aa55-a5f8aaa9631d"
+    - option "furniture · a443e55e-d131-47b4-aa55-a5f8aaa9631d"
+    - option "furniture · a443e55e-d131-47b4-aa55-a5f8aaa9631d"
+    - option "furniture · a443e55e-d131-47b4-aa55-a5f8aaa9631d"
+    - option "furniture · a443e55e-d131-47b4-aa55-a5f8aaa9631d"
+    - option "furniture · 93d5d39f-4579-42b0-9def-9c1add5bbc21"
+    - option "furniture · 93d5d39f-4579-42b0-9def-9c1add5bbc21"
+    - option "furniture · 31a3d170-8177-42cf-9beb-993fb70b7354"
+    - option "furniture · 31a3d170-8177-42cf-9beb-993fb70b7354"
+    - option "furniture · 31a3d170-8177-42cf-9beb-993fb70b7354"
+    - option "furniture · 31a3d170-8177-42cf-9beb-993fb70b7354"
+    - option "furniture · d5219af1-38a2-43fe-bb0e-c125fce16ce8"
+    - option "furniture · d5219af1-38a2-43fe-bb0e-c125fce16ce8"
+    - option "furniture · d5219af1-38a2-43fe-bb0e-c125fce16ce8"
+    - option "furniture · 88666f1f-7529-4706-8eaf-163cffa2daf1"
+    - option "furniture · 88666f1f-7529-4706-8eaf-163cffa2daf1"
+    - option "furniture · 88666f1f-7529-4706-8eaf-163cffa2daf1"
+    - option "furniture · 88666f1f-7529-4706-8eaf-163cffa2daf1"
+    - option "furniture · bfa7739c-ffb5-405a-841d-c30ca4b868af"
+    - option "furniture · bfa7739c-ffb5-405a-841d-c30ca4b868af"
+    - option "furniture · bfa7739c-ffb5-405a-841d-c30ca4b868af"
+    - option "furniture · bfa7739c-ffb5-405a-841d-c30ca4b868af"
+    - option "furniture · 3da37459-76de-4bbd-b9fd-6b21679823ab"
+    - option "furniture · 3da37459-76de-4bbd-b9fd-6b21679823ab"
+    - option "furniture · 3da37459-76de-4bbd-b9fd-6b21679823ab"
+    - option "furniture · 3da37459-76de-4bbd-b9fd-6b21679823ab"
+    - option "furniture · 3da37459-76de-4bbd-b9fd-6b21679823ab"
+    - option "furniture · 8caa3fba-7ecb-47a9-a385-5c5581d2f4e6"
+    - option "furniture · 8caa3fba-7ecb-47a9-a385-5c5581d2f4e6"
+    - option "furniture · f76c68a3-f2f4-4a80-90cf-12933d93e472"
+    - option "furniture · f76c68a3-f2f4-4a80-90cf-12933d93e472"
+    - option "furniture · f76c68a3-f2f4-4a80-90cf-12933d93e472"
+    - option "furniture · 313c675b-0c99-4a08-9a8f-bf4da34d4b60"
+    - option "furniture · 313c675b-0c99-4a08-9a8f-bf4da34d4b60"
+    - option "furniture · 313c675b-0c99-4a08-9a8f-bf4da34d4b60"
+    - option "furniture · 10118b24-4611-452d-a5ad-6c773cdd7b3d"
+    - option "furniture · 10118b24-4611-452d-a5ad-6c773cdd7b3d"
+    - option "furniture · 10118b24-4611-452d-a5ad-6c773cdd7b3d"
+    - option "furniture · 10118b24-4611-452d-a5ad-6c773cdd7b3d"
+    - option "furniture · 7cf9e499-e757-433e-98b8-2261f1b78595"
+    - option "furniture · 7cf9e499-e757-433e-98b8-2261f1b78595"
+    - option "furniture · 7cf9e499-e757-433e-98b8-2261f1b78595"
+    - option "furniture · 7cf9e499-e757-433e-98b8-2261f1b78595"
+    - option "furniture · 933dfb42-bdc9-4f23-af14-10438a22d92f"
+    - option "furniture · 933dfb42-bdc9-4f23-af14-10438a22d92f"
+    - option "furniture · 933dfb42-bdc9-4f23-af14-10438a22d92f"
+    - option "furniture · ef86fc8b-89e5-469b-b3fc-071350de499d"
+    - option "furniture · ef86fc8b-89e5-469b-b3fc-071350de499d"
+    - option "furniture · ef86fc8b-89e5-469b-b3fc-071350de499d"
+    - option "furniture · ef86fc8b-89e5-469b-b3fc-071350de499d"
+    - option "furniture · ef86fc8b-89e5-469b-b3fc-071350de499d"
+    - option "furniture · 821038b7-c274-4c7a-9f19-dcadac53ce1a"
+    - option "furniture · 821038b7-c274-4c7a-9f19-dcadac53ce1a"
+    - option "furniture · 64a0c61b-6ce8-4309-a003-a7a47cb2eab2"
+    - option "furniture · 64a0c61b-6ce8-4309-a003-a7a47cb2eab2"
+    - option "furniture · 19f297e3-58ae-4105-83bc-b1e77bd5f4e7"
+    - option "furniture · 19f297e3-58ae-4105-83bc-b1e77bd5f4e7"
+    - option "furniture · e1981c4f-f7ba-4dfd-884a-a788e81fa5d5"
+    - option "furniture · e1981c4f-f7ba-4dfd-884a-a788e81fa5d5"
+    - option "furniture · 9fc724c4-58bb-4878-ad18-688bfe0c20d1"
+    - option "furniture · 9fc724c4-58bb-4878-ad18-688bfe0c20d1"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · cccbade3-f741-4905-b594-b7273cd891ef"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · bc417e21-43cf-4f28-b72b-0d7ca5c52149"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · cd0f2d18-002a-46cb-af06-2e4033a46468"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · 35457527-f518-4d3a-a565-9950443ac183"
+    - option "furniture · bc200a3d-1453-4c44-b4a1-7a80a88539c5"
+    - option "furniture · bc200a3d-1453-4c44-b4a1-7a80a88539c5"
+    - option "furniture · c84a1092-1bff-4c7b-80d7-b22edc6b52e5"
+    - option "furniture · c84a1092-1bff-4c7b-80d7-b22edc6b52e5"
+    - option "furniture · c84a1092-1bff-4c7b-80d7-b22edc6b52e5"
+    - option "furniture · c84a1092-1bff-4c7b-80d7-b22edc6b52e5"
+    - option "furniture · 728d48c1-27d9-4be7-8c74-ebd7d18cb509"
+    - option "furniture · 728d48c1-27d9-4be7-8c74-ebd7d18cb509"
+    - option "furniture · 728d48c1-27d9-4be7-8c74-ebd7d18cb509"
+    - option "furniture · 728d48c1-27d9-4be7-8c74-ebd7d18cb509"
+    - option "furniture · 02e7d210-326c-47a1-9bf0-87ce18e0b02d"
+    - option "furniture · 02e7d210-326c-47a1-9bf0-87ce18e0b02d"
+    - option "furniture · 8f593ad0-c34a-452d-aecd-848c0c9d4778"
+    - option "furniture · 8f593ad0-c34a-452d-aecd-848c0c9d4778"
+    - option "furniture · d96c3a42-807a-4bfe-9174-803db88a79b6"
+    - option "furniture · d96c3a42-807a-4bfe-9174-803db88a79b6"
+    - option "furniture · d96c3a42-807a-4bfe-9174-803db88a79b6"
+    - option "furniture · d96c3a42-807a-4bfe-9174-803db88a79b6"
+    - option "furniture · da622f28-f2ec-4e0a-b6ab-2510d262fcae"
+    - option "furniture · da622f28-f2ec-4e0a-b6ab-2510d262fcae"
+    - option "furniture · da622f28-f2ec-4e0a-b6ab-2510d262fcae"
+    - option "furniture · da622f28-f2ec-4e0a-b6ab-2510d262fcae"
+    - option "furniture · 5138c5f5-a9c3-46aa-88c8-ff3e15975e7d"
+    - option "furniture · 5138c5f5-a9c3-46aa-88c8-ff3e15975e7d"
+    - option "furniture · 5138c5f5-a9c3-46aa-88c8-ff3e15975e7d"
+    - option "furniture · e8edb587-ddfa-400f-8c53-9e86fe9b83c2"
+    - option "furniture · e8edb587-ddfa-400f-8c53-9e86fe9b83c2"
+    - option "furniture · e8edb587-ddfa-400f-8c53-9e86fe9b83c2"
+    - option "furniture · b7dc1aac-1cfe-4863-8307-c5ba5797bdc0"
+    - option "furniture · b7dc1aac-1cfe-4863-8307-c5ba5797bdc0"
+    - option "furniture · b7dc1aac-1cfe-4863-8307-c5ba5797bdc0"
+    - option "Closed" [selected]
+    - option "Open 45°"
+    - option "Open 90°"
+    - option "Open −90°"
+    - option "approximate" [selected]
+    - option "inferred"
+    - option "observed"

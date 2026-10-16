@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {usableRoomMaterial} from '../src/workshop-materials.js';
+const props={floor:{solidfloor:''},rug:{},roofs_30_01_0:{BlockRain:''},roofs_30_01_9:{},wall:{WallN:''}};const entry=tile=>({parts:[{tile}]});
+test('room finish selection excludes overlays, furniture and multipart assets',()=>{assert.equal(usableRoomMaterial(entry('floor'),props),true);for(const tile of ['rug','wall','unknown'])assert.equal(usableRoomMaterial(entry(tile),props),false);assert.equal(usableRoomMaterial({parts:[{tile:'floor'},{tile:'floor'}]},props),false);});
+test('gable finish selection requires a supported rain-blocking slope asset',()=>{assert.equal(usableRoomMaterial(entry('roofs_30_01_0'),props,true),true);for(const tile of ['floor','roofs_30_01_9','wall'])assert.equal(usableRoomMaterial(entry(tile),props,true),false);});

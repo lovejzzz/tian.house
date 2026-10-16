@@ -1,0 +1,33 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {useFixtureCatalog} from './fixtures/catalog.mjs';
+useFixtureCatalog();
+import {World} from '../src/world.js';import {Renderer} from '../src/render.js';
+test('loaded render levels include basements and lower floors but exclude roofs above player',()=>{
+ const w=new World({},{});w.cells.set('a',{levels:[-2,0,1,2,3]});w.cells.set('b',{levels:[-1,0,1]});
+ assert.deepEqual(w.renderLevels(1),[-2,-1,0,1]);assert.deepEqual(w.renderLevels(-1),[-2,-1]);
+ w.cells.delete('a');assert.deepEqual(w.renderLevels(1),[-1,0,1]);
+});
+test('upper floor paints after lower objects and player draws exactly once',()=>{
+ const calls=[],squares=new Map([[0,{x:0,y:0,z:0,tiles:['floor0','furniture0']}],[1,{x:0,y:0,z:1,tiles:['floor1','furniture1']}]]);
+ const ctx=new Proxy({createRadialGradient:()=>({addColorStop(){}})}, {get:(o,k)=>k in o?o[k]:()=>{},set:(o,k,v)=>(o[k]=v,true)});
+ const w={renderLevels:()=>[0,1],square:(x,y,z)=>x===0&&y===0?squares.get(z):null,props:n=>n.startsWith('floor')?{solidfloor:''}:{},state:()=>({}),apparentZ:a=>a.z,groundHeight:()=>0,tree:()=>null};
+ const r=new Renderer({getContext:()=>ctx},w,{regions:{}},{frame:()=>{calls.push('player');return null;}});
+ r.resize=()=>{r.dpr=1;r.width=400;r.height=400;};
+ r.visibility={update(){},advance(){},visible:new Set(),key:()=>'',brightness:()=>1};
+ const paint=[];r.sprite=(name,x,y,alpha,brightness)=>{if(alpha)calls.push(name);paint.push({name,alpha,brightness});};
+ const sim={state:{player:{x:.5,y:.5,z:1},zombies:[],elapsed:0,time:540,explored:{},inventory:{items:{},containers:{}}}};r.draw(sim);
+ assert.deepEqual(calls,['floor0','furniture0','floor1','furniture1','player']);
+ calls.length=paint.length=0;r.visibility.brightness=()=>.25;r.draw(sim);
+ assert.ok(paint.every(p=>p.alpha===1&&p.brightness===.25));
+ calls.length=paint.length=0;r.visibility.brightness=()=>0;r.draw(sim);
+ assert.deepEqual(calls,['floor0','floor1','player']);
+ assert.ok(paint.every(p=>p.alpha===1&&p.brightness===0));
+ calls.length=0;r.visibility.visible.add('');r.visibility.brightness=()=>1;
+ sim.state.inventory={items:{water:{id:'water',type:'Base.WaterBottle',container:'floor'}},containers:{floor:{ground:{x:0,y:0,z:1}},player:{}}};
+ r.ground={frame:()=>{calls.push('ground');return null;}};r.draw(sim);
+ assert.deepEqual(calls,['floor0','furniture0','floor1','furniture1','ground','player']);
+ let groundPosition;w.groundHeight=(x,y,z)=>{assert.equal(z,1);return 6;};r.groundIcon=(item,pos)=>{groundPosition=pos;};
+ sim.state.inventory.items.water.groundOffset={x:.5,y:.5,z:.1};r.draw(sim);assert.equal(groundPosition.y,r.project(.5,.5,1.1+6/96).y);
+ calls.length=0;sim.state.inventory.items.water.container='player';r.draw(sim);
+ assert.equal(calls.includes('ground'),false,'picked-up item must leave the world draw list');
+});

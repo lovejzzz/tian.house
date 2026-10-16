@@ -1,30 +1,36 @@
-import {validateHousePlan} from './workshop-model.js?v=5c5c6755f6e4';
-import {planWater,transferWater,validateWaterState} from './water.js?v=5c5c6755f6e4';
-import {englishLabel} from './english.js?v=5c5c6755f6e4';
-import {ensureMedical,injury,advanceMedical,validateMedical,planTreatment,treatWound,BODY_PARTS} from './medical.js?v=5c5c6755f6e4';
-import {buildingRecipes,planBuilding,planBuildingMaterials,commitBuilding,validateBuildings} from './building.js?v=5c5c6755f6e4';
-import {advanceCooking,ensureAppliance,isCookingAppliance,validateCookingState} from './cooking.js?v=5c5c6755f6e4';
-import {craftingRecipes,planCraft,commitCraft} from './crafting.js?v=5c5c6755f6e4';
-import {completeReadingKnowledge} from './recipe-knowledge.js?v=5c5c6755f6e4';
-import {consumeCraftInputs} from './craft-consumption.js?v=5c5c6755f6e4';
-import {readingSound,readingPageFlips} from './reading-sounds.js?v=5c5c6755f6e4';
-import {ordinaryLiterature,applyLiteratureEffects,isLiteratureRead,addReadLiterature,advanceReadingClock,skillBook,readingComprehension,prepareBookReading,bookReadingDuration,updateBookPages,validateReadingState} from './reading.js?v=5c5c6755f6e4';
-import {transferDuration} from './item-transfer.js?v=5c5c6755f6e4';
-import {groundDropPlacement} from './ground-placement.js?v=5c5c6755f6e4';
-import {damageCheck} from './item-wear.js?v=5c5c6755f6e4';
-import {breakCarriedStoneHammer} from './item-breakage.js?v=5c5c6755f6e4';
-import {weaponSprite} from './item-model-state.js?v=5c5c6755f6e4';
-import {recipeWearModifier} from './recipe-wear.js?v=5c5c6755f6e4';
-import {selectBarricadeInputs,barricadeInputsValid,barricadeInputScripts} from './recipe-inputs.js?v=5c5c6755f6e4';
-import {awardWoodworkXp,validateWoodworkProgression} from './progression.js?v=5c5c6755f6e4';
-import {startWindowTurn,advanceWindowTurn} from './window-turn.js?v=5c5c6755f6e4';
-import {doorToggle} from './doors.js?v=5c5c6755f6e4';
-import {canAddBarricadePlank,addBarricadePlank,woodBarricadeDuration} from './barricades.js?v=5c5c6755f6e4';
-import {findTilePath} from './pathfinding.js?v=5c5c6755f6e4';
-import {Inventory,inventoryState,definition,itemType,validateInventory} from './inventory.js?v=5c5c6755f6e4';
-import {canToggleWindow,canClimbWindow,windowLanding,hasWindowBarricade,windowBarricadeSide} from './windows.js?v=5c5c6755f6e4';
-import {windowTogglePhase,advanceWindowOpening,OPEN_STAGES} from './window-toggle.js?v=5c5c6755f6e4';
-import {WINDOW_FINISH_TIME,windowPhase,advanceWindowPosition,windowRootDelta} from './window-traversal.js?v=5c5c6755f6e4';
+import {carriedCareItems,planTowelDrying,completeTowelDrying} from './household-care.js?v=ab55877942d1';
+import {planToilet,completeToilet,validateToilets,TOILET_SECONDS,FLUSH_SECONDS} from './toileting.js?v=ab55877942d1';
+import {nearbyDanger} from './nearby-danger.js?v=ab55877942d1';
+import {advanceFoodAge,storedContainerKind} from './food-storage.js?v=ab55877942d1';
+import {planHandRinse,advanceHandRinse,RINSE_SECONDS} from './hand-rinsing.js?v=ab55877942d1';
+import {planShower,advanceShower,advanceBodyDrying,validateHygiene,SHOWER_SECONDS} from './showering.js?v=ab55877942d1';
+import {validateHousePlan} from './workshop-model.js?v=ab55877942d1';
+import {planWater,transferWater,validateWaterState} from './water.js?v=ab55877942d1';
+import {englishLabel} from './english.js?v=ab55877942d1';
+import {ensureMedical,injury,advanceMedical,validateMedical,planTreatment,treatWound,BODY_PARTS} from './medical.js?v=ab55877942d1';
+import {buildingRecipes,planBuilding,planBuildingMaterials,commitBuilding,validateBuildings} from './building.js?v=ab55877942d1';
+import {advanceCooking,ensureAppliance,isCookingAppliance,validateCookingState} from './cooking.js?v=ab55877942d1';
+import {craftingRecipes,planCraft,commitCraft} from './crafting.js?v=ab55877942d1';
+import {completeReadingKnowledge} from './recipe-knowledge.js?v=ab55877942d1';
+import {consumeCraftInputs} from './craft-consumption.js?v=ab55877942d1';
+import {readingSound,readingPageFlips} from './reading-sounds.js?v=ab55877942d1';
+import {ordinaryLiterature,applyLiteratureEffects,isLiteratureRead,addReadLiterature,advanceReadingClock,skillBook,readingComprehension,prepareBookReading,bookReadingDuration,updateBookPages,validateReadingState} from './reading.js?v=ab55877942d1';
+import {transferDuration} from './item-transfer.js?v=ab55877942d1';
+import {groundDropPlacement} from './ground-placement.js?v=ab55877942d1';
+import {damageCheck} from './item-wear.js?v=ab55877942d1';
+import {breakCarriedStoneHammer} from './item-breakage.js?v=ab55877942d1';
+import {weaponSprite} from './item-model-state.js?v=ab55877942d1';
+import {recipeWearModifier} from './recipe-wear.js?v=ab55877942d1';
+import {selectBarricadeInputs,barricadeInputsValid,barricadeInputScripts} from './recipe-inputs.js?v=ab55877942d1';
+import {awardWoodworkXp,validateWoodworkProgression} from './progression.js?v=ab55877942d1';
+import {startWindowTurn,advanceWindowTurn} from './window-turn.js?v=ab55877942d1';
+import {doorToggle} from './doors.js?v=ab55877942d1';
+import {canAddBarricadePlank,addBarricadePlank,woodBarricadeDuration} from './barricades.js?v=ab55877942d1';
+import {findTilePath} from './pathfinding.js?v=ab55877942d1';
+import {Inventory,inventoryState,definition,itemType,validateInventory} from './inventory.js?v=ab55877942d1';
+import {canToggleWindow,canClimbWindow,windowLanding,hasWindowBarricade,windowBarricadeSide} from './windows.js?v=ab55877942d1';
+import {windowTogglePhase,advanceWindowOpening,OPEN_STAGES} from './window-toggle.js?v=ab55877942d1';
+import {WINDOW_FINISH_TIME,windowPhase,advanceWindowPosition,windowRootDelta} from './window-traversal.js?v=ab55877942d1';
 // Browser implementation under development. Values below are provisional design
 // values, not claimed PZ-compatible until source-runtime differential validation.
 export const ITEMS={
@@ -56,14 +62,14 @@ export function weight(bag){return Object.entries(bag).reduce((sum,[id,n])=>sum+
 export function transfer(from,to,id,capacity=20){if(!ITEMS[id]||!Number.isInteger(from[id])||from[id]<1)return {ok:false,reason:'Item does not exist'};
  if(weight(to)+ITEMS[id].weight>capacity+1e-8)return {ok:false,reason:'Carrying capacity reached'};
  from[id]--;if(!from[id])delete from[id];to[id]=(to[id]||0)+1;return {ok:true};}
-export function newState(spawn){const inventory=inventoryState(), inv=new Inventory(inventory);for(const[type,n]of Object.entries({water:2,beans:2,bandage:2,bat:1}))for(let i=0;i<n;i++){const item=inv.create(type);if(item.fluid)item.fluid.amount=item.fluid.capacity;}inv.equip(inv.find('bat').id);return {version:2,inventory,time:9*60,elapsed:0,player:{x:spawn[0],y:spawn[1],z:spawn[2],angle:0,hp:100,hunger:5,thirst:5,fatigue:0,endurance:100,bleeding:0,infection:0,capacity:12,weapon:'bat',kills:0,skills:{carpentry:0,cooking:0,combat:0}},containers:{},zombies:[],spawned:{},corpses:[],builds:[],journal:['You wake up in a house in Rosewood. Make yourself at home.'],changes:{},weather:'clear',seed:25485521};}
+export function newState(spawn,{starterBat=true}={}){const inventory=inventoryState(), inv=new Inventory(inventory);for(const[type,n]of Object.entries({water:2,beans:2,bandage:2,bat:starterBat?1:0}))for(let i=0;i<n;i++){const item=inv.create(type);if(item.fluid)item.fluid.amount=item.fluid.capacity;}return {version:2,inventory,time:9*60,elapsed:0,player:{x:spawn[0],y:spawn[1],z:spawn[2],angle:0,hp:100,hunger:5,thirst:5,fatigue:0,endurance:100,bleeding:0,infection:0,capacity:12,kills:0,skills:{carpentry:0,cooking:0,combat:0}},containers:{},zombies:[],spawned:{},corpses:[],builds:[],journal:['You wake up in a house in Rosewood. Make yourself at home.'],changes:{},weather:'clear',seed:25485521};}
 export class Simulation{
- constructor(world,state,animationData=null){this.animationData=animationData;this.world=world;this.state=state;this.inventory=new Inventory(state.inventory);this.action=null;this.paused=false;this.speed=1;this.attackCooldown=0;world.setHousePlan?.(state.housePlan);world.changes=state.changes;world.builds=state.builds??=[];world.reindexBuilds?.();world.revision++;this.events=[];this.soundEvents=[];}
+ constructor(world,state,animationData=null,{spawnZombies=true}={}){this.spawnZombies=spawnZombies;this.animationData=animationData;this.world=world;this.state=state;this.inventory=new Inventory(state.inventory);this.action=null;this.paused=false;this.speed=1;this.attackCooldown=0;world.setHousePlan?.(state.housePlan);world.changes=state.changes;world.builds=state.builds??=[];world.reindexBuilds?.();world.revision++;this.events=[];this.soundEvents=[];}
  log(message){this.state.journal.unshift(message);this.state.journal.length=Math.min(30,this.state.journal.length);this.events.push(message);}
- container(obj){const id='world:'+obj.id;if(this.state.inventory.containers[id]){if(isCookingAppliance(obj))ensureAppliance(this.state.inventory.containers[id],obj.props.container);return id;}const inv=this.inventory;inv.container(id,obj.name,Number(obj.props.ContainerCapacity)||50);
+ container(obj){const id='world:'+(obj.storageId||obj.id);if(this.state.inventory.containers[id]){if(isCookingAppliance(obj))ensureAppliance(this.state.inventory.containers[id],obj.props.container);return id;}const inv=this.inventory;inv.container(id,obj.name,Number(obj.props.ContainerCapacity)||50);
   const rng=random(hash(obj.id)),kind=obj.props.container||'';if(isCookingAppliance(obj))ensureAppliance(inv.state.containers[id],kind);
   // Explicit workshop stock is authoritative; an empty cupboard stays empty.
-  if(this.state.housePlan?.deterministicContainers)return id;
+  if(this.state.housePlan?.deterministicContainers||obj.props.TianEmptyContainer==='true')return id;
   let pool=['rag','book','bandage','lighter','pen'];
   if(/fridge|freezer|stove/.test(kind))pool=['rawfood','water','beans'];
   else if(/counter|crate|shelves|metal/.test(kind))pool=['beans','cereal','water','nails','hammer','plank','seeds','knife','opener','backpack'];
@@ -76,6 +82,27 @@ export class Simulation{
   if(changes.on!==undefined)a.on=!!changes.on;
   if(changes.targetTemperature!==undefined&&Number.isFinite(changes.targetTemperature))a.targetTemperature=Math.max(50,Math.min(300,changes.targetTemperature));
   this.log(a.on?'Appliance heating started':'Appliance turned off');return true;
+ }
+ useToilet(object,kind){
+  const plan=planToilet(this.world,this.state,object,kind);if(!plan.ok){this.log(plan.reason);return false;}
+  const name=kind==='useToilet'?'Use toilet':'Flush toilet';
+  if(!this.startAction(name,kind==='useToilet'?TOILET_SECONDS:FLUSH_SECONDS,()=>{const result=completeToilet(this.world,this.state,object,kind);this.log(result.ok?(kind==='useToilet'?'Toilet used — flush and wash your hands':'Toilet flushed'):result.reason);},{target:object.id}))return false;
+  this.action.toilet={object,kind};return true;
+ }
+ rinseHands(object){
+  const plan=planHandRinse(this.world,this.state,object);if(!plan.ok){this.log(plan.reason);return false;}
+  if(!this.startAction('Rinse hands',RINSE_SECONDS,()=>this.log('Hands rinsed with water'),{target:object.id}))return false;
+  this.action.handRinse={object,litres:0};return true;
+ }
+ dryWithTowel(itemId){
+  const plan=planTowelDrying(this.inventory,this.state.player,itemId);if(!plan.ok){this.log(plan.reason);return false;}
+  return this.startAction('Dry with bath towel',15,()=>{const result=completeTowelDrying(this.inventory,this.state.player,itemId);this.log(result.ok?'Dried with bath towel':result.reason);});
+ }
+ shower(object,soapId=null){
+  const plan=planShower(this.world,this.state,object);if(!plan.ok){this.log(plan.reason);return false;}
+  if(soapId&&!carriedCareItems(this.inventory,'Base.Soap2').some(i=>i.id===soapId)){this.log('Carry usable soap first');return false;}
+  if(!this.startAction(soapId?'Shower with soap':'Shower',SHOWER_SECONDS,()=>this.log('Shower complete'),{target:object.id}))return false;
+  this.action.shower={object,litres:0,soapId,soapUsed:false};return true;
  }
  takeWater(object,itemId=null){
   const plan=planWater(this.world,this.state,this.inventory,object,itemId);if(!plan.ok){this.log(plan.reason);return false;}
@@ -96,12 +123,15 @@ export class Simulation{
   if(p.CanBandage){const part=Object.entries(ensureMedical(this.state.player).parts).find(([,w])=>!w.bandage&&w.remaining>0)?.[0];if(!part){this.log('There are no wounds to bandage');return false;}return this.treat(part,'bandage',item.id);}
   if(p.CantEat){this.log('Open the can first, Cannot be eaten directly');return false;}
   if(!p.HungerChange&&!item.fluid?.amount&&!p.CanBandage)return false;
-  return this.startAction(`Use ${d.name}`,2,()=>{
+  if(item.container!=='player')return false;
+  const consumption={itemId:item.id,type:item.type,kind:item.fluid?.amount?'drink':'eat'};
+  const started=this.startAction(`Use ${d.name}`,2,()=>{
    if(!inv.state.items[item.id]||item.container!=='player')return;const player=this.state.player;
    if(item.fluid?.amount){const amount=Math.min(item.fluid.amount,.25);item.fluid.amount-=amount;player.thirst=clamp(player.thirst-amount*45);}
-   else {const result=inv.consumeFood(item.id,fraction);if(result.ok)player.hunger=clamp(player.hunger-result.hunger);else this.log(result.reason);}
+   else {const result=inv.consumeFood(item.id,fraction);if(result.ok){player.hunger=clamp(player.hunger-result.hunger);player.thirst=clamp(player.thirst-result.thirst);}else this.log(result.reason);}
    this.log(`Used ${d.name}`);
   });
+  if(started)this.action.consumption=consumption;return started;
  }
  readBook(id){
   const item=this.inventory.state.items[id],p=this.state.player;
@@ -212,7 +242,7 @@ export class Simulation{
   },{target:obj.id}))return false;
   // Entity Prop1 is a visual action prop, not ToolRight or actual equipment.
   this.action.valid=valid;
-  const landing=windowLanding(obj,p),facing=landing?Math.atan2(landing.y-(Math.floor(p.y)+.5),landing.x-(Math.floor(p.x)+.5)):p.angle;
+  const landing=windowLanding(obj,p),facing=landing?Math.atan2(landing.y-(obj.polygonWall?p.y:Math.floor(p.y)+.5),landing.x-(obj.polygonWall?p.x:Math.floor(p.x)+.5)):p.angle;
   const hp=hammer?definition(hammer.type).properties:{};
   const handModel=hammer?weaponSprite(hammer,hp)??hp.StaticModel:null;
   p.buildMotion={elapsed:0,turn:startWindowTurn(this.animationData,p.angle,facing),handModels:{primary:handModel??null,secondary:null}};
@@ -252,25 +282,33 @@ export class Simulation{
   // ItemUtils.checkWeapon returns immediately in this state, keeping the handle.
   return changed;
  }
- interact(obj,action){if(!obj||this.state.player.windowMotion||this.state.player.windowToggle)return;const p=this.state.player;
+ interact(obj,action,spatial=null){if(!obj||this.state.player.windowMotion||this.state.player.windowToggle)return;const p=this.state.player;
   if(!this.world.interactions(p).some(o=>o.id===obj.id))return;
   const s=this.world.state(obj.x,obj.y,obj.z,obj.tile);
   if(obj.type==='door'){const result=doorToggle(this.world,obj,p,this.inventory);if(result.patch)this.world.change(obj.x,obj.y,obj.z,obj.tile,result.patch);if(!result.ok){this.log(result.reason);return;}if(obj.props.GarageDoor){const north='doorN'in obj.props,index=(Number(obj.props.GarageDoor)-1)%3;for(let i=0;i<3;i++){const x=obj.x+(north?i-index:0),y=obj.y+(north?0:i-index);for(const tile of this.world.square(x,y,obj.z)?.tiles||[]){const p=this.world.props(tile);if(p.GarageDoor&&('doorN'in p)===north&&((Number(p.GarageDoor)-1)%3)===i)this.world.change(x,y,obj.z,tile,result.patch);}}}this.log(s.open?'Close door':'Open door');}
   if(obj.type==='light'){this.world.change(obj.x,obj.y,obj.z,obj.tile,{lightOff:!s.lightOff});this.log(s.lightOff?'Light on':'Light off');}
   if(obj.type==='water')this.takeWater(obj);
   if(obj.type==='bed'){
-   if(this.state.zombies.some(z=>z.hp>0&&z.z===p.z&&Math.hypot(z.x-p.x,z.y-p.y)<8)){this.log('There is danger nearby, You cannot sleep');return;}
-   const sleeping=action==='sleep';if(sleeping&&obj.props.BedType==='badBed'){this.log('Use a bed for overnight sleep');return;}
+   if(nearbyDanger(this.state,spatial)){this.log(action==='watch'?'There is danger nearby. Move to safety before sitting down.':'There is danger nearby. You cannot rest safely.');return;}
+   const watching=action==='watch';if(watching&&obj.props.BedType!=='badBed'){this.log('Choose a chair or sofa to watch television');return;}const sleeping=action==='sleep';if(sleeping&&obj.props.BedType==='badBed'){this.log('Use a bed for overnight sleep');return;}
    const hours=sleeping?8:2;
-   if(this.startAction(sleeping?'Sleep · 8 hours':'Rest · 2 hours',hours*60/.7,()=>{this.speed=1;this.log(sleeping?'You woke after eight hours':'You rested for two hours');},{target:obj.id})){
-    this.action.rest={sleeping};this.speed=120;
+   if(this.startAction(watching?'Watch television':sleeping?'Sleep · 8 hours':'Rest · 2 hours',hours*60/.7,()=>{this.speed=1;this.log(sleeping?'You woke after eight hours':'You rested for two hours');},{target:obj.id})){
+    this.action.rest={sleeping,watching};this.speed=watching?1:120;
    }
   }
   if(obj.type==='window'){
    if(this.action)return;
    const stand=this.world.windowApproach(obj,p);
    if(!stand){this.log('There is nowhere to stand beside the window');return;}
-   if(Math.floor(p.x)!==stand.x||Math.floor(p.y)!==stand.y){
+   if(stand.continuous&&Math.hypot(p.x-stand.x,p.y-stand.y)>.025){
+    const probe={x:p.x,y:p.y,z:p.z},dx=stand.x-p.x,dy=stand.y-p.y,n=Math.max(1,Math.ceil(Math.hypot(dx,dy)/.06));
+    for(let i=0;i<n;i++)this.world.move(probe,dx/n,dy/n);
+    if(Math.hypot(probe.x-stand.x,probe.y-stand.y)>.025){this.log('Move closer to the centre of the window');return;}
+    if(this.startAction('Walk to window',Math.hypot(dx,dy)/1.6,()=>{delete p.windowApproach;this.interact(obj,action);},{target:obj.id})){
+     p.windowApproach={path:[stand],index:0,stalled:0};this.action.windowState=()=>this.world.state(obj.x,obj.y,obj.z,obj.tile);
+    }return;
+   }
+   if(!stand.continuous&&(Math.floor(p.x)!==stand.x||Math.floor(p.y)!==stand.y)){
     const route=findTilePath(this.world,p,stand);
     if(route.status!=='found'){this.log(route.status==='search-limit'?'No route to the window found yet':'You cannot reach the window');return;}
     const duration=route.path.length/1.6;
@@ -283,17 +321,18 @@ export class Simulation{
     if(!canClimbWindow(obj.props,s)){this.log('The window is closed or barricaded');return;}
     const landing=windowLanding(obj,p);if(!landing){this.log('Stand on one side of the window');return;}
     const flags=this.world.flags(landing.x,landing.y,landing.z);
-    if(!flags.floor||flags.solid){this.log('The landing is blocked');return;}
+    if(!flags.floor||flags.solid||this.world.objectOverlap(landing.x,landing.y,landing.z)>1e-9||obj.polygonWall&&!this.world.windowTraversalClear(obj,p,landing)){this.log('The landing is blocked');return;}
     if(!this.startAction('Climb through window',WINDOW_FINISH_TIME,()=>{delete p.windowMotion;},{target:obj.id}))return;
-    const from={x:Math.floor(p.x)+.5,y:Math.floor(p.y)+.5,z:p.z};
+    const from=obj.polygonWall?{x:p.x,y:p.y,z:p.z}:{x:Math.floor(p.x)+.5,y:Math.floor(p.y)+.5,z:p.z};
     p.angle=Math.atan2(landing.y-from.y,landing.x-from.x);
-    p.windowMotion={elapsed:0,from,to:landing};
+    p.windowMotion={elapsed:0,from,to:landing,continuous:!!obj.polygonWall};
+    if(obj.polygonWall)this.action.windowClear=()=>this.world.windowTraversalClear(obj,from,landing);
     this.action.windowState=current;return;
    }
    if(s.smashed||Number.isFinite(s.health)&&s.health<=0){this.log('The window glass is broken');return;}
    if(!canToggleWindow(obj.props,s,obj,p)){this.log('The window is locked or barricaded');return;}
    const landing=windowLanding(obj,p);if(!landing){this.log('Stand on one side of the window');return;}
-   const facing=Math.atan2(landing.y-(Math.floor(p.y)+.5),landing.x-(Math.floor(p.x)+.5));
+   const facing=Math.atan2(landing.y-(obj.polygonWall?p.y:Math.floor(p.y)+.5),landing.x-(obj.polygonWall?p.x:Math.floor(p.x)+.5));
    const turning=startWindowTurn(this.animationData,p.angle,facing);
    if(turning){
     if(this.startAction('Turn toward window',1,()=>{delete p.windowTurn;this.interact(obj,action);},{target:obj.id})){
@@ -302,7 +341,7 @@ export class Simulation{
    }
    const open=!s.open,phase=windowTogglePhase(open,0);
    if(!this.startAction(open?'Open window':'Close window',phase.duration,()=>{delete p.windowToggle;},{target:obj.id}))return;
-   p.angle=Math.atan2(landing.y-(Math.floor(p.y)+.5),landing.x-(Math.floor(p.x)+.5));
+   p.angle=Math.atan2(landing.y-(obj.polygonWall?p.y:Math.floor(p.y)+.5),landing.x-(obj.polygonWall?p.x:Math.floor(p.x)+.5));
    p.windowToggle={open,elapsed:0,committed:false,...(open?{stage:'start',stageElapsed:0,attempts:0}:{})};
    this.action.windowState=current;this.action.windowBlocked=()=>hasWindowBarricade(current(),obj,p);this.action.openContext={state:current,exterior:()=>this.world.isExterior(p.x,p.y,p.z),strength:p.skills.strength??5,fitness:p.skills.fitness??5,burglar:!!p.traits?.includes('Burglar'),nextInt:max=>{this.state.windowRng=(Math.imul(this.state.windowRng??this.state.seed,1664525)+1013904223)>>>0;return Math.floor(this.state.windowRng/4294967296*max);}};this.action.breakLock=()=>this.world.change(obj.x,obj.y,obj.z,obj.tile,{permaLocked:true});this.action.commitWindow=()=>{if(current().permaLocked)return;this.world.change(obj.x,obj.y,obj.z,obj.tile,{open,locked:false});this.log(open?'Open window':'Close window');};
   }
@@ -330,28 +369,43 @@ export class Simulation{
   const duration=transferDuration({weight:inv.actualWeight(inv.state.items[id]),sourceDirect:source==='player',sourceCarried:inv.root(source)==='player',destinationCarried:inv.root(dest)==='player',destinationFloor:!!inv.state.containers[dest].ground,destinationWeight:inv.weight(dest),destinationCapacity:inv.state.containers[dest].capacity,traits:this.state.player.traits,awkwardGloves:!!this.state.player.awkwardGloves});
   return this.startAction('Transfer item',duration,()=>{if(inv.state.items[id]?.container!==source){this.log('The item has moved');return;}const result=inv.transfer(id,dest);if(!result.ok){this.log(result.reason);return;}const item=inv.state.items[id],tile=inv.state.containers[dest].ground;if(tile)Object.assign(item,groundDropPlacement(item,tile,(x,y)=>this.world.apparentZ({x:tile.x+x,y:tile.y+y,z:tile.z}),{center:!!this.state.dropItemsOnSquareCenter,random:this.groundRandom??Math.random}));else delete item.groundOffset;},{target});
  }
- spawnNearby(){const p=this.state.player,cx=Math.floor(p.x/32),cy=Math.floor(p.y/32);
+ spawnNearby(){if(!this.spawnZombies)return;const p=this.state.player,cx=Math.floor(p.x/32),cy=Math.floor(p.y/32);
   for(let dx=-1;dx<=1;dx++)for(let dy=-1;dy<=1;dy++){
    const id=`${cx+dx},${cy+dy},${p.z}`;if(this.state.spawned[id])continue;
    if(!this.world.square((cx+dx)*32+16,(cy+dy)*32+16,p.z))continue;
    this.state.spawned[id]=true;const rng=random(hash(id));
-   for(let i=0;i<8;i++){const x=(cx+dx)*32+rng()*32,y=(cy+dy)*32+rng()*32;const f=this.world.flags(x,y,p.z);if(f.floor&&!f.solid&&Math.hypot(x-p.x,y-p.y)>12)this.state.zombies.push({id:`${id}:${i}`,x,y,z:p.z,hp:70,angle:rng()*6.28,cooldown:0,alert:0});}
+   for(let i=0;i<8;i++){const x=(cx+dx)*32+rng()*32,y=(cy+dy)*32+rng()*32;const f=this.world.flags(x,y,p.z);if(f.floor&&!f.solid&&this.world.objectOverlap(x,y,p.z)<=1e-9&&Math.hypot(x-p.x,y-p.y)>12)this.state.zombies.push({id:`${id}:${i}`,x,y,z:p.z,hp:70,angle:rng()*6.28,cooldown:0,alert:0});}
   }
  }
- attack(){const p=this.state.player;if(this.attackCooldown>0||this.action||p.hp<=0||p.endurance<5)return false;this.attackCooldown=.7;p.endurance=clamp(p.endurance-5);
+ attack(spatial=null){const p=this.state.player;if(this.attackCooldown>0||this.action||p.hp<=0||p.endurance<5)return false;this.attackCooldown=.7;p.endurance=clamp(p.endurance-5);
   const weapon=this.inventory.state.items[this.inventory.state.equipment.primary];const damage=weapon?Number(definition(weapon.type).properties.MaxDamage||.08)*25:8;let hit=false;
   for(const z of this.state.zombies){if(z.hp<=0||z.z!==p.z)continue;const dx=z.x-p.x,dy=z.y-p.y,d=Math.hypot(dx,dy);const facing=Math.cos(p.angle)*dx+Math.sin(p.angle)*dy;
-   if(d<1.55&&facing>-.15&&this.world.lineClear(p,z)){z.hp-=damage;z.alert=10;this.world.move(z,dx*.25,dy*.25);p.skills.combat+=1;hit=true;if(z.hp<=0){p.kills++;this.state.corpses.push({x:z.x,y:z.y,z:z.z});this.log('A zombie was killed');}break;}
+   if(d<1.55&&facing>-.15&&this.world.lineClear(p,z)&&(!spatial||spatial.clearAttack(p,z))){z.hp-=damage;z.alert=10;(spatial?spatial.move(z,dx*.25,dy*.25):this.world.move(z,dx*.25,dy*.25));p.skills.combat+=1;hit=true;if(z.hp<=0){p.kills++;this.state.corpses.push({x:z.x,y:z.y,z:z.z});this.log('A zombie was killed');}break;}
   }this.events.push(hit?'hit':'swing');return true;
  }
- tick(dt,input={}){if(this.paused||this.state.player.hp<=0)return;if((input.x||input.y||this.state.zombies.some(z=>z.hp>0&&z.z===this.state.player.z&&Math.hypot(z.x-this.state.player.x,z.y-this.state.player.y)<8))&&this.speed!==1)this.speed=1;dt=Math.min(dt,.1)*this.speed;if(this.action?.rest)dt=Math.min(dt,this.action.left);const s=this.state,p=s.player;s.elapsed+=dt;const previousTime=s.time;s.time+=dt*.7;advanceReadingClock(s,previousTime,s.time);advanceMedical(p,s.time-previousTime);advanceCooking(this.inventory,s.time-previousTime,{electricity:s.utilities?.electricity!==false,onEvent:message=>this.log(message),onCooked:()=>{this.speed=1;}});this.attackCooldown=Math.max(0,this.attackCooldown-dt);
+ movementSpeed(input={}){const p=this.state.player;if(p.hp<=0||this.paused)return 0;let speed=input.run&&p.endurance>8?3.6:1.6;if(input.sneak)speed=.85;if(this.inventory.encumbrance()>p.capacity*.8)speed*=.7;return speed;}
+ stopFastForwardForNeeds(){const p=this.state.player;if(this.speed>1&&(p.hunger>=85||p.thirst>=85)){this.speed=1;this.log(p.thirst>=85?'Time returned to normal — you need water':'Time returned to normal — you need food');return true;}return false;}
+ tick(dt,input={},resolvedMotion=null){if(this.paused||this.state.player.hp<=0)return;this.stopFastForwardForNeeds();if((input.x||input.y||nearbyDanger(this.state,resolvedMotion?.spatial))&&this.speed!==1)this.speed=1;dt=Math.min(dt,.1)*this.speed;if(this.action?.rest)dt=Math.min(dt,this.action.left);const s=this.state,p=s.player;s.elapsed+=dt;const previousTime=s.time;s.time+=dt*.7;advanceReadingClock(s,previousTime,s.time);advanceBodyDrying(p,s.time-previousTime,{showering:!!this.action?.shower});advanceMedical(p,s.time-previousTime,{resting:!!this.action?.rest});advanceFoodAge(this.inventory,s.time-previousTime,{electricity:s.utilities?.electricity!==false,containerKind:id=>storedContainerKind(this.world,id)});advanceCooking(this.inventory,s.time-previousTime,{electricity:s.utilities?.electricity!==false,onEvent:message=>this.log(message),onCooked:()=>{this.speed=1;}});this.attackCooldown=Math.max(0,this.attackCooldown-dt);
   let autoMoving=false;const traversing=!!p.windowMotion,move=!!(input.x||input.y)&&!traversing;if(move&&this.action)this.cancel();
   if(this.action){const a=this.action;
    if(a.rest){
-    const danger=s.zombies.some(z=>z.hp>0&&z.z===p.z&&Math.hypot(z.x-p.x,z.y-p.y)<8);
+    const danger=nearbyDanger(s,resolvedMotion?.spatial);
     if(danger||p.hunger>=85||p.thirst>=85){this.cancel();this.log(danger?'You woke because of danger':'You woke needing food or water');}
     else if(!this.world.interactions(p).some(o=>o.id===a.target))this.cancel();
     else {p.fatigue=clamp(p.fatigue-dt*(a.rest.sleeping ? .15 : .08));a.left=Math.max(0,a.left-dt);if(a.left<=0){this.action=null;a.complete();}}
+   }else if(a.toilet){
+    const result=planToilet(this.world,s,a.toilet.object,a.toilet.kind);if(!result.ok){this.cancel();this.log(result.reason);}else{a.left=Math.max(0,a.left-dt);if(a.left<=0){this.action=null;a.complete();}}
+   }else if(a.handRinse){
+    const result=advanceHandRinse(this.world,s,a.handRinse.object,Math.min(dt,a.left));
+    if(!result.ok){this.cancel();this.log(result.reason);}else{a.left=Math.max(0,a.left-result.seconds);a.handRinse.litres+=result.litres;if(a.left<=1e-7){this.action=null;a.complete();}}
+   }else if(a.shower){
+    const shower=a.shower;
+    if(shower.soapId&&!shower.soapUsed&&planShower(this.world,s,shower.object).ok&&Math.min(dt,a.left)>0){
+     if(!carriedCareItems(this.inventory,'Base.Soap2').some(i=>i.id===shower.soapId)){this.cancel();this.log('Soap is no longer available');return;}
+     shower.soapUsed=this.inventory.useCraftItem(shower.soapId,1).used===1;
+    }
+    const result=advanceShower(this.world,s,shower.object,Math.min(dt,a.left),{soap:shower.soapUsed});
+    if(!result.ok){this.cancel();this.log(result.reason);}else{a.left=Math.max(0,a.left-result.seconds);a.shower.litres+=result.litres;if(a.left<=1e-7){this.action=null;a.complete();}}
    }else if(a.water){
     const w=a.water,plan=planWater(this.world,s,this.inventory,w.object,w.itemId);
     if(!plan.ok)this.cancel();
@@ -390,8 +444,9 @@ export class Simulation{
     if(state.destroyed||state.smashed||a.windowBlocked()||!this.world.interactions(p).some(o=>o.id===a.target))this.cancel();
     else {const done=advanceWindowTurn(this.animationData,p,motion,dt);a.left=Math.abs(motion.remaining)/Math.PI;if(done){this.action=null;a.complete();}}
    }else if(p.windowMotion){const motion=p.windowMotion;
-    if(!windowPhase(motion.elapsed).started&&!canClimbWindow({},a.windowState())){delete p.windowMotion;this.action=null;this.log('The window is closed, Climbing canceled');}
-    else {const previous=motion.elapsed;motion.elapsed+=dt;if(this.animationData){const delta=windowRootDelta(this.animationData,previous,motion.elapsed,p.angle);p.x=Math.fround(p.x+delta.x);p.y=Math.fround(p.y+delta.y);}a.left=Math.max(0,a.duration-motion.elapsed);const phase=advanceWindowPosition(p,motion,dt);if(phase.finished){this.action=null;a.complete();}}
+    if(motion.continuous&&a.windowClear&&!a.windowClear()){p.x=motion.from.x;p.y=motion.from.y;delete p.windowMotion;this.action=null;this.log('The window landing is blocked');}
+    else if(!windowPhase(motion.elapsed).started&&!canClimbWindow({},a.windowState())){delete p.windowMotion;this.action=null;this.log('The window is closed, Climbing canceled');}
+    else {const previous=motion.elapsed;motion.elapsed+=dt;if(this.animationData&&!motion.continuous){const delta=windowRootDelta(this.animationData,previous,motion.elapsed,p.angle);p.x=Math.fround(p.x+delta.x);p.y=Math.fround(p.y+delta.y);}a.left=Math.max(0,a.duration-motion.elapsed);const phase=advanceWindowPosition(p,motion,dt);if(phase.finished){this.action=null;a.complete();}}
    }else if(p.windowToggle){const motion=p.windowToggle,state=a.windowState();
     if(state.destroyed||state.smashed||a.windowBlocked()){this.cancel();}
     else if(motion.open){const finished=advanceWindowOpening(motion,dt,a.openContext,{commit:a.commitWindow,breakLock:a.breakLock,exert:value=>{p.endurance=clamp(p.endurance-value*100);}});a.duration=OPEN_STAGES[motion.stage].duration/.8;a.left=Math.max(0,a.duration-motion.stageElapsed);if(finished){if(motion.stage==='fail')this.log('The window lock is jammed, Cannot open');this.action=null;a.complete();}}
@@ -401,17 +456,18 @@ export class Simulation{
     }
    }else {a.left-=dt;if(a.valid&&!a.valid()||a.target&&!this.world.interactions(p).some(o=>o.id===a.target))this.cancel();else if(a.left<=0){this.action=null;a.complete();}}
   }
-  let speed=input.run&&p.endurance>8?3.6:1.6;if(input.sneak)speed=.85;if(this.inventory.encumbrance()>p.capacity*.8)speed*=.7;
+  const speed=this.movementSpeed(input);
   p.moving=autoMoving;p.running=false;
-  if(move){const len=Math.hypot(input.x,input.y);p.angle=Math.atan2(input.y,input.x);p.moving=this.world.move(p,input.x/len*speed*dt,input.y/len*speed*dt);p.running=p.moving&&!!input.run;if(p.running)p.endurance=clamp(p.endurance-dt*4);}
+  if(move){const len=Math.hypot(input.x,input.y);p.angle=Math.atan2(input.y,input.x);p.moving=resolvedMotion?!!resolvedMotion.moved:this.world.move(p,input.x/len*speed*dt,input.y/len*speed*dt);p.running=p.moving&&!!input.run&&!input.sneak&&p.endurance>8;if(p.running)p.endurance=clamp(p.endurance-dt*4);}
   else p.endurance=clamp(p.endurance+dt*3);
   p.hunger=clamp(p.hunger+dt*.018);p.thirst=clamp(p.thirst+dt*.029);p.fatigue=clamp(p.fatigue+dt*.009);
+  this.stopFastForwardForNeeds();
   if(p.bleeding)p.hp=clamp(p.hp-dt*p.bleeding*.04);if(p.hunger>=100||p.thirst>=100)p.hp=clamp(p.hp-dt*.15);
   this.spawnNearby();
   for(const z of s.zombies){if(z.hp<=0||z.z!==p.z)continue;const d=Math.hypot(z.x-p.x,z.y-p.y);if(d>45)continue;z.cooldown=Math.max(0,z.cooldown-dt);
-   if(d<(input.run?16:input.sneak?4:9)&&this.world.lineClear(z,p))z.alert=8;else z.alert=Math.max(0,z.alert-dt);
-   if(z.alert>0){z.angle=Math.atan2(p.y-z.y,p.x-z.x);if(d>.75)this.world.move(z,Math.cos(z.angle)*.75*dt,Math.sin(z.angle)*.75*dt);z.moving=d>.75;
-    if(d<1&&!z.cooldown&&this.world.lineClear(z,p)){p.hp=clamp(p.hp-8);injury(p,Object.keys(BODY_PARTS)[Math.floor(random(hash(z.id+':'+Math.floor(s.elapsed)))()*17)],'scratch');z.cooldown=2;this.cancel();this.log('You are injured, Get some distance and bandage your wounds!');}
+   if(d<(input.run?16:input.sneak?4:9)&&(resolvedMotion?.spatial?resolvedMotion.spatial.clearSight(z,p):this.world.lineClear(z,p)))z.alert=8;else z.alert=Math.max(0,z.alert-dt);
+   if(z.alert>0){z.angle=Math.atan2(p.y-z.y,p.x-z.x);z.moving=d>.75&&(resolvedMotion?.spatial?resolvedMotion.spatial.move(z,Math.cos(z.angle)*.75*dt,Math.sin(z.angle)*.75*dt):this.world.move(z,Math.cos(z.angle)*.75*dt,Math.sin(z.angle)*.75*dt));
+    if(d<1&&!z.cooldown&&this.world.lineClear(z,p)&&(!resolvedMotion?.spatial||resolvedMotion.spatial.clearAttack(z,p))){p.hp=clamp(p.hp-8);injury(p,Object.keys(BODY_PARTS)[Math.floor(random(hash(z.id+':'+Math.floor(s.elapsed)))()*17)],'scratch');z.cooldown=2;this.cancel();this.log('You are injured, Get some distance and bandage your wounds!');}
    }else z.moving=false;
   }
   if(p.hp<=0){delete p.windowMotion;delete p.windowToggle;delete p.windowApproach;delete p.windowTurn;delete p.buildMotion;delete p.readMotion;this.action=null;this.log('You died.This save has reached the end of its journey.');}
@@ -427,7 +483,7 @@ export function parseSave(text,{bounds=[7680,11008,8960,12800]}={}){const s=JSON
  }
  if(s.housePlan)validateHousePlan(s.housePlan,bounds);
  s.builds??=[];validateBuildings(s.builds);
- validateInventory(s.inventory);validateCookingState(s.inventory);validateWaterState(s);
+ validateInventory(s.inventory);validateCookingState(s.inventory);validateWaterState(s);validateToilets(s);validateHygiene(s);
  validateMedical(s.player);
  validateWoodworkProgression(s.player);
  validateReadingState(s.player,s.inventory.items,s);

@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {IDBFactory} from 'fake-indexeddb';import {GameSaveStore} from '../src/game-save-store.js';
+test('legacy saves remain readable; large replacements and backup use IndexedDB without localStorage writes',async()=>{
+ const idb=new IDBFactory(),legacy={getItem:k=>k==='save'?'legacy state':null,setItem(){throw Error('Quota exceeded');}},store=new GameSaveStore(idb,legacy),large=JSON.stringify({photos:'x'.repeat(6*1024*1024)});
+ assert.equal(await store.load('save'),'legacy state');await store.replace('save',large,'legacy state');assert.equal(await store.load('save'),large);assert.equal(await store.load('save-before-workshop'),'legacy state');assert.equal(await new GameSaveStore(idb,legacy).load('save'),large);
+});
+test('replacement abort after backup write leaves both saved records unchanged and later saves still work',async()=>{
+ const store=new GameSaveStore(new IDBFactory(),null);await store.replace('save','current','old backup');const database=store.database.bind(store);
+ store.database=async()=>{const db=await database(),transaction=db.transaction.bind(db);db.transaction=(...args)=>{const tx=transaction(...args),objectStore=tx.objectStore.bind(tx);tx.objectStore=(...args)=>{const rows=objectStore(...args),put=rows.put.bind(rows);let count=0;rows.put=(...p)=>{if(++count===2)throw Error('Injected second write failure');return put(...p);};return rows;};return tx;};return db;};
+ await assert.rejects(store.replace('save','new','new backup'),/second write/);store.database=database;assert.equal(await store.load('save'),'current');assert.equal(await store.load('save-before-workshop'),'old backup');await store.save('save','recovered');assert.equal(await store.load('save'),'recovered');
+});
+test('queued saves cannot finish out of order',async()=>{const store=new GameSaveStore(new IDBFactory(),null);await Promise.all([store.save('save','first'),store.replace('save','second','first'),store.save('save','third')]);assert.equal(await store.load('save'),'third');assert.equal(await store.load('save-before-workshop'),'first');});
+test('unreadable legacy storage rejects instead of leaving startup waiting forever',async()=>{const store=new GameSaveStore(new IDBFactory(),{getItem(){throw Error('Legacy storage unavailable');}});await assert.rejects(store.load('save'),/Legacy storage unavailable/);await store.save('save','new state');assert.equal(await store.load('save'),'new state');});

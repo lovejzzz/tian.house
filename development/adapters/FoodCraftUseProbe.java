@@ -1,0 +1,10 @@
+import java.lang.reflect.*;import java.util.*;
+public class FoodCraftUseProbe {
+ public static void main(String[]args)throws Exception{
+  RecipeLoadProbe.main(new String[]{args[0]});Class<?> rand=Class.forName("zombie.core.random.RandStandard");rand.getMethod("init").invoke(rand.getField("INSTANCE").get(null));Class<?> u=Class.forName("sun.misc.Unsafe");Field uf=u.getDeclaredField("theUnsafe");uf.setAccessible(true);Method alloc=u.getMethod("allocateInstance",Class.class);Class<?> c=Class.forName("zombie.inventory.types.Food"),ic=Class.forName("zombie.inventory.InventoryItem"),cc=Class.forName("zombie.inventory.ItemContainer");Method use=Class.forName("zombie.inventory.ItemUser").getMethod("UseItem",ic,boolean.class,boolean.class,int.class,boolean.class,boolean.class);
+  for(float base:new float[]{-.4f,-.375f,0f})for(float portion:new float[]{.25f,1f})for(int requested:new int[]{1,10,50})for(boolean keep:new boolean[]{false,true})for(boolean destroy:new boolean[]{false,true}){
+   Object item=alloc.invoke(uf.get(null),c),container=alloc.invoke(uf.get(null),cc);ArrayList<Object> items=new ArrayList<>();items.add(item);ItemUseProbe.set(cc,container,"items",items);ItemUseProbe.set(ic,item,"container",container);ItemUseProbe.set(ic,item,"scriptItem",Class.forName("zombie.scripting.objects.Item").getConstructor().newInstance());ItemUseProbe.set(ic,item,"uses",3);c.getMethod("setBaseHunger",float.class).invoke(item,base);c.getMethod("setHungChange",float.class).invoke(item,base*portion);
+   Object used=use.invoke(null,item,true,false,requested,keep,destroy);Map<String,Object>row=new LinkedHashMap<>();row.put("base",base);row.put("portion",portion);row.put("requested",requested);row.put("keep",keep);row.put("destroy",destroy);row.put("used",used);row.put("after",c.getMethod("getCurrentUses").invoke(item));row.put("hungerBits",Float.floatToIntBits((Float)c.getMethod("getHungChange").invoke(item)));row.put("present",items.contains(item));System.out.println(RecipeLoadProbe.json(row));
+  }
+ }
+}

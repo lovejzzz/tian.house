@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-surface-materials",
+  "version": 9,
+  "generator": "src/architectural-materials.js",
+  "sourceKind": "mixed-procedural-and-imported-raster",
+  "status": "prototype",
+  "semantics": {
+    "kind": "material-library",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Reviewed identity mappings, original approximate procedural appearance; not lossless source art",
+      "Plaster uses authored periodic tonal, roughness and shallow bump detail; not measured surface capture. No grass blades or visual acceptance.",
+      "Graphite sheet roof is an original approximate finish, not reconstruction of source roofs_01_22 pixels; seams use projected scale",
+      "Wood, bathroom flooring, grass and exterior paving reproject original PZ color pixels; resampled with source baked shading, not recovered PBR albedo. Grass remains a flat ground surface without blades. One tile repeats at the nominal one-metre grid scale."
+    ]
+  },
+  "migration": {},
+  "surfaces": [
+    {
+      "tiles": [
+        "floors_interior_tilesandwood_01_40"
+      ],
+      "material": {
+        "color": 16777215,
+        "roughness": 0.82,
+        "texture": {
+          "kind": "source-floor",
+          "sourceTile": "floors_interior_tilesandwood_01_40",
+          "size": 128,
+          "repeatMetres": [
+            1,
+            1
+          ],
+          "plane": {
+            "originX": 64,
+            "originY": 192,
+            "halfWidth": 64,
+            "halfHeight": 32
+          },
+          "finish": {
+            "size": 256,
+            "metres": [
+              1,
+              1
+            ],
+            "relief": 0.00012,
+            "seed": 73
+          }
+        }
+      }
+    },
+    {
+      "tiles": [
+        "blends_natural_01_16"
+      ],
+      "material": {
+        "color": 16777215,
+        "roughness": 0.98,
+        "texture": {
+          "kind": "source-floor",
+          "sourceTile": "blends_natural_01_16",
+          "size": 128,
+          "repeatMetres": [
+            1,
+            1
+          ],
+          "plane": {
+            "originX": 64,
+            "originY": 192,
+            "halfWidth": 64,
+            "halfHeight": 32
+          }
+        }
+      }
+    },
+    {
+      "tiles": [
+        "floors_exterior_tilesandstone_01_0"
+      ],
+      "material": {
+        "color": 16777215,
+        "roughness": 0.9,
+        "texture": {
+          "kind": "source-floor",
+          "sourceTile": "floors_exterior_tilesandstone_01_0",
+          "size": 128,
+          "repeatMetres": [
+            1,
+            1
+          ],
+          "plane": {
+            "originX": 64,
+            "originY": 192,
+            "halfWidth": 64,
+            "halfHeight": 32
+          }
+        }
+      }
+    },
+    {
+      "usage": "wall",
+      "tiles": [
+        "tian_masonry_ivory_0",
+        "tian_masonry_ivory_1"
+      ],
+      "material": {
+        "color": 14077883,
+        "roughness": 0.94,
+        "texture": {
+          "kind": "plaster",
+          "size": 256,
+          "seed": 37,
+          "repeatMetres": [
+            0.8,
+            0.8
+          ]
+        },
+        "bumpScale": 0.002
+      },
+      "trim": {
+        "height": 0.09,
+        "depth": 0.016,
+        "casingWidth": 0.06,
+        "material": {
+          "color": 14737108,
+          "roughness": 0.78,
+          "metalness": 0
+        }
+      }
+    },
+    {
+      "usage": "roof",
+      "tiles": [
+        "roofs_01_22"
+      ],
+      "material": {
+        "color": 4609619,
+        "metalness": 0.45,
+        "roughness": 0.48,
+        "texture": {
+          "kind": "roof",
+          "size": 128,
+          "seed": 13,
+          "repeatMetres": [
+            0.5,
+            2
+          ]
+        }
+      }
+    },
+    {
+      "tiles": [
+        "floors_interior_tilesandwood_01_0"
+      ],
+      "material": {
+        "color": 16777215,
+        "roughness": 0.65,
+        "texture": {
+          "kind": "source-floor",
+          "sourceTile": "floors_interior_tilesandwood_01_0",
+          "size": 128,
+          "repeatMetres": [
+            1,
+            1
+          ],
+          "plane": {
+            "originX": 64,
+            "originY": 192,
+            "halfWidth": 64,
+            "halfHeight": 32
+          }
+        }
+      }
+    },
+    {
+      "tiles": [
+        "floors_interior_tilesandwood_01_44"
+      ],
+      "material": {
+        "color": 16777215,
+        "roughness": 0.82,
+        "texture": {
+          "kind": "source-floor",
+          "sourceTile": "floors_interior_tilesandwood_01_44",
+          "size": 128,
+          "repeatMetres": [
+            1,
+            1
+          ],
+          "plane": {
+            "originX": 64,
+            "originY": 192,
+            "halfWidth": 64,
+            "halfHeight": 32
+          }
+        }
+      }
+    }
+  ],
+  "sourceFiles": [
+    "private-assets/Tiles2x.floor-3.png",
+    "private-assets/atlas.json",
+    "src/scene-wall-trims.js",
+    "src/wall-volume.js",
+    "src/clipped-wall-volume.js",
+    "src/room-footprint.js",
+    "src/polygon-footprint.js",
+    "src/material-relief.js",
+    "src/volume-material-texture.js",
+    "src/volume-material-cache.js",
+    "private-assets/Tiles2x.floor-0.png",
+    "private-assets/Tiles2x.floor-2.png",
+    "src/source-floor-texture.js",
+    "src/source-patch-texture.js"
+  ],
+  "finishEvidence": "Authored 90 mm interior skirting and 60 mm opening casing; nominal planning dimensions, not source reconstruction. Floor-level openings interrupt skirting."
+}

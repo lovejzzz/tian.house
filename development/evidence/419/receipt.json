@@ -1,0 +1,12 @@
+{
+  "alreadyApplied": false,
+  "currentRevision": 582,
+  "ok": true,
+  "changed": true,
+  "revision": 582,
+  "physicalValidation": {
+    "ok": true,
+    "coverage": "mapped-furniture",
+    "unmapped": []
+  }
+}

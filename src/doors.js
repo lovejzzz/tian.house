@@ -1,5 +1,5 @@
-import {definition} from './inventory.js?v=5c5c6755f6e4';
-import {barricadePresent} from './barricades.js?v=5c5c6755f6e4';
+import {definition} from './inventory.js?v=ab55877942d1';
+import {barricadePresent} from './barricades.js?v=ab55877942d1';
 
 // ItemContainer.haveThisKeyId descends into key rings, not arbitrary bags.
 export function doorKey(inventory,keyId,container='player',seen=new Set()){
@@ -20,6 +20,7 @@ export function doorKey(inventory,keyId,container='player',seen=new Set()){
 function room(world,x,y,z){const sq=world.square(x,y,z);if(!sq)return undefined;return sq.room===-1?null:Number.isInteger(sq.room)?`${Math.floor(x/256)},${Math.floor(y/256)}:${sq.room}`:undefined;}
 export function doorInside(world,obj,actor){
  if('forceLocked'in obj.props||world.isExterior(actor.x,actor.y,actor.z))return false;
+ if(obj.polygonWall)return actor.z===obj.z;
  const north='doorN'in obj.props||obj.props.type==='doorN';
  const current=room(world,actor.x,actor.y,actor.z);
  return current!==undefined&&(current===room(world,obj.x,obj.y,obj.z)||current===room(world,obj.x-(north?0:1),obj.y-(north?1:0),obj.z));

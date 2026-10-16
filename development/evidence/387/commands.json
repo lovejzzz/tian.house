@@ -1,0 +1,103 @@
+[
+  {
+    "requestId": "studio-clear-kitchen-387",
+    "baseRevision": 564,
+    "operations": [
+      {
+        "type": "objects.rotate",
+        "ids": [
+          "88666f1f-7529-4706-8eaf-163cffa2daf1"
+        ],
+        "turns": 2
+      },
+      {
+        "type": "objects.move",
+        "ids": [
+          "88666f1f-7529-4706-8eaf-163cffa2daf1"
+        ],
+        "dx": 0,
+        "dy": -3
+      },
+      {
+        "type": "objects.rotate",
+        "ids": [
+          "bfa7739c-ffb5-405a-841d-c30ca4b868af"
+        ],
+        "turns": 3
+      },
+      {
+        "type": "objects.move",
+        "ids": [
+          "bfa7739c-ffb5-405a-841d-c30ca4b868af"
+        ],
+        "dx": -2,
+        "dy": -1
+      },
+      {
+        "type": "objects.rotate",
+        "ids": [
+          "d5219af1-38a2-43fe-bb0e-c125fce16ce8"
+        ],
+        "turns": 3
+      },
+      {
+        "type": "objects.move",
+        "ids": [
+          "d5219af1-38a2-43fe-bb0e-c125fce16ce8"
+        ],
+        "dx": 0,
+        "dy": -1
+      }
+    ]
+  },
+  {
+    "requestId": "studio-clear-fridge-387",
+    "baseRevision": 565,
+    "operations": [
+      {
+        "type": "objects.move",
+        "ids": [
+          "10118b24-4611-452d-a5ad-6c773cdd7b3d"
+        ],
+        "dx": 1,
+        "dy": 3
+      }
+    ]
+  },
+  {
+    "requestId": "studio-end-seating-387",
+    "baseRevision": 566,
+    "operations": [
+      {
+        "type": "objects.rotate",
+        "ids": [
+          "bfa7739c-ffb5-405a-841d-c30ca4b868af"
+        ],
+        "turns": 1
+      },
+      {
+        "type": "objects.move",
+        "ids": [
+          "bfa7739c-ffb5-405a-841d-c30ca4b868af"
+        ],
+        "dx": 1,
+        "dy": 1
+      }
+    ]
+  },
+  {
+    "requestId": "studio-piano-seat-clearance-387",
+    "baseRevision": 567,
+    "operations": [
+      {
+        "type": "objects.move",
+        "ids": [
+          "a2c18d5c-57ef-4904-a471-29ae4d8d0e17",
+          "ffb3b8a6-ee75-4fd7-b0c3-b16f84acf62f"
+        ],
+        "dx": -1,
+        "dy": 0
+      }
+    ]
+  }
+]

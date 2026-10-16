@@ -1,0 +1,21 @@
+✔ shared renderer state is restored while shader compilation is still pending (0.581291ms)
+✔ synchronous and asynchronous compiler failures release the draw gate and restore render state (0.231292ms)
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.034792ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.172084ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.2075ms)
+✔ distributed emitters preserve energy, cast shadows, and follow switches (1.199958ms)
+✔ limited shadow budget retains energy without exceeding allocation (0.224041ms)
+✔ lamp delivery retains open shade and source dimensions (7.06875ms)
+✔ mounted light follows host surface, raised ground, floor and object movement without scene mutation (3.603ms)
+✔ fixture lighting has real shadow-casting sources, level filtering, persistent switch and cleanup (1.307875ms)
+✔ asymmetric emitter samples rotate with furniture in all directions without inheriting translation (3.174208ms)
+✔ whole-room lamp batch shares shadow sampler budget without changing total light energy (0.211041ms)
+✔ over-budget floor reports an explicit limit rather than compiling invisible geometry (0.0875ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82.940417

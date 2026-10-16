@@ -1,7 +1,7 @@
-import {resolveInventoryCraftInput} from './inventory.js?v=5c5c6755f6e4';
-import {craftInputContainsType} from './craft-resolve.js?v=5c5c6755f6e4';
-import {parseCraftItemInput} from './craft-inputs.js?v=5c5c6755f6e4';
-import {craftRoutineStatus} from './craft-status.js?v=5c5c6755f6e4';
+import {resolveInventoryCraftInput} from './inventory.js?v=ab55877942d1';
+import {craftInputContainsType} from './craft-resolve.js?v=ab55877942d1';
+import {parseCraftItemInput} from './craft-inputs.js?v=ab55877942d1';
+import {craftRoutineStatus} from './craft-status.js?v=ab55877942d1';
 
 export const barricadeInputScripts={
  hammer:parseCraftItemInput('item 1 tags[base:hammer] mode:keep flags[Prop1;MayDegradeVeryLight;DontRecordInput]'),

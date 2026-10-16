@@ -1,0 +1,107 @@
+[
+  {
+    "type": "Base.Bandage",
+    "count": 12,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.AlcoholWipes",
+    "count": 2,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.TinnedBeans",
+    "count": 8,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.Rice",
+    "count": 1,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.TinOpener",
+    "count": 1,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.Pot",
+    "count": 1,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.Fork",
+    "count": 2,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.Spoon",
+    "count": 2,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.KitchenKnife",
+    "count": 1,
+    "x": 8003,
+    "y": 11402,
+    "z": 0
+  },
+  {
+    "type": "Base.WaterBottle",
+    "count": 4,
+    "x": 8003,
+    "y": 11401,
+    "z": 0
+  },
+  {
+    "type": "Base.Apple",
+    "count": 6,
+    "x": 8003,
+    "y": 11401,
+    "z": 0
+  },
+  {
+    "type": "Base.Cheese",
+    "count": 2,
+    "x": 8003,
+    "y": 11401,
+    "z": 0
+  },
+  {
+    "type": "Base.Chicken",
+    "count": 2,
+    "x": 8003,
+    "y": 11401,
+    "z": 0
+  },
+  {
+    "type": "Base.Orange",
+    "count": 4,
+    "x": 8003,
+    "y": 11401,
+    "z": 0
+  },
+  {
+    "type": "Base.Yoghurt",
+    "count": 2,
+    "x": 8003,
+    "y": 11401,
+    "z": 0
+  }
+]

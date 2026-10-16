@@ -1,0 +1,12 @@
+✔ calibrated drag previews mounted assembly without changing authoritative coordinates (0.747042ms)
+✔ subcell motion does not change placement and invalid intersections are ignored (0.154958ms)
+✔ picking a mounted lamp edits its host group and preserves mounted offsets (0.825083ms)
+✔ 3D object selection refuses broken or cyclic support references (0.174542ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 53.2955

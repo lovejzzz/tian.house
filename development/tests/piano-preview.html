@@ -1,0 +1,7 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Piano interaction check</title>
+<link rel="stylesheet" href="../workshop.css"><body style="background:#18251f;color:#ddd;font-family:system-ui"><h1>Piano interaction check</h1>
+<p>Isolated production panel. Does not access a resident or a saved house.</p><button id="open">Open piano</button>
+<script type="module">
+import {openHouseholdMedia} from '../src/household-media-panel.js';
+document.querySelector('#open').onclick=()=>openHouseholdMedia({parent:document.body,kind:'piano'});
+</script></body></html>

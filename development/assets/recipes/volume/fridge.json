@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-fridge",
+  "version": 7,
+  "generator": "src/domestic-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.85,
+    "depth": 0.85,
+    "height": 1.875,
+    "interiorLight": {
+      "position": [
+        0.425,
+        0.12,
+        1.14
+      ],
+      "color": 16773079,
+      "intensity": 3,
+      "distance": 1.6
+    }
+  },
+  "materials": {
+    "timber": {
+      "color": 5784888,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      },
+      "edgeRadius": 0.003
+    },
+    "linen": {
+      "color": 13946556,
+      "roughness": 0.93,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "cloth": {
+      "color": 8030594,
+      "roughness": 0.95,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "accent": {
+      "color": 10122840,
+      "roughness": 0.9
+    },
+    "enamel": {
+      "color": 10002074,
+      "roughness": 0.38,
+      "metalness": 0,
+      "edgeRadius": 0.002,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "steel": {
+      "color": 10198944,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2107172,
+      "roughness": 0.65
+    },
+    "glass": {
+      "color": 13229784,
+      "roughness": 0.18,
+      "metalness": 0,
+      "opacity": 0.32
+    }
+  },
+  "migration": {
+    "S": [
+      "appliances_refrigeration_01_8"
+    ],
+    "E": [
+      "appliances_refrigeration_01_9"
+    ],
+    "N": [
+      "appliances_refrigeration_01_10"
+    ],
+    "W": [
+      "appliances_refrigeration_01_11"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "appliances_refrigeration_01_8",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "appliances_refrigeration_01_9",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "appliances_refrigeration_01_10",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "appliances_refrigeration_01_11",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.11,
+      0.11
+    ],
+    "cells": [
+      1,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "fridge",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Original approximate geometry; not recovered source artwork",
+      "Door inspection pose closes before movement; dynamic open-door collision remains pending",
+      "Inventory instances drive visible contents; unknown and overflow items remain listed",
+      "Interior lamp is an authored approximation, not measured appliance photometry"
+    ],
+    "wallClearanceEvidence": "Authored minimum 0.11m back setback for provisional 0.20m centred walls; not a measured appliance installation specification.",
+    "edgeEvidence": "Authored 2\u20133mm manufacturing chamfers on simple hard box parts; existing non-box and textile forms preserved."
+  },
+  "sourceFiles": [
+    "src/textile-detail-volume.js",
+    "src/upholstery-volume.js",
+    "node_modules/three/package.json",
+    "node_modules/three/LICENSE",
+    "node_modules/three/build/three.module.js",
+    "node_modules/three/build/three.core.js",
+    "node_modules/three/examples/jsm/math/ConvexHull.js",
+    "src/furniture-edge-finish.js",
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

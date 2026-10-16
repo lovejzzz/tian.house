@@ -1,0 +1,13 @@
+✔ soft filter chains existing shader work and retains narrow PCF fallback (0.663375ms)
+✔ shadow comparison setting survives rebuild without changing light energy (1.132208ms)
+✔ both PCF kernels use receiver-plane correction before depth comparison (0.261167ms)
+✔ lighting fits far-world geometry, uses Z-up and changes actual light energy (2.132625ms)
+✔ clock changes source direction and intensity without losing the fitted far-world target (0.616542ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 76.574125

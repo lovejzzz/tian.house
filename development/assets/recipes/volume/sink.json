@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-sink",
+  "version": 3,
+  "generator": "src/wet-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.65,
+    "depth": 0.6,
+    "height": 1.0625
+  },
+  "materials": {
+    "timber": {
+      "color": 6378054,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    },
+    "enamel": {
+      "color": 13553087,
+      "roughness": 0.38,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ceramic": {
+      "color": 14737361,
+      "roughness": 0.24
+    },
+    "stone": {
+      "color": 5659993,
+      "roughness": 0.66,
+      "bumpScale": 0.00015,
+      "texture": {
+        "kind": "honed-stone",
+        "size": 256,
+        "seed": 83,
+        "repeatMetres": [
+          0.4,
+          0.4
+        ]
+      }
+    },
+    "steel": {
+      "color": 10987684,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2238500,
+      "roughness": 0.8
+    }
+  },
+  "migration": {
+    "S": [
+      "fixtures_sinks_01_12"
+    ],
+    "E": [
+      "fixtures_sinks_01_13"
+    ],
+    "N": [
+      "fixtures_sinks_01_28"
+    ],
+    "W": [
+      "fixtures_sinks_01_29"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "fixtures_sinks_01_12",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "fixtures_sinks_01_13",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "fixtures_sinks_01_28",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "fixtures_sinks_01_29",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.175,
+      0.04
+    ],
+    "cells": [
+      1,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "sink",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Approximate original geometry, not source-style fidelity",
+      "No plumbing animation or final material acceptance",
+      "Basin is a simplified open ring; source gameplay remains authoritative"
+    ],
+    "stoneFinishEvidence": "Authored honed mineral-composite variation at 400 mm repeat, 0.15 mm maximum relief scale; not a measured or reconstructed source surface."
+  },
+  "sourceFiles": [
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

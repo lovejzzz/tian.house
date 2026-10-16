@@ -1,0 +1,343 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-studio-piano-bench",
+  "version": 13,
+  "generator": "src/studio-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "dimensional prototype; not visually accepted",
+  "parameters": {
+    "kind": "piano-bench",
+    "creaseDepth": 0.008
+  },
+  "materials": {
+    "walnut": {
+      "color": 7557179,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "recreational_01_28",
+        "size": 128,
+        "patch": [
+          [
+            43,
+            60
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            33
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 1.0
+        },
+        "repeatMetres": [
+          0.32,
+          0.65
+        ],
+        "finish": {
+          "size": 256,
+          "metres": [
+            0.32,
+            0.65
+          ],
+          "relief": 0.00018,
+          "seed": 73
+        }
+      },
+      "bumpScale": 0
+    },
+    "cloth": {
+      "color": 5792597,
+      "roughness": 0.92,
+      "metalness": 0,
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "furniture_seating_indoor_02_24",
+        "size": 128,
+        "patch": [
+          [
+            12,
+            86
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 0.25
+        },
+        "repeatMetres": [
+          0.32,
+          0.18
+        ],
+        "weave": {
+          "size": 512,
+          "threads": [
+            128,
+            72
+          ],
+          "metres": [
+            0.32,
+            0.18
+          ],
+          "relief": 0.00065,
+          "irregularity": 0.35,
+          "seed": 41
+        }
+      },
+      "bumpScale": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "linen": {
+      "color": 6844510,
+      "roughness": 0.92,
+      "metalness": 0,
+      "texture": {
+        "kind": "source-patch",
+        "sourceTile": "furniture_seating_indoor_02_24",
+        "size": 128,
+        "patch": [
+          [
+            12,
+            86
+          ],
+          [
+            18,
+            9
+          ],
+          [
+            0,
+            5
+          ]
+        ],
+        "detail": {
+          "base": 0.95,
+          "strength": 0.25
+        },
+        "repeatMetres": [
+          0.32,
+          0.18
+        ],
+        "weave": {
+          "size": 512,
+          "threads": [
+            128,
+            72
+          ],
+          "metres": [
+            0.32,
+            0.18
+          ],
+          "relief": 0.00065,
+          "irregularity": 0.35,
+          "seed": 41
+        }
+      },
+      "bumpScale": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "metal": {
+      "color": 1447705,
+      "roughness": 0.58,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 29,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 1514267,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "rubber": {
+      "color": 2369574,
+      "roughness": 0.92,
+      "metalness": 0
+    },
+    "aluminium": {
+      "color": 11120043,
+      "roughness": 0.36,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 31,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ivory": {
+      "color": 15065036,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "brass": {
+      "color": 11241045,
+      "roughness": 0.32,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 43,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "screen": {
+      "color": 2108722,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "stone": {
+      "color": 13089960,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "edge": {
+      "color": 8940370,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "leather": {
+      "color": 2105636,
+      "roughness": 0.48,
+      "metalness": 0,
+      "bumpScale": 0.00035,
+      "texture": {
+        "kind": "leather",
+        "size": 128,
+        "seed": 57,
+        "repeatMetres": [
+          0.12,
+          0.12
+        ]
+      }
+    }
+  },
+  "semantics": {
+    "kind": "piano-bench",
+    "mount": "floor",
+    "units": "metres",
+    "geometryEvidence": "original approximate dimensional model",
+    "knownLimits": [
+      "Original dimensional prototype; final source-based materials pending",
+      "Raster catalogue generated from this geometry; gameplay interactions require verification"
+    ],
+    "paletteEvidence": "Black leather padded lift lid, black lacquered base; authored not scanned"
+  },
+  "migration": {
+    "S": [
+      "tian_studio_piano_bench_S_0"
+    ],
+    "E": [
+      "tian_studio_piano_bench_E_0"
+    ],
+    "N": [
+      "tian_studio_piano_bench_N_0"
+    ],
+    "W": [
+      "tian_studio_piano_bench_W_0"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_studio_piano_bench_S_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "tian_studio_piano_bench_E_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "tian_studio_piano_bench_N_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_studio_piano_bench_W_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "footprint": [
+      [
+        0,
+        0
+      ]
+    ]
+  },
+  "materialEvidence": {
+    "method": "Reviewed planar source patches; affine RGB gradient removed before tint modulation. Original dimensional geometry. Not recovered physical albedo.",
+    "wood": "recreational_01_28 back panel",
+    "cloth": "furniture_seating_indoor_02_24 upholstered front",
+    "limits": "Small source patches repeat with mirrored wrapping; original pixel resolution remains limited. Raster thumbnails do not include this runtime detail transfer.",
+    "weave": "Authored 2.5 mm nominal interlaced yarn relief and roughness, independent of source colour; not recovered source detail. Mip filtered at distance.",
+    "woodFinish": "Authored sub-millimetre pores and roughness independent of source colour; not scanned or recovered PBR."
+  },
+  "sourceFiles": [
+    "private-assets/Tiles2x-160.png",
+    "private-assets/Tiles2x-80.png",
+    "private-assets/atlas.json",
+    "src/upholstery-volume.js",
+    "src/textile-detail-volume.js",
+    "node_modules/three/package.json",
+    "node_modules/three/LICENSE",
+    "node_modules/three/build/three.module.js",
+    "node_modules/three/build/three.core.js",
+    "node_modules/three/examples/jsm/math/ConvexHull.js",
+    "src/wood-finish.js",
+    "src/material-relief.js"
+  ]
+}

@@ -1,5 +1,5 @@
-import {definition} from './inventory.js?v=5c5c6755f6e4';
-import {drainableUses} from './drainable.js?v=5c5c6755f6e4';
+import {definition} from './inventory.js?v=ab55877942d1';
+import {drainableUses} from './drainable.js?v=ab55877942d1';
 export const BODY_PARTS=Object.freeze({Hand_L:'Left hand',Hand_R:'Right hand',ForeArm_L:'Left forearm',ForeArm_R:'Right forearm',UpperArm_L:'Left upper arm',UpperArm_R:'Right upper arm',Torso_Upper:'Upper torso',Torso_Lower:'Lower torso',Head:'Head',Neck:'Neck',Groin:'Groin',UpperLeg_L:'Left thigh',UpperLeg_R:'Right thigh',LowerLeg_L:'Left shin',LowerLeg_R:'Right shin',Foot_L:'Left foot',Foot_R:'Right foot'});
 export const WOUND_NAMES={scratch:'Scratch',cut:'Laceration',bite:'Bite'};
 // Gameplay scaffolding: wound duration and evolution are provisional, not native BodyPart parity.
@@ -45,18 +45,21 @@ export function treatWound(player,inventory,part,action,itemId,{random=Math.rand
  }
  syncBleeding(player);return {ok:true};
 }
-export function advanceMedical(player,minutes){
+export function advanceMedical(player,minutes,{resting=false}={}){
  const medical=ensureMedical(player);for(const [part,w]of Object.entries(medical.parts)){
   const clean=w.bandage&&w.bandage.life>0;
   if(w.bandage)w.bandage.life=Math.max(0,w.bandage.life-minutes/120);
   if(w.alcohol>0){w.infection=Math.max(0,w.infection-minutes*.02);w.alcohol=Math.max(0,w.alcohol-minutes*.01);}
-  else if(w.bandage&&!clean)w.infection=Math.min(100,w.infection+minutes*.005);
+  else if(w.remaining>0&&w.bandage&&!clean)w.infection=Math.min(100,w.infection+minutes*.005);
   w.pain=Math.max(0,w.pain-minutes*.03);
   w.remaining=Math.max(0,w.remaining-minutes*(clean?1:.5)*(w.infection>0?.5:1));
-  if(w.remaining===0){w.bleeding=0;if(!w.bandage)delete medical.parts[part];}
+  if(w.remaining===0){w.bleeding=0;if(!w.bandage&&w.infection===0&&w.pain===0)delete medical.parts[part];}
  }syncBleeding(player);
+ // Tian House recovery tuning, not claimed native PZ parity. Survival resources
+ // gate gradual recovery; bandaging itself never grants immediate HP.
+ if(player.hp>0&&player.hp<100&&player.bleeding===0&&(player.hunger??100)<50&&(player.thirst??100)<50&&(player.fatigue??100)<80&&!(player.infection>0)&&Object.values(medical.parts).every(w=>w.infection===0))player.hp=Math.min(100,player.hp+Math.max(0,minutes)*(resting?.02:.01));
 }
-export function woundDescription(w){return `${w.remaining>0?WOUND_NAMES[w.kind]:'Wound healed'} · ${w.bandage?(w.bandage.life>0?'Bandaged':'Dirty bandage'):(w.bleeding?'Bleeding':'Unbandaged')}${w.infection>0?' · Wound infected':''}${w.alcohol>0?' · Disinfected':''}`;}
+export function woundDescription(w){return `${w.remaining>0?WOUND_NAMES[w.kind]:(w.infection>0||w.pain>0?'Wound closed':'Wound healed')} · ${w.bandage?(w.bandage.life>0?'Bandaged':'Dirty bandage'):(w.bleeding?'Bleeding':'Unbandaged')}${w.infection>0?' · Wound infected':''}${w.alcohol>0?' · Disinfected':''}`;}
 export function validateMedical(player){
  if(player.medical===undefined)return;
  const m=player.medical;if(!m||!m.parts||typeof m.parts!=='object'||Array.isArray(m.parts))throw Error('Invalid saved medical data');

@@ -1,0 +1,10 @@
+✔ wood finish is deterministic, bounded and separate from source colour (40.061209ms)
+✔ zero relief gives flat normals; physical amplitude and cache recipe remain explicit (23.837458ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 103.613917

@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-chair",
+  "version": 3,
+  "generator": "src/frame-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.6,
+    "depth": 0.6,
+    "height": 1,
+    "member": 0.045,
+    "seatHeight": 0.53125,
+    "seatThickness": 0.045,
+    "backSlats": 3
+  },
+  "materials": {
+    "timber": {
+      "color": 7358758,
+      "roughness": 0.65,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      }
+    }
+  },
+  "migration": {
+    "S": [
+      "furniture_seating_indoor_02_0"
+    ],
+    "E": [
+      "furniture_seating_indoor_02_1"
+    ],
+    "N": [
+      "furniture_seating_indoor_02_2"
+    ],
+    "W": [
+      "furniture_seating_indoor_02_3"
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.2,
+      0.2
+    ],
+    "cells": [
+      1,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "chair",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "No source-style fidelity acceptance",
+      "Simplified structural template",
+      "Storage contents / seated animation not generated",
+      "Generic procedural grain; not source-matched timber, no end-grain or wear acceptance"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "furniture_seating_indoor_02_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "furniture_seating_indoor_02_1",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "furniture_seating_indoor_02_2",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "furniture_seating_indoor_02_3",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "activityZones": [
+    {
+      "id": "use-space",
+      "label": "Chair pull-back",
+      "min": [
+        -0.1,
+        -0.6,
+        0.03
+      ],
+      "max": [
+        0.7,
+        0,
+        1.7
+      ],
+      "evidence": "Authored planning allowance, not manufacturer clearance or full motion simulation"
+    }
+  ]
+}

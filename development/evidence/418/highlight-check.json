@@ -1,0 +1,36 @@
+{
+  "417/day-before.png": {
+    "canvasPixels": 451872,
+    "allChannelsAtLeast250": 0,
+    "anyChannel255": 32,
+    "displayLumaPercentiles": {
+      "p1": 12.55,
+      "p50": 69.54,
+      "p95": 155.23,
+      "p99": 179.44
+    }
+  },
+  "418/day-palette.png": {
+    "canvasPixels": 451872,
+    "allChannelsAtLeast250": 0,
+    "anyChannel255": 2,
+    "displayLumaPercentiles": {
+      "p1": 5.85,
+      "p50": 81.39,
+      "p95": 138.32,
+      "p99": 156.1
+    }
+  },
+  "418/night-palette.png": {
+    "canvasPixels": 451872,
+    "allChannelsAtLeast250": 0,
+    "anyChannel255": 2,
+    "displayLumaPercentiles": {
+      "p1": 3.07,
+      "p50": 24.71,
+      "p95": 98.76,
+      "p99": 137.73
+    }
+  },
+  "limits": "Canvas crop includes exterior/background. Luma is display-space, not scene radiance. These statistics cannot prove preserved material detail or eye-equivalent dynamic range."
+}

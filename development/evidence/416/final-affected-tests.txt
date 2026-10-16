@@ -1,0 +1,28 @@
+✔ canvas model roundtrip preserves structured rooms alongside placed furniture and inventory (100.27025ms)
+✔ unsupported destructive edit rolls back and new house undo restores structured identity (27.898333ms)
+✔ legacy-only houses retain original model behavior (1.602917ms)
+✔ adding a basement floor retains structured rooms and creates an explicit level (31.770625ms)
+✔ replacing a hosted door preserves its opening identity (30.067875ms)
+✔ blank plot clears derived polygon walls and stair geometry, while undo restores the old house (34.385834ms)
+✔ preview is isolated; commit is a single undoable transaction (1.62075ms)
+✔ a later failed placement rolls back the entire batch without history changes (0.515791ms)
+✔ stale versions and active manual edits cannot be overwritten (0.204125ms)
+✔ retry is idempotent even after undo; request ID reuse with another body fails (0.152958ms)
+✔ caller cannot inject assets or malformed coordinates (0.248209ms)
+✔ versioned batches use the same structural and furnishing rules as the editor (10.202625ms)
+✔ structural collision late in a command batch cannot leak earlier edits (0.621166ms)
+✔ manual structural commits invalidate a previously previewed batch (5.434833ms)
+✔ request receipts survive serialization and undo without replaying deleted construction (2.157042ms)
+✔ command adapters share receipts and corrupt receipt snapshots reject (2.855541ms)
+✔ persisted commit keeps live scene unchanged until storage succeeds and locks competing edits (1.835041ms)
+✔ storage failure preserves the entire live snapshot and permits retry through a healthy writer (3.1525ms)
+✔ persisted command forks full history without recompiling or mutating retained checkpoints (130.766917ms)
+✔ erased legacy floor overlay stays removed before subsequent structural operations (9.753625ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 277.464125

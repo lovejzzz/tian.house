@@ -1,0 +1,66 @@
+✔ studio equipment keeps its dimensioned physical silhouette and actual empty spaces (331.402041ms)
+✔ all studio recipes generate finite supported convex parts with stable identifiers (925.631667ms)
+✔ every studio direction is one editable catalogue assembly matching its volume recipe (1760.270334ms)
+✔ wall lighting on a south boundary points into the room instead of outside (1.549167ms)
+✔ studio upholstery has curved height sections without changing its authored footprint (274.595541ms)
+✔ sewn trim follows thin axis for seat and upright cushion without widening footprint (2.653958ms)
+✔ throw bends continuously over furniture edge, with no blocking collision (0.909875ms)
+✔ padded volumes keep authored bounds and use the visible hull for collision (35.819667ms)
+✖ sofa: delivery regenerates, all source directions preserve geometry and collision (224.839ms)
+✔ sofa: invalid scale and altered multipart layout rejected (0.2685ms)
+✖ bed: delivery regenerates, all source directions preserve geometry and collision (166.650958ms)
+✔ bed: invalid scale and altered multipart layout rejected (0.108ms)
+✔ oven: delivery regenerates, all source directions preserve geometry and collision (3.336917ms)
+✔ oven: invalid scale and altered multipart layout rejected (0.063542ms)
+✔ fridge: delivery regenerates, all source directions preserve geometry and collision (1.401083ms)
+✔ fridge: invalid scale and altered multipart layout rejected (0.045584ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 14
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3361.226209
+
+✖ failing tests:
+
+test at tests/volume-domestic-furniture.test.mjs:6:2
+✖ sofa: delivery regenerates, all source directions preserve geometry and collision (224.839ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(meshes.every(m=>m.collision.length===1))
+  
+      at TestContext.<anonymous> (file:///Users/tianxing/Documents/ChatGPT/SRE/apps/pz-browser/tests/volume-domestic-furniture.test.mjs:11:171)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/volume-domestic-furniture.test.mjs:6:2
+✖ bed: delivery regenerates, all source directions preserve geometry and collision (166.650958ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(meshes.every(m=>m.collision.length===1))
+  
+      at TestContext.<anonymous> (file:///Users/tianxing/Documents/ChatGPT/SRE/apps/pz-browser/tests/volume-domestic-furniture.test.mjs:11:171)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

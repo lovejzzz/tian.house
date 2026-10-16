@@ -1,0 +1,14 @@
+✔ captured linear constant radiance integrates to pi times radiance, independent of normal (3.090458ms)
+✔ room probes are located away from furniture and masks retain calibrated room bounds (1.229667ms)
+✔ large furnished rooms distribute distinct bounded samples, small rooms keep their own mask (0.197833ms)
+✔ room irradiance samples animated vertices after skinning (0.376417ms)
+✔ shared actor adapter preserves gameplay state, scales body only and hides dead threats (2.243125ms)
+✔ volume actors own lit materials while retaining shared imported maps and geometry (0.808625ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 60.316833

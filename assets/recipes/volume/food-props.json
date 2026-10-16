@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-food-props",
+  "version": 1,
+  "generator": "src/food-props-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {},
+  "materials": {
+    "bottle": {
+      "color": 9747394,
+      "roughness": 0.25,
+      "metalness": 0
+    },
+    "label": {
+      "color": 14538950,
+      "roughness": 0.78,
+      "metalness": 0
+    },
+    "blue": {
+      "color": 3429746,
+      "roughness": 0.55,
+      "metalness": 0
+    },
+    "red": {
+      "color": 10236970,
+      "roughness": 0.43,
+      "metalness": 0
+    },
+    "orange": {
+      "color": 13138210,
+      "roughness": 0.75,
+      "metalness": 0
+    },
+    "stem": {
+      "color": 5912869,
+      "roughness": 0.95,
+      "metalness": 0
+    },
+    "leaf": {
+      "color": 5268019,
+      "roughness": 0.86,
+      "metalness": 0
+    },
+    "cheese": {
+      "color": 14068834,
+      "roughness": 0.81,
+      "metalness": 0
+    },
+    "paper": {
+      "color": 13682346,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "tray": {
+      "color": 7039073,
+      "roughness": 0.81,
+      "metalness": 0
+    },
+    "chicken": {
+      "color": 12816254,
+      "roughness": 0.53,
+      "metalness": 0
+    },
+    "bone": {
+      "color": 13287845,
+      "roughness": 0.8,
+      "metalness": 0
+    }
+  },
+  "migration": {},
+  "sourceLayout": {},
+  "semantics": {
+    "kind": "inventory-contents",
+    "mount": "container",
+    "geometryEvidence": "authored approximate silhouettes",
+    "itemKinds": {
+      "Base.WaterBottle": "water",
+      "Base.Apple": "apple",
+      "Base.Orange": "orange",
+      "Base.Cheese": "cheese",
+      "Base.Chicken": "chicken",
+      "Base.Yoghurt": "yoghurt"
+    },
+    "knownLimits": [
+      "Original approximate food silhouettes, no measured scan fidelity",
+      "Unknown food types remain listed in inventory; never silently relabelled",
+      "Contents are authoritative inventory instances; movement uses Take and Store"
+    ]
+  },
+  "sourceFiles": []
+}

@@ -1,0 +1,10 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {StructuredWorkshopModel} from '../../src/structured-workshop-model.js';
+import {WorkshopCommands} from '../../src/workshop-commands.js';
+import {workshopCatalog} from '../../src/workshop-model.js';
+import {installOriginalAssets} from '../../src/original-assets.js';import {installStudioAssets} from '../../src/studio-assets.js';
+const read=p=>JSON.parse(fs.readFileSync(new URL(p,import.meta.url))),props=read('../../private-assets/world/properties.json'),atlas=read('../../private-assets/atlas.json');installOriginalAssets(props,atlas);installStudioAssets(props,atlas);
+const entries=workshopCatalog(props,atlas,{}).entries,before=read('../409/before.json'),expected=read('../409/after.json');
+const model=new StructuredWorkshopModel(read('../408/final-save.json').housePlan,before.bounds,props,entries),commands=new WorkshopCommands(model,new Map(entries.map(e=>[e.id,e])));
+const transforms=before.scene.objects.filter(o=>/media_console|floor_speaker|sectional/.test(o.assetId)).map(o=>({ids:[o.id],turns:2,dx:0,dy:/sectional/.test(o.assetId)?-2:3}));
+const request={requestId:'studio-replay-simultaneous',baseRevision:model.revision,operations:[{type:'objects.arrange',transforms}]};const result=commands.commit(request);assert.equal(result.ok,true,JSON.stringify(result));assert.deepEqual(model.scene.objects,expected.scene.objects);assert.deepEqual(model.scene.legacy.items,expected.scene.legacy.items);console.log('Real Studio: identical 45-object result with one simultaneous arrangement, no parking cells.');

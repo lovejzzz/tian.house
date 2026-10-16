@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-directional-wall-light",
+  "version": 1,
+  "generator": "src/wall-light-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.3,
+    "height": 0.5,
+    "depth": 0.12,
+    "elevation": 1.75
+  },
+  "light": {
+    "color": 16766624,
+    "intensity": 18
+  },
+  "materials": {
+    "metal": {
+      "color": 4608075,
+      "roughness": 0.42,
+      "metalness": 0.55
+    },
+    "diffuser": {
+      "color": 15327947,
+      "roughness": 0.65,
+      "fixtureEmission": {
+        "color": 16766624,
+        "intensity": 0.65
+      }
+    }
+  },
+  "semantics": {
+    "kind": "lamp",
+    "mount": "wall",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Explicit positive/negative N/W wall faces; no diagonal-wall volume support",
+      "Outdoor use is an authored visual fixture; no electrical or weather certification",
+      "Distributed spot approximation, not measured light distribution"
+    ]
+  },
+  "migration": {
+    "S": [
+      "tian_directional_sconce_S"
+    ],
+    "N": [
+      "tian_directional_sconce_N"
+    ],
+    "E": [
+      "tian_directional_sconce_E"
+    ],
+    "W": [
+      "tian_directional_sconce_W"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_directional_sconce_S",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "tian_directional_sconce_N",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "tian_directional_sconce_E",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_directional_sconce_W",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  }
+}

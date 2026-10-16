@@ -1,0 +1,33 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Scene storage verification</title>
+<style>body{font:16px system-ui;background:#19271f;color:#e5e7d7;max-width:900px;margin:50px auto}button{padding:12px;margin:6px}pre{white-space:pre-wrap;background:#101c15;padding:20px}</style>
+<h1>Scene storage verification</h1><p>Isolated development fixture. Does not read or change saved player houses.</p>
+<button id="create">Create two rooms</button><button id="move">Move shared wall</button><button id="undo">Undo</button><button id="redo">Redo</button><button id="reload">Reload saved scene</button><button id="conflict">Test stale editor rejection</button>
+<pre id="result" aria-live="polite">Ready</pre>
+<script type="module">
+import {migrateHousePlan} from '../src/scene-document.js';
+import {SceneSession,IndexedSceneRepository} from '../src/scene-session.js';
+const properties={floor:{solidfloor:''},wall_0:{WallW:''},wall_1:{WallN:''},wall_10:{DoorWallW:''},wall_11:{DoorWallN:''},door:{doorW:''}};
+const repository=new IndexedSceneRepository(indexedDB,'tian-house-storage-verification'),id='two-room-verification';let session;
+const result=document.querySelector('#result');
+const request=(operations,action='commit')=>({requestId:crypto.randomUUID(),sceneId:id,baseRevision:session.read().revision,operations,action});
+function show(message){const scene=session?.read();result.textContent=JSON.stringify({message,revision:scene?.revision,rooms:scene?.rooms.map(r=>({id:r.id,rect:r.rect})),door:scene?.openings[0],host:scene?.walls.find(w=>w.id===scene.openings[0]?.hostWallId)},null,2);}
+function bind(id,fn){document.querySelector('#'+id).onclick=async()=>{try{await fn();}catch(e){result.textContent='FAIL: '+e.message;}};}
+const room=(id,rect)=>({type:'room.add',room:{id,name:id,levelId:'ground',rect,floorTile:'floor',wallN:'wall_1',wallW:'wall_0'}});
+bind('create',async()=>{
+ const existing=await repository.load(id);if(existing){session=await SceneSession.open(id,properties,repository);show('Existing fixture restored');return;}
+ const scene=migrateHousePlan({version:1,squares:[],items:[]},[0,0,20,20],{sceneId:id});scene.levels.push({id:'ground',index:0,height:null,elevation:null});
+ session=await SceneSession.create(scene,properties,repository);
+ let r=await session.execute(request([room('a',[2,2,6,6]),room('b',[6,2,10,6])]));if(!r.ok)throw Error(r.error);
+ const host=session.read().walls.find(w=>w.axis==='W'&&w.x===6&&w.y===3);
+ r=await session.execute(request([{type:'opening.add',opening:{id:'door',hostWallId:host.id,kind:'door',tile:'door'}}]));if(!r.ok)throw Error(r.error);show('Created and saved');
+});
+bind('move',async()=>{const r=await session.execute(request([{type:'room.resize',roomId:'a',side:'east',coordinate:7}]));if(!r.ok)throw Error(r.error);show('Wall moved and saved');});
+for(const action of ['undo','redo'])bind(action,async()=>{const r=await session.execute(request(undefined,action));if(!r.ok)throw Error(r.error);show(action+' saved');});
+bind('reload',async()=>{session=await SceneSession.open(id,properties,repository);show('Loaded from IndexedDB');});
+bind('conflict',async()=>{
+ const other=await SceneSession.open(id,properties,repository),stale={requestId:crypto.randomUUID(),sceneId:id,baseRevision:other.read().revision,operations:[{type:'scene.rename',name:'Stale edit'}]};
+ const r=await session.execute(request([{type:'scene.rename',name:'Current edit'}]));if(!r.ok)throw Error(r.error);
+ const rejected=await other.execute(stale);if(rejected.ok)throw Error('Stale edit unexpectedly succeeded');
+ session=await SceneSession.open(id,properties,repository);if(session.read().legacy.metadata.name!=='Current edit')throw Error('Saved state overwritten');show('PASS: '+rejected.error);
+});
+</script></html>

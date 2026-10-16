@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-counter",
+  "version": 8,
+  "generator": "src/wet-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.78,
+    "depth": 0.8,
+    "height": 0.925
+  },
+  "materials": {
+    "timber": {
+      "color": 6378054,
+      "roughness": 0.7,
+      "texture": {
+        "kind": "wood",
+        "size": 128,
+        "seed": 17,
+        "repeatMetres": [
+          1.2,
+          0.35
+        ]
+      },
+      "edgeRadius": 0.003
+    },
+    "enamel": {
+      "color": 9475969,
+      "roughness": 0.38,
+      "edgeRadius": 0.002,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ceramic": {
+      "color": 14737361,
+      "roughness": 0.24
+    },
+    "stone": {
+      "color": 5659993,
+      "roughness": 0.66,
+      "edgeRadius": 0.002,
+      "bumpScale": 0.00015,
+      "texture": {
+        "kind": "honed-stone",
+        "size": 256,
+        "seed": 83,
+        "repeatMetres": [
+          0.4,
+          0.4
+        ]
+      }
+    },
+    "steel": {
+      "color": 10987684,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2238500,
+      "roughness": 0.8
+    }
+  },
+  "migration": {
+    "N": [
+      "fixtures_counters_01_1"
+    ],
+    "E": [
+      "fixtures_counters_01_3"
+    ],
+    "S": [
+      "fixtures_counters_01_5"
+    ],
+    "W": [
+      "fixtures_counters_01_7"
+    ]
+  },
+  "sourceLayout": {
+    "N": [
+      {
+        "tile": "fixtures_counters_01_1",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "fixtures_counters_01_3",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "S": [
+      {
+        "tile": "fixtures_counters_01_5",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "fixtures_counters_01_7",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "offset": [
+      0.11,
+      0.11
+    ],
+    "cells": [
+      1,
+      1
+    ]
+  },
+  "semantics": {
+    "kind": "counter",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Approximate original geometry, not source-style fidelity",
+      "No plumbing animation or final material acceptance",
+      "Basin is a simplified open ring; source gameplay remains authoritative"
+    ],
+    "paletteEvidence": "Authored domestic palette: warm taupe/oat upholstery, muted sage linen and walnut/oak tones. Original texture detail retained; not measured colour reproduction.",
+    "wallClearanceEvidence": "Authored minimum 0.11m back setback for provisional 0.20m centred walls; not a measured appliance installation specification.",
+    "edgeEvidence": "Authored 2\u20133mm manufacturing chamfers on simple hard box parts; existing non-box and textile forms preserved.",
+    "supportHeight": 0.925,
+    "heightEvidence": "Authored 925 mm domestic worktop target; not a measurement recovered from source sprite.",
+    "stoneFinishEvidence": "Authored honed mineral-composite variation at 400 mm repeat, 0.15 mm maximum relief scale; not a measured or reconstructed source surface."
+  },
+  "sourceFiles": [
+    "src/furniture-edge-finish.js",
+    "src/material-relief.js",
+    "src/volume-material-texture.js"
+  ]
+}

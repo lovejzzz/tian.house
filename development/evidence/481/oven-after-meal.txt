@@ -1,0 +1,128 @@
+- generic "Tian’s House single-player game view"
+- banner:
+  - text: TIAN’S HOUSE
+  - generic: 7995, 11403 · Floor 0
+  - generic: 21:51
+  - generic: Day 15
+  - button "▶"
+  - button "Time speed 1×" [pressed]: ×1
+  - button "Time speed 5×": ×5
+  - button "Time speed 20×": ×20
+  - button "Time speed 120×": ×120
+- navigation "Game menu":
+  - button "Inventory Inventory":
+    - generic "Inventory"
+    - generic: Inventory
+  - button "Health Health":
+    - generic "Health"
+    - generic: Health
+  - button "Craft Craft":
+    - generic "Craft"
+    - generic: Craft
+  - button "▧ Map":
+    - text: ▧
+    - generic: Map
+  - button "☷ Journal":
+    - text: ☷
+    - generic: Journal
+  - button "⌂ Workshop":
+    - text: ⌂
+    - generic: Workshop
+  - button "▣ Save":
+    - text: ▣
+    - generic: Save
+- complementary:
+  - generic: Thirst
+- status: Progress saved locally
+- contentinfo "Game assistance":
+  - button "Main menu": Menu
+  - button "Nearby interactions":
+    - text: Nearby
+    - generic: Q
+  - button "Controls":
+    - text: Controls
+    - generic: "?"
+- dialog "Your home":
+  - banner:
+    - heading "Hearth Studio" [level=2]
+    - generic "House options"
+  - paragraph: Resident · Day 16 · 1:01 · Health 57 · Hunger 1.4 · Thirst 0.5 · Endurance 100 · Danger nearby — rest unavailable
+  - log "Recent life events": Drink from Sink complete
+  - button "Resume living"
+  - button "Nearby interaction": E · Use water · Sink
+  - text: Time
+  - combobox "Time speed":
+    - option "1×" [selected]
+    - option "5×"
+    - option "20×"
+    - option "120×"
+  - button "Inventory"
+  - paragraph: Resident progress saved on this device
+  - generic "Rotatable wall structure"
+  - paragraph: WASD / arrows move in screen direction · Drag to orbit · Scroll to zoom
+  - dialog "Inventory":
+    - heading "Inventory" [level=2]
+    - paragraph: Resident · Paused — resume living to complete queued actions
+    - combobox "Nearby storage" [active]:
+      - option "No storage selected"
+      - option "Counter"
+      - option "Breakfast bar"
+      - option "Oven" [selected]
+    - region "Storage contents":
+      - heading "Oven" [level=3]
+      - paragraph: 20°C · Target 180°C · Off
+      - button "Turn on appliance"
+      - combobox "Oven temperature":
+        - option "100°C"
+        - option "160°C"
+        - option "180°C" [selected]
+        - option "200°C"
+        - option "220°C"
+        - option "250°C"
+      - button "Set temperature"
+      - generic "Water Bottle"
+      - generic: Water Bottle · 1000 / 1000 mL
+      - button "Take Water Bottle"
+      - generic "Chicken Leg"
+      - generic: Chicken Leg · Burnt
+      - button "Take Chicken Leg"
+      - generic "Chicken Leg"
+      - generic: Chicken Leg · Burnt
+      - button "Take Chicken Leg"
+    - region "Carried items":
+      - heading "Carried items" [level=3]
+      - generic "Water Bottle"
+      - generic: Water Bottle · 1000 / 1000 mL
+      - button "Drink Water Bottle"
+      - button "Store Water Bottle"
+      - generic "Water Bottle"
+      - generic: Water Bottle · 0 / 1000 mL
+      - button "Store Water Bottle"
+      - generic "Can Opener"
+      - generic: Can Opener
+      - button "Store Can Opener"
+      - generic "Tin Can"
+      - generic: Tin Can × 12 · 0 / 300 mL each
+      - button "Store Tin Can"
+      - generic "Water Bottle"
+      - generic: Water Bottle · 0 / 1000 mL
+      - button "Store Water Bottle"
+      - generic "Bandage (Dirty)"
+      - generic: Bandage (Dirty) × 6
+      - button "Store Bandage (Dirty)"
+      - generic "Alcohol Wipes"
+      - generic: Alcohol Wipes · 4 uses remaining
+      - button "Store Alcohol Wipes"
+    - group "Character health":
+      - generic "Health & care"
+    - region "Nearby facilities":
+      - heading "Nearby facilities" [level=3]
+      - generic: Sink
+      - generic: Mains water
+      - button "Drink water"
+      - button "Rinse hands"
+      - button "Fill Water Bottle"
+      - button "Fill Tin Can"
+      - button "Fill Water Bottle"
+    - status
+    - button "Return to house"

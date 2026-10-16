@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {fixtureShadowBudget} from '../src/volume-shadow-budget.js';
+test('material maps and all live light paths fit the sixteen-sampler browser floor',()=>{assert.equal(fixtureShadowBudget(16),9);assert.equal(fixtureShadowBudget(16)+2+1+1+1+1+1,16);assert.equal(fixtureShadowBudget(32),12);assert.equal(fixtureShadowBudget(16,{probeVisibilityMaps:1}),8);assert.throws(()=>fixtureShadowBudget(7));});
+
+test('shared atlas separates sampler capacity from light slots and reserves TV/fridge',()=>{assert.equal(fixtureShadowBudget(16,{sharedSpotAtlas:true,probeVisibilityMaps:1}),12);assert.equal(fixtureShadowBudget(16,{sharedSpotAtlas:true,limit:20}),14);assert.throws(()=>fixtureShadowBudget(6,{sharedSpotAtlas:true,probeVisibilityMaps:1}));});
+test('expanded atlas reserves all four television patches and the refrigerator emitter',()=>{assert.equal(fixtureShadowBudget(16,{sharedSpotAtlas:true,probeVisibilityMaps:1,televisionShadows:4,atlasSlots:20,limit:15}),15);});

@@ -1,0 +1,22 @@
+✔ window coverings and wall lights bind to their exact supports and follow wall movement (22.321417ms)
+✔ removing host removes fixtures atomically; locked coverings stop host edits (17.614ms)
+✔ wide fixture rejects partial host movement and freestanding object transforms (10.490958ms)
+✔ unsupported fixtures reject and legacy walls keep their existing placement path (6.60925ms)
+✔ rehosting preserves fixture identity and uses only verified variants and valid supports (19.597583ms)
+✔ studio equipment keeps its dimensioned physical silhouette and actual empty spaces (322.08175ms)
+✔ all studio recipes generate finite supported convex parts with stable identifiers (910.201208ms)
+✔ every studio direction is one editable catalogue assembly matching its volume recipe (1749.091667ms)
+✔ wall lighting on a south boundary points into the room instead of outside (1.449958ms)
+✔ studio upholstery has curved height sections without changing its authored footprint (276.626792ms)
+✔ explicit wall face transforms fixture, collision and light toward the selected side (1.986333ms)
+✔ wall-strip uses actual wall face and thickness in both axes (3.716292ms)
+✔ wall-sconce uses actual wall face and thickness in both axes (1.221625ms)
+✔ wall light rejects degenerate diffuser geometry (0.417625ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3325.480416
