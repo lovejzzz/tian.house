@@ -1,6 +1,6 @@
-import {fixedGlazing} from './fixed-glazing.js?v=a890ced93fdd';
-import {doorOpening,windowOpening} from './wall-joins.js?v=a890ced93fdd';
-import {windowProfile,doorProfile,windowAperture} from './window-profile.js?v=a890ced93fdd';
+import {fixedGlazing} from './fixed-glazing.js?v=1d7ffb1877ce';
+import {doorOpening,windowOpening} from './wall-joins.js?v=1d7ffb1877ce';
+import {windowProfile,doorProfile,windowAperture} from './window-profile.js?v=1d7ffb1877ce';
 
 export function diagonalOpening(wall,opening,properties){
  if(!opening)return null;

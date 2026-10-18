@@ -1,5 +1,5 @@
-import {roomCells,roomPolygonGeometry} from './room-footprint.js?v=a890ced93fdd';
-import {polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {roomCells,roomPolygonGeometry} from './room-footprint.js?v=1d7ffb1877ce';
+import {polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 // Consume the compiled floor mask too: stairs remove slabs without rewriting
 // the room outline. No floor is invented where the gameplay compiler removed it.
 export function sceneSlabVolumes(scene,plan,{cellSize,storeyHeight,thickness}){

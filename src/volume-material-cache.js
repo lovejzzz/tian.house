@@ -1,9 +1,9 @@
-import {packSurfaceMaps} from './packed-surface-maps.js?v=a890ced93fdd';
-import {sourceTextureKey} from './source-patch-texture.js?v=a890ced93fdd';
+import {packSurfaceMaps} from './packed-surface-maps.js?v=1d7ffb1877ce';
+import {sourceTextureKey} from './source-patch-texture.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
-import {woodTexture,surfaceTexture} from './volume-material-texture.js?v=a890ced93fdd';
-import {PROCEDURAL_SURFACES,isProceduralSurface} from './procedural-surfaces.js?v=a890ced93fdd';
-import {scannedTextureSet} from './scanned-assets.js?v=a890ced93fdd';
+import {woodTexture,surfaceTexture} from './volume-material-texture.js?v=1d7ffb1877ce';
+import {PROCEDURAL_SURFACES,isProceduralSurface} from './procedural-surfaces.js?v=1d7ffb1877ce';
+import {scannedTextureSet} from './scanned-assets.js?v=1d7ffb1877ce';
 export function createVolumeMaterialCache({sourceMaps=new Map()}={}){
  const cache=new Map();
  return {

@@ -1,4 +1,4 @@
-import {roomCoversCell} from './room-footprint.js?v=a890ced93fdd';
+import {roomCoversCell} from './room-footprint.js?v=1d7ffb1877ce';
 export const containsCell=(rect,x,y)=>x>=rect[0]&&x<rect[2]&&y>=rect[1]&&y<rect[3];
 export function editFloorOpening(scene,operation){
  const room=scene.rooms.find(r=>r.id===operation.roomId);if(!room)throw Error('Choose an editable room');

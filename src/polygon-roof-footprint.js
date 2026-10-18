@@ -1,4 +1,4 @@
-import {pointInPolygon} from './polygon-footprint.js?v=a890ced93fdd';
+import {pointInPolygon} from './polygon-footprint.js?v=1d7ffb1877ce';
 
 // Integer orthogonal/45-degree boundaries partition a grid cell into these four
 // sectors. Their centres are interior probes, never points on either diagonal.

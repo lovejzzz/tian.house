@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
 // Effective age uses imported spoilage thresholds. Cooling rates are a provisional
 // gameplay approximation, not a calibrated refrigerator thermal simulation.
 export function foodFreshness(item){

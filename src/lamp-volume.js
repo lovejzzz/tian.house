@@ -1,5 +1,5 @@
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {lathe,rod,sphere} from './detail-geometry.js?v=a890ced93fdd';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {lathe,rod,sphere} from './detail-geometry.js?v=1d7ffb1877ce';
 // Z-up surfaces of revolution. Shade is an open, double-sided shell, not a solid cone.
 export function lampVolume(recipe){
  const {height:h,baseRadius:b,baseHeight:bh,stemRadius:s,shadeBottom:z,shadeRadius:r,shadeTopRadius:t,segments:n}=recipe.parameters;

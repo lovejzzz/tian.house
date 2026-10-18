@@ -1,5 +1,5 @@
-import {sourceObjectOffset} from './scene-object-offset.js?v=a890ced93fdd';
-import {pointInPolygon,convexIntersectionArea,polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {sourceObjectOffset} from './scene-object-offset.js?v=1d7ffb1877ce';
+import {pointInPolygon,convexIntersectionArea,polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 const cache=new WeakMap();
 export function objectFootprint(props){
  if(!props?.TianCollisionPolygon)return null;

@@ -1,8 +1,8 @@
 import * as THREE from 'three';
-import {createSolidIndex} from './solid-index.js?v=a890ced93fdd';
-import {prismSolid} from './prism-solid.js?v=a890ced93fdd';
-import {sweepSolidBox} from './convex-solid.js?v=a890ced93fdd';
-import {stepPhysicalBody} from './physical-body.js?v=a890ced93fdd';
+import {createSolidIndex} from './solid-index.js?v=1d7ffb1877ce';
+import {prismSolid} from './prism-solid.js?v=1d7ffb1877ce';
+import {sweepSolidBox} from './convex-solid.js?v=1d7ffb1877ce';
+import {stepPhysicalBody} from './physical-body.js?v=1d7ffb1877ce';
 const half=[.25,.25,.9];
 // Diagnostic body uses actual compiled floor masks, never an invented flat ground.
 export function createVolumeWalkthrough({scene,dialog,canvas,draw,focus,follow,interaction=()=>null,interact=()=>({ok:false}),steer=(_position,velocity)=>velocity,advance=()=>{},movementSpeed=()=>2,movementDirection=(x,y)=>[x,y],spawnPosition=()=>null,showBody=true,onStop=()=>{},attack=()=>false,onFrame=()=>{},onPause=()=>{}}){

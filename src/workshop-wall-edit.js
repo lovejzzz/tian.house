@@ -1,4 +1,4 @@
-import {insidePolygon,wallFacePolygon} from './workshop-placement.js?v=a890ced93fdd';
+import {insidePolygon,wallFacePolygon} from './workshop-placement.js?v=1d7ffb1877ce';
 
 export function wallFaceHit(scene,levelId,screen,point,zoom=1){
  return (scene?.walls||[]).filter(w=>w.levelId===levelId&&insidePolygon(point,wallFacePolygon(screen,w.x,w.y,0,w.axis,96*zoom))).sort((a,b)=>b.x+b.y-a.x-a.y)[0]||null;

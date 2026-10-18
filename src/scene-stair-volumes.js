@@ -1,5 +1,5 @@
-import {straightStairPath,returnStairPath} from './return-stair-path.js?v=a890ced93fdd';
-import {wallVolume} from './wall-volume.js?v=a890ced93fdd';
+import {straightStairPath,returnStairPath} from './return-stair-path.js?v=1d7ffb1877ce';
+import {wallVolume} from './wall-volume.js?v=1d7ffb1877ce';
 // Provisional solid-flight geometry from functional path; original art is not reconstructed.
 export function sceneStairVolumes(scene,{cellSize,storeyHeight,maxRiser=.18}){
  if(![cellSize,storeyHeight,maxRiser].every(v=>Number.isFinite(v)&&v>0))throw Error('Provide explicit stair dimensions');

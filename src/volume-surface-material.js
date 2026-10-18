@@ -1,5 +1,5 @@
-import {installPackedRoughness} from './packed-surface-maps.js?v=a890ced93fdd';
-import {installSurfaceVariation,surfaceVariationProfile} from './surface-variation.js?v=a890ced93fdd';
+import {installPackedRoughness} from './packed-surface-maps.js?v=1d7ffb1877ce';
+import {installSurfaceVariation,surfaceVariationProfile} from './surface-variation.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
 // Authored fibre response supplements the original source colour/relief maps.
 // No fabric classification is inferred from filenames or scene coordinates.

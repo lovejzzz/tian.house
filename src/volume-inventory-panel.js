@@ -1,16 +1,16 @@
-import {carriedCareItems} from './household-care.js?v=a890ced93fdd';import {TOOTHBRUSH,dirtyBandages,teethLabel} from './daily-care.js?v=a890ced93fdd';
-import {isToilet} from './toileting.js?v=a890ced93fdd';
-import {foodFreshness} from './food-storage.js?v=a890ced93fdd';
-import {isWashbasin} from './hand-rinsing.js?v=a890ced93fdd';
-import {mealFraction,portionLabel,applianceTemperatureChoices} from './meal-controls.js?v=a890ced93fdd';
-import {createItemIcon} from './inventory-icon-view.js?v=a890ced93fdd';
-import {openHouseholdMedia} from './household-media-panel.js?v=a890ced93fdd';
-import {inventoryRows,inventoryUseLabel,inventoryRemainingLabel} from './inventory-presentation.js?v=a890ced93fdd';
-import {BODY_PARTS,medicalItems,woundDescription,ensureMedical} from './medical.js?v=a890ced93fdd';
-import {isCookingAppliance,cookingLabel,cookingAdvice} from './cooking.js?v=a890ced93fdd';
-import {waterSource} from './water.js?v=a890ced93fdd';
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {isRubbishBin,isOutdoorBin,rubbishStack} from './rubbish.js?v=a890ced93fdd';
+import {carriedCareItems} from './household-care.js?v=1d7ffb1877ce';import {TOOTHBRUSH,dirtyBandages,teethLabel} from './daily-care.js?v=1d7ffb1877ce';
+import {isToilet} from './toileting.js?v=1d7ffb1877ce';
+import {foodFreshness} from './food-storage.js?v=1d7ffb1877ce';
+import {isWashbasin} from './hand-rinsing.js?v=1d7ffb1877ce';
+import {mealFraction,portionLabel,applianceTemperatureChoices} from './meal-controls.js?v=1d7ffb1877ce';
+import {createItemIcon} from './inventory-icon-view.js?v=1d7ffb1877ce';
+import {openHouseholdMedia} from './household-media-panel.js?v=1d7ffb1877ce';
+import {inventoryRows,inventoryUseLabel,inventoryRemainingLabel} from './inventory-presentation.js?v=1d7ffb1877ce';
+import {BODY_PARTS,medicalItems,woundDescription,ensureMedical} from './medical.js?v=1d7ffb1877ce';
+import {isCookingAppliance,cookingLabel,cookingAdvice} from './cooking.js?v=1d7ffb1877ce';
+import {waterSource} from './water.js?v=1d7ffb1877ce';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {isRubbishBin,isOutdoorBin,rubbishStack} from './rubbish.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 // UI only: instance ownership, reach, capacity and timed actions belong to Simulation.
 export function openVolumeInventory({parent,game,position,canvas,selectedId=null,facilityId=null,running=true,television=null,onDoor=null,onPractice=null,itemRenderer=null,onStorage=null}){

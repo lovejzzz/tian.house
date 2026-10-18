@@ -1,21 +1,21 @@
-import {sourceObjectOffset} from './scene-object-offset.js?v=a890ced93fdd';
-import {roofRenderFaces,drawRoofFace} from './roof-render.js?v=a890ced93fdd';
-import {roofPresentation} from './roof-presentation.js?v=a890ced93fdd';
-import {fixturePoint,furnishingDepth} from './furnishing.js?v=a890ced93fdd';
-import {groundGeometry} from './ground-footprint.js?v=a890ced93fdd';
-import {drawGroundBoundary} from './ground-boundary.js?v=a890ced93fdd';
-import {groundFloorLift,groundObjectLift,supportedGroundSquare} from './ground-height.js?v=a890ced93fdd';
-import {shelfDisplay} from './shelf-display.js?v=a890ced93fdd';
-import {drawPolygonFloor,drawPolygonWall,polygonWallObjects} from './polygon-render.js?v=a890ced93fdd';
-import {wallJoins} from './wall-joins.js?v=a890ced93fdd';
-import {furnishingLift} from './furnishing.js?v=a890ced93fdd';
-import {drawPool} from './workshop-outdoors.js?v=a890ced93fdd';
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {inventoryIcon} from './item-icons.js?v=a890ced93fdd';
-import {windowBarricadeSprites} from './barricades.js?v=a890ced93fdd';
-import {Visibility} from './visibility.js?v=a890ced93fdd';
-import {treeSprites} from './vegetation.js?v=a890ced93fdd';
-import {windowSprite} from './windows.js?v=a890ced93fdd';
+import {sourceObjectOffset} from './scene-object-offset.js?v=1d7ffb1877ce';
+import {roofRenderFaces,drawRoofFace} from './roof-render.js?v=1d7ffb1877ce';
+import {roofPresentation} from './roof-presentation.js?v=1d7ffb1877ce';
+import {fixturePoint,furnishingDepth} from './furnishing.js?v=1d7ffb1877ce';
+import {groundGeometry} from './ground-footprint.js?v=1d7ffb1877ce';
+import {drawGroundBoundary} from './ground-boundary.js?v=1d7ffb1877ce';
+import {groundFloorLift,groundObjectLift,supportedGroundSquare} from './ground-height.js?v=1d7ffb1877ce';
+import {shelfDisplay} from './shelf-display.js?v=1d7ffb1877ce';
+import {drawPolygonFloor,drawPolygonWall,polygonWallObjects} from './polygon-render.js?v=1d7ffb1877ce';
+import {wallJoins} from './wall-joins.js?v=1d7ffb1877ce';
+import {furnishingLift} from './furnishing.js?v=1d7ffb1877ce';
+import {drawPool} from './workshop-outdoors.js?v=1d7ffb1877ce';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {inventoryIcon} from './item-icons.js?v=1d7ffb1877ce';
+import {windowBarricadeSprites} from './barricades.js?v=1d7ffb1877ce';
+import {Visibility} from './visibility.js?v=1d7ffb1877ce';
+import {treeSprites} from './vegetation.js?v=1d7ffb1877ce';
+import {windowSprite} from './windows.js?v=1d7ffb1877ce';
 export class Renderer{
  constructor(canvas,world,atlas,characters){this.canvas=canvas;this.ctx=canvas.getContext('2d');this.world=world;this.visibility=new Visibility(world);this.atlas=atlas;this.characters=characters;this.images=new Map();this.loading=new Map();this.failed=new Set();this.zoom=1.55;this.camera={x:0,y:0};this.missing=new Set();this.unverifiedTrees=new Set();this.treeCount=0;this.frameTimes=[];this.drawn=0;}
  resize(){const d=Math.min(devicePixelRatio||1,2),w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(this.canvas.width!==w*d||this.canvas.height!==h*d){this.canvas.width=w*d;this.canvas.height=h*d;}this.dpr=d;this.width=w;this.height=h;}
@@ -43,7 +43,7 @@ export class Renderer{
   this.sprite(name,point.x,point.y-lift+bounce,alpha,brightness*(prop.TianLight&&this.world.state(x,y,z,name).lightOff?.42:1));
   if(prop.TianLight&&!this.world.state(x,y,z,name).lightOff&&brightness>0){const c=this.ctx,h=Number(prop.TianLightHeight)||(prop.TianMount==='table'?lift+20:prop.TianMount==='wall'?60:65);c.save();c.globalAlpha=alpha*brightness*(this.layerAlpha??1);const glow=c.createRadialGradient(point.x,point.y+12-h,0,point.x,point.y+12-h,22);glow.addColorStop(0,'#ffe6ac66');glow.addColorStop(1,'#ffe6ac00');c.fillStyle=glow;c.fillRect(point.x-22,point.y-10-h,44,44);c.restore();}
  }
- async loadWorkshopVehicles(){if(this.vehicleLoading)return;this.vehicleLoading=true;try{const [manifest,{WorkshopVehicles}]=await Promise.all([fetch('private-assets/workshop-vehicles/manifest.json').then(r=>r.json()),import('./workshop-vehicles.js?v=a890ced93fdd')]);const vehicles=new WorkshopVehicles(manifest);await vehicles.init();this.workshopVehicles=vehicles;}catch(e){this.vehicleError=e.message;console.error(e);}}
+ async loadWorkshopVehicles(){if(this.vehicleLoading)return;this.vehicleLoading=true;try{const [manifest,{WorkshopVehicles}]=await Promise.all([fetch('private-assets/workshop-vehicles/manifest.json').then(r=>r.json()),import('./workshop-vehicles.js?v=1d7ffb1877ce')]);const vehicles=new WorkshopVehicles(manifest);await vehicles.init();this.workshopVehicles=vehicles;}catch(e){this.vehicleError=e.message;console.error(e);}}
  groundIcon(item,pos,maxSize=22){const name=inventoryIcon(item,definition(item.type).properties),r=this.atlas.regions[name]||this.atlas.regions.Question_On;if(!r)return;const image=this.page(r.page);if(!image)return;const s=Math.min(maxSize/r.w,maxSize/r.h);this.ctx.drawImage(image,r.x,r.y,r.w,r.h,pos.x-r.w*s/2,pos.y-r.h*s,r.w*s,r.h*s);}
  draw(sim,hover,dt=1/60){this.resize();const c=this.ctx,p=sim.state.player;const point=this.cinematicCamera||this.project(p.x,p.y,this.world.apparentZ(p));this.camera=point;this.visibility.update(sim);this.visibility.advance(sim,dt);this.drawn=0;this.treeCount=0;
   c.setTransform(this.dpr,0,0,this.dpr,0,0);c.fillStyle='#000';c.fillRect(0,0,this.width,this.height);

@@ -1,13 +1,13 @@
-import {applyConsumptionPose} from './consumption-pose.js?v=a890ced93fdd';
-import {createHeldConsumable} from './held-consumable.js?v=a890ced93fdd';
-import {fixtureSeatContact} from './fixture-seat-contact.js?v=a890ced93fdd';
-import {applyPianoPose} from './piano-pose.js?v=a890ced93fdd';
-import {showerPartVisible} from './shower-presentation.js?v=a890ced93fdd';
-import {applyHandRinsePose} from './hand-rinse-pose.js?v=a890ced93fdd';
-import {applyFurnitureRestPose} from './furniture-rest-pose.js?v=a890ced93fdd';
+import {applyConsumptionPose} from './consumption-pose.js?v=1d7ffb1877ce';
+import {createHeldConsumable} from './held-consumable.js?v=1d7ffb1877ce';
+import {fixtureSeatContact} from './fixture-seat-contact.js?v=1d7ffb1877ce';
+import {applyPianoPose} from './piano-pose.js?v=1d7ffb1877ce';
+import {showerPartVisible} from './shower-presentation.js?v=1d7ffb1877ce';
+import {applyHandRinsePose} from './hand-rinse-pose.js?v=1d7ffb1877ce';
+import {applyFurnitureRestPose} from './furniture-rest-pose.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
 import {clone} from '../node_modules/three/examples/jsm/utils/SkeletonUtils.js';
-import {loadResidentHD,createResidentHDActor,syncResidentHD} from './resident-hd-character.js?v=a890ced93fdd';
+import {loadResidentHD,createResidentHDActor,syncResidentHD} from './resident-hd-character.js?v=1d7ffb1877ce';
 export function bodyBounds(root){const box=new THREE.Box3(),point=new THREE.Vector3();root.traverse(n=>{if(!n.isMesh||(!n.isSkinnedMesh&&n.parent!==root))return;for(let parent=n;parent;parent=parent.parent){if(!parent.visible)return;if(parent===root)break;}const indices=n.geometry.index?new Set(n.geometry.index.array):Array.from({length:n.geometry.attributes.position.count},(_,i)=>i);for(const i of indices){n.getVertexPosition(i,point);box.expandByPoint(point.applyMatrix4(n.matrixWorld));}});return box;}
 // Character colour maps remain imported. The volume view owns material instances
 // so threat styling and room irradiance cannot contaminate the 2D source actor.

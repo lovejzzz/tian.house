@@ -1,4 +1,4 @@
-import {plasterPixels,finishPixels,stonePixels} from './material-relief.js?v=a890ced93fdd';
+import {plasterPixels,finishPixels,stonePixels} from './material-relief.js?v=1d7ffb1877ce';
 // Small repeatable material recipe. Neutral modulation keeps the authored wood tint.
 export function woodTexture({size=128,seed=1}={}){
  if(!Number.isInteger(size)||size<16||size>512||!Number.isInteger(seed))throw Error('Invalid wood texture recipe');

@@ -1,4 +1,4 @@
-import {roundedBox,lathe,rod,knob,rotatePart,boxProxy,checkDetailPart} from './detail-geometry.js?v=a890ced93fdd';
+import {roundedBox,lathe,rod,knob,rotatePart,boxProxy,checkDetailPart} from './detail-geometry.js?v=1d7ffb1877ce';
 // Bathroom ceramics as turned, glazed forms: open bowls with visible interiors,
 // rims, water surfaces and real tap bodies. Dimensions are design assumptions for
 // a close-coupled toilet and pedestal basin. Interaction anchors come from recipe

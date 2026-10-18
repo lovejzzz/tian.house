@@ -3,8 +3,8 @@ import {EffectComposer} from '../node_modules/three/examples/jsm/postprocessing/
 import {RenderPass} from '../node_modules/three/examples/jsm/postprocessing/RenderPass.js';
 import {GTAOPass} from '../node_modules/three/examples/jsm/postprocessing/GTAOPass.js';
 import {OutputPass} from '../node_modules/three/examples/jsm/postprocessing/OutputPass.js';
-import {createCinematicGrade} from './cinematic-grade.js?v=a890ced93fdd';
-import {createShaftsPass} from './atmosphere-effects.js?v=a890ced93fdd';
+import {createCinematicGrade} from './cinematic-grade.js?v=1d7ffb1877ce';
+import {createShaftsPass} from './atmosphere-effects.js?v=1d7ffb1877ce';
 // Screen-space contact layer, not GI. Keep it outside radiance captures and use
 // one final tone/color conversion.
 export function withContactVisibility(scene,renderer,draw){

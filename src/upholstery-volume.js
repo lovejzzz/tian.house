@@ -1,6 +1,6 @@
 import {Vector3} from 'three';
 import {ConvexHull} from '../node_modules/three/examples/jsm/math/ConvexHull.js';
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
 // A bounded superellipsoid envelope: visible upholstery and collision share
 // the same convex surface. This models padding, not cloth simulation or folds.
 export function upholsteryVolume({id,materialId='cloth',origin,size,exponent=.45,creaseDepth=0,fine=true}){

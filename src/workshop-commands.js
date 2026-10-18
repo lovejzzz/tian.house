@@ -1,6 +1,6 @@
-import {editorSnapshot} from './workshop-draft.js?v=a890ced93fdd';
-import {StructuredWorkshopModel} from './structured-workshop-model.js?v=a890ced93fdd';
-import {validateHousePlan} from './workshop-model.js?v=a890ced93fdd';
+import {editorSnapshot} from './workshop-draft.js?v=1d7ffb1877ce';
+import {StructuredWorkshopModel} from './structured-workshop-model.js?v=1d7ffb1877ce';
+import {validateHousePlan} from './workshop-model.js?v=1d7ffb1877ce';
 
 // Versioned batches use the same structural model as editor gestures.
 // Catalog definitions, never

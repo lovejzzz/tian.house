@@ -1,4 +1,4 @@
-import {validateWallFinishProfile} from './scene-wall-trims.js?v=a890ced93fdd';
+import {validateWallFinishProfile} from './scene-wall-trims.js?v=1d7ffb1877ce';
 // Reviewed source IDs; no scene-specific coordinates or silent name-based guessing.
 export function architecturalMaterialBundle(recipe){
  if(!Array.isArray(recipe.surfaces)||!recipe.surfaces.length)throw Error('Surface material mappings required');

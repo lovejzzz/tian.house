@@ -1,7 +1,7 @@
-import {thresholdHeight} from './door-threshold.js?v=a890ced93fdd';
-import {pointInPolygon,boundaryBlocksMovement} from './polygon-footprint.js?v=a890ced93fdd';
-import {openingJambs} from './diagonal-openings.js?v=a890ced93fdd';
-import {barricadePresent} from './barricades.js?v=a890ced93fdd';
+import {thresholdHeight} from './door-threshold.js?v=1d7ffb1877ce';
+import {pointInPolygon,boundaryBlocksMovement} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {openingJambs} from './diagonal-openings.js?v=1d7ffb1877ce';
+import {barricadePresent} from './barricades.js?v=1d7ffb1877ce';
 const key=(x,y,z)=>`${Math.floor(x)},${Math.floor(y)},${z}`;
 // Exact L-infinity distance to a segment: the maximum of two absolute linear
 // functions can attain its minimum at an endpoint, a zero, or their crossing.

@@ -1,8 +1,8 @@
-import {migrateResidentContainers} from './resident-container-migration.js?v=a890ced93fdd';
-import {windowSprite} from './windows.js?v=a890ced93fdd';
-import {validateHousePlan} from './workshop-model.js?v=a890ced93fdd';
-import {World} from './world.js?v=a890ced93fdd';
-import {Inventory,definition} from './inventory.js?v=a890ced93fdd';
+import {migrateResidentContainers} from './resident-container-migration.js?v=1d7ffb1877ce';
+import {windowSprite} from './windows.js?v=1d7ffb1877ce';
+import {validateHousePlan} from './workshop-model.js?v=1d7ffb1877ce';
+import {World} from './world.js?v=1d7ffb1877ce';
+import {Inventory,definition} from './inventory.js?v=1d7ffb1877ce';
 // Build and validate a replacement state before touching the running simulation.
 export function prepareHouseState(sim,plan,bounds,atlas,{preserveStock=false}={}){
  validateHousePlan(plan,bounds);

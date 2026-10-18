@@ -1,6 +1,6 @@
-import {roomCells} from './room-footprint.js?v=a890ced93fdd';
-import {fixtureAxis} from './furnishing.js?v=a890ced93fdd';
-import {orientationFamilies} from './catalog-variants.js?v=a890ced93fdd';
+import {roomCells} from './room-footprint.js?v=1d7ffb1877ce';
+import {fixtureAxis} from './furnishing.js?v=1d7ffb1877ce';
+import {orientationFamilies} from './catalog-variants.js?v=1d7ffb1877ce';
 export const wallMountKind=p=>['wall','window'].includes(p?.TianMount)?p.TianMount:null;
 export function bindWallMounts(scene,entry,x,y,levelId,properties){
  return entry.parts.map((part,index)=>{

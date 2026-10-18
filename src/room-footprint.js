@@ -1,4 +1,4 @@
-import {compilePolygonFootprint,normalizeFootprintPolygon,pointInPolygon,convexIntersectionArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {compilePolygonFootprint,normalizeFootprintPolygon,pointInPolygon,convexIntersectionArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 // A rectangle remains the bounding box; optional cells describe its actual area.
 const key=(x,y)=>`${x},${y}`;
 const polygonCache=new WeakMap();

@@ -1,4 +1,4 @@
-import {waterSource} from './water.js?v=a890ced93fdd';
+import {waterSource} from './water.js?v=1d7ffb1877ce';
 export const TOILET_SECONDS=20,FLUSH_SECONDS=4,FLUSH_LITRES=6;
 // Provisional game timings and a conventional single-flush volume, not a claim
 // about every imported fixture's plumbing or a bodily-needs simulation.

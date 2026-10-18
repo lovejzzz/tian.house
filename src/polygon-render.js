@@ -1,9 +1,9 @@
-import {drawThreshold} from './door-threshold.js?v=a890ced93fdd';
-import {drawGlazingPlane} from './fixed-glazing.js?v=a890ced93fdd';
-import {barricadeSprite} from './barricades.js?v=a890ced93fdd';
-import {windowSprite} from './windows.js?v=a890ced93fdd';
-import {openingSpan} from './diagonal-openings.js?v=a890ced93fdd';
-import {windowSurroundRectangles} from './window-profile.js?v=a890ced93fdd';
+import {drawThreshold} from './door-threshold.js?v=1d7ffb1877ce';
+import {drawGlazingPlane} from './fixed-glazing.js?v=1d7ffb1877ce';
+import {barricadeSprite} from './barricades.js?v=1d7ffb1877ce';
+import {windowSprite} from './windows.js?v=1d7ffb1877ce';
+import {openingSpan} from './diagonal-openings.js?v=1d7ffb1877ce';
+import {windowSurroundRectangles} from './window-profile.js?v=1d7ffb1877ce';
 const floorKey=(x,y,z,tile)=>`${x},${y},${z}:${tile}`;
 const indexes=new WeakMap();
 function floorIndex(geometry){if(!geometry)return null;if(!indexes.has(geometry)){const index=new Map();for(const f of geometry.floors){const k=floorKey(f.x,f.y,f.z,f.tile);if(!index.has(k))index.set(k,[]);index.get(k).push(f);}indexes.set(geometry,index);}return indexes.get(geometry);}

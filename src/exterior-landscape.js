@@ -1,17 +1,17 @@
 import * as THREE from 'three';
 import {mergeVertices,mergeGeometries} from '../node_modules/three/examples/jsm/utils/BufferGeometryUtils.js';
-import {lawnPixels} from './procedural-surfaces.js?v=a890ced93fdd';
-import {installSurfaceVariation} from './surface-variation.js?v=a890ced93fdd';
-import {trellisSpan} from './exterior-architecture.js?v=a890ced93fdd';
-import {installLeafTranslucency,installLeafWind} from './foliage-shading.js?v=a890ced93fdd';
-import {installGroundVariation} from './facade-weathering.js?v=a890ced93fdd';
-import {resolveExterior} from './scene-exterior.js?v=a890ced93fdd';
-import {scannedTextureSet,loadScannedModel} from './scanned-assets.js?v=a890ced93fdd';
-import {leafTexture,clusterCard,leafGeometry,leafTextures,leafQuaternion,growClimber} from './vegetation-leaves.js?v=a890ced93fdd';
-import {buildExteriorProps} from './exterior-props.js?v=a890ced93fdd';
+import {lawnPixels} from './procedural-surfaces.js?v=1d7ffb1877ce';
+import {installSurfaceVariation} from './surface-variation.js?v=1d7ffb1877ce';
+import {trellisSpan} from './exterior-architecture.js?v=1d7ffb1877ce';
+import {installLeafTranslucency,installLeafWind} from './foliage-shading.js?v=1d7ffb1877ce';
+import {installGroundVariation} from './facade-weathering.js?v=1d7ffb1877ce';
+import {resolveExterior} from './scene-exterior.js?v=1d7ffb1877ce';
+import {scannedTextureSet,loadScannedModel} from './scanned-assets.js?v=1d7ffb1877ce';
+import {leafTexture,clusterCard,leafGeometry,leafTextures,leafQuaternion,growClimber} from './vegetation-leaves.js?v=1d7ffb1877ce';
+import {buildExteriorProps} from './exterior-props.js?v=1d7ffb1877ce';
 import {SimplifyModifier} from '../node_modules/three/examples/jsm/modifiers/SimplifyModifier.js';
-import {buildExteriorContext} from './exterior-context.js?v=a890ced93fdd';
-import {createBirds,createFallingLeaves} from './atmosphere-effects.js?v=a890ced93fdd';
+import {buildExteriorContext} from './exterior-context.js?v=1d7ffb1877ce';
+import {createBirds,createFallingLeaves} from './atmosphere-effects.js?v=1d7ffb1877ce';
 // Runtime landscape around the authored plot (Z-up, metres = grid cells):
 // meadow ground to the horizon, a varied distant tree line, a few detailed garden
 // trees whose leaf cards cast dappled shadows, a clipped boundary hedge with a gap
@@ -288,6 +288,7 @@ export function fallenLeafPixels(size=128,seed=3){
 }
 // Split one big InstancedMesh into spatial chunks (cell × cell metres) so frustum
 // culling skips off-screen ground cover and distant chunks can be hidden outright.
+export const SCAN_GROUND_COVER=new Set(['periwinkle_plant','dandelion_01','weed_plant_02','fern_02']);
 export function chunkInstances(im,cell=12,maxDist=Infinity){
  const groups=new Map(),m=new THREE.Matrix4(),c=new THREE.Color(),p=new THREE.Vector3();
  for(let i=0;i<im.count;i++){im.getMatrixAt(i,m);p.setFromMatrixPosition(m);const k=Math.floor(p.x/cell)+','+Math.floor(p.y/cell);if(!groups.has(k))groups.set(k,[]);groups.get(k).push(i);}
@@ -516,7 +517,11 @@ export function createExteriorLandscape(scene,{quality=1,scanned=typeof document
      list.forEach((p,i)=>{
       // glTF models face +Y after the up-axis turn; the hose reel's back goes to the wall.
       q.setFromAxisAngle(new THREE.Vector3(0,0,1),p.tilt==='wall'?p.yaw-Math.PI/2:p.yaw);m.compose(new THREE.Vector3(p.x,p.y,p.z),q,new THREE.Vector3(p.s,p.s,p.s));mesh.setMatrixAt(i,m);});
-     mesh.castShadow=true;mesh.receiveShadow=true;mesh.name='scanned-'+id;root.add(mesh);}
+     // Ground cover (periwinkle, dandelions, weeds, ferns) is dense scan geometry in
+     // many copies: it casts no shadows (contact AO grounds it) and is drawn in
+     // distance-culled chunks like the grass. Shrubs keep shadows and a longer range.
+     const ground=SCAN_GROUND_COVER.has(id);mesh.castShadow=!ground;mesh.receiveShadow=true;mesh.name='scanned-'+id;
+     if(list.length>1){for(const ch of chunkInstances(mesh,8,ground?22:45))root.add(ch);mesh.dispose();}else root.add(mesh);}
     onChange();}).catch(e=>console.warn('Scanned plant failed to load',id,e));}
   // 11. Lived-in dressing round the house (door canopies, steps, mat, letterbox,
   //     number, tap, bicycle, washing line, wheelbarrow, spade, watering can).

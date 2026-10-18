@@ -1,6 +1,6 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {roundedBox} from './detail-geometry.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {roundedBox} from './detail-geometry.js?v=1d7ffb1877ce';
 // Local x runs along the wall, y projects into the room; z is height above floor.
 export function wallLightVolume(recipe){
  const {width:w,height:h,depth:d,elevation:z}=recipe.parameters;

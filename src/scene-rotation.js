@@ -1,6 +1,6 @@
-import {objectOffset} from './scene-object-offset.js?v=a890ced93fdd';
-import {objectClosure} from './scene-objects.js?v=a890ced93fdd';
-import {orientationFamilies,physicalFacing} from './catalog-variants.js?v=a890ced93fdd';
+import {objectOffset} from './scene-object-offset.js?v=1d7ffb1877ce';
+import {objectClosure} from './scene-objects.js?v=1d7ffb1877ce';
+import {orientationFamilies,physicalFacing} from './catalog-variants.js?v=1d7ffb1877ce';
 const facings=['N','E','S','W'];
 const turn=(x,y,n)=>{for(let i=0;i<n;i++)[x,y]=[-y,x];return {x,y};};
 export function rotateSceneObjects(scene,{ids,turns},catalog,properties){

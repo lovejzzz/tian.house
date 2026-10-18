@@ -1,6 +1,6 @@
-import {viewReferencePhoto} from './reference-photo-viewer.js?v=a890ced93fdd';
-import {calibrationChanged} from './scene-calibration.js?v=a890ced93fdd';
-import {referenceEntity,focusReferenceEntity} from './workshop-reference-annotations.js?v=a890ced93fdd';
+import {viewReferencePhoto} from './reference-photo-viewer.js?v=1d7ffb1877ce';
+import {calibrationChanged} from './scene-calibration.js?v=1d7ffb1877ce';
+import {referenceEntity,focusReferenceEntity} from './workshop-reference-annotations.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 export function pinReference(workshop,id){
  if(!workshop.referenceDock){

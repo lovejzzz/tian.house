@@ -1,5 +1,5 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {roundedBox,lathe,rod,sphere,extrudeZ,checkDetailPart} from './detail-geometry.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {roundedBox,lathe,rod,sphere,extrudeZ,checkDetailPart} from './detail-geometry.js?v=1d7ffb1877ce';
 // Shared assembly vocabulary; each source object remains independently editable and supported.
 // Small objects are turned or filleted like the real thing: cups have walls, a
 // lip and a looped handle; books have rounded spines and inset page blocks;

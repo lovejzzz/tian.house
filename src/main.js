@@ -1,45 +1,45 @@
-import {fixturePoint} from './furnishing.js?v=a890ced93fdd';
-import {WorkshopWalkthrough} from './workshop-walkthrough.js?v=a890ced93fdd';
-import {Visibility} from './visibility.js?v=a890ced93fdd';
+import {fixturePoint} from './furnishing.js?v=1d7ffb1877ce';
+import {WorkshopWalkthrough} from './workshop-walkthrough.js?v=1d7ffb1877ce';
+import {Visibility} from './visibility.js?v=1d7ffb1877ce';
 let walkthrough=null;
-import {GameSaveStore} from './game-save-store.js?v=a890ced93fdd';
+import {GameSaveStore} from './game-save-store.js?v=1d7ffb1877ce';
 const gameSaves=new GameSaveStore();let applyingWorkshop=false;
-import {bindInputLifecycle} from './input-lifecycle.js?v=a890ced93fdd';
-import {openShelterBrief} from './shelter-brief.js?v=a890ced93fdd';
-import {installOriginalAssets} from './original-assets.js?v=a890ced93fdd';
-import showcaseHouse from './showcase-house.js?v=a890ced93fdd';
-import {MainMenu} from './main-menu.js?v=a890ced93fdd';
-import {readPreferences,storePreferences} from './preferences.js?v=a890ced93fdd';
-import {prepareHouseState,preservesResidentStock} from './workshop-apply.js?v=a890ced93fdd';
-import {IndexedHouseLibrary} from './indexed-house-library.js?v=a890ced93fdd';
-import {captureHouse} from './workshop-model.js?v=a890ced93fdd';
-import {interactionTarget,interactionLabel} from './interaction-target.js?v=a890ced93fdd';
-import {waterSource,planWater} from './water.js?v=a890ced93fdd';
-import {RESIDENCE} from './residence.js?v=a890ced93fdd';
-import {PortfolioDesktop} from './portfolio.js?v=a890ced93fdd';
+import {bindInputLifecycle} from './input-lifecycle.js?v=1d7ffb1877ce';
+import {openShelterBrief} from './shelter-brief.js?v=1d7ffb1877ce';
+import {installOriginalAssets} from './original-assets.js?v=1d7ffb1877ce';
+import showcaseHouse from './showcase-house.js?v=1d7ffb1877ce';
+import {MainMenu} from './main-menu.js?v=1d7ffb1877ce';
+import {readPreferences,storePreferences} from './preferences.js?v=1d7ffb1877ce';
+import {prepareHouseState,preservesResidentStock} from './workshop-apply.js?v=1d7ffb1877ce';
+import {IndexedHouseLibrary} from './indexed-house-library.js?v=1d7ffb1877ce';
+import {captureHouse} from './workshop-model.js?v=1d7ffb1877ce';
+import {interactionTarget,interactionLabel} from './interaction-target.js?v=1d7ffb1877ce';
+import {waterSource,planWater} from './water.js?v=1d7ffb1877ce';
+import {RESIDENCE} from './residence.js?v=1d7ffb1877ce';
+import {PortfolioDesktop} from './portfolio.js?v=1d7ffb1877ce';
 const desktop=new PortfolioDesktop();
-import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=a890ced93fdd';
-import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=a890ced93fdd';
+import {BODY_PARTS,medicalItems,woundDescription} from './medical.js?v=1d7ffb1877ce';
+import {loadBuildingCatalog,buildingRecipes,planBuilding,planBuildingMaterials} from './building.js?v=1d7ffb1877ce';
 let buildMode=null,workshop=null,itemCatalog=null,mainMenu=null,volumeHome=null,toWorkshop=false;
 let preferences=readPreferences(),arriving=false;
-import {isCookingAppliance,cookingLabel} from './cooking.js?v=a890ced93fdd';
-import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=a890ced93fdd';
-import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=a890ced93fdd';
-import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=a890ced93fdd';
-import {GameAudio} from './audio.js?v=a890ced93fdd';
+import {isCookingAppliance,cookingLabel} from './cooking.js?v=1d7ffb1877ce';
+import {loadCraftingCatalog,craftingRecipes,planCraft} from './crafting.js?v=1d7ffb1877ce';
+import {literatureRecipes,literatureRecipesKnown} from './recipe-knowledge.js?v=1d7ffb1877ce';
+import {drainableUses,drainableMaxUses,itemUseDelta} from './drainable.js?v=1d7ffb1877ce';
+import {GameAudio} from './audio.js?v=1d7ffb1877ce';
 let gameAudio,craftRefresh=null,lastCraftSignature='';
-import {setComicCatalog} from './comic-identity.js?v=a890ced93fdd';
-import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=a890ced93fdd';
-import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=a890ced93fdd';
-import {canToggleWindow,canClimbWindow} from './windows.js?v=a890ced93fdd';
-import {doorToggle} from './doors.js?v=a890ced93fdd';
-import {setItemCatalog,definition} from './inventory.js?v=a890ced93fdd';
-import {World} from './world.js?v=a890ced93fdd';
-import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=a890ced93fdd';
-import {Renderer} from './render.js?v=a890ced93fdd';
-import {CharacterRenderer} from './characters.js?v=a890ced93fdd';
-import {GroundRenderer} from './ground-renderer.js?v=a890ced93fdd';
-import {inventoryIcon} from './item-icons.js?v=a890ced93fdd';
+import {setComicCatalog} from './comic-identity.js?v=1d7ffb1877ce';
+import {skillBook,ordinaryLiterature,isLiteratureRead} from './reading.js?v=1d7ffb1877ce';
+import {isRecipeExcluded,setRecipeExcluded} from './recipe-inputs.js?v=1d7ffb1877ce';
+import {canToggleWindow,canClimbWindow} from './windows.js?v=1d7ffb1877ce';
+import {doorToggle} from './doors.js?v=1d7ffb1877ce';
+import {setItemCatalog,definition} from './inventory.js?v=1d7ffb1877ce';
+import {World} from './world.js?v=1d7ffb1877ce';
+import {Simulation,newState,parseSave,ITEMS,RECIPES,weight} from './simulation.js?v=1d7ffb1877ce';
+import {Renderer} from './render.js?v=1d7ffb1877ce';
+import {CharacterRenderer} from './characters.js?v=1d7ffb1877ce';
+import {GroundRenderer} from './ground-renderer.js?v=1d7ffb1877ce';
+import {inventoryIcon} from './item-icons.js?v=1d7ffb1877ce';
 const $=s=>document.querySelector(s),keys=new Set();
 let inputLifecycle=null;
 let focusTarget=null,hudTray=null,lastActionsSignature='';
@@ -180,7 +180,7 @@ function interact(o){if(!o||desktop.active)return;if(!world.interactions(sim.sta
 async function openWorkshop({resumePaused,fromResidence=false}={}){
  if(walkthrough)return endWalkthrough();
  if(workshop?.element||desktop.active)return;const paused=resumePaused??sim.paused;let applied=false;sim.cancel();sim.paused=true;keys.clear();setHudTray(null);panel=null;$('#panel').hidden=true;buildMode=null;
- try{const {HouseWorkshop}=await import('./workshop.js?v=a890ced93fdd');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
+ try{const {HouseWorkshop}=await import('./workshop.js?v=1d7ffb1877ce');workshop=new HouseWorkshop({world,sim,renderer,catalog:itemCatalog,bounds:RESIDENCE.bounds,preferences,
   onSaveGame:save,
   onOpenComputer:(parent,onClose)=>desktop.open(onClose,{parent}),
   onApply:async (plan,{preview=false,resident=false}={})=>{
@@ -218,10 +218,11 @@ async function startGame(){if(arriving||volumeHome)return;
  if(sim.state.housePlan?.sceneDocument?.walls?.length){
   arriving=true;sim.paused=true;keys.clear();
   try{
-   const {openResidentHome}=await import('./resident-home.js?v=a890ced93fdd');
+   const {openResidentHome}=await import('./resident-home.js?v=1d7ffb1877ce');
    volumeHome=await openResidentHome({world,sim,renderer,bounds:RESIDENCE.bounds,onSave:save,onGameFrame:drainGameEvents,
     onComputer:(parent,onClose)=>desktop.open(onClose,{parent}),
     onWorkshop:()=>{toWorkshop=true;volumeHome?.close();},
+    onLoadProgress:text=>{$('#load-status').textContent=text;},
     settings:{get:()=>preferences,set:value=>{try{applyPreferences(storePreferences(value));}catch{applyPreferences(value);}}},
     onClose:()=>{volumeHome=null;document.body.classList.remove('volume-home-active');sim.paused=true;keys.clear();if(toWorkshop){toWorkshop=false;openWorkshop({fromResidence:true});}else mainMenu.open();}});
    mainMenu.close();document.body.classList.add('volume-home-active');volumeHome.resume();return;

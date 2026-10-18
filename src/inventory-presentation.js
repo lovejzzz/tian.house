@@ -1,6 +1,6 @@
-import {drainableUses} from './drainable.js?v=a890ced93fdd';
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {skillBook,ordinaryLiterature} from './reading.js?v=a890ced93fdd';
+import {drainableUses} from './drainable.js?v=1d7ffb1877ce';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {skillBook,ordinaryLiterature} from './reading.js?v=1d7ffb1877ce';
 const stable=value=>Array.isArray(value)?value.map(stable):value&&typeof value==='object'?Object.fromEntries(Object.keys(value).sort().map(k=>[k,stable(value[k])])):value;
 // Group display only. Every timed transfer still addresses one real instance.
 export function inventoryRows(items,equipment={},containers={}){

@@ -1,4 +1,4 @@
-import {roomContains} from './room-footprint.js?v=a890ced93fdd';
+import {roomContains} from './room-footprint.js?v=1d7ffb1877ce';
 const entities=scene=>[...scene.rooms,...scene.objects,...(scene.roofVolumes||[])];
 const sorted=rows=>rows.slice().sort((a,b)=>a.id.localeCompare(b.id));
 function protectedState(scene,id,kind){

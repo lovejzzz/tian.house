@@ -1,5 +1,5 @@
-import {pointInPolygon} from './polygon-footprint.js?v=a890ced93fdd';
-import {roofRenderFaces} from './roof-render.js?v=a890ced93fdd';
+import {pointInPolygon} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {roofRenderFaces} from './roof-render.js?v=1d7ffb1877ce';
 const cache=new WeakMap();
 // Roof visibility is a volume decision. Individual roof tiles must not wink out
 // as the view cone crosses them. This only affects presentation, not exploration.

@@ -1,4 +1,4 @@
-import {periodicNoise} from './material-relief.js?v=a890ced93fdd';
+import {periodicNoise} from './material-relief.js?v=1d7ffb1877ce';
 // Reproject a reviewed planar patch from imported art. Detail transfer removes only
 // an affine lighting gradient; it does not recover physical albedo or unseen detail.
 export function sourceTextureKey(t){return JSON.stringify([t.kind,t.sourceTile,t.size??128,t.plane??null,t.patch??null,t.detail??null,t.weave??null,t.finish??null,t.dyeVariation??null]);}

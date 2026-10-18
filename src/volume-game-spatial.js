@@ -1,7 +1,7 @@
-import {createSolidIndex} from './solid-index.js?v=a890ced93fdd';
-import {prismSolid} from './prism-solid.js?v=a890ced93fdd';
-import {movePhysicalBody} from './physical-body.js?v=a890ced93fdd';
-import {sweepSolidBox} from './convex-solid.js?v=a890ced93fdd';
+import {createSolidIndex} from './solid-index.js?v=1d7ffb1877ce';
+import {prismSolid} from './prism-solid.js?v=1d7ffb1877ce';
+import {movePhysicalBody} from './physical-body.js?v=1d7ffb1877ce';
+import {sweepSolidBox} from './convex-solid.js?v=1d7ffb1877ce';
 // Combat and horizontal NPC motion use the same compiled surfaces as the player.
 // Stair routing and vertical NPC transitions remain separate navigation work.
 export class VolumeGameSpatial {

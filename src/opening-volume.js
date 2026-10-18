@@ -1,5 +1,5 @@
-import {wallVolume} from './wall-volume.js?v=a890ced93fdd';
-import {roundedBox,rod} from './detail-geometry.js?v=a890ced93fdd';
+import {wallVolume} from './wall-volume.js?v=1d7ffb1877ce';
+import {roundedBox,rod} from './detail-geometry.js?v=1d7ffb1877ce';
 // Generic assembly geometry, not reconstruction of any sprite's mouldings/style.
 export function openingVolume({id,a,b,base,aperture,kind,frameWidth,frameDepth,panelDepth,angle=0,hingeSide='start',glazed=false,frameSides=[true,true],exteriorSide=0}){
  if(!Array.isArray(frameSides)||frameSides.length!==2||frameSides.some(v=>typeof v!=='boolean')||!['start','end'].includes(hingeSide)||typeof glazed!=='boolean'||!['door','window'].includes(kind)||![frameWidth,frameDepth,panelDepth].every(v=>Number.isFinite(v)&&v>0)||!Number.isFinite(angle)||Math.abs(angle)>Math.PI||!Array.isArray(aperture)||aperture.length!==4||!aperture.every(Number.isFinite))throw Error('Invalid opening assembly dimensions');

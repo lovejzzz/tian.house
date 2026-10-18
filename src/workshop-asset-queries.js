@@ -1,6 +1,6 @@
-import {AssetProvenance} from './asset-provenance.js?v=a890ced93fdd';
-import {orientationFamilies,entryFacing} from './catalog-variants.js?v=a890ced93fdd';
-import {catalogFacet,windowConditions} from './catalog-navigation.js?v=a890ced93fdd';
+import {AssetProvenance} from './asset-provenance.js?v=1d7ffb1877ce';
+import {orientationFamilies,entryFacing} from './catalog-variants.js?v=1d7ffb1877ce';
+import {catalogFacet,windowConditions} from './catalog-navigation.js?v=1d7ffb1877ce';
 export class WorkshopAssetQueries{
  constructor(entries,properties,atlas={}){this.provenance=new AssetProvenance(atlas);this.entries=entries;this.properties=properties;this.byId=new Map(entries.map(e=>[e.id,e]));this.states=windowConditions(properties);}
  search({query='',offset=0,limit=30}={}){

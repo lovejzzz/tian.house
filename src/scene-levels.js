@@ -1,4 +1,4 @@
-import {roomCells,roomContains,roomsOverlap} from './room-footprint.js?v=a890ced93fdd';
+import {roomCells,roomContains,roomsOverlap} from './room-footprint.js?v=1d7ffb1877ce';
 // Copy the architectural layout, preserving shared edges and opening hosts.
 // Furniture and vertical circulation remain explicit, independent operations.
 export function copyLevelLayout(scene,{fromLevelId,toIndex,copyId}){

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {volumeRenderGeometry} from './volume-render-geometry.js?v=a890ced93fdd';
+import {volumeRenderGeometry} from './volume-render-geometry.js?v=1d7ffb1877ce';
 // Same delivered recipe and semantic type mapping as the refrigerator. Restricted
 // to hand-held shapes; trays and spoon-based meals need separate contact studies.
 export function createHeldConsumable(scene,assets,installMaterial=()=>{}){

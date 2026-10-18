@@ -1,5 +1,5 @@
-import {paneAxis} from './wall-joins.js?v=a890ced93fdd';
-import {windowConditions} from './catalog-navigation.js?v=a890ced93fdd';
+import {paneAxis} from './wall-joins.js?v=1d7ffb1877ce';
+import {windowConditions} from './catalog-navigation.js?v=1d7ffb1877ce';
 export function entryFacing(e,properties){const p=properties[e?.source]||{};return e?.facing||p.Facing||paneAxis(e?.source||'',properties)||['N','W'].find(a=>['Wall','DoorWall','door','Window'].some(k=>k+a in p))||null;}
 // Studio sprites (tools/make_studio_assets.py, TianRecipe 'studio') label their west-facing
 // turn 'E' and east-facing turn 'W'; saves keep those IDs. Turn maths uses the real facing.

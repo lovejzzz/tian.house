@@ -1,4 +1,4 @@
-import {FLOOR_MIN,FLOOR_MAX} from './workshop-model.js?v=a890ced93fdd';
+import {FLOOR_MIN,FLOOR_MAX} from './workshop-model.js?v=1d7ffb1877ce';
 export function validateViews(views){
  if(!Array.isArray(views)||views.length>30)throw Error('Use up to 30 saved views');
  for(const v of views){

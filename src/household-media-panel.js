@@ -1,5 +1,5 @@
-import {createPianoTransport} from './piano-transport.js?v=a890ced93fdd';
-import {pianoKeys,hanonAscending,createPianoAudio} from './piano.js?v=a890ced93fdd';
+import {createPianoTransport} from './piano-transport.js?v=1d7ffb1877ce';
+import {pianoKeys,hanonAscending,createPianoAudio} from './piano.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text)n.textContent=text;return n;};
 export function openHouseholdMedia({parent,kind,onClose=()=>{},television=null,objectId=null,onSit=null,onPractice=null}){
  const dialog=el('dialog');dialog.className='house-library-dialog household-media';dialog.setAttribute('aria-label',kind==='piano'?'Piano':'Television');

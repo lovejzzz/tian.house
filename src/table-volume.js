@@ -1,6 +1,6 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {roundedBox} from './detail-geometry.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {roundedBox} from './detail-geometry.js?v=1d7ffb1877ce';
 export function tableVolume(recipe){
  const {width:w,depth:d,height:h,topThickness:top,cornerCut:c,legWidth:leg,legInset:inset,apronHeight:apron}=recipe.parameters;
  if(![w,d,h,top,c,leg,inset,apron].every(v=>Number.isFinite(v)&&v>0)||top+apron>=h||2*(inset+leg)>=Math.min(w,d)||c>=Math.min(w,d)/2)throw Error('Invalid table recipe dimensions');

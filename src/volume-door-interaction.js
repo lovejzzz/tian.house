@@ -1,5 +1,5 @@
-import {segmentSolidInterval,sweepSolidBox} from './convex-solid.js?v=a890ced93fdd';
-import {prismSolid} from './prism-solid.js?v=a890ced93fdd';
+import {segmentSolidInterval,sweepSolidBox} from './convex-solid.js?v=1d7ffb1877ce';
+import {prismSolid} from './prism-solid.js?v=1d7ffb1877ce';
 const solid=c=>c.kind==='convex'?c:prismSolid(c);
 // Compile once after an edit, not again on every walking frame.
 export function prepareDoorInteractionVolumes(volumes){return volumes.map(v=>({...v,collision:(v.collision||[]).map(solid)}));}

@@ -1,9 +1,9 @@
-import {viewReferencePhoto} from './reference-photo-viewer.js?v=a890ced93fdd';
-import {calibrationChanged} from './scene-calibration.js?v=a890ced93fdd';
-import {annotationEditor} from './workshop-reference-annotations.js?v=a890ced93fdd';
-import {pinReference} from './workshop-reference-dock.js?v=a890ced93fdd';
-import {WorkshopCommands} from './workshop-commands.js?v=a890ced93fdd';
-import {importReferencePhoto} from './reference-photo-import.js?v=a890ced93fdd';
+import {viewReferencePhoto} from './reference-photo-viewer.js?v=1d7ffb1877ce';
+import {calibrationChanged} from './scene-calibration.js?v=1d7ffb1877ce';
+import {annotationEditor} from './workshop-reference-annotations.js?v=1d7ffb1877ce';
+import {pinReference} from './workshop-reference-dock.js?v=1d7ffb1877ce';
+import {WorkshopCommands} from './workshop-commands.js?v=1d7ffb1877ce';
+import {importReferencePhoto} from './reference-photo-import.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 export function openReferencePanel(workshop){
  if(workshop.referenceDialog)return;

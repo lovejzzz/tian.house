@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
 // Fractions are of what is left on the real item, not its original serving.
 export function mealFraction(item,share){
  const properties=definition(item.type).properties;

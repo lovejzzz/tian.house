@@ -1,4 +1,4 @@
-import {prismSolid} from './prism-solid.js?v=a890ced93fdd';
+import {prismSolid} from './prism-solid.js?v=1d7ffb1877ce';
 const dot=(a,b)=>a.reduce((s,v,i)=>s+v*b[i],0),cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
 // Intersect convex half-spaces in a shared local frame. A small inward offset
 // permits surface contact but rejects positive-volume interpenetration.

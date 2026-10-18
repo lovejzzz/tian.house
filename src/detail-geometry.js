@@ -1,5 +1,5 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
 // Shared fine-detail primitives for furniture recipes. Every part carries exact
 // per-vertex normals: fillets and turned surfaces shade round while flat faces
 // stay crisp, without angle-weighted smoothing tilting large faces. Collision

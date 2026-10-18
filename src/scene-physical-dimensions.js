@@ -1,5 +1,5 @@
-import {sceneWallVolumes} from './scene-wall-volumes.js?v=a890ced93fdd';
-import {calibrationChanged} from './scene-calibration.js?v=a890ced93fdd';
+import {sceneWallVolumes} from './scene-wall-volumes.js?v=1d7ffb1877ce';
+import {calibrationChanged} from './scene-calibration.js?v=1d7ffb1877ce';
 export function validatePhysicalDimensions(value){
  if(value===undefined)return;
  if(!value||typeof value!=='object'||Array.isArray(value)||Object.keys(value).some(k=>!['storeyHeight','wallHeight','wallThickness','slabThickness','evidence','description'].includes(k)))throw Error('Invalid physical dimensions');

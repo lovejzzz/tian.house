@@ -1,68 +1,69 @@
-import {prepareTelevisionDiffuseTransfer} from './television-diffuse-transfer.js?v=a890ced93fdd';
-import {createRenderDemand} from './render-demand.js?v=a890ced93fdd';
-import {createPianoPractice} from './piano-practice.js?v=a890ced93fdd';
-import {createPianoKeyMotion} from './piano-key-motion.js?v=a890ced93fdd';
-import {openResidentExport} from './resident-export-panel.js?v=a890ced93fdd';
-import {createSpotShadowAtlas,SPOT_SHADOW_CAPACITY} from './spot-shadow-atlas.js?v=a890ced93fdd';
-import {createFurnitureCutaway} from './furniture-cutaway.js?v=a890ced93fdd';
-import {createContactShading} from './contact-shading.js?v=a890ced93fdd';
-import {probeKey,interiorGain,stepExposure} from './interior-exposure.js?v=a890ced93fdd';
-import {createCoalescedSave} from './coalesced-save.js?v=a890ced93fdd';
-import {fixtureShadowBudget} from './volume-shadow-budget.js?v=a890ced93fdd';
-import {createFridgeContents} from './fridge-contents.js?v=a890ced93fdd';
-import {createFridgeDoors} from './fridge-doors.js?v=a890ced93fdd';
-import {createTelevisionLight} from './television-light.js?v=a890ced93fdd';
-import {createShowerEffect} from './shower-effect.js?v=a890ced93fdd';
-import {openHouseholdMedia} from './household-media-panel.js?v=a890ced93fdd';
-import {createSoftFurniture} from './soft-furniture.js?v=a890ced93fdd';
-import {validateVolumeObjectPlacement} from './volume-placement-check.js?v=a890ced93fdd';
-import {createFurnitureDragPreview} from './furniture-drag-preview.js?v=a890ced93fdd';
-import {createWallCutaway} from './volume-wall-cutaway.js?v=a890ced93fdd';
-import {sceneWallTrims} from './scene-wall-trims.js?v=a890ced93fdd';
-import {installSoftShadowFilter} from './soft-shadow-filter.js?v=a890ced93fdd';
-import {VolumeGameSpatial} from './volume-game-spatial.js?v=a890ced93fdd';
-import {createVolumeCharacters} from './volume-characters.js?v=a890ced93fdd';
-import {createVolumeSurfaceMaterial} from './volume-surface-material.js?v=a890ced93fdd';
-import {furnitureActivityAudit} from './furniture-activity-audit.js?v=a890ced93fdd';
-import {volumeRenderGeometry} from './volume-render-geometry.js?v=a890ced93fdd';
-import {createRoomBounceStudy,roomProbeRegions} from './room-bounce-study.js?v=a890ced93fdd';
-import {loadSourceFloorMaps} from './source-floor-texture.js?v=a890ced93fdd';
-import {openVolumeInventory} from './volume-inventory-panel.js?v=a890ced93fdd';
-import {VolumeGameSession} from './volume-game-session.js?v=a890ced93fdd';
-import {batchVolumeObjectMeshes,batchPianoKeyMeshes} from './volume-render-batching.js?v=a890ced93fdd';
-import {doorwayVelocity} from './doorway-steering.js?v=a890ced93fdd';
-import {nearbyVolumeDoor,doorPoseOverlapsBody,prepareDoorInteractionVolumes} from './volume-door-interaction.js?v=a890ced93fdd';
-import {summarizeRenderSample} from './volume-performance.js?v=a890ced93fdd';
-import {applyArchitecturalMaterial} from './architectural-materials.js?v=a890ced93fdd';
-import {applyRoofCutaway,visiblePickMeshes} from './volume-roof-cutaway.js?v=a890ced93fdd';
-import {createVolumeMaterialCache} from './volume-material-cache.js?v=a890ced93fdd';
-import {volumeObjectSelection} from './volume-object-selection.js?v=a890ced93fdd';
-import {createVolumeFixtureLights} from './volume-fixture-lights.js?v=a890ced93fdd';
-import {createVolumeLighting,INTERIOR_EXPOSURE_COMPENSATION} from './volume-lighting.js?v=a890ced93fdd';
-import {installCloudShadow,installWetness} from './atmosphere-effects.js?v=a890ced93fdd';
-import {resolveExterior} from './scene-exterior.js?v=a890ced93fdd';
-import {createWallLightWash} from './wall-light-wash.js?v=a890ced93fdd';
-import {createQualityGovernor} from './quality-governor.js?v=a890ced93fdd';
-import {mountHomeHud} from './home-hud.js?v=a890ced93fdd';
-import {scannedTextureSet} from './scanned-assets.js?v=a890ced93fdd';
-import {installFacadeWeathering,installGroundVariation,installGlassFresnel,roomBoxes} from './facade-weathering.js?v=a890ced93fdd';
-import {sceneExteriorDetails,wallExteriorSide,exteriorFacadeRuns} from './exterior-architecture.js?v=a890ced93fdd';
-import {createExteriorLandscape} from './exterior-landscape.js?v=a890ced93fdd';
-import {loadVolumeFurniture,sceneFurnitureVolumes} from './scene-furniture-volumes.js?v=a890ced93fdd';
-import {sceneSurfaceVolumes} from './scene-surface-volumes.js?v=a890ced93fdd';
-import {physicalViewLevel} from './physical-view-level.js?v=a890ced93fdd';
-import {sceneStairVolumes} from './scene-stair-volumes.js?v=a890ced93fdd';
-import {screenMovement} from './screen-movement.js?v=a890ced93fdd';
-import {createVolumeWalkthrough} from './volume-walkthrough.js?v=a890ced93fdd';
-import {isTap,mountTouchStick,twoFingerView} from './touch-controls.js?v=a890ced93fdd';
-import {sceneRoofMeshes} from './scene-roof-meshes.js?v=a890ced93fdd';
-import {openingFrameJoins} from './opening-frame-joins.js?v=a890ced93fdd';
-import {openingVolume} from './opening-volume.js?v=a890ced93fdd';
-import {scenePhysicalMetrics} from './scene-physical-dimensions.js?v=a890ced93fdd';
-import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=a890ced93fdd';
-import {sceneSlabVolumes} from './scene-slab-volumes.js?v=a890ced93fdd';
+import {prepareRenderPrograms} from './prepare-render-programs.js?v=1d7ffb1877ce';
+import {prepareTelevisionDiffuseTransfer} from './television-diffuse-transfer.js?v=1d7ffb1877ce';
+import {createRenderDemand} from './render-demand.js?v=1d7ffb1877ce';
+import {createPianoPractice} from './piano-practice.js?v=1d7ffb1877ce';
+import {createPianoKeyMotion} from './piano-key-motion.js?v=1d7ffb1877ce';
+import {openResidentExport} from './resident-export-panel.js?v=1d7ffb1877ce';
+import {createSpotShadowAtlas,SPOT_SHADOW_CAPACITY} from './spot-shadow-atlas.js?v=1d7ffb1877ce';
+import {createFurnitureCutaway} from './furniture-cutaway.js?v=1d7ffb1877ce';
+import {createContactShading} from './contact-shading.js?v=1d7ffb1877ce';
+import {probeKey,interiorGain,stepExposure} from './interior-exposure.js?v=1d7ffb1877ce';
+import {createCoalescedSave} from './coalesced-save.js?v=1d7ffb1877ce';
+import {fixtureShadowBudget} from './volume-shadow-budget.js?v=1d7ffb1877ce';
+import {createFridgeContents} from './fridge-contents.js?v=1d7ffb1877ce';
+import {createFridgeDoors} from './fridge-doors.js?v=1d7ffb1877ce';
+import {createTelevisionLight} from './television-light.js?v=1d7ffb1877ce';
+import {createShowerEffect} from './shower-effect.js?v=1d7ffb1877ce';
+import {openHouseholdMedia} from './household-media-panel.js?v=1d7ffb1877ce';
+import {createSoftFurniture} from './soft-furniture.js?v=1d7ffb1877ce';
+import {validateVolumeObjectPlacement} from './volume-placement-check.js?v=1d7ffb1877ce';
+import {createFurnitureDragPreview} from './furniture-drag-preview.js?v=1d7ffb1877ce';
+import {createWallCutaway} from './volume-wall-cutaway.js?v=1d7ffb1877ce';
+import {sceneWallTrims} from './scene-wall-trims.js?v=1d7ffb1877ce';
+import {installSoftShadowFilter} from './soft-shadow-filter.js?v=1d7ffb1877ce';
+import {VolumeGameSpatial} from './volume-game-spatial.js?v=1d7ffb1877ce';
+import {createVolumeCharacters} from './volume-characters.js?v=1d7ffb1877ce';
+import {createVolumeSurfaceMaterial} from './volume-surface-material.js?v=1d7ffb1877ce';
+import {furnitureActivityAudit} from './furniture-activity-audit.js?v=1d7ffb1877ce';
+import {volumeRenderGeometry} from './volume-render-geometry.js?v=1d7ffb1877ce';
+import {createRoomBounceStudy,roomProbeRegions} from './room-bounce-study.js?v=1d7ffb1877ce';
+import {loadSourceFloorMaps} from './source-floor-texture.js?v=1d7ffb1877ce';
+import {openVolumeInventory} from './volume-inventory-panel.js?v=1d7ffb1877ce';
+import {VolumeGameSession} from './volume-game-session.js?v=1d7ffb1877ce';
+import {batchVolumeObjectMeshes,batchPianoKeyMeshes} from './volume-render-batching.js?v=1d7ffb1877ce';
+import {doorwayVelocity} from './doorway-steering.js?v=1d7ffb1877ce';
+import {nearbyVolumeDoor,doorPoseOverlapsBody,prepareDoorInteractionVolumes} from './volume-door-interaction.js?v=1d7ffb1877ce';
+import {summarizeRenderSample} from './volume-performance.js?v=1d7ffb1877ce';
+import {applyArchitecturalMaterial} from './architectural-materials.js?v=1d7ffb1877ce';
+import {applyRoofCutaway,visiblePickMeshes} from './volume-roof-cutaway.js?v=1d7ffb1877ce';
+import {createVolumeMaterialCache} from './volume-material-cache.js?v=1d7ffb1877ce';
+import {volumeObjectSelection} from './volume-object-selection.js?v=1d7ffb1877ce';
+import {createVolumeFixtureLights} from './volume-fixture-lights.js?v=1d7ffb1877ce';
+import {createVolumeLighting,INTERIOR_EXPOSURE_COMPENSATION} from './volume-lighting.js?v=1d7ffb1877ce';
+import {installCloudShadow,installWetness} from './atmosphere-effects.js?v=1d7ffb1877ce';
+import {resolveExterior} from './scene-exterior.js?v=1d7ffb1877ce';
+import {createWallLightWash} from './wall-light-wash.js?v=1d7ffb1877ce';
+import {createQualityGovernor} from './quality-governor.js?v=1d7ffb1877ce';
+import {mountHomeHud} from './home-hud.js?v=1d7ffb1877ce';
+import {scannedTextureSet} from './scanned-assets.js?v=1d7ffb1877ce';
+import {installFacadeWeathering,installGroundVariation,installGlassFresnel,roomBoxes} from './facade-weathering.js?v=1d7ffb1877ce';
+import {sceneExteriorDetails,wallExteriorSide,exteriorFacadeRuns} from './exterior-architecture.js?v=1d7ffb1877ce';
+import {createExteriorLandscape} from './exterior-landscape.js?v=1d7ffb1877ce';
+import {loadVolumeFurniture,sceneFurnitureVolumes} from './scene-furniture-volumes.js?v=1d7ffb1877ce';
+import {sceneSurfaceVolumes} from './scene-surface-volumes.js?v=1d7ffb1877ce';
+import {physicalViewLevel} from './physical-view-level.js?v=1d7ffb1877ce';
+import {sceneStairVolumes} from './scene-stair-volumes.js?v=1d7ffb1877ce';
+import {screenMovement} from './screen-movement.js?v=1d7ffb1877ce';
+import {createVolumeWalkthrough} from './volume-walkthrough.js?v=1d7ffb1877ce';
+import {isTap,mountTouchStick,twoFingerView} from './touch-controls.js?v=1d7ffb1877ce';
+import {sceneRoofMeshes} from './scene-roof-meshes.js?v=1d7ffb1877ce';
+import {openingFrameJoins} from './opening-frame-joins.js?v=1d7ffb1877ce';
+import {openingVolume} from './opening-volume.js?v=1d7ffb1877ce';
+import {scenePhysicalMetrics} from './scene-physical-dimensions.js?v=1d7ffb1877ce';
+import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=1d7ffb1877ce';
+import {sceneSlabVolumes} from './scene-slab-volumes.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
-import {sceneWallVolumes} from './scene-wall-volumes.js?v=a890ced93fdd';
+import {sceneWallVolumes} from './scene-wall-volumes.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 // Depth-only stand-in for a dense mesh in shadow passes (colour and depth writes off,
 // so the camera never sees it); the dense mesh itself has castShadow=false.
@@ -74,6 +75,11 @@ function shadowProxyMesh(volume,owner){
  const {structureId,objectId,levelId,roomId}=owner.userData;m.userData={structureId:structureId+':shadow-proxy',objectId,levelId,roomId,shadowProxy:true,indirectCaptureExclude:true};m.name='shadow-proxy:'+volume.id;return m;
 }
 export async function openVolumePanel(workshop,{resident=false,walkthrough=false,onClose=null}={}){
+ // Light by default: every shadowed lamp, room-bounce probe and reflection capture
+ // adds shader programs and render-target formats, and on Chrome/Metal each one is
+ // finished on its first real draw, synchronously. The full set froze first visits
+ // for over a minute, so it is an opt-in preference (Esc menu → Rich lighting).
+ const richLighting=!!workshop.settings?.get?.().richLighting;
  if(workshop.model.pending){workshop.status('Finish the current edit first');return;}
  let source=workshop.model.scene;if(!source?.walls.length){workshop.status('Build an editable room or wall first');return;}
  let furnitureAsset,sourceMaps;try{furnitureAsset=workshop.volumeFurniture||await loadVolumeFurniture();sourceMaps=await loadSourceFloorMaps(furnitureAsset,workshop.gameRenderer,THREE);}catch(e){workshop.status(e.message);return;}
@@ -87,8 +93,12 @@ export async function openVolumePanel(workshop,{resident=false,walkthrough=false
  const activityStatus=el('pre');activityStatus.setAttribute('aria-label','Furniture activity clearance');
  const inspector=el('details'),inspectorTitle=el('summary','Inspector & diagnostics'),inspectorBar=el('div');inspector.className='volume-preview-inspector';inspectorBar.className='volume-preview-controls';inspector.append(inspectorTitle,note,inspectorBar,settings,status,activityStatus,details);inspectorBar.append(walls,edit,pose);dialog.append(inspector);
  let renderer;try{renderer=new THREE.WebGLRenderer({canvas,antialias:true});}catch(e){status.textContent='3D preview unavailable: '+e.message;close.onclick=()=>dialog.close();dialog.onclose=()=>dialog.remove();return;}
+ // Shader error checking reads every program's info log on first use, which waits
+ // for the driver to finish linking and so defeats parallel shader compilation: on
+ // Metal it blocked the page for seconds per batch. Errors are checked with ?debug.
+ renderer.debug.checkShaderErrors=new URLSearchParams(location.search).has('debug');
  renderer.debug.onShaderError=(gl,program,vertex,fragment)=>{const source=gl.getShaderSource(fragment);console.error('Tian shader diagnostic',gl.getProgramInfoLog(program),gl.getShaderInfoLog(fragment),JSON.stringify({maxTextures:renderer.capabilities.maxTextures,defines:source.split('\n').filter(l=>/^#define (NUM_|USE_)/.test(l)),samplers:source.split('\n').filter(l=>/uniform.*sampler/.test(l))}));};
- renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor('#18251f');const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.05,2000);camera.up.set(0,0,1);const shadowAtlas=createSpotShadowAtlas(renderer);const lighting=createVolumeLighting(scene,renderer),fixtures=createVolumeFixtureLights(scene,{shadowBudget:fixtureShadowBudget(renderer.capabilities.maxTextures,{sharedSpotAtlas:true,probeVisibilityMaps:1,screenOcclusionMaps:1,televisionShadows:4,atlasSlots:SPOT_SHADOW_CAPACITY,limit:15})}),materialCache=createVolumeMaterialCache({sourceMaps}),wallWash=createWallLightWash(scene),landscape=createExteriorLandscape(scene,{onChange:()=>{installLandscapeMaterials();draw();}}),gardenPmrem=new THREE.PMREMGenerator(renderer);let landscapeKey='';let gardenEnv=null,outsideViewGain=1,viewGainSettling=false,weatherBoxes=[];const showerEffect=createShowerEffect(scene);const contactShading=createContactShading(renderer,scene,camera);
+ renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setClearColor('#18251f');const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(38,1,.05,2000);camera.up.set(0,0,1);const shadowAtlas=createSpotShadowAtlas(renderer);const lighting=createVolumeLighting(scene,renderer),fixtures=createVolumeFixtureLights(scene,{shadows:richLighting,shadowBudget:fixtureShadowBudget(renderer.capabilities.maxTextures,{sharedSpotAtlas:true,probeVisibilityMaps:1,screenOcclusionMaps:1,televisionShadows:0,atlasSlots:SPOT_SHADOW_CAPACITY,limit:12})}),materialCache=createVolumeMaterialCache({sourceMaps}),wallWash=createWallLightWash(scene),landscape=createExteriorLandscape(scene,{onChange:()=>{installLandscapeMaterials();warmUp();draw();}}),gardenPmrem=new THREE.PMREMGenerator(renderer);let landscapeKey='';let gardenEnv=null,outsideViewGain=1,viewGainSettling=false,weatherBoxes=[];const showerEffect=createShowerEffect(scene);const contactShading=createContactShading(renderer,scene,camera);
  const contactToggle=el('button','Contact shading: on');contactToggle.setAttribute('aria-pressed','true');bar.insertBefore(contactToggle,close);contactToggle.onclick=()=>{const enabled=contactToggle.getAttribute('aria-pressed')!=='true';contactToggle.setAttribute('aria-pressed',String(enabled));contactToggle.textContent='Contact shading: '+(enabled?'on':'off');contactShading.setEnabled(enabled);draw();};
  const lightingControls=el('button','Lighting controls');bar.insertBefore(lightingControls,close);lightingControls.setAttribute('aria-expanded','false');lightingControls.onclick=()=>{inspector.hidden=!inspector.hidden;inspector.open=!inspector.hidden;lightingControls.setAttribute('aria-expanded',String(!inspector.hidden));};
  const directLabel=el('label','Direct shadows'),directShadows=el('input');directShadows.type='checkbox';directShadows.checked=true;directShadows.setAttribute('aria-label','Direct shadows');directLabel.prepend(directShadows);inspector.append(directLabel);
@@ -98,9 +108,22 @@ export async function openVolumePanel(workshop,{resident=false,walkthrough=false
  let continuousPaint=()=>false;const repaint=createRenderDemand(renderNow,{ownsFrames:()=>continuousPaint()});
  // Adaptive quality: steps detail down on sustained slow frames, back up with headroom.
  // Declared before the first draw(); apply() only runs once the view is built.
- const quality=createQualityGovernor({apply(t){contactShading.grade.bloom.enabled=t.bloom;renderer.setPixelRatio(Math.min(devicePixelRatio,t.pixelRatio));lastWidth=lastHeight=0;landscape.setDetailScale(t.detail);
+ const quality=createQualityGovernor({initial:1,apply(t){contactShading.grade.bloom.enabled=t.bloom;renderer.setPixelRatio(Math.min(devicePixelRatio,t.pixelRatio));lastWidth=lastHeight=0;landscape.setDetailScale(t.detail);
   scene.traverse(o=>{if(o.isDirectionalLight&&o.castShadow&&o.shadow.mapSize.x!==t.shadowMap){o.shadow.mapSize.set(t.shadowMap,t.shadowMap);o.shadow.map?.dispose();o.shadow.map=null;o.shadow.needsUpdate=true;}});draw();}});
  let placeHud=null; // living HUD world markers, positioned on every rendered frame
+ // Content that arrives after the first frame (scanned plant models, the HD resident,
+ // landscape rebuilds) brings new shader programs. three.js links a program
+ // synchronously the first time it draws it, which blocked the page for seconds, so
+ // new content is compiled with parallel shader compilation first; drawing pauses
+ // (the last frame stays up, input keeps working) until the programs are ready.
+ let warming=null,warmAgain=false;
+ // Garden reflection for the glazing: a cube render of the landscape into a linear
+ // half-float target without tone mapping. Compile that variant first, then capture.
+ const gardenWarmTarget=new THREE.WebGLRenderTarget(1,1,{type:THREE.HalfFloatType});
+ async function captureGardenReflection(bounds){try{await prepareRenderPrograms(renderer,scene,camera,THREE.NoToneMapping,undefined,gardenWarmTarget);}catch(e){console.warn('Garden reflection warm-up failed',e);}if(closed)return;try{const shown=group.visible;group.visible=false;try{const centre=bounds.getCenter(new THREE.Vector3());centre.z=1.4;const next=gardenPmrem.fromScene(scene,0,.1,2000,{size:256,position:centre});gardenEnv?.dispose();gardenEnv=next;}finally{group.visible=shown;}for(const m of group.children)if(m.userData.glass){m.material.envMap=gardenEnv.texture;m.material.needsUpdate=true;}warmUp();}catch(e){console.warn('Garden reflection capture failed',e);}}
+ // Programs compiled for the view's own render state.
+ function compileOffscreen(){return renderer.compileAsync(scene,camera);}
+ function warmUp(){if(warming){warmAgain=true;return;}warming=compileOffscreen().catch(e=>console.warn('Shader warm-up failed',e)).finally(()=>{warming=null;if(warmAgain){warmAgain=false;warmUp();}else draw();});}
  const television=createTelevisionLight(scene,{draw,onStatus:text=>{tvStatus.textContent=text;tvNotice.textContent=text;tvNotice.hidden=text==='Off'||text.startsWith('Playing');},onSample:sample=>updateTelevisionBounce(sample)});
  const tvRemote=el('button','Television');bar.insertBefore(tvRemote,close);tvRemote.onclick=()=>openHouseholdMedia({parent:dialog,kind:'television',television,onClose:()=>canvas.focus()});const group=new THREE.Group();scene.add(group);const ray=new THREE.Raycaster();let yaw=-Math.PI/3,pitch=.65,radius=25,target=new THREE.Vector3(),selected=null,down=null,closed=false;
  let furnitureCutaway=null,visualFocus=null,wallCutaway=null,lastFadeTime=performance.now();let cachedProbeRegions=null;function probeRegions(){return cachedProbeRegions??=roomProbeRegions(source,level.value,scenePhysicalMetrics(source),interactionVolumes.flatMap(v=>v.collision||[]));}
@@ -122,18 +145,20 @@ export async function openVolumePanel(workshop,{resident=false,walkthrough=false
   tvSample.textContent=JSON.stringify({...sample,diffuseTransfer:tvTransfer?.stats||'Preparing'});
  }
  let materialCompilePending=false;const bounceStatus=el('p','Indirect study not captured'),bounceButton=el('button','Capture room bounce'),bounceToggle=el('input'),bounceLabel=el('label','Room bounce study');bounceStatus.setAttribute('aria-label','Indirect light study');bounceToggle.type='checkbox';bounceToggle.setAttribute('aria-label','Room bounce study');bounceLabel.prepend(bounceToggle);inspector.append(bounceButton,bounceLabel,bounceStatus);const bounce=createRoomBounceStudy({scene,renderer,depthVisibility:true,sharedSpotShadows:true,onCompileState:value=>{materialCompilePending=value;// Resume the frame loop a compile interrupted (fades, exposure) once it finishes.
-if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.onchange=()=>{bounce.setEnabled(bounceToggle.checked);draw();};bounceButton.onclick=async()=>{walk.reset();bounceButton.disabled=true;try{const regions=probeRegions();const ok=await bounce.capture(regions,group.children);bounceToggle.checked=!!ok;draw();}catch(e){bounceStatus.textContent=e.message;}finally{bounceButton.disabled=false;if(pendingBounce&&!closed)void updateRoomBounce();}};
+if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});if(!richLighting)bounce.install=()=>{};/* light mode: no probe shader in the materials */bounceToggle.onchange=()=>{bounce.setEnabled(bounceToggle.checked);draw();};bounceButton.onclick=async()=>{walk.reset();bounceButton.disabled=true;try{const regions=probeRegions();const ok=await bounce.capture(regions,group.children);bounceToggle.checked=!!ok;draw();}catch(e){bounceStatus.textContent=e.message;}finally{bounceButton.disabled=false;if(pendingBounce&&!closed)void updateRoomBounce();}};
  const bounceQuality=el('select');bounceQuality.setAttribute('aria-label','Diffuse transport passes');for(const n of [2,3,4]){const o=el('option',`${n} transport passes`);o.value=String(n);bounceQuality.append(o);}bounceQuality.value='3';inspector.append(bounceQuality);bounceQuality.onchange=()=>{if(bounce.setBounceCount(Number(bounceQuality.value)))void updateRoomBounce();};
  const reflectionLabel=el('label','Local reflections'),reflectionToggle=el('input');reflectionToggle.type='checkbox';reflectionToggle.checked=true;reflectionToggle.setAttribute('aria-label','Local reflections');reflectionLabel.prepend(reflectionToggle);inspector.append(reflectionLabel);reflectionToggle.onchange=()=>{bounce.setReflectionsEnabled(reflectionToggle.checked);draw();};
  const lightMode=el('select');lightMode.setAttribute('aria-label','Lighting study');for(const [value,label]of [['day','Daylight'],['night','Moonlight'],['clock','Game clock']]){const o=el('option',label);o.value=value;lightMode.append(o);}bar.insertBefore(lightMode,close);if(resident)lightMode.value='clock';let lastLightMinute=null,lastBounceBucket=null,automaticCapture=false,pendingBounce=false;
  async function updateRoomBounce(){
-  if(closed)return;
+  if(closed||!richLighting)return;
   if(automaticCapture||bounceButton.disabled){pendingBounce=true;return;}
   invalidateTelevisionBounce();
   automaticCapture=true;pendingBounce=false;bounceButton.disabled=true;
   const captureMinute=lightMode.value==='clock'&&gameSession?lastLightMinute:null;
   try{const ok=await bounce.capture(probeRegions(),group.children);
-   if(ok&&!closed){bounceToggle.checked=true;if(captureMinute!==null)lastBounceBucket=Math.floor(captureMinute/10);draw();}
+   // A finished capture hands materials their local reflection maps (a new program
+   // variant): compile those in the background before the next frame draws them.
+   if(ok&&!closed){warmUp();bounceToggle.checked=true;if(captureMinute!==null)lastBounceBucket=Math.floor(captureMinute/10);draw();}
   }catch(e){bounceStatus.textContent='Automatic indirect light unavailable: '+e.message;}
   finally{automaticCapture=false;bounceButton.disabled=false;if(!closed)syncClockLighting();if(pendingBounce&&!closed&&!automaticCapture)void updateRoomBounce();}
  }
@@ -156,7 +181,7 @@ if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.o
  const actorStatus=el('p');actorStatus.setAttribute('aria-label','Character geometry');inspector.append(actorStatus);
  const characterView=createVolumeCharacters(scene,workshop.gameRenderer.characters,m=>actorStatus.textContent=JSON.stringify(m),{assets:furnitureAsset,installMaterial:material=>{bounce.install({material});installSoftShadowFilter(material);shadowAtlas.install(material);contactShading.install(material);}});
  // The high-detail resident loads after the scene; show it at once even while paused.
- characterView.hdReady.then(()=>{const position=walk?.getPosition?.();if(gameSession&&position){characterView.sync(gameSession.session.sim,gameSession.metrics,position);visualFocus=characterView.focusPoints();draw();}}).catch(()=>{});
+ characterView.hdReady.then(()=>{warmUp();const position=walk?.getPosition?.();if(gameSession&&position){characterView.sync(gameSession.session.sim,gameSession.metrics,position);visualFocus=characterView.focusPoints();draw();}}).catch(()=>{});
  const gameSpatial=new VolumeGameSpatial(scenePhysicalMetrics(source));
  let liveSample=null;
  const fridgeDoors=createFridgeDoors(group,()=>{fixtures.invalidateShadows();draw();});
@@ -237,7 +262,7 @@ if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.o
  // Landscape materials share the house's shadow atlas, soft filter, AO, cloud shadow and
  // wetness hooks; also run when asynchronously loaded scanned plants arrive.
  function installLandscapeMaterials(){landscape.root.traverse(o=>{for(const m of [].concat(o.material||[])){if(m.userData.tianLandscapeInstalled)continue;m.userData.tianLandscapeInstalled=true;installSoftShadowFilter(m);shadowAtlas.install(m);if(!m.userData.noContactAO)contactShading.install(m);installCloudShadow(m);installWetness(m,{hard:/asphalt|gravel|concrete|kerb/.test(o.name)});m.needsUpdate=true;}});}
- function renderNow(){if(closed||materialCompilePending)return;const r=canvas.getBoundingClientRect();if(r.width<1||r.height<1)return;if(r.width!==lastWidth||r.height!==lastHeight){lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);contactShading.resize(r.width,r.height);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();}if(window.pz?.volumeViewTarget)target.fromArray(window.pz.volumeViewTarget);camera.position.set(target.x+radius*Math.cos(yaw)*Math.cos(pitch),target.y+radius*Math.sin(yaw)*Math.cos(pitch),target.z+radius*Math.sin(pitch));camera.lookAt(target);const now=performance.now();let fading=wallCutaway?.update(camera.position.toArray(),target.toArray(),(now-lastFadeTime)/1000,wallToggle.getAttribute('aria-pressed')==='true'&&roofToggle.getAttribute('aria-pressed')==='true');fading=furnitureCutaway?.update(camera.position.toArray(),visualFocus||walk.getPosition(),(now-lastFadeTime)/1000,wallToggle.getAttribute('aria-pressed')==='true')||fading;lastFadeTime=now;
+ function renderNow(){if(closed||materialCompilePending||warming)return;const r=canvas.getBoundingClientRect();if(r.width<1||r.height<1)return;if(r.width!==lastWidth||r.height!==lastHeight){lastWidth=r.width;lastHeight=r.height;renderer.setSize(r.width,r.height,false);contactShading.resize(r.width,r.height);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();}if(window.pz?.volumeViewTarget)target.fromArray(window.pz.volumeViewTarget);camera.position.set(target.x+radius*Math.cos(yaw)*Math.cos(pitch),target.y+radius*Math.sin(yaw)*Math.cos(pitch),target.z+radius*Math.sin(pitch));camera.lookAt(target);const now=performance.now();let fading=wallCutaway?.update(camera.position.toArray(),target.toArray(),(now-lastFadeTime)/1000,wallToggle.getAttribute('aria-pressed')==='true'&&roofToggle.getAttribute('aria-pressed')==='true');fading=furnitureCutaway?.update(camera.position.toArray(),visualFocus||walk.getPosition(),(now-lastFadeTime)/1000,wallToggle.getAttribute('aria-pressed')==='true')||fading;lastFadeTime=now;
   const exposureVersion=bounce.publishedVersion()+(adaptToggle.checked?'':':fixed');if(exposureVersion!==lastExposureVersion){const d=bounce.diagnostics();if(!adaptToggle.checked)exposureTarget=1;else if(d.enabled)exposureTarget=interiorGain(probeKey(d.probes.map(p=>p.dc)));lastExposureVersion=exposureVersion;}
   exposureCurrent=stepExposure(exposureCurrent,exposureTarget,Math.min(.25,(now-lastExposureTime)/1000));lastExposureTime=now;// Seen from the garden in daylight a room is a stop or so darker than the sunlit
   // exterior (that contrast is what makes glazing read as glass). The top-down view
@@ -262,7 +287,7 @@ if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.o
  installLandscapeMaterials();}}
  // Glazing reflects the garden, not only the sky: one PMREM panorama from the middle
  // of the plot with the house hidden, shared by every pane (static per build).
- try{const shown=group.visible;group.visible=false;try{const centre=bounds.getCenter(new THREE.Vector3());centre.z=1.4;const next=gardenPmrem.fromScene(scene,0,.1,2000,{size:256,position:centre});gardenEnv?.dispose();gardenEnv=next;}finally{group.visible=shown;}for(const m of group.children)if(m.userData.glass){m.material.envMap=gardenEnv.texture;m.material.needsUpdate=true;}}catch(e){console.warn('Garden reflection capture failed',e);}if(!preserveView&&!bounds.isEmpty()){bounds.getCenter(target);radius=Math.max(8,bounds.getSize(new THREE.Vector3()).length()*1.4);}status.textContent=`All-floor physics · ${result.volumes.filter(v=>v.indices.length).length} wall volumes · ${slabs.filter(s=>s.indices.length).length} slabs · ${surfaces.length} exterior surfaces · ${new Set(furniture.map(f=>f.objectId)).size} prototype furnishings · ${new Set(roofs.map(r=>r.roofId)).size} roofs · ${new Set(assemblies.map(a=>a.openingId)).size} generic openings · ${result.unresolved.length} unresolved openings · ${unresolvedFurniture.length} unresolved furnishings · Source revision ${source.revision}`;if((resident||walkthrough)&&(result.unresolved.length||unresolvedFurniture.length))throw Error('This residence has unmapped 3D objects; use the workshop to review them');missing.textContent=[...result.unresolved.map(v=>`${v.wallId}: ${v.reason}`),...unresolvedFurniture.map(v=>`${v.assetId||v.objectId} · ${v.levelId}: ${v.reason}`)].join('\n')||'None in this house';details.hidden=!(result.unresolved.length+unresolvedFurniture.length);if(lightMode.value==='clock'&&gameSession&&!automaticCapture){lastLightMinute=Math.floor(gameSession.session.sim.state.time);lighting.setTime(lastLightMinute);}select(preserveView?selectedId:'',preserveView);if(!preserveView&&!residentMode&&!walkthrough)frameArchitecture();void updateRoomBounce();}catch(e){status.textContent=e.message;if(resident||walkthrough)initialProblem=e;}}
+ if(richLighting)void captureGardenReflection(bounds);if(!preserveView&&!bounds.isEmpty()){bounds.getCenter(target);radius=Math.max(8,bounds.getSize(new THREE.Vector3()).length()*1.4);}status.textContent=`All-floor physics · ${result.volumes.filter(v=>v.indices.length).length} wall volumes · ${slabs.filter(s=>s.indices.length).length} slabs · ${surfaces.length} exterior surfaces · ${new Set(furniture.map(f=>f.objectId)).size} prototype furnishings · ${new Set(roofs.map(r=>r.roofId)).size} roofs · ${new Set(assemblies.map(a=>a.openingId)).size} generic openings · ${result.unresolved.length} unresolved openings · ${unresolvedFurniture.length} unresolved furnishings · Source revision ${source.revision}`;if((resident||walkthrough)&&(result.unresolved.length||unresolvedFurniture.length))throw Error('This residence has unmapped 3D objects; use the workshop to review them');missing.textContent=[...result.unresolved.map(v=>`${v.wallId}: ${v.reason}`),...unresolvedFurniture.map(v=>`${v.assetId||v.objectId} · ${v.levelId}: ${v.reason}`)].join('\n')||'None in this house';details.hidden=!(result.unresolved.length+unresolvedFurniture.length);if(lightMode.value==='clock'&&gameSession&&!automaticCapture){lastLightMinute=Math.floor(gameSession.session.sim.state.time);lighting.setTime(lastLightMinute);}select(preserveView?selectedId:'',preserveView);if(!preserveView&&!residentMode&&!walkthrough)frameArchitecture();void updateRoomBounce();}catch(e){status.textContent=e.message;if(resident||walkthrough)initialProblem=e;}}
  pose.onchange=()=>{const id=selected?.userData.openingId;if(!id)return;poses.set(id,Number(pose.value));build(true);};level.onchange=()=>{walk.reset();build();};rooms.onchange=()=>{walk.setRoom(rooms.value);frameArchitecture(rooms.value);};walls.onchange=()=>select(walls.value);close.onclick=async()=>{walk.reset();if(residentMode&&!await saveResidence())return;dialog.close();};edit.onclick=()=>{if(residentMode)return;const room=source.rooms.find(r=>r.id===rooms.value);if(!room)return;workshop.setLevel(source.levels.find(l=>l.id===room.levelId).index);workshop.selectedRoomId=room.id;workshop.center={x:(room.rect[0]+room.rect[2])/2,y:(room.rect[1]+room.rect[3])/2};workshop.setTool('reshape');workshop.refreshRoomSelection();workshop.updateContext();dialog.close();};
  function pointerRay(e){const r=canvas.getBoundingClientRect();ray.setFromCamera(new THREE.Vector2((e.clientX-r.left)/r.width*2-1,1-(e.clientY-r.top)/r.height*2),camera);return ray;}
  function cancelFurnitureDrag(){if(furnitureDrag){furnitureDrag.preview.reset();furnitureDrag=null;draw();}down=null;}
@@ -303,7 +328,7 @@ if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.o
  canvas.onpointercancel=canvas.onlostpointercapture=e=>{releasePointer(e);cancelFurnitureDrag();};
  canvas.addEventListener('keydown',e=>{if(e.key==='Escape'&&furnitureDrag){e.preventDefault();e.stopPropagation();cancelFurnitureDrag();objectFeedback.style.visibility='visible';objectFeedback.textContent='Move cancelled';}});
  canvas.addEventListener('wheel',e=>{e.preventDefault();radius=Math.max(2,Math.min(200,radius*Math.exp(e.deltaY*.001)));draw();},{passive:false});const resize=new ResizeObserver(draw);resize.observe(canvas);
- dialog.addEventListener('close',()=>{closed=true;hud?.dispose();touchStick?.dispose();pianoPractice.dispose();fridgeDoors.dispose();fridgeContents.dispose();repaint.dispose();bounce.dispose();if(sampleFrame!==null)cancelAnimationFrame(sampleFrame);walk.dispose();television.dispose();showerEffect.dispose();characterView.dispose();resize.disconnect();for(const m of group.children){m.geometry.dispose();m.material.dispose();}shadowAtlas.dispose();landscape.dispose();wallWash.dispose();gardenEnv?.dispose();gardenPmrem.dispose();lighting.dispose();fixtures.dispose();materialCache.dispose();contactShading.dispose();renderer.dispose();dialog.remove();workshop.canvas.focus();onClose?.();});build();
+ dialog.addEventListener('close',()=>{closed=true;hud?.dispose();gardenWarmTarget.dispose();touchStick?.dispose();pianoPractice.dispose();fridgeDoors.dispose();fridgeContents.dispose();repaint.dispose();bounce.dispose();if(sampleFrame!==null)cancelAnimationFrame(sampleFrame);walk.dispose();television.dispose();showerEffect.dispose();characterView.dispose();resize.disconnect();for(const m of group.children){m.geometry.dispose();m.material.dispose();}shadowAtlas.dispose();landscape.dispose();wallWash.dispose();gardenEnv?.dispose();gardenPmrem.dispose();lighting.dispose();fixtures.dispose();materialCache.dispose();contactShading.dispose();renderer.dispose();dialog.remove();workshop.canvas.focus();onClose?.();});build();
  if((resident||walkthrough)&&initialProblem){dialog.close();throw initialProblem;}
  function mountResidentUI(){
   if(dialog.classList.contains('volume-home-dialog'))return;
@@ -328,7 +353,9 @@ if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.o
   if(workshop.settings){const items=hud.elements.sheet.querySelector('.home-hud-items'),prefs=()=>workshop.settings.get();
    const sound=el('label','Sound '),volume=el('input');volume.type='range';volume.min='0';volume.max='1';volume.step='.05';volume.value=String(prefs().volume??1);volume.setAttribute('aria-label','Sound volume');volume.oninput=()=>workshop.settings.set({...prefs(),volume:Number(volume.value)});sound.append(volume);
    const motion=el('label','Reduce motion '),reduce=el('input');reduce.type='checkbox';reduce.checked=!!prefs().reducedMotion;reduce.setAttribute('aria-label','Reduce motion');reduce.onchange=()=>workshop.settings.set({...prefs(),reducedMotion:reduce.checked});motion.append(reduce);
-   items.append(sound,motion);}
+   // Rich lighting is chosen at load (shadowed lamps, room-bounce probes, reflections), so switching reloads.
+   const rich=el('label','Rich lighting (slower first load) '),richBox=el('input');richBox.type='checkbox';richBox.checked=!!prefs().richLighting;richBox.setAttribute('aria-label','Rich lighting, slower first load');richBox.onchange=async()=>{workshop.settings.set({...prefs(),richLighting:richBox.checked});try{await workshop.onSaveGame?.();}catch{}location.reload();};rich.append(richBox);
+   items.append(sound,motion,rich);}
   if(window.pz?.volumeView)window.pz.volumeView.hud=hud;
   // Visitors without WASD: click the floor to walk; on a phone, a thumb stick and the E prompt.
   const coarse=window.matchMedia?.('(pointer:coarse)').matches;
@@ -359,5 +386,13 @@ if(!value)draw();},onStatus:text=>bounceStatus.textContent=text});bounceToggle.o
   residenceStatus.textContent='Temporary visitor · Your resident save is unchanged';
   walk.setWalkthroughMode();
  }
+ // Start one tier below full (no bloom, pixel ratio <= 1.25); the governor climbs
+ // to full quality after sustained headroom instead of starting where slow GPUs choke.
+ quality.applyCurrent();
+ // Compile the first frame's programs with parallel shader compilation behind the
+ // loading screen: a synchronous first-frame compile froze the page for seconds.
+ if(resident||walkthrough){const progress=setInterval(()=>{const ps=renderer.info.programs,ready=ps.filter(p=>p.isReady?.()!==false).length;workshop.onLoadProgress?.(`Preparing the house… ${Math.round(100*ready/Math.max(1,ps.length))}%`);},300);
+  try{await compileOffscreen();}catch(error){console.warn('Shader warm-up failed',error);}finally{clearInterval(progress);}
+  draw();}
  return {dialog,resume:()=>walk.controls.querySelector('button').click(),close:()=>close.click()};
 }

@@ -1,4 +1,4 @@
-import {roomBoundaryRuns} from './room-footprint.js?v=a890ced93fdd';
+import {roomBoundaryRuns} from './room-footprint.js?v=1d7ffb1877ce';
 // Hit-test projected room edges in screen pixels, independent of zoom or tile rounding.
 export function roomEdgeHit(rooms,levelId,screen,point,selectedId,tolerance=10){
  const hits=[];

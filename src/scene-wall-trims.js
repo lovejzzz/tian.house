@@ -1,5 +1,5 @@
-import {wallVolume} from './wall-volume.js?v=a890ced93fdd';
-import {roomContainsPoint} from './room-footprint.js?v=a890ced93fdd';
+import {wallVolume} from './wall-volume.js?v=1d7ffb1877ce';
+import {roomContainsPoint} from './room-footprint.js?v=1d7ffb1877ce';
 // Finish profiles belong to the wall material. Generate only on interior faces;
 // keep aperture dimensions and navigation collision owned by the structural wall.
 export function validateWallFinishProfile(profile){

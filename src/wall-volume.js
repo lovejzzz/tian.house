@@ -1,4 +1,4 @@
-import {clippedWallVolume} from './clipped-wall-volume.js?v=a890ced93fdd';
+import {clippedWallVolume} from './clipped-wall-volume.js?v=1d7ffb1877ce';
 // Physical units in, indexed closed surface + collision cells out. Z is up.
 // Internal cell faces are omitted so openings have real reveals, not dark decals.
 export function wallVolume({id,a,b,base=0,height,thickness,opening=null,endCaps=[true,true],junction={start:[0,0],end:[0,0]}}){

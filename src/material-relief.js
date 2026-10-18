@@ -1,10 +1,13 @@
 // Periodic multiscale surface variation. Heights are authored approximations,
 // not measurements inferred from imported sprite brightness.
+// Called millions of times while textures are generated at startup, so it allocates
+// nothing per call (the closure version cost seconds of main-thread time and GC).
+// Same arithmetic, same results.
+function latticeHash(a,b,period,seed){const wa=((a%period)+period)%period,wb=((b%period)+period)%period;let h=Math.imul(wa+seed*31,374761393)^Math.imul(wb+seed*17,668265263);h=Math.imul(h^(h>>>13),1274126177);return (h>>>0)/4294967295;}
 export function periodicNoise(x,y,period,seed=1){
- const wrap=v=>((v%period)+period)%period;
- const hash=(a,b)=>{let h=Math.imul(wrap(a)+seed*31,374761393)^Math.imul(wrap(b)+seed*17,668265263);h=Math.imul(h^(h>>>13),1274126177);return (h>>>0)/4294967295;};
- const ix=Math.floor(x),iy=Math.floor(y),smooth=t=>t*t*t*(t*(t*6-15)+10),u=smooth(x-ix),v=smooth(y-iy),mix=(a,b,t)=>a+(b-a)*t;
- return mix(mix(hash(ix,iy),hash(ix+1,iy),u),mix(hash(ix,iy+1),hash(ix+1,iy+1),u),v);
+ const ix=Math.floor(x),iy=Math.floor(y),tx=x-ix,ty=y-iy,u=tx*tx*tx*(tx*(tx*6-15)+10),v=ty*ty*ty*(ty*(ty*6-15)+10);
+ const a=latticeHash(ix,iy,period,seed),b=latticeHash(ix+1,iy,period,seed),c=latticeHash(ix,iy+1,period,seed),d=latticeHash(ix+1,iy+1,period,seed);
+ const top=a+(b-a)*u,bottom=c+(d-c)*u;return top+(bottom-top)*v;
 }
 export function plasterPixels({size=256,seed=37}={}){
  if(!Number.isInteger(size)||size<16||size>512||!Number.isInteger(seed))throw Error('Invalid plaster recipe');

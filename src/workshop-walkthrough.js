@@ -1,6 +1,6 @@
-import {World} from './world.js?v=a890ced93fdd';
-import {Simulation,newState} from './simulation.js?v=a890ced93fdd';
-import {prepareHouseState} from './workshop-apply.js?v=a890ced93fdd';
+import {World} from './world.js?v=1d7ffb1877ce';
+import {Simulation,newState} from './simulation.js?v=1d7ffb1877ce';
+import {prepareHouseState} from './workshop-apply.js?v=1d7ffb1877ce';
 
 // A normal simulation with an independent world/state. Only zombie spawning is
 // disabled: doors, windows, collision, stairs, containers and actions are real.

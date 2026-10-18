@@ -1,5 +1,5 @@
-import {WorkshopCommands} from './workshop-commands.js?v=a890ced93fdd';
-import {pinReference} from './workshop-reference-dock.js?v=a890ced93fdd';
+import {WorkshopCommands} from './workshop-commands.js?v=1d7ffb1877ce';
+import {pinReference} from './workshop-reference-dock.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 export function captureWorkshopView(w,{id=crypto.randomUUID(),name,referenceId=null}){
  return {id,name:name.trim(),referenceId,z:w.z,center:{...w.center},zoom:w.render.zoom,cutaway:!!w.cutaway,ghost:!!w.ghost,grid:!!w.grid,wholeBuilding:!!w.wholeBuilding,showRoofs:w.showRoofs!==false,viewport:{width:w.canvas.clientWidth,height:w.canvas.clientHeight}};

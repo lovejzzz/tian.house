@@ -1,10 +1,10 @@
-import {domesticFurnitureVolume} from './domestic-furniture-volume.js?v=a890ced93fdd';
-import {pianoKeys} from './piano.js?v=a890ced93fdd';
-import {upholsteryTrim,drapedTextile} from './textile-detail-volume.js?v=a890ced93fdd';
-import {upholsteryVolume} from './upholstery-volume.js?v=a890ced93fdd';
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {roundedBox,rod as smoothRod,lathe,knob,sphere,rotatePart} from './detail-geometry.js?v=a890ced93fdd';
+import {domesticFurnitureVolume} from './domestic-furniture-volume.js?v=1d7ffb1877ce';
+import {pianoKeys} from './piano.js?v=1d7ffb1877ce';
+import {upholsteryTrim,drapedTextile} from './textile-detail-volume.js?v=1d7ffb1877ce';
+import {upholsteryVolume} from './upholstery-volume.js?v=1d7ffb1877ce';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {roundedBox,rod as smoothRod,lathe,knob,sphere,rotatePart} from './detail-geometry.js?v=1d7ffb1877ce';
 // Original dimensional models. These are not reconstructed PZ meshes or final source textures.
 export function studioFurnitureVolume(recipe){
  const parts=[],kind=recipe.parameters.kind;

@@ -1,6 +1,6 @@
-import {encodeDraftSnapshot,decodeDraftSnapshot} from './workshop-snapshot-codec.js?v=a890ced93fdd';
-import {validateHousePlan} from './workshop-model.js?v=a890ced93fdd';
-import {compileStructuralScene} from './scene-structure.js?v=a890ced93fdd';
+import {encodeDraftSnapshot,decodeDraftSnapshot} from './workshop-snapshot-codec.js?v=1d7ffb1877ce';
+import {validateHousePlan} from './workshop-model.js?v=1d7ffb1877ce';
+import {compileStructuralScene} from './scene-structure.js?v=1d7ffb1877ce';
 
 function checkEditorSnapshot(snapshot,bounds,visit){
  if(!snapshot||!Number.isSafeInteger(snapshot.revision)||snapshot.revision<0||!Array.isArray(snapshot.undoStack)||!Array.isArray(snapshot.redoStack)||snapshot.undoStack.length>60||snapshot.redoStack.length>60)throw Error('Invalid workshop history');

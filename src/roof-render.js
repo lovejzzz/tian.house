@@ -1,5 +1,5 @@
-import {clipPolygonToCell} from './polygon-footprint.js?v=a890ced93fdd';
-import {wallMaterialPlane} from './polygon-render.js?v=a890ced93fdd';
+import {clipPolygonToCell} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {wallMaterialPlane} from './polygon-render.js?v=1d7ffb1877ce';
 const cache=new WeakMap();
 function plane(vertices){const o=vertices[0];for(let i=1;i<vertices.length-1;i++){const a=vertices[i].map((v,k)=>v-o[k]),b=vertices[i+1].map((v,k)=>v-o[k]),d=a[0]*b[1]-b[0]*a[1];if(Math.abs(d)<1e-9)continue;const gx=(a[2]*b[1]-b[2]*a[1])/d,gy=(a[0]*b[2]-b[0]*a[2])/d;return {gx,gy,height:(x,y)=>o[2]+gx*(x-o[0])+gy*(y-o[1])};}throw Error('Invalid roof surface');}
 export function roofRenderFaces(geometry){

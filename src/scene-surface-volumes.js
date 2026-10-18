@@ -1,7 +1,7 @@
-import {roomCells} from './room-footprint.js?v=a890ced93fdd';
-import {polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {groundFloorLift} from './ground-height.js?v=a890ced93fdd';
+import {roomCells} from './room-footprint.js?v=1d7ffb1877ce';
+import {polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {groundFloorLift} from './ground-height.js?v=1d7ffb1877ce';
 
 // Compile actual saved support outside editable rooms, never a blanket lot plane.
 // Room cells (including explicit holes) belong exclusively to the room slab compiler.

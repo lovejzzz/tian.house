@@ -1,7 +1,7 @@
-import {finishFurnitureEdges} from './furniture-edge-finish.js?v=a890ced93fdd';
-import {counterDetail,kitchenSinkDetail} from './kitchen-detail-volume.js?v=a890ced93fdd';
-import {toiletDetail,pedestalBasinDetail,showerDetail} from './bathroom-detail-volume.js?v=a890ced93fdd';
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
+import {finishFurnitureEdges} from './furniture-edge-finish.js?v=1d7ffb1877ce';
+import {counterDetail,kitchenSinkDetail} from './kitchen-detail-volume.js?v=1d7ffb1877ce';
+import {toiletDetail,pedestalBasinDetail,showerDetail} from './bathroom-detail-volume.js?v=1d7ffb1877ce';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
 // Editable source objects retain plumbing/storage behavior; this generates their solid form.
 export function wetFurnitureVolume(recipe){
  const {width:w,depth:d,height:h}=recipe.parameters,parts=[];

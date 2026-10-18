@@ -1,5 +1,5 @@
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {profiledRoofGeometry} from './profiled-roof-geometry.js?v=a890ced93fdd';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {profiledRoofGeometry} from './profiled-roof-geometry.js?v=1d7ffb1877ce';
 // Roof skin thickness is vertical; closure thickness is perpendicular to its wall.
 // Convex collision uses the exact extruded faces; gameplay integration is separate.
 function extrudeFace(face,offset){

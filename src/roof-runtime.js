@@ -1,4 +1,4 @@
-import {pointInPolygon,clipPolygonToCell,convexIntersectionPolygon,polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {pointInPolygon,clipPolygonToCell,convexIntersectionPolygon,polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 const EPS=1e-8,key=(x,y)=>`${Math.floor(x)},${Math.floor(y)}`;
 function surface(face,roofId){
  const vertices=face.vertices,origin=vertices[0];let gx,gy;

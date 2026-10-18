@@ -1,13 +1,13 @@
-import {carriedCareItems} from './household-care.js?v=a890ced93fdd';
-import {supportContact} from './soft-furniture.js?v=a890ced93fdd';
-import {isToilet} from './toileting.js?v=a890ced93fdd';
-import {key as worldKey} from './world.js?v=a890ced93fdd';
-import {nearbyDanger} from './nearby-danger.js?v=a890ced93fdd';
-import {pianoSeatCandidate} from './piano-seating.js?v=a890ced93fdd';
-import {withinFixtureWorkFace} from './fixture-work-face.js?v=a890ced93fdd';
-import {WorkshopWalkthrough} from './workshop-walkthrough.js?v=a890ced93fdd';
-import {scenePhysicalMetrics} from './scene-physical-dimensions.js?v=a890ced93fdd';
-import {doorName} from './door-names.js?v=a890ced93fdd';
+import {carriedCareItems} from './household-care.js?v=1d7ffb1877ce';
+import {supportContact} from './soft-furniture.js?v=1d7ffb1877ce';
+import {isToilet} from './toileting.js?v=1d7ffb1877ce';
+import {key as worldKey} from './world.js?v=1d7ffb1877ce';
+import {nearbyDanger} from './nearby-danger.js?v=1d7ffb1877ce';
+import {pianoSeatCandidate} from './piano-seating.js?v=1d7ffb1877ce';
+import {withinFixtureWorkFace} from './fixture-work-face.js?v=1d7ffb1877ce';
+import {WorkshopWalkthrough} from './workshop-walkthrough.js?v=1d7ffb1877ce';
+import {scenePhysicalMetrics} from './scene-physical-dimensions.js?v=1d7ffb1877ce';
+import {doorName} from './door-names.js?v=1d7ffb1877ce';
 // Reuse the game's real simulation in a temporary visitor session. Never write the user's save.
 export class VolumeGameSession {
  constructor(original,plan,bounds,atlas,scene,{resident=false}={}){

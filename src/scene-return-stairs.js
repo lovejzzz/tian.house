@@ -1,5 +1,5 @@
-import {returnStairPath,straightStairPath,routedStairPath} from './return-stair-path.js?v=a890ced93fdd';
-import {PolygonRuntime} from './polygon-runtime.js?v=a890ced93fdd';
+import {returnStairPath,straightStairPath,routedStairPath} from './return-stair-path.js?v=1d7ffb1877ce';
+import {PolygonRuntime} from './polygon-runtime.js?v=1d7ffb1877ce';
 export function returnStairEntry(axis='W',handedness='right',run=3){
  const path=returnStairPath({x:0,y:0,z:0,axis,handedness,run});
  return {id:`stairs:return:${axis}:${handedness}:${run}`,stairs:true,shape:'return',facing:axis,handedness,run,parts:path.cells.map((c,i)=>({dx:c.x,dy:c.y,tile:`tian_return_stair_${run}_${handedness}_${axis}_${i}`}))};

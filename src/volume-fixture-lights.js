@@ -25,14 +25,15 @@ export function spotTouches(light,{center,radius}){
  const ax=t.x-p.x,ay=t.y-p.y,az=t.z-p.z,a=Math.hypot(ax,ay,az)||1,cos=(dx*ax+dy*ay+dz*az)/(d*a);
  return Math.acos(Math.max(-1,Math.min(1,cos)))<=light.angle+Math.asin(Math.min(1,radius/d));
 }
-export function createVolumeFixtureLights(scene,{shadowBudget=12}={}){
+export function createVolumeFixtureLights(scene,{shadowBudget=12,shadows=true}={}){
  let lights=[],materials=[],enabled=true,soft=true,dirtyAll=true,frame=0;
  const clear=()=>{for(const light of lights){scene.remove(light,light.target);light.shadow.map?.dispose();light.shadow.mapPass?.dispose();}lights=[];materials=[];};
  return {
   rebuild(volumes,levelId){
    clear();dirtyAll=true;const fixtures=volumes.filter(v=>v.levelId===levelId).flatMap(v=>[...(v.light?[{...v,sourceId:v.objectId}]:[]),...(v.additionalLights||[]).map((light,i)=>({...v,light,sourceId:`${v.objectId}:lobe:${i}`}))]);
-   if(fixtures.length>shadowBudget)throw Error(`This floor has ${fixtures.length} lamps; the current shadow budget supports ${shadowBudget}. Lighting virtualization is required.`);
-   const counts=fixtureSampleCounts(fixtures,shadowBudget);
+   // One shadowed light per lamp first; spare budget becomes extra soft-light
+   // samples. Lamps beyond the budget still light the room, without shadows.
+   const shadowed=Math.min(fixtures.length,shadowBudget),counts=[...fixtureSampleCounts(fixtures.slice(0,shadowed),shadowBudget),...fixtures.slice(shadowed).map(()=>1)];
    for(const [fixtureIndex,volume] of fixtures.entries()){const p=volume.light;
     // Keep a reviewed offset when reducing samples: the center can be inside a lamp stem.
     const candidates=p.samples?.length?p.samples:[[0,0,0]];
@@ -41,7 +42,7 @@ export function createVolumeFixtureLights(scene,{shadowBudget=12}={}){
     const samples=Array.from({length:count},(_,i)=>candidates[count===1?0:Math.round(i*(candidates.length-1)/(count-1))]);
     for(const offset of samples){
      const light=new THREE.SpotLight(p.color,p.intensity/samples.length,p.distance,p.angle,p.penumbra,p.decay);
-     light.position.set(...p.position).add(new THREE.Vector3(...offset));light.target.position.set(...p.target).add(new THREE.Vector3(...offset));light.userData.onIntensity=p.intensity/samples.length;light.intensity=enabled?light.userData.onIntensity:0;light.castShadow=true;light.shadow.autoUpdate=false;light.shadow.needsUpdate=true;light.shadow.mapSize.set(512,512);light.shadow.radius=soft?6:2.5;light.shadow.bias=-.0002;light.shadow.normalBias=.015;light.shadow.camera.near=.1;light.userData.objectId=volume.objectId;scene.add(light,light.target);light.target.updateMatrixWorld();lights.push(light);
+     light.position.set(...p.position).add(new THREE.Vector3(...offset));light.target.position.set(...p.target).add(new THREE.Vector3(...offset));light.userData.onIntensity=p.intensity/samples.length;light.intensity=enabled?light.userData.onIntensity:0;light.castShadow=shadows&&fixtureIndex<shadowed;light.shadow.autoUpdate=false;light.shadow.needsUpdate=true;light.shadow.mapSize.set(512,512);light.shadow.radius=soft?6:2.5;light.shadow.bias=-.0002;light.shadow.normalBias=.015;light.shadow.camera.near=.1;light.userData.objectId=volume.objectId;scene.add(light,light.target);light.target.updateMatrixWorld();lights.push(light);
     }
    }
   },

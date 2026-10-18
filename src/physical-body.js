@@ -1,4 +1,4 @@
-import {sweepSolidBox} from './convex-solid.js?v=a890ced93fdd';
+import {sweepSolidBox} from './convex-solid.js?v=1d7ffb1877ce';
 // Kinematic box translation with contact sliding. Gravity/steps are caller policy.
 export function movePhysicalBody(solids,position,delta,halfExtents){
  let point=[...position],remaining=[...delta];const contacts=[];

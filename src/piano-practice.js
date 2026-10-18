@@ -1,5 +1,5 @@
-import {createPianoAudio,hanonAscending} from './piano.js?v=a890ced93fdd';
-import {createPianoTransport} from './piano-transport.js?v=a890ced93fdd';
+import {createPianoAudio,hanonAscending} from './piano.js?v=1d7ffb1877ce';
+import {createPianoTransport} from './piano-transport.js?v=1d7ffb1877ce';
 export function createPianoPractice(getGame,{audio=createPianoAudio(),schedule=setInterval,unschedule=clearInterval}={}){
  let action=null,transport=null,timer=null,generation=0;
  function stop(){generation++;if(timer!==null)unschedule(timer);timer=null;transport?.stop();transport=null;audio.stop();if(action){delete action.piano;action.name='Sitting at piano';}action=null;}

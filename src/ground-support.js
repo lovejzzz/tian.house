@@ -1,5 +1,5 @@
-import {groundHeight} from './ground-height.js?v=a890ced93fdd';
-import {groundGeometry,groundContains} from './ground-footprint.js?v=a890ced93fdd';
+import {groundHeight} from './ground-height.js?v=1d7ffb1877ce';
+import {groundGeometry,groundContains} from './ground-footprint.js?v=1d7ffb1877ce';
 const key=(x,y,z)=>`${x},${y},${z}`;
 const architectural=p=>['wall','ceiling','window'].includes(p.TianMount)||['WallN','WallW','WallNW','WallSE','doorN','doorW','windowN','windowW'].some(k=>k in p);
 export function validateGroundSupport(plan,properties,scene){

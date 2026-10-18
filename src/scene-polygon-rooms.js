@@ -1,10 +1,10 @@
-import {hasOpeningProfile} from './window-profile.js?v=a890ced93fdd';
-import {roomWallSide} from './wall-finishes.js?v=a890ced93fdd';
-import {normalizeFootprintPolygon,chamferRectangle,wallEdgeEndpoints} from './polygon-footprint.js?v=a890ced93fdd';
-import {roomCells,roomCoversCell,roomPolygonGeometry,footprintEdges,validateFootprint} from './room-footprint.js?v=a890ced93fdd';
-import {validateStructure} from './scene-structure.js?v=a890ced93fdd';
-import {roofCells} from './scene-roofs.js?v=a890ced93fdd';
-import {diagonalOpening} from './diagonal-openings.js?v=a890ced93fdd';
+import {hasOpeningProfile} from './window-profile.js?v=1d7ffb1877ce';
+import {roomWallSide} from './wall-finishes.js?v=1d7ffb1877ce';
+import {normalizeFootprintPolygon,chamferRectangle,wallEdgeEndpoints} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {roomCells,roomCoversCell,roomPolygonGeometry,footprintEdges,validateFootprint} from './room-footprint.js?v=1d7ffb1877ce';
+import {validateStructure} from './scene-structure.js?v=1d7ffb1877ce';
+import {roofCells} from './scene-roofs.js?v=1d7ffb1877ce';
+import {diagonalOpening} from './diagonal-openings.js?v=1d7ffb1877ce';
 
 const edgeKey=w=>[w.levelId,w.axis,w.x,w.y].join(':');
 const rectangle=vertices=>[Math.min(...vertices.map(p=>p[0])),Math.min(...vertices.map(p=>p[1])),Math.max(...vertices.map(p=>p[0])),Math.max(...vertices.map(p=>p[1]))];

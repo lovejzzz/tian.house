@@ -1,5 +1,5 @@
-import {prismSolid} from './prism-solid.js?v=a890ced93fdd';
-import {sweepSolidBox} from './convex-solid.js?v=a890ced93fdd';
+import {prismSolid} from './prism-solid.js?v=1d7ffb1877ce';
+import {sweepSolidBox} from './convex-solid.js?v=1d7ffb1877ce';
 
 // Advisory occupied-space checks. Zones are authored allowances, not certified
 // ergonomics, animated motion envelopes, route reachability or egress checks.

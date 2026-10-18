@@ -1,4 +1,4 @@
-import {convexIntersectionPolygon,polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {convexIntersectionPolygon,polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 
 // Used when a miter crosses a jamb partition. Clip physical cross-sections instead
 // of folding a negative-width rectangular jamb into an inverted solid.

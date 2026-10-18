@@ -1,4 +1,4 @@
-import {normalizeFootprintPolygon,triangulateFootprint,polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {normalizeFootprintPolygon,triangulateFootprint,polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 const EPS=1e-9;
 // World XY use current grid units; profile/base elevations share one explicit
 // caller-selected unit. No implicit storey/pixel conversion belongs in geometry.

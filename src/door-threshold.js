@@ -1,6 +1,6 @@
-import {groundHeight} from './ground-height.js?v=a890ced93fdd';
-import {groundContains} from './ground-footprint.js?v=a890ced93fdd';
-import {pointInPolygon} from './polygon-footprint.js?v=a890ced93fdd';
+import {groundHeight} from './ground-height.js?v=1d7ffb1877ce';
+import {groundContains} from './ground-footprint.js?v=1d7ffb1877ce';
+import {pointInPolygon} from './polygon-footprint.js?v=1d7ffb1877ce';
 // Heights are source-art pixels (96 per storey), not measured metres.
 export function validateThreshold(value){
  if(value===undefined)return;

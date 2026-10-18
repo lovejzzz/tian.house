@@ -1,5 +1,5 @@
-import {objectClosure,moveSceneObjects} from './scene-objects.js?v=a890ced93fdd';
-import {rotateSceneObjects} from './scene-rotation.js?v=a890ced93fdd';
+import {objectClosure,moveSceneObjects} from './scene-objects.js?v=1d7ffb1877ce';
+import {rotateSceneObjects} from './scene-rotation.js?v=1d7ffb1877ce';
 
 // Independent transforms are evaluated against one source scene, then merged.
 // In particular, stock from A must not follow B when B occupies A's old cells.

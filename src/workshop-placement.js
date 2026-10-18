@@ -1,7 +1,7 @@
-import {fixtureAxis} from './furnishing.js?v=a890ced93fdd';
-import {diagonalOpeningHosts} from './fixed-glazing.js?v=a890ced93fdd';
-import {wallEdgeEndpoints} from './polygon-footprint.js?v=a890ced93fdd';
-import {paneAxis} from './wall-joins.js?v=a890ced93fdd';
+import {fixtureAxis} from './furnishing.js?v=1d7ffb1877ce';
+import {diagonalOpeningHosts} from './fixed-glazing.js?v=1d7ffb1877ce';
+import {wallEdgeEndpoints} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {paneAxis} from './wall-joins.js?v=1d7ffb1877ce';
 // Wall-face picking uses the same isometric projection as the rendered scene.
 // Return one intent consumed by both the preview and the click; no hidden snap.
 export function openingAxis(entry,properties){

@@ -1,4 +1,4 @@
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
 // Recipe-authored manufacturing chamfers. Skip non-box forms rather than erasing
 // existing upholstery, handles, basin cavities or detailed silhouettes.
 export function finishFurnitureEdges(parts,materials){

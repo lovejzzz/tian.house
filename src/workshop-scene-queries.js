@@ -1,4 +1,4 @@
-import {referenceSceneEntities} from './reference-scene-entities.js?v=a890ced93fdd';
+import {referenceSceneEntities} from './reference-scene-entities.js?v=1d7ffb1877ce';
 // Read projections are deliberately not importable scene documents. Dependencies
 // can extend outside the requested area and are labelled separately from hits.
 export function readWorkshopScene(model,query={}){

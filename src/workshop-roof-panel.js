@@ -1,5 +1,5 @@
-import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=a890ced93fdd';
-import {roomRoofOutline} from './roof-outline.js?v=a890ced93fdd';
+import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=1d7ffb1877ce';
+import {roomRoofOutline} from './roof-outline.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 export function openRoofPanel(workshop){
  if(workshop.model.pending){workshop.status('Finish the current edit first');return;}

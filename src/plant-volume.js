@@ -1,5 +1,5 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {lathe,boxProxy} from './detail-geometry.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {lathe,boxProxy} from './detail-geometry.js?v=1d7ffb1877ce';
 // A hollow tapered pot with thick, ridged leaves, not crossed image planes.
 export function plantVolume(recipe){
  const {radius:r,potHeight:h,leafHeight:H,leaves:n,seed}=recipe.parameters,parts=[];

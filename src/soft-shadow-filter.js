@@ -5,7 +5,9 @@ const original=ShaderChunk.shadowmap_pars_fragment;
 const start=original.indexOf('\t\t\t\tshadow = (');
 const end=original.indexOf(') * 0.2;',start);
 if(start<0||end<0)throw Error('Unsupported Three shadow filter; review installed shader before upgrading');
-const taps=24;
+// 12 taps: the filter is unrolled once per shadowed light in every lit shader, and
+// 24 taps x 20 lights made shaders that took tens of seconds to compile on Metal.
+const taps=12;
 const sum=Array.from({length:taps},(_,i)=>`texture( shadowMap, vec3( shadowCoord.xy + vogelDiskSample( ${i}, ${taps}, phi ) * radius, shadowCoord.z ) )`).join(' +\n');
 const replacement=`if ( shadowRadius > 3.0 ) { shadow = (${sum}) / ${taps}.0; } else {\n${original.slice(start,end+8)}\n}`;
 // Receiver-plane correction: each tap compares against the depth of the
@@ -31,5 +33,5 @@ export const softShadowChunk=corrected.slice(0,pcfStart)+pcf+corrected.slice(pcf
 export function installSoftShadowFilter(material,{curved=false}={}){
  const previous=material.onBeforeCompile,cacheKey=material.customProgramCacheKey.bind(material),key=cacheKey();
  material.onBeforeCompile=function(shader,renderer){previous.call(this,shader,renderer);shader.fragmentShader=shader.fragmentShader.replace('#include <shadowmap_pars_fragment>',curved?original.slice(0,start)+replacement+original.slice(end+8):softShadowChunk);};
- material.customProgramCacheKey=()=>key+'|tian-diffuser-pcf-24-receiver-v3'+(curved?'|curved':'');material.needsUpdate=true;
+ material.customProgramCacheKey=()=>key+'|tian-diffuser-pcf-12-receiver-v4'+(curved?'|curved':'');material.needsUpdate=true;
 }

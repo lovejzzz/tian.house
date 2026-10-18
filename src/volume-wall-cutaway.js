@@ -1,4 +1,4 @@
-import {wallEdgeEndpoints} from './polygon-footprint.js?v=a890ced93fdd';
+import {wallEdgeEndpoints} from './polygon-footprint.js?v=1d7ffb1877ce';
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 // Fade coherent wall planes, not individual sprite cells. Both axis-aligned and
 // diagonal walls use the same camera/focus side test in calibrated world space.

@@ -1,5 +1,5 @@
-import {groundGeometry} from './ground-footprint.js?v=a890ced93fdd';
-import {groundHeight} from './ground-height.js?v=a890ced93fdd';
+import {groundGeometry} from './ground-footprint.js?v=1d7ffb1877ce';
+import {groundHeight} from './ground-height.js?v=1d7ffb1877ce';
 // Visibility is distinct from movement: a chair blocks walking, not sight;
 // windows transmit sight while a closed opaque door blocks it.
 // Cone, range and remembered-light values remain provisional source-parity work.

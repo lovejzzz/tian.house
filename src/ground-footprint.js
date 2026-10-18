@@ -1,4 +1,4 @@
-import {polygonSignedArea,pointInPolygon} from './polygon-footprint.js?v=a890ced93fdd';
+import {polygonSignedArea,pointInPolygon} from './polygon-footprint.js?v=1d7ffb1877ce';
 const EPS=1e-9,unit=[[0,0],[1,0],[1,1],[0,1]],emptyGeometry={},cache=new WeakMap();
 const cross=(a,b,p)=>(b[0]-a[0])*(p[1]-a[1])-(b[1]-a[1])*(p[0]-a[0]);
 function halfPlane(poly,a,b,inside){

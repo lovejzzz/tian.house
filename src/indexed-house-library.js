@@ -1,7 +1,7 @@
-import {readHouseLibrary} from './house-library.js?v=a890ced93fdd';
-import {validateHousePlan} from './workshop-model.js?v=a890ced93fdd';
-import {compileStructuralScene} from './scene-structure.js?v=a890ced93fdd';
-import {encodeDraftSnapshot,decodeDraftSnapshot} from './workshop-snapshot-codec.js?v=a890ced93fdd';
+import {readHouseLibrary} from './house-library.js?v=1d7ffb1877ce';
+import {validateHousePlan} from './workshop-model.js?v=1d7ffb1877ce';
+import {compileStructuralScene} from './scene-structure.js?v=1d7ffb1877ce';
+import {encodeDraftSnapshot,decodeDraftSnapshot} from './workshop-snapshot-codec.js?v=1d7ffb1877ce';
 export class IndexedHouseLibrary{
  constructor(bounds,properties,{indexedDB=globalThis.indexedDB,legacyStorage=globalThis.localStorage,name='tian-house-library-v2'}={}){Object.assign(this,{bounds,properties,indexedDB,legacyStorage,name});}
  validate(plan){validateHousePlan(plan,this.bounds);if(plan.sceneDocument)compileStructuralScene(plan.sceneDocument,this.properties);return plan;}

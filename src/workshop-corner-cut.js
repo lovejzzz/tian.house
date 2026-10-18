@@ -1,4 +1,4 @@
-import {chamferRectangle} from './polygon-footprint.js?v=a890ced93fdd';
+import {chamferRectangle} from './polygon-footprint.js?v=1d7ffb1877ce';
 export function openCornerCut(workshop){
  const room=workshop.model.scene?.rooms.find(r=>r.id===workshop.selectedRoomId);if(!room){workshop.status('Click a room first');return;}
  const dialog=document.createElement('dialog');dialog.className='house-library-dialog';dialog.setAttribute('aria-label','Corner cut');

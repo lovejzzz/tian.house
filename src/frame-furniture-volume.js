@@ -1,6 +1,6 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {roundedBox} from './detail-geometry.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {roundedBox} from './detail-geometry.js?v=1d7ffb1877ce';
 // Reusable open-frame furniture: individual parts preserve the spaces between them.
 export function frameFurnitureVolume(recipe){
  const {width:w,depth:d,height:h,member:m}=recipe.parameters,parts=[];

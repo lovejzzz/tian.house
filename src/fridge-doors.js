@@ -1,4 +1,4 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
 // Inspection-only pose: closes before movement resumes; saved collision remains
 // the closed appliance. Door parts are never merged with the stationary shell.

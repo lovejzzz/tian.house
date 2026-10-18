@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {armElbow} from './hand-rinse-pose.js?v=a890ced93fdd';
+import {armElbow} from './hand-rinse-pose.js?v=1d7ffb1877ce';
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 // World-space contact study for existing fruit/bottle props. No hunger changes,
 // teleportation or invented inventory: the simulation owns the timed action.

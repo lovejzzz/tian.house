@@ -1,7 +1,7 @@
-import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=a890ced93fdd';
-import {resolveExterior,BORDER_PLANTINGS,EXTERIOR_DEFAULTS} from './scene-exterior.js?v=a890ced93fdd';
-import {wallEdgeEndpoints} from './polygon-footprint.js?v=a890ced93fdd';
-import {roomContainsPoint} from './room-footprint.js?v=a890ced93fdd';
+import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=1d7ffb1877ce';
+import {resolveExterior,BORDER_PLANTINGS,EXTERIOR_DEFAULTS} from './scene-exterior.js?v=1d7ffb1877ce';
+import {wallEdgeEndpoints} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {roomContainsPoint} from './room-footprint.js?v=1d7ffb1877ce';
 // Workshop → View → Exterior & garden. Edits scene.exterior (saved with the house,
 // exported/imported with it, undoable) through the same command gateway as the roof
 // panel, so a replicated house reproduces the same garden and envelope details.

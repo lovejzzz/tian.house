@@ -1,5 +1,5 @@
-import {roomCells} from './room-footprint.js?v=a890ced93fdd';
-import {normalizeFootprintPolygon} from './polygon-footprint.js?v=a890ced93fdd';
+import {roomCells} from './room-footprint.js?v=1d7ffb1877ce';
+import {normalizeFootprintPolygon} from './polygon-footprint.js?v=1d7ffb1877ce';
 export function roomRoofOutline(room){
  if(room.polygon)return normalizeFootprintPolygon(room.polygon);
  const cells=roomCells(room),occupied=new Set(cells.map(p=>p.join(','))),edges=[];

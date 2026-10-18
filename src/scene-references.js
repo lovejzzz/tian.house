@@ -1,4 +1,4 @@
-import {referenceSceneEntity} from './reference-scene-entities.js?v=a890ced93fdd';
+import {referenceSceneEntity} from './reference-scene-entities.js?v=1d7ffb1877ce';
 // Embedded raster references travel with house exports and undo snapshots.
 // Limits bound local storage cost; photos are never sent to a remote service.
 export const REFERENCE_IMAGE_LIMIT=1024*1024;

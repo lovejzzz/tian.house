@@ -1,5 +1,5 @@
-import {groundGeometry,groundContains} from './ground-footprint.js?v=a890ced93fdd';
-import {groundHeight,supportedGroundSquare} from './ground-height.js?v=a890ced93fdd';
+import {groundGeometry,groundContains} from './ground-footprint.js?v=1d7ffb1877ce';
+import {groundHeight,supportedGroundSquare} from './ground-height.js?v=1d7ffb1877ce';
 // Cardinal faces of full-cell platforms. Polygon-cell integration remains separate;
 // callers must not substitute a square face for a clipped footprint.
 export function groundBoundaryFaces(square,properties,lookup,geometry){

@@ -1,7 +1,7 @@
-import {roomCells,roomPolygonGeometry} from './room-footprint.js?v=a890ced93fdd';
-import {polygonRoofFootprint} from './polygon-roof-footprint.js?v=a890ced93fdd';
-import {FLOOR_MAX} from './workshop-model.js?v=a890ced93fdd';
-import {gableFinish} from './scene-roof-finishes.js?v=a890ced93fdd';
+import {roomCells,roomPolygonGeometry} from './room-footprint.js?v=1d7ffb1877ce';
+import {polygonRoofFootprint} from './polygon-roof-footprint.js?v=1d7ffb1877ce';
+import {FLOOR_MAX} from './workshop-model.js?v=1d7ffb1877ce';
+import {gableFinish} from './scene-roof-finishes.js?v=1d7ffb1877ce';
 export function roofCells(room,baseZ){
  if(room.polygon&&room.roof.kind!=='flat')throw Error('Use a flat roof for a polygon room');
  let [x0,y0,x1,y1]=room.rect;const roof=room.roof,cells=[],overhang=roof.overhang??0;if(!Number.isInteger(overhang)||overhang<0||overhang>2)throw Error('Choose a roof overhang from zero to two cells');

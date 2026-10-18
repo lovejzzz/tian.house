@@ -1,10 +1,10 @@
-import {sceneFurnitureVolumes} from './scene-furniture-volumes.js?v=a890ced93fdd';
-import {scenePhysicalMetrics} from './scene-physical-dimensions.js?v=a890ced93fdd';
-import {sceneWallVolumes} from './scene-wall-volumes.js?v=a890ced93fdd';
-import {sceneSlabVolumes} from './scene-slab-volumes.js?v=a890ced93fdd';
-import {sceneStairVolumes} from './scene-stair-volumes.js?v=a890ced93fdd';
-import {objectClosure} from './scene-objects.js?v=a890ced93fdd';
-import {validateVolumeObjectPlacement} from './volume-placement-check.js?v=a890ced93fdd';
+import {sceneFurnitureVolumes} from './scene-furniture-volumes.js?v=1d7ffb1877ce';
+import {scenePhysicalMetrics} from './scene-physical-dimensions.js?v=1d7ffb1877ce';
+import {sceneWallVolumes} from './scene-wall-volumes.js?v=1d7ffb1877ce';
+import {sceneSlabVolumes} from './scene-slab-volumes.js?v=1d7ffb1877ce';
+import {sceneStairVolumes} from './scene-stair-volumes.js?v=1d7ffb1877ce';
+import {objectClosure} from './scene-objects.js?v=1d7ffb1877ce';
+import {validateVolumeObjectPlacement} from './volume-placement-check.js?v=1d7ffb1877ce';
 // Renderer-independent check shared by transaction callers. Loading an existing
 // house is not an edit; preserve it rather than retroactively rewriting its layout.
 export function createScenePlacementValidator(assets){

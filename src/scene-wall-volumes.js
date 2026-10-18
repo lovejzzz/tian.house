@@ -1,9 +1,9 @@
-import {fixedGlazing} from './fixed-glazing.js?v=a890ced93fdd';
-import {legacyOpeningProfile} from './legacy-opening-profiles.js?v=a890ced93fdd';
-import {wallJunctions} from './wall-junctions.js?v=a890ced93fdd';
-import {wallEdgeEndpoints} from './polygon-footprint.js?v=a890ced93fdd';
-import {windowProfile,doorProfile} from './window-profile.js?v=a890ced93fdd';
-import {wallVolume} from './wall-volume.js?v=a890ced93fdd';
+import {fixedGlazing} from './fixed-glazing.js?v=1d7ffb1877ce';
+import {legacyOpeningProfile} from './legacy-opening-profiles.js?v=1d7ffb1877ce';
+import {wallJunctions} from './wall-junctions.js?v=1d7ffb1877ce';
+import {wallEdgeEndpoints} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {windowProfile,doorProfile} from './window-profile.js?v=1d7ffb1877ce';
+import {wallVolume} from './wall-volume.js?v=1d7ffb1877ce';
 // Explicit migration dimensions: old grid/storeys do not establish real metres.
 // Missing metadata requires a reviewed source profile; never infer from a name.
 export function sceneWallVolumes(scene,properties,{cellSize,storeyHeight,wallHeight,thickness,reportJunctionConflicts=false}){

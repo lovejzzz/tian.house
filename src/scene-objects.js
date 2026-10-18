@@ -1,7 +1,7 @@
-import {objectOffset} from './scene-object-offset.js?v=a890ced93fdd';
-import {validateWallMounts,wallMountKind} from './scene-wall-mounts.js?v=a890ced93fdd';
-import {WorkshopModel} from './workshop-model.js?v=a890ced93fdd';
-import {PolygonRuntime} from './polygon-runtime.js?v=a890ced93fdd';
+import {objectOffset} from './scene-object-offset.js?v=1d7ffb1877ce';
+import {validateWallMounts,wallMountKind} from './scene-wall-mounts.js?v=1d7ffb1877ce';
+import {WorkshopModel} from './workshop-model.js?v=1d7ffb1877ce';
+import {PolygonRuntime} from './polygon-runtime.js?v=1d7ffb1877ce';
 
 export function objectClosure(scene,ids){
  const selected=new Set(ids);if(!selected.size||[...selected].some(id=>!scene.objects.some(o=>o.id===id)))throw Error('Choose existing objects');

@@ -1,4 +1,4 @@
-import {appendSlabPolygon} from './scene-slab-volumes.js?v=a890ced93fdd';
+import {appendSlabPolygon} from './scene-slab-volumes.js?v=1d7ffb1877ce';
 // Original centimetre-scale food/container studies, not recovered PZ meshes.
 export function foodPropsVolume(recipe){
  const parts=[];

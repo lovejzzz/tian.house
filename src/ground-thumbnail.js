@@ -1,5 +1,5 @@
-import {Renderer} from './render.js?v=a890ced93fdd';
-import {groundHeight} from './ground-height.js?v=a890ced93fdd';
+import {Renderer} from './render.js?v=1d7ffb1877ce';
+import {groundHeight} from './ground-height.js?v=1d7ffb1877ce';
 
 // Preview a standalone placement with the same floor renderer and material layers
 // as the world. Never mutate the active renderer's camera, context or world.

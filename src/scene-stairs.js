@@ -1,7 +1,7 @@
-import {compileReturnLink,returnStairEntry,straightStairEntry} from './scene-return-stairs.js?v=a890ced93fdd';
-import {stairType} from './stairs.js?v=a890ced93fdd';
-import {WorkshopModel} from './workshop-model.js?v=a890ced93fdd';
-import {PolygonRuntime} from './polygon-runtime.js?v=a890ced93fdd';
+import {compileReturnLink,returnStairEntry,straightStairEntry} from './scene-return-stairs.js?v=1d7ffb1877ce';
+import {stairType} from './stairs.js?v=1d7ffb1877ce';
+import {WorkshopModel} from './workshop-model.js?v=1d7ffb1877ce';
+import {PolygonRuntime} from './polygon-runtime.js?v=1d7ffb1877ce';
 export function stairEntry(axis){if(!['N','W'].includes(axis))throw Error('Choose a supported staircase direction');return {id:'stairs:'+axis,stairs:true,facing:axis,parts:(axis==='N'?[98,97,96]:[90,89,88]).map((n,i)=>({dx:axis==='W'?i:0,dy:axis==='N'?i:0,tile:'carpentry_02_'+n}))};}
 export const stairLinkEntry=link=>link.shape==='straight'?straightStairEntry(link.axis,link.run):link.shape==='return'?returnStairEntry(link.axis,link.handedness,link.run):stairEntry(link.axis);
 export function compileVerticalLinks(scene,plan,properties){

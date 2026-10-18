@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import {armElbow} from './hand-rinse-pose.js?v=a890ced93fdd';
+import {armElbow} from './hand-rinse-pose.js?v=1d7ffb1877ce';
 // Arm contact approximation. Individual finger articulation is still separate.
 export function applyPianoPose(root,practice,forward){
  if(!practice?.targets?.length||!forward)return;

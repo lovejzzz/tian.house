@@ -1,7 +1,7 @@
-import {StructuredWorkshopModel} from './structured-workshop-model.js?v=a890ced93fdd';
-import {editorSnapshot,restoreEditorSnapshot} from './workshop-draft.js?v=a890ced93fdd';
-import {migrateHousePlan} from './scene-document.js?v=a890ced93fdd';
-import {compileStructuralScene} from './scene-structure.js?v=a890ced93fdd';
+import {StructuredWorkshopModel} from './structured-workshop-model.js?v=1d7ffb1877ce';
+import {editorSnapshot,restoreEditorSnapshot} from './workshop-draft.js?v=1d7ffb1877ce';
+import {migrateHousePlan} from './scene-document.js?v=1d7ffb1877ce';
+import {compileStructuralScene} from './scene-structure.js?v=1d7ffb1877ce';
 
 const metadata=version=>{const {plan,requestFingerprint,...row}=version;return row;};
 async function branchIdentity(requestId){const hash=await crypto.subtle.digest('SHA-256',new TextEncoder().encode('tian-house-branch:'+requestId));return 'branch:'+Array.from(new Uint8Array(hash),n=>n.toString(16).padStart(2,'0')).join('');}

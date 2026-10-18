@@ -1,4 +1,4 @@
-import {periodicNoise} from './material-relief.js?v=a890ced93fdd';
+import {periodicNoise} from './material-relief.js?v=1d7ffb1877ce';
 // Authored open-pore finish, not physical height recovered from painted sprite light.
 // UV U crosses the grain; V follows it. Periodic fields remain stable across repeats.
 export function woodFinishPixels({size=256,metres=[.32,.65],relief=.00018,seed=73}={}){

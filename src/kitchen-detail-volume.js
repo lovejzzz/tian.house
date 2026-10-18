@@ -1,4 +1,4 @@
-import {roundedBox,lathe,rod,barHandle,knob,profileExtrude,roundedProfile,checkDetailPart} from './detail-geometry.js?v=a890ced93fdd';
+import {roundedBox,lathe,rod,barHandle,knob,profileExtrude,roundedProfile,checkDetailPart} from './detail-geometry.js?v=1d7ffb1877ce';
 // Kitchen appliances and base units built from real construction: carcass, fronts
 // separated by reveals, hardware on standoffs, overhanging worktops with a rounded
 // nosing, gaskets, grilles and turned controls. Dimensions follow ordinary

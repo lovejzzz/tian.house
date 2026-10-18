@@ -1,5 +1,5 @@
-import {WorkshopCommands} from './workshop-commands.js?v=a890ced93fdd';
-import {WorkshopVersions} from './workshop-versions.js?v=a890ced93fdd';
+import {WorkshopCommands} from './workshop-commands.js?v=1d7ffb1877ce';
+import {WorkshopVersions} from './workshop-versions.js?v=1d7ffb1877ce';
 export class WorkshopCommandGateway {
  constructor(model,catalog,library,persistence){Object.assign(this,{model,library,persistence});this.build=new WorkshopCommands(model,catalog);this.versions=new WorkshopVersions(model,library,persistence);}
  isVersion(request){return request?.operations?.some?.(op=>op?.type?.startsWith?.('versions.'));}

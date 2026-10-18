@@ -1,6 +1,6 @@
-import {readWorkshopScene} from './workshop-scene-queries.js?v=a890ced93fdd';
-import {WorkshopAssetQueries} from './workshop-asset-queries.js?v=a890ced93fdd';
-import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=a890ced93fdd';
+import {readWorkshopScene} from './workshop-scene-queries.js?v=1d7ffb1877ce';
+import {WorkshopAssetQueries} from './workshop-asset-queries.js?v=1d7ffb1877ce';
+import {WorkshopCommandGateway} from './workshop-command-gateway.js?v=1d7ffb1877ce';
 const element=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 export function openCommandPanel(workshop){
  if(workshop.commandDialog)return;

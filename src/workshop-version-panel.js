@@ -1,4 +1,4 @@
-import {WorkshopVersions} from './workshop-versions.js?v=a890ced93fdd';
+import {WorkshopVersions} from './workshop-versions.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const n=document.createElement(tag);if(text!==undefined)n.textContent=text;return n;};
 export async function openVersions(w){
  if(w.versionsDialog)return;

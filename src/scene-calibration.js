@@ -1,4 +1,4 @@
-import {polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 export function calibrateScene(scene,operation){
  const next=structuredClone(scene);
  if(operation.type==='scene.clearCalibration'){next.units={kind:'source-grid',metresPerCell:null,evidence:null};return next;}

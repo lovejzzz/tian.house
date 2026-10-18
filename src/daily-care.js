@@ -1,8 +1,8 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {drainableUses} from './drainable.js?v=a890ced93fdd';
-import {waterSource} from './water.js?v=a890ced93fdd';
-import {isWashbasin} from './hand-rinsing.js?v=a890ced93fdd';
-import {isToilet} from './toileting.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {drainableUses} from './drainable.js?v=1d7ffb1877ce';
+import {waterSource} from './water.js?v=1d7ffb1877ce';
+import {isWashbasin} from './hand-rinsing.js?v=1d7ffb1877ce';
+import {isToilet} from './toileting.js?v=1d7ffb1877ce';
 // Real-time seconds; one game minute passes per ~1.4 s (brushing ≈ 3.5 game min).
 // Everyday household care found missing while living in Hearth Studio for three
 // game days: brushing teeth, toilet paper, washing reusable bandages at a sink,

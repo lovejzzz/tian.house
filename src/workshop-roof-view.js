@@ -1,4 +1,4 @@
-import {roofCells,roofEndCells} from './scene-roofs.js?v=a890ced93fdd';
+import {roofCells,roofEndCells} from './scene-roofs.js?v=1d7ffb1877ce';
 const key=(x,y,z,tile)=>`${x},${y},${z}:${tile}`;
 // Track generated roof ownership: a flat roof can use the same tile as a floor.
 export function managedRoofTiles(scene){

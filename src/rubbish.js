@@ -1,7 +1,7 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {drainableUses} from './drainable.js?v=a890ced93fdd';
-import {foodFreshness} from './food-storage.js?v=a890ced93fdd';
-import {KEPT_CARE_ITEMS} from './daily-care.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {drainableUses} from './drainable.js?v=1d7ffb1877ce';
+import {foodFreshness} from './food-storage.js?v=1d7ffb1877ce';
+import {KEPT_CARE_ITEMS} from './daily-care.js?v=1d7ffb1877ce';
 // Household rubbish routine with real inventory instances: carried rubbish goes
 // into a bin (a `container=bin` tile), the bin's contents are tied into an
 // imported bin bag, and the full bag is carried out to an outdoor bin. Nothing

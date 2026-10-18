@@ -1,6 +1,6 @@
-import {profiledRoofGeometry} from './profiled-roof-geometry.js?v=a890ced93fdd';
-import {normalizeFootprintPolygon} from './polygon-footprint.js?v=a890ced93fdd';
-import {FLOOR_MIN,FLOOR_MAX} from './workshop-model.js?v=a890ced93fdd';
+import {profiledRoofGeometry} from './profiled-roof-geometry.js?v=1d7ffb1877ce';
+import {normalizeFootprintPolygon} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {FLOOR_MIN,FLOOR_MAX} from './workshop-model.js?v=1d7ffb1877ce';
 
 // Optional collection preserves older scene documents byte-for-byte. Heights
 // explicitly use renderer storeys, never silently interpret metres as levels.

@@ -1,5 +1,5 @@
-import {diagonalWindowSides} from './diagonal-openings.js?v=a890ced93fdd';
-import {barricadePresent} from './barricades.js?v=a890ced93fdd';
+import {diagonalWindowSides} from './diagonal-openings.js?v=1d7ffb1877ce';
+import {barricadePresent} from './barricades.js?v=1d7ffb1877ce';
 // Source context-menu rule: WindowLocked is a sprite property, not a failed lock.
 export function windowBarricadeSide(obj,actor){
  if(obj.polygonWall)return diagonalWindowSides(obj.polygonWall,actor)?.side<0?'opposite':'same';

@@ -1,7 +1,7 @@
-import {wallVolume} from './wall-volume.js?v=a890ced93fdd';
-import {roomContainsPoint} from './room-footprint.js?v=a890ced93fdd';
-import {architecturalSurfaceUV} from './architectural-materials.js?v=a890ced93fdd';
-import {resolveExterior} from './scene-exterior.js?v=a890ced93fdd';
+import {wallVolume} from './wall-volume.js?v=1d7ffb1877ce';
+import {roomContainsPoint} from './room-footprint.js?v=1d7ffb1877ce';
+import {architecturalSurfaceUV} from './architectural-materials.js?v=1d7ffb1877ce';
+import {resolveExterior} from './scene-exterior.js?v=1d7ffb1877ce';
 // Exterior envelope detail derived from the authored walls and roofs (render-only,
 // no collision; navigation stays owned by the structural walls):
 // - parapet upstand in the wall's own finish hiding the low-pitch roof skin,

@@ -1,4 +1,4 @@
-import {waterSource} from './water.js?v=a890ced93fdd';
+import {waterSource} from './water.js?v=1d7ffb1877ce';
 export const RINSE_SECONDS=12,RINSE_LITRES=1.2;
 export const isWashbasin=object=>object?.type==='water'&&/sink|washbasin/i.test(object.props?.CustomName??object.name??'');
 export function planHandRinse(world,state,object){

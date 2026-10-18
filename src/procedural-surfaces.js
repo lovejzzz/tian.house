@@ -1,4 +1,4 @@
-import {periodicNoise} from './material-relief.js?v=a890ced93fdd';
+import {periodicNoise} from './material-relief.js?v=1d7ffb1877ce';
 // Authored high-resolution surfaces replacing 128 px reprojections of sprite art.
 // All are seamless (periodic) tiles with physical repeat sizes set by the recipe.
 // Colour kinds (oak floor, lawn) return final albedo for a white material; tint
@@ -9,7 +9,9 @@ function rng(seed){let s=seed>>>0||1;return ()=>{s^=s<<13;s>>>=0;s^=s>>17;s^=s<<
 function fbm(u,v,base,octaves,seed){let s=0,a=.5,t=0;for(let o=0;o<octaves;o++){const p=base*2**o;s+=a*periodicNoise(u*p,v*p,p,seed+o);t+=a;a*=.5;}return s/t;}
 function check(size,max=1024){if(!Number.isInteger(size)||size<32||size>max||(size&(size-1)))throw Error('Invalid procedural surface size');}
 function image(size){return {width:size,height:size,color:new Uint8Array(size*size*4),roughness:new Uint8Array(size*size*4),relief:new Uint8Array(size*size*4)};}
-function put(img,i,[r,g,b],rough,height){img.color.set([Math.round(255*clamp(r)),Math.round(255*clamp(g)),Math.round(255*clamp(b)),255],i*4);const q=Math.round(255*clamp(rough)),h=Math.round(255*clamp(height));img.roughness.set([q,q,q,255],i*4);img.relief.set([h,h,h,255],i*4);}
+// Direct writes: called once per texel of every generated surface at startup.
+function put(img,i,rgb,rough,height){const j=i*4,c=img.color,q=Math.round(255*clamp(rough)),h=Math.round(255*clamp(height)),R=img.roughness,H=img.relief;
+ c[j]=Math.round(255*clamp(rgb[0]));c[j+1]=Math.round(255*clamp(rgb[1]));c[j+2]=Math.round(255*clamp(rgb[2]));c[j+3]=255;R[j]=R[j+1]=R[j+2]=q;R[j+3]=255;H[j]=H[j+1]=H[j+2]=h;H[j+3]=255;}
 
 // Oiled oak floorboards: ~14 cm boards, random staggered butt joints (periodic per
 // row), per-board tone, flat-sawn cathedral grain, rays, pores and the odd knot.

@@ -1,17 +1,18 @@
-import {captureProbeVisibility,probeVisibilityGLSL,probeVisibilityKey} from './probe-visibility.js?v=a890ced93fdd';
-import {createCaptureShadowCache} from './capture-shadow-cache.js?v=a890ced93fdd';
-import {createReflectionParallax} from './room-reflection-parallax.js?v=a890ced93fdd';
-import {capturedSkyRadiance} from './captured-sky-radiance.js?v=a890ced93fdd';
-import {writeProbeField,withProbeField} from './probe-field-state.js?v=a890ced93fdd';
-import {prepareRenderPrograms,prepareCapturePrograms} from './prepare-render-programs.js?v=a890ced93fdd';
-import {roomReflectionIndex} from './room-reflection-selection.js?v=a890ced93fdd';
+import {flatUniform} from './flat-uniform.js?v=1d7ffb1877ce';
+import {captureProbeVisibility,probeVisibilityGLSL,probeVisibilityKey} from './probe-visibility.js?v=1d7ffb1877ce';
+import {createCaptureShadowCache} from './capture-shadow-cache.js?v=1d7ffb1877ce';
+import {createReflectionParallax} from './room-reflection-parallax.js?v=1d7ffb1877ce';
+import {capturedSkyRadiance} from './captured-sky-radiance.js?v=1d7ffb1877ce';
+import {writeProbeField,withProbeField} from './probe-field-state.js?v=1d7ffb1877ce';
+import {prepareRenderPrograms,prepareCapturePrograms} from './prepare-render-programs.js?v=1d7ffb1877ce';
+import {roomReflectionIndex} from './room-reflection-selection.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
-import {SKY_SH} from './exterior-sky.js?v=a890ced93fdd';
-import {ATMOSPHERE} from './atmosphere-effects.js?v=a890ced93fdd';
+import {SKY_SH} from './exterior-sky.js?v=1d7ffb1877ce';
+import {ATMOSPHERE} from './atmosphere-effects.js?v=1d7ffb1877ce';
 import {LightProbeGenerator} from '../node_modules/three/examples/jsm/lights/LightProbeGenerator.js';
-import {sweepSolidBox} from './convex-solid.js?v=a890ced93fdd';
-import {roomCells} from './room-footprint.js?v=a890ced93fdd';
-import {captureCubeFace} from './cube-face-capture.js?v=a890ced93fdd';
+import {sweepSolidBox} from './convex-solid.js?v=1d7ffb1877ce';
+import {roomCells} from './room-footprint.js?v=1d7ffb1877ce';
+import {captureCubeFace} from './cube-face-capture.js?v=1d7ffb1877ce';
 const MAX_ROOMS=4, MAX=16;
 // Bounded two-bounce radiance capture. Room masks limit cross-room leakage,
 // Depth-tested local interpolation remains a coarse approximation, not full DDGI.
@@ -55,6 +56,8 @@ export function createRoomBounceStudy({scene,renderer,onStatus,onCompileState=()
  // captured room only. Exposure, not added light; 1 = off. See interior-exposure.js.
  const interiorGain={value:1};
  const field={count,coefficients,bounds,positions,heights};
+ // Shader-side views of the probe arrays (see flat-uniform.js).
+ const flat={dynamic:flatUniform(dynamic,3,renderer),coefficients:flatUniform(coefficients,3,renderer),bounds:flatUniform(bounds,4,renderer),heights:flatUniform(heights,2,renderer),positions:flatUniform(positions,3,renderer)};
  const depth={value:null},visibilityReady={value:0};let visibilityTarget=null,visibilityStale=true,visibilityKey=null;
  let generation=0,closed=false,busy=false,ready=false,capturesStarted=0,capturesCompleted=0;
  const reflectionBoxes=new WeakMap();
@@ -64,7 +67,7 @@ export function createRoomBounceStudy({scene,renderer,onStatus,onCompileState=()
 
  return {
   install(mesh){const material=mesh.material;if(material.transparent)return;const projection=createReflectionParallax();reflectionBoxes.set(material,projection);const previous=material.onBeforeCompile,key=material.customProgramCacheKey();material.onBeforeCompile=(shader,renderer)=>{previous.call(material,shader,renderer);
-   Object.assign(shader.uniforms,{tianInteriorGain:interiorGain,tianDynamicSH:dynamic,tianDynamicEnabled:dynamicEnabled,tianProbeDepth:depth,tianProbeVisibilityReady:visibilityReady,tianBounceEnabled:enabled,tianProbeCount:count,tianProbeSH:coefficients,tianProbeBounds:bounds,tianProbeHeights:heights,tianProbePositions:positions,tianSkySH:SKY_SH,tianGroundBounce:ATMOSPHERE.groundBounce});
+   Object.assign(shader.uniforms,{tianInteriorGain:interiorGain,tianDynamicSH:flat.dynamic,tianDynamicEnabled:dynamicEnabled,tianProbeDepth:depth,tianProbeVisibilityReady:visibilityReady,tianBounceEnabled:enabled,tianProbeCount:count,tianProbeSH:flat.coefficients,tianProbeBounds:flat.bounds,tianProbeHeights:flat.heights,tianProbePositions:flat.positions,tianSkySH:SKY_SH,tianGroundBounce:ATMOSPHERE.groundBounce});
    shader.vertexShader='varying vec3 vTianWorld;\n'+shader.vertexShader;
    // transformed includes morph targets and skinning; sample the posed world position.
    shader.vertexShader=shader.vertexShader.replace('#include <project_vertex>','#include <project_vertex>\nvTianWorld = (modelMatrix * vec4(transformed, 1.0)).xyz;');
@@ -162,23 +165,23 @@ export function createRoomBounceStudy({scene,renderer,onStatus,onCompileState=()
      onStatus('Capturing bounce '+(pass+1)+'/'+passCount+' · room '+region.id);cube.position.set(...region.position);cube.updateMatrixWorld(true);
      // Camera translation and SH uniforms do not change shader topology. The
      // capture excludes the same live objects throughout all passes.
-     if(!captureProgramsReady){const t=performance.now();await prepareCapturePrograms(renderer,scene,cube.children[0],THREE.NoToneMapping,compileState);timings.compile+=performance.now()-t;captureProgramsReady=true;}
+     if(!captureProgramsReady){const t=performance.now();const fading=meshes.filter(m=>(m.userData.wallCutaway||m.userData.furnitureCutaway)&&m.material.transparent).map(m=>m.material);for(const m of fading)m.transparent=false;let warm;try{warm=prepareCapturePrograms(renderer,scene,cube.children[0],THREE.NoToneMapping,compileState,cube.renderTarget);}finally{for(const m of fading)m.transparent=true;}await warm;timings.compile+=performance.now()-t;captureProgramsReady=true;}
      if(closed||token!==generation)return false;
      for(let face=0;face<6;face++){
      if(closed||token!==generation)return false;
      const skyRadiance=capturedSkyRadiance(scene);
      const background=scene.background,clear=renderer.getClearColor(new THREE.Color()),alpha=renderer.getClearAlpha(),tone=renderer.toneMapping,previousDynamic=dynamicEnabled.value,previousEnabled=enabled.value,previousDepth=depth.value,previousVisibilityReady=visibilityReady.value,hidden=[],ambient=[];
      const receivers=meshes.map(m=>[m,m.receiveShadow]);
-     const materials=meshes.map(m=>[m.material,m.material.colorWrite,m.material.depthWrite,m.material.emissiveIntensity,m.material.color.clone(),m.material.envMapIntensity,m.material.opacity]);
-     scene.traverse(o=>{if(o.isHemisphereLight){ambient.push([o,o.intensity]);o.intensity=0;}else if(o.userData.indirectCaptureExclude){hidden.push([o,o.visible]);o.visible=false;}});
+     const materials=meshes.map(m=>[m.material,m.material.colorWrite,m.material.depthWrite,m.material.emissiveIntensity,m.material.color.clone(),m.material.envMapIntensity,m.material.opacity,m.material.transparent]);
+     scene.traverse(o=>{if(o.isHemisphereLight||o.isLight&&o.userData.indirectCaptureExclude){ambient.push([o,o.intensity]);o.intensity=0;}else if(o.userData.indirectCaptureExclude){hidden.push([o,o.visible]);o.visible=false;}}); /* excluded lights go dark rather than invisible: the light count stays that of the view, so the capture reuses its programs */
      try{
       dynamicEnabled.value=0;depth.value=nextVisibility?.texture??null;visibilityReady.value=depthVisibility?1:0;enabled.value=pass===0?0:1;scene.background=skyRadiance;renderer.setClearColor(skyRadiance,1);renderer.toneMapping=THREE.NoToneMapping;
-      for(const mesh of meshes){mesh.receiveShadow=mesh.userData.originalReceiveShadow??mesh.receiveShadow;mesh.material.color.set(mesh.userData.baseColor);if(mesh.userData.roofId){mesh.material.colorWrite=true;mesh.material.depthWrite=true;}const cutaway=mesh.userData.wallCutaway||mesh.userData.furnitureCutaway;if(cutaway){mesh.material.opacity=cutaway.opacity;mesh.material.depthWrite=cutaway.depthWrite;}mesh.material.emissiveIntensity=0;mesh.material.envMapIntensity=0;}
+      for(const mesh of meshes){mesh.receiveShadow=mesh.userData.originalReceiveShadow??mesh.receiveShadow;mesh.material.color.set(mesh.userData.baseColor);if(mesh.userData.roofId){mesh.material.colorWrite=true;mesh.material.depthWrite=true;}const cutaway=mesh.userData.wallCutaway||mesh.userData.furnitureCutaway;if(cutaway){mesh.material.opacity=cutaway.opacity;mesh.material.depthWrite=cutaway.depthWrite;mesh.material.transparent=false;/* light bounces off the physical wall; also keeps the capture on the warmed opaque program */}mesh.material.emissiveIntensity=0;mesh.material.envMapIntensity=0;}
       // Captured radiance must be physical: interior eye adaptation is a display
       // transform and would otherwise feed back into the next adaptation step.
       const drawFace=()=>{const t=performance.now(),gain=interiorGain.value;interiorGain.value=1;try{return captureShadows.run(()=>captureCubeFace(renderer,scene,cube,face));}finally{interiorGain.value=gain;timings.faces+=performance.now()-t;}};
       if(previousPass)withProbeField(field,regions,previousPass,drawFace);else drawFace();
-     }finally{dynamicEnabled.value=previousDynamic;for(const [mesh,receive] of receivers)mesh.receiveShadow=receive;depth.value=previousDepth;visibilityReady.value=previousVisibilityReady;enabled.value=previousEnabled;scene.background=background;renderer.setClearColor(clear,alpha);renderer.toneMapping=tone;for(const [o,v]of hidden)o.visible=v;for(const [o,intensity]of ambient)o.intensity=intensity;for(const [m,c,d,e,color,env,opacity]of materials){m.colorWrite=c;m.depthWrite=d;m.emissiveIntensity=e;m.color.copy(color);m.envMapIntensity=env;m.opacity=opacity;}}
+     }finally{dynamicEnabled.value=previousDynamic;for(const [mesh,receive] of receivers)mesh.receiveShadow=receive;depth.value=previousDepth;visibilityReady.value=previousVisibilityReady;enabled.value=previousEnabled;scene.background=background;renderer.setClearColor(clear,alpha);renderer.toneMapping=tone;for(const [o,v]of hidden)o.visible=v;for(const [o,intensity]of ambient)o.intensity=intensity;for(const [m,c,d,e,color,env,opacity,transparent]of materials){m.colorWrite=c;m.depthWrite=d;m.emissiveIntensity=e;m.color.copy(color);m.envMapIntensity=env;m.opacity=opacity;m.transparent=transparent;}}
      // Normal gameplay can render between each cube direction.
      await new Promise(resolve=>requestAnimationFrame(resolve));
      }
@@ -189,6 +192,13 @@ export function createRoomBounceStudy({scene,renderer,onStatus,onCompileState=()
     previousPass=results;
     }
     writeProbeField(field,regions,results);if(visibilityTarget!==nextVisibility)visibilityTarget?.dispose();visibilityTarget=nextVisibility;visibilityKey=nextVisibilityKey;visibilityStale=false;depth.value=nextVisibility?.texture??null;visibilityReady.value=depthVisibility?1:0;ready=true;enabled.value=1;
+    // Compile the materials' new reflection variants before publishing them: set the
+    // new maps, start the parallel compile, put the previous maps back and keep
+    // drawing with those until the programs are ready (publishing first made the
+    // view link each variant synchronously, a ten-second stutter on every recapture).
+    {const swaps=[];for(const mesh of meshes){mesh.geometry.computeBoundingBox();const center=mesh.geometry.boundingBox.getCenter(new THREE.Vector3());mesh.localToWorld(center);const index=roomReflectionIndex(center.toArray(),regions);if(index<0)continue;swaps.push([mesh.material,mesh.material.envMap,mesh.material.envMapIntensity]);mesh.material.envMap=nextReflections[index].texture;mesh.material.envMapIntensity=reflectionsWanted?1:0;}
+     let warm;try{warm=prepareRenderPrograms(renderer,scene,cube.children[0],renderer.toneMapping,()=>{});}finally{for(const [material,envMap,intensity] of swaps){material.envMap=envMap;material.envMapIntensity=intensity;}}
+     await warm;if(closed||token!==generation){for(const target of nextReflections)target.dispose();return false;}}
     // Atomically publish diffuse and specular data from the same capture generation.
     reflectionMaterials=[];
     for(const mesh of meshes){

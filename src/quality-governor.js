@@ -8,6 +8,9 @@
 //   tier 2 full: bloom, full pixel ratio, full vegetation draw distance, 2048 sun shadows
 //   tier 1: no bloom, pixel ratio ≤ 1.25, grass/tuft/flower distance × 0.6
 //   tier 0: also pixel ratio 1, distance × 0.35, 1024 sun shadows
+// The view starts at tier 1 and climbs only with headroom. Nothing here may change a
+// shader define: switching contact AO or shadow casting recompiles every material,
+// which froze the page for tens of seconds.
 export const QUALITY_TIERS=[
  {name:'low',bloom:false,pixelRatio:1,detail:.35,shadowMap:1024},
  {name:'medium',bloom:false,pixelRatio:1.25,detail:.6,shadowMap:2048},

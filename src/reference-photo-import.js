@@ -1,4 +1,4 @@
-import {REFERENCE_IMAGE_LIMIT,referenceMime} from './scene-references.js?v=a890ced93fdd';
+import {REFERENCE_IMAGE_LIMIT,referenceMime} from './scene-references.js?v=1d7ffb1877ce';
 const dataURL=blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('Could not read photo'));reader.readAsDataURL(blob);});
 // Make a local working copy; never overwrite or upload the source file.
 export async function importReferencePhoto(file){

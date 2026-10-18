@@ -1,5 +1,5 @@
-import {referenceSceneEntities,referenceSceneEntity} from './reference-scene-entities.js?v=a890ced93fdd';
-import {wallFacePolygon} from './workshop-placement.js?v=a890ced93fdd';
+import {referenceSceneEntities,referenceSceneEntity} from './reference-scene-entities.js?v=1d7ffb1877ce';
+import {wallFacePolygon} from './workshop-placement.js?v=1d7ffb1877ce';
 const el=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e;};
 export function referenceEntity(scene,id){return referenceSceneEntity(scene,id)?.entity;}
 export function focusReferenceEntity(workshop,id){

@@ -1,9 +1,9 @@
-import {wallJoins} from './wall-joins.js?v=a890ced93fdd';
-import {fullscreenCamera,arrivalFrame} from './arrival.js?v=a890ced93fdd';
-import {Renderer} from './render.js?v=a890ced93fdd';
-import {captureHouse} from './workshop-model.js?v=a890ced93fdd';
-import {drawPool} from './workshop-outdoors.js?v=a890ced93fdd';
-import {readPreferences,storePreferences} from './preferences.js?v=a890ced93fdd';
+import {wallJoins} from './wall-joins.js?v=1d7ffb1877ce';
+import {fullscreenCamera,arrivalFrame} from './arrival.js?v=1d7ffb1877ce';
+import {Renderer} from './render.js?v=1d7ffb1877ce';
+import {captureHouse} from './workshop-model.js?v=1d7ffb1877ce';
+import {drawPool} from './workshop-outdoors.js?v=1d7ffb1877ce';
+import {readPreferences,storePreferences} from './preferences.js?v=1d7ffb1877ce';
 const element=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 export class MainMenu{
  constructor({world,renderer,bounds,getState,onStart,onWorkshop,onPreferences,onImportSave,onMoveIn=()=>null}){Object.assign(this,{world,gameRenderer:renderer,bounds,getState,onStart,onWorkshop,onPreferences,onImportSave,onMoveIn});this.preferences=readPreferences();this.active=false;}

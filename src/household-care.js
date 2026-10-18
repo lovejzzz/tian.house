@@ -1,5 +1,5 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {drainableUses} from './drainable.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {drainableUses} from './drainable.js?v=1d7ffb1877ce';
 export function carriedCareItems(inventory,type){return inventory.list('player').filter(item=>item.type===type&&drainableUses(item,definition(item.type).properties)>0);}
 export function planTowelDrying(inventory,player,id){
  const item=carriedCareItems(inventory,'Base.BathTowel').find(i=>i.id===id);

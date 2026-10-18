@@ -1,5 +1,5 @@
-import {woodFinishPixels} from './wood-finish.js?v=a890ced93fdd';
-import {sourcePatchPixels,sourceTextureKey,wovenSurfacePixels,textileDyePixels} from './source-patch-texture.js?v=a890ced93fdd';
+import {woodFinishPixels} from './wood-finish.js?v=1d7ffb1877ce';
+import {sourcePatchPixels,sourceTextureKey,wovenSurfacePixels,textileDyePixels} from './source-patch-texture.js?v=1d7ffb1877ce';
 // Deterministic inverse-isometric sampling of reviewed source floor pixels.
 // This is a resampled color reference, NOT recovered unlit PBR albedo.
 export function sourceFloorPixels({pixels,width,height,region,plane,size=128}){

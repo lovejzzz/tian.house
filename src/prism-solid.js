@@ -1,5 +1,5 @@
-import {convexSolid} from './convex-solid.js?v=a890ced93fdd';
-import {polygonSignedArea} from './polygon-footprint.js?v=a890ced93fdd';
+import {convexSolid} from './convex-solid.js?v=1d7ffb1877ce';
+import {polygonSignedArea} from './polygon-footprint.js?v=1d7ffb1877ce';
 export function prismSolid({polygon,minZ,maxZ}){
  if(!Number.isFinite(minZ)||!Number.isFinite(maxZ)||maxZ<=minZ)throw Error('Invalid prism height');
  const p=polygon.map(v=>[...v]);if(polygonSignedArea(p)<0)p.reverse();const n=p.length,vertices=[...p.map(v=>[...v,minZ]),...p.map(v=>[...v,maxZ])],indices=[];

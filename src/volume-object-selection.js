@@ -1,4 +1,4 @@
-import {objectClosure} from './scene-objects.js?v=a890ced93fdd';
+import {objectClosure} from './scene-objects.js?v=1d7ffb1877ce';
 // Pick any mesh part, but edit the same supported assembly/group as the 2D workshop.
 export function volumeObjectSelection(scene,objectId,{relativeToHost=false}={}){
  let root=scene.objects.find(o=>o.id===objectId);if(!root)return null;

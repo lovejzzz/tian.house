@@ -1,11 +1,11 @@
-import {objectOffset} from './scene-object-offset.js?v=a890ced93fdd';
-import {validatePhysicalDimensions} from './scene-physical-dimensions.js?v=a890ced93fdd';
-import {validateRoofVolumes} from './scene-roof-volumes.js?v=a890ced93fdd';
-import {validateViews} from './scene-views.js?v=a890ced93fdd';
-import {validateCalibration} from './scene-calibration.js?v=a890ced93fdd';
-import {validateReferences} from './scene-references.js?v=a890ced93fdd';
-import {validateExterior} from './scene-exterior.js?v=a890ced93fdd';
-import {validateHousePlan,FLOOR_MIN,FLOOR_MAX} from './workshop-model.js?v=a890ced93fdd';
+import {objectOffset} from './scene-object-offset.js?v=1d7ffb1877ce';
+import {validatePhysicalDimensions} from './scene-physical-dimensions.js?v=1d7ffb1877ce';
+import {validateRoofVolumes} from './scene-roof-volumes.js?v=1d7ffb1877ce';
+import {validateViews} from './scene-views.js?v=1d7ffb1877ce';
+import {validateCalibration} from './scene-calibration.js?v=1d7ffb1877ce';
+import {validateReferences} from './scene-references.js?v=1d7ffb1877ce';
+import {validateExterior} from './scene-exterior.js?v=1d7ffb1877ce';
+import {validateHousePlan,FLOOR_MIN,FLOOR_MAX} from './workshop-model.js?v=1d7ffb1877ce';
 
 const clone=value=>structuredClone(value);
 const collections=['walls','openings','rooms','objects','verticalLinks','references','views'];

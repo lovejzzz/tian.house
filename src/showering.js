@@ -1,4 +1,4 @@
-import {waterSource} from './water.js?v=a890ced93fdd';
+import {waterSource} from './water.js?v=1d7ffb1877ce';
 export const SHOWER_SECONDS=30,SHOWER_LITRES=24;
 export function isShower(props={}){return props.TianVariantFamily==='shower'||/^shower$/i.test(props.CustomName??'');}
 export function planShower(world,state,object){

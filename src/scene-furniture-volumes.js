@@ -1,9 +1,9 @@
-import {pianoPartMidi} from './piano.js?v=a890ced93fdd';
-import {objectOffset} from './scene-object-offset.js?v=a890ced93fdd';
-import {furnitureUV} from './volume-material-texture.js?v=a890ced93fdd';
-import {transformConvexSolid} from './transform-convex-solid.js?v=a890ced93fdd';
-import {validateWallMounts,wallFixtureSide} from './scene-wall-mounts.js?v=a890ced93fdd';
-import {groundHeight} from './ground-height.js?v=a890ced93fdd';
+import {pianoPartMidi} from './piano.js?v=1d7ffb1877ce';
+import {objectOffset} from './scene-object-offset.js?v=1d7ffb1877ce';
+import {furnitureUV} from './volume-material-texture.js?v=1d7ffb1877ce';
+import {transformConvexSolid} from './transform-convex-solid.js?v=1d7ffb1877ce';
+import {validateWallMounts,wallFixtureSide} from './scene-wall-mounts.js?v=1d7ffb1877ce';
+import {groundHeight} from './ground-height.js?v=1d7ffb1877ce';
 let delivery;
 export async function fetchVolumeFurniture(base=new URL('../assets/volume/',import.meta.url),fetcher=fetch){
  const response=await fetcher(new URL('build-report.json',base));if(!response.ok)throw Error('Volume manifest unavailable');

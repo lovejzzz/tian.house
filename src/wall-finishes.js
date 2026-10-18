@@ -1,8 +1,8 @@
-import {hasOpeningProfile} from './window-profile.js?v=a890ced93fdd';
-import {doorOpening,windowOpening} from './wall-joins.js?v=a890ced93fdd';
-import {fixedGlazing} from './fixed-glazing.js?v=a890ced93fdd';
-import {wallEdgeEndpoints} from './polygon-footprint.js?v=a890ced93fdd';
-import {roomContainsPoint} from './room-footprint.js?v=a890ced93fdd';
+import {hasOpeningProfile} from './window-profile.js?v=1d7ffb1877ce';
+import {doorOpening,windowOpening} from './wall-joins.js?v=1d7ffb1877ce';
+import {fixedGlazing} from './fixed-glazing.js?v=1d7ffb1877ce';
+import {wallEdgeEndpoints} from './polygon-footprint.js?v=1d7ffb1877ce';
+import {roomContainsPoint} from './room-footprint.js?v=1d7ffb1877ce';
 
 // Sides use the directed edge's left/right half-plane, not a room index or
 // avatar position. Shared walls therefore have two stable, independent faces.

@@ -1,5 +1,5 @@
-import {definition} from './inventory.js?v=a890ced93fdd';
-import {inventoryIcon} from './item-icons.js?v=a890ced93fdd';
+import {definition} from './inventory.js?v=1d7ffb1877ce';
+import {inventoryIcon} from './item-icons.js?v=1d7ffb1877ce';
 // Original atlas artwork, no guessed replacement. Loading reuses renderer cache.
 export function createItemIcon(item,renderer){
  const d=definition(item.type),name=inventoryIcon(item,d.properties),canvas=document.createElement('canvas');canvas.width=canvas.height=40;canvas.className='item-icon';canvas.setAttribute('aria-label',d.name);canvas.style.flex='0 0 40px';

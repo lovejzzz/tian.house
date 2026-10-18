@@ -1,3 +1,4 @@
+import {flatUniform} from './flat-uniform.js?v=1d7ffb1877ce';
 import * as THREE from 'three';
 export const SPOT_SHADOW_CAPACITY=20;
 const MAX=SPOT_SHADOW_CAPACITY,COLUMNS=4;
@@ -30,7 +31,7 @@ export function patchSpotAtlasShader(shader,uniforms){
  if(main<0)throw Error('Missing standard fragment entry');shader.fragmentShader=shader.fragmentShader.slice(0,main)+helper+shader.fragmentShader.slice(main);
 }
 export function createSpotShadowAtlas(renderer){
- const uniforms={tianSpotAtlas:{value:null},tianSpotRects:{value:Array.from({length:MAX},()=>new THREE.Vector4())}};let lastFrame=-1,copies=0;const banks={live:{target:null,tile:512,maps:[]},capture:{target:null,tile:512,maps:[]}};
+ const uniforms={tianSpotAtlas:{value:null},tianSpotRects:{value:Array.from({length:MAX},()=>new THREE.Vector4())}};const shaderUniforms={tianSpotAtlas:uniforms.tianSpotAtlas,tianSpotRects:flatUniform(uniforms.tianSpotRects,4,renderer)};let lastFrame=-1,copies=0;const banks={live:{target:null,tile:512,maps:[]},capture:{target:null,tile:512,maps:[]}};
  function sync(scene,camera){
   if(lastFrame===renderer.info.render.frame)return;
   const lights=[];scene.traverseVisible(o=>{if(o.isSpotLight&&o.castShadow&&o.layers.test(camera.layers))lights.push(o);});lights.sort((a,b)=>Number(!!b.map)-Number(!!a.map));
@@ -63,6 +64,6 @@ export function createSpotShadowAtlas(renderer){
   }finally{renderer.setRenderTarget(oldTarget,face,mip);renderer.setScissorTest(scissor);}
  }
  return {install(material){if(material.userData.tianSpotAtlas)return;material.userData.tianSpotAtlas=true;const compile=material.onBeforeCompile,key=material.customProgramCacheKey(),before=material.onBeforeRender;
-  material.onBeforeCompile=function(shader,r){compile.call(this,shader,r);patchSpotAtlasShader(shader,uniforms);};material.customProgramCacheKey=()=>key+'|spot-depth-atlas-v2';material.onBeforeRender=function(r,scene,camera,...args){before.call(this,r,scene,camera,...args);sync(scene,camera);};material.needsUpdate=true;
+  material.onBeforeCompile=function(shader,r){compile.call(this,shader,r);patchSpotAtlasShader(shader,shaderUniforms);};material.customProgramCacheKey=()=>key+'|spot-depth-atlas-v2';material.onBeforeRender=function(r,scene,camera,...args){before.call(this,r,scene,camera,...args);sync(scene,camera);};material.needsUpdate=true;
  },stats:()=>({copies,width:banks.live.target?.width||0,height:banks.live.target?.height||0,captureWidth:banks.capture.target?.width||0}),dispose(){for(const bank of Object.values(banks)){bank.target?.dispose();bank.target=null;bank.maps=[];}uniforms.tianSpotAtlas.value=null;}};
 }

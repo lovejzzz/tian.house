@@ -1,4 +1,4 @@
-import {roomCells} from './room-footprint.js?v=a890ced93fdd';
+import {roomCells} from './room-footprint.js?v=1d7ffb1877ce';
 // Readable door names from the rooms each side of the host wall, so "Door" /
 // "Door" in a list becomes "Entrance door" / "Bathroom door". A wall on axis N
 // at (x,y) separates cells (x,y-1) and (x,y); axis W separates (x-1,y) and (x,y).
