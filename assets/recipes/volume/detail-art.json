@@ -1,0 +1,200 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-detail-art",
+  "version": 3,
+  "generator": "src/interior-details-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "kind": "art"
+  },
+  "materials": {
+    "wood": {
+      "color": 8872764,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "walnut",
+        "size": 512,
+        "seed": 33,
+        "repeatMetres": [
+          0.6,
+          0.3
+        ]
+      },
+      "bumpScale": 0.25
+    },
+    "paper": {
+      "color": 14735809,
+      "roughness": 0.9,
+      "metalness": 0,
+      "texture": {
+        "kind": "paper",
+        "size": 512,
+        "seed": 73,
+        "repeatMetres": [
+          0.2,
+          0.2
+        ]
+      },
+      "bumpScale": 0.2
+    },
+    "linen": {
+      "color": 11976361,
+      "roughness": 0.92,
+      "metalness": 0,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      },
+      "texture": {
+        "kind": "fabric",
+        "weave": "linen",
+        "size": 512,
+        "threads": [
+          64,
+          64
+        ],
+        "seed": 47,
+        "repeatMetres": [
+          0.1,
+          0.1
+        ]
+      },
+      "bumpScale": 0.5
+    },
+    "book": {
+      "color": 5269082,
+      "roughness": 0.7,
+      "metalness": 0,
+      "texture": {
+        "kind": "fabric",
+        "weave": "basket",
+        "size": 512,
+        "threads": [
+          64,
+          64
+        ],
+        "seed": 77,
+        "repeatMetres": [
+          0.06,
+          0.06
+        ]
+      },
+      "bumpScale": 0.3
+    },
+    "metal": {
+      "color": 7634553,
+      "roughness": 0.35,
+      "metalness": 0.65,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 256,
+        "seed": 23,
+        "repeatMetres": [
+          0.4,
+          0.4
+        ]
+      },
+      "bumpScale": 0.12
+    },
+    "ceramic": {
+      "color": 15261640,
+      "roughness": 0.3,
+      "metalness": 0,
+      "texture": {
+        "kind": "ceramic",
+        "size": 512,
+        "seed": 61,
+        "repeatMetres": [
+          0.25,
+          0.25
+        ]
+      },
+      "bumpScale": 0.1
+    },
+    "coffee": {
+      "color": 3155228,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "green": {
+      "color": 6977868,
+      "roughness": 0.8,
+      "metalness": 0,
+      "texture": {
+        "kind": "paint",
+        "size": 512,
+        "seed": 70,
+        "repeatMetres": [
+          0.3,
+          0.3
+        ]
+      },
+      "bumpScale": 0.1
+    },
+    "terracotta": {
+      "color": 11166791,
+      "roughness": 0.8,
+      "metalness": 0,
+      "texture": {
+        "kind": "terracotta",
+        "size": 512,
+        "seed": 79,
+        "repeatMetres": [
+          0.25,
+          0.25
+        ]
+      },
+      "bumpScale": 0.5
+    }
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "semantics": {
+    "kind": "art",
+    "mount": "wall",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Original approximate geometric assembly, not source-fidelity art",
+      "No fabric weave, wear or animated contents",
+      "Individual props are parts of a source object, not separate gameplay items"
+    ]
+  },
+  "migration": {
+    "N": [
+      "tian_art_abstract_N"
+    ],
+    "W": [
+      "tian_art_abstract_W"
+    ]
+  },
+  "sourceLayout": {
+    "N": [
+      {
+        "tile": "tian_art_abstract_N",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_art_abstract_W",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "sourceFiles": [
+    "src/detail-geometry.js"
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-studio-workstation",
+  "version": 11,
+  "generator": "src/studio-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "dimensional prototype; not visually accepted",
+  "parameters": {
+    "kind": "workstation"
+  },
+  "materials": {
+    "walnut": {
+      "color": 7557179,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "walnut",
+        "size": 512,
+        "seed": 29,
+        "repeatMetres": [
+          0.6,
+          0.3
+        ]
+      },
+      "bumpScale": 0.25
+    },
+    "cloth": {
+      "color": 11838349,
+      "roughness": 0.92,
+      "metalness": 0,
+      "texture": {
+        "kind": "fabric",
+        "weave": "linen",
+        "size": 512,
+        "threads": [
+          40,
+          40
+        ],
+        "seed": 41,
+        "repeatMetres": [
+          0.12,
+          0.12
+        ]
+      },
+      "bumpScale": 0.6,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "linen": {
+      "color": 13812906,
+      "roughness": 0.92,
+      "metalness": 0,
+      "texture": {
+        "kind": "fabric",
+        "weave": "boucle",
+        "size": 512,
+        "threads": [
+          48,
+          48
+        ],
+        "seed": 45,
+        "repeatMetres": [
+          0.12,
+          0.12
+        ]
+      },
+      "bumpScale": 0.6,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "metal": {
+      "color": 3488313,
+      "roughness": 0.58,
+      "metalness": 0,
+      "bumpScale": 0.00012,
+      "texture": {
+        "kind": "enamel-finish",
+        "size": 128,
+        "seed": 29,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 1514267,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "paint",
+        "size": 512,
+        "seed": 67,
+        "repeatMetres": [
+          0.6,
+          0.6
+        ]
+      },
+      "bumpScale": 0.15
+    },
+    "rubber": {
+      "color": 2369574,
+      "roughness": 0.92,
+      "metalness": 0,
+      "texture": {
+        "kind": "plastic",
+        "size": 256,
+        "seed": 71,
+        "repeatMetres": [
+          0.12,
+          0.12
+        ]
+      },
+      "bumpScale": 0.35
+    },
+    "aluminium": {
+      "color": 11120043,
+      "roughness": 0.36,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 31,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "ivory": {
+      "color": 15065036,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "ceramic",
+        "size": 512,
+        "seed": 62,
+        "repeatMetres": [
+          0.25,
+          0.25
+        ]
+      },
+      "bumpScale": 0.08
+    },
+    "brass": {
+      "color": 11241045,
+      "roughness": 0.32,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 43,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "screen": {
+      "color": 2108722,
+      "roughness": 0.65,
+      "metalness": 0
+    },
+    "stone": {
+      "color": 13089960,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "quartz",
+        "size": 1024,
+        "seed": 85,
+        "veins": 2,
+        "repeatMetres": [
+          0.8,
+          0.8
+        ]
+      },
+      "bumpScale": 0.15
+    },
+    "edge": {
+      "color": 8940370,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "walnut",
+        "size": 512,
+        "seed": 35,
+        "repeatMetres": [
+          0.6,
+          0.3
+        ]
+      },
+      "bumpScale": 0.25
+    }
+  },
+  "semantics": {
+    "kind": "workstation",
+    "mount": "floor",
+    "units": "metres",
+    "geometryEvidence": "original approximate dimensional model",
+    "knownLimits": [
+      "Original dimensional prototype; final source-based materials pending",
+      "Raster catalogue generated from this geometry; gameplay interactions require verification"
+    ]
+  },
+  "migration": {
+    "S": [
+      "tian_studio_workstation_S_0",
+      "tian_studio_workstation_S_1"
+    ],
+    "E": [
+      "tian_studio_workstation_E_0",
+      "tian_studio_workstation_E_1"
+    ],
+    "N": [
+      "tian_studio_workstation_N_0",
+      "tian_studio_workstation_N_1"
+    ],
+    "W": [
+      "tian_studio_workstation_W_0",
+      "tian_studio_workstation_W_1"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_studio_workstation_S_0",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "tian_studio_workstation_S_1",
+        "dx": 1,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "tian_studio_workstation_E_0",
+        "dx": 0,
+        "dy": 0
+      },
+      {
+        "tile": "tian_studio_workstation_E_1",
+        "dx": 0,
+        "dy": 1
+      }
+    ],
+    "N": [
+      {
+        "tile": "tian_studio_workstation_N_0",
+        "dx": 1,
+        "dy": 0
+      },
+      {
+        "tile": "tian_studio_workstation_N_1",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_studio_workstation_W_0",
+        "dx": 0,
+        "dy": 1
+      },
+      {
+        "tile": "tian_studio_workstation_W_1",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      2,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "footprint": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ]
+  },
+  "materialEvidence": {
+    "method": "Reviewed planar source patches; affine RGB gradient removed before tint modulation. Original dimensional geometry. Not recovered physical albedo.",
+    "wood": "recreational_01_28 back panel",
+    "cloth": "furniture_seating_indoor_02_24 upholstered front",
+    "limits": "Small source patches repeat with mirrored wrapping; original pixel resolution remains limited. Raster thumbnails do not include this runtime detail transfer.",
+    "weave": "Authored 2.5 mm nominal interlaced yarn relief and roughness, independent of source colour; not recovered source detail. Mip filtered at distance.",
+    "woodFinish": "Authored sub-millimetre pores and roughness independent of source colour; not scanned or recovered PBR."
+  },
+  "sourceFiles": [
+    "private-assets/Tiles2x-160.png",
+    "private-assets/Tiles2x-80.png",
+    "private-assets/atlas.json",
+    "src/upholstery-volume.js",
+    "src/textile-detail-volume.js",
+    "node_modules/three/package.json",
+    "node_modules/three/LICENSE",
+    "node_modules/three/build/three.module.js",
+    "node_modules/three/build/three.core.js",
+    "node_modules/three/examples/jsm/math/ConvexHull.js",
+    "src/wood-finish.js",
+    "src/material-relief.js",
+    "src/detail-geometry.js"
+  ]
+}

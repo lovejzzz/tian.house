@@ -1,6 +1,8 @@
-import {barricadePresent} from './barricades.js?v=5c5c6755f6e4';
+import {diagonalWindowSides} from './diagonal-openings.js?v=a890ced93fdd';
+import {barricadePresent} from './barricades.js?v=a890ced93fdd';
 // Source context-menu rule: WindowLocked is a sprite property, not a failed lock.
 export function windowBarricadeSide(obj,actor){
+ if(obj.polygonWall)return diagonalWindowSides(obj.polygonWall,actor)?.side<0?'opposite':'same';
  const north='windowN'in obj.props||'WindowN'in obj.props;
  return actor&&(north?actor.y<obj.y:actor.x<obj.x)?'opposite':'same';
 }
@@ -17,6 +19,7 @@ export function canClimbWindow(properties,state){
  return !hasWindowBarricade(state)&&!state.invincible&&!state.closingSuccess&&!!(state.open||state.smashed||Number.isFinite(state.health)&&state.health<=0);
 }
 export function windowLanding(obj,actor){
+ if(obj.polygonWall)return diagonalWindowSides(obj.polygonWall,actor)?.to??null;
  const north='windowN'in obj.props||'WindowN'in obj.props;
  const own={x:obj.x,y:obj.y},other={x:obj.x-(north?0:1),y:obj.y-(north?1:0)};
  const x=Math.floor(actor.x),y=Math.floor(actor.y);

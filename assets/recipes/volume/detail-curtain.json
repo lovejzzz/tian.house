@@ -1,0 +1,210 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-detail-curtain",
+  "version": 8,
+  "generator": "src/interior-details-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "kind": "curtain"
+  },
+  "materials": {
+    "wood": {
+      "color": 8872764,
+      "roughness": 0.65,
+      "metalness": 0,
+      "texture": {
+        "kind": "walnut",
+        "size": 512,
+        "seed": 33,
+        "repeatMetres": [
+          0.6,
+          0.3
+        ]
+      },
+      "bumpScale": 0.25
+    },
+    "paper": {
+      "color": 14735809,
+      "roughness": 0.9,
+      "metalness": 0,
+      "texture": {
+        "kind": "paper",
+        "size": 512,
+        "seed": 73,
+        "repeatMetres": [
+          0.2,
+          0.2
+        ]
+      },
+      "bumpScale": 0.2
+    },
+    "linen": {
+      "color": 11976361,
+      "roughness": 0.92,
+      "metalness": 0,
+      "texture": {
+        "kind": "fabric",
+        "weave": "linen",
+        "size": 512,
+        "threads": [
+          64,
+          64
+        ],
+        "seed": 47,
+        "repeatMetres": [
+          0.1,
+          0.1
+        ]
+      },
+      "bumpScale": 0.6,
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      }
+    },
+    "book": {
+      "color": 5269082,
+      "roughness": 0.7,
+      "metalness": 0,
+      "texture": {
+        "kind": "fabric",
+        "weave": "basket",
+        "size": 512,
+        "threads": [
+          64,
+          64
+        ],
+        "seed": 77,
+        "repeatMetres": [
+          0.06,
+          0.06
+        ]
+      },
+      "bumpScale": 0.3
+    },
+    "metal": {
+      "color": 7634553,
+      "roughness": 0.35,
+      "metalness": 0.65,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 256,
+        "seed": 23,
+        "repeatMetres": [
+          0.4,
+          0.4
+        ]
+      },
+      "bumpScale": 0.12
+    },
+    "ceramic": {
+      "color": 15261640,
+      "roughness": 0.3,
+      "metalness": 0,
+      "texture": {
+        "kind": "ceramic",
+        "size": 512,
+        "seed": 61,
+        "repeatMetres": [
+          0.25,
+          0.25
+        ]
+      },
+      "bumpScale": 0.1
+    },
+    "coffee": {
+      "color": 3155228,
+      "roughness": 0.9,
+      "metalness": 0
+    },
+    "green": {
+      "color": 6977868,
+      "roughness": 0.8,
+      "metalness": 0,
+      "texture": {
+        "kind": "paint",
+        "size": 512,
+        "seed": 70,
+        "repeatMetres": [
+          0.3,
+          0.3
+        ]
+      },
+      "bumpScale": 0.1
+    },
+    "terracotta": {
+      "color": 11166791,
+      "roughness": 0.8,
+      "metalness": 0,
+      "texture": {
+        "kind": "terracotta",
+        "size": 512,
+        "seed": 79,
+        "repeatMetres": [
+          0.25,
+          0.25
+        ]
+      },
+      "bumpScale": 0.5
+    }
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "semantics": {
+    "kind": "curtain",
+    "mount": "window",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Original approximate geometric assembly, not source-fidelity art",
+      "No fabric weave, wear or animated contents",
+      "Individual props are parts of a source object, not separate gameplay items"
+    ]
+  },
+  "migration": {
+    "N": [
+      "tian_curtain_N"
+    ],
+    "W": [
+      "tian_curtain_W"
+    ]
+  },
+  "sourceLayout": {
+    "N": [
+      {
+        "tile": "tian_curtain_N",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_curtain_W",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "materialEvidence": {
+    "method": "Reviewed planar source patches; affine RGB gradient removed before tint modulation. Original dimensional geometry. Not recovered physical albedo.",
+    "wood": "recreational_01_28 back panel",
+    "cloth": "furniture_seating_indoor_02_24 upholstered front",
+    "limits": "Small source patches repeat with mirrored wrapping; original pixel resolution remains limited. Raster thumbnails do not include this runtime detail transfer.",
+    "weave": "Authored 2.5 mm nominal interlaced yarn relief and roughness, independent of source colour; not recovered source detail. Mip filtered at distance."
+  },
+  "sourceFiles": [
+    "private-assets/Tiles2x-160.png",
+    "private-assets/Tiles2x-80.png",
+    "private-assets/atlas.json",
+    "src/detail-geometry.js"
+  ]
+}

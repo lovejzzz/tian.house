@@ -1,0 +1,332 @@
+{
+ "assets": {
+  "bark_willow": {
+   "authors": {
+    "Dario Barresi": "Processing",
+    "Dimitrios Savva": "Photography"
+   },
+   "deliveryFiles": {
+    "bark_willow_color.jpg": "2c1500f91d3496021d28c8f8508b48649e2df94fdb5f02d9f26182fe2f6046c1",
+    "bark_willow_normal.jpg": "5660a1c67e677efdbc225851030e232fbb2b4d8e8d45a1e253757ebaa692c6e8",
+    "bark_willow_orm.jpg": "1587d01f14cb6f92372f6d7f9273c0aeeabc58a0985dce09a4ec9dc3107b0087"
+   },
+   "page": "https://polyhaven.com/a/bark_willow",
+   "repeatMetres": [
+    1.0,
+    1.0
+   ],
+   "size": 1024,
+   "sourceFiles": {
+    "AO": "a742621a86a4630df38847c91cfe199885261fec07ced6d5c0600f0055a10c00",
+    "Diffuse": "d87e97687eb0abd61031161f2895ab7eafc241c850380e978d011ef98a45a67b",
+    "Rough": "fc3cc861befbd9dcaec295d7ddb54b41c68ecf153a49a18fc8460c25b3f57c49",
+    "nor_gl": "2984fe9d23f2cfb9b235fc50eea85f514b27be3f4addc7c7142afba077c9970e"
+   },
+   "type": "texture",
+   "use": "garden tree bark"
+  },
+  "dandelion_01": {
+   "authors": {
+    "Rico Cilliers": "Modeling",
+    "Rob Tuytel": "Photography"
+   },
+   "deliveryFiles": {
+    "dandelion_01.bin": "ccff5a564f56a69374c09c25ae86c3684c46329309b4eef4569255b1ad54bdd0",
+    "dandelion_01_1k.gltf": "68f804fe29f641f37b03c470cf9065d34aacd1b4f580ed6f35385626c2bb42b7",
+    "textures/dandelion_01_arm_1k.jpg": "68f2620fcc566719bde150b29f34ed8f591046f0d8c17e266c680aefce8dbe4e",
+    "textures/dandelion_01_diff_1k.jpg": "30b9b0a2feb85585dd9a9e486792067556160cb7794529a1491a832b54efafea",
+    "textures/dandelion_01_nor_gl_1k.jpg": "c9662973252d51fa7acd9e673edbb1fee0c6735c1e54f53313b5edbf2332acc7"
+   },
+   "page": "https://polyhaven.com/a/dandelion_01",
+   "scale": 1.0,
+   "sourceFiles": {
+    "dandelion_01.bin": "ccff5a564f56a69374c09c25ae86c3684c46329309b4eef4569255b1ad54bdd0",
+    "gltf": "68f804fe29f641f37b03c470cf9065d34aacd1b4f580ed6f35385626c2bb42b7",
+    "textures/dandelion_01_arm_1k.jpg": "dad70c20756581fd795548f52a23580d94a2af538664dbbfe64e66a76e4eebb6",
+    "textures/dandelion_01_diff_1k.jpg": "17e49d535dfce890e539038a80eaa77d90dab5f1781350266dd8f736ee7370d6",
+    "textures/dandelion_01_nor_gl_1k.jpg": "fd69513a4803145f634b5ace49fed8709e454b3026d060687071757a72c33250"
+   },
+   "textureSize": 512,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "dandelions in the lawn margins"
+  },
+  "fern_02": {
+   "authors": {
+    "Rico Cilliers": "modeling",
+    "Rob Tuytel": "scanning"
+   },
+   "deliveryFiles": {
+    "fern_02.bin": "fe1abb762bcbbc7ad9e86925c8080437a62add257d9280e9142fdc85c226e64c",
+    "fern_02_1k.gltf": "33974295ee19670af4877705fc7d91f33f42d6302f0d44a625e072271223031f",
+    "textures/fern_02_arm_1k.jpg": "1ba84ba587231d333e9a194a076c9f097127d0cf7158e7caed2f50493c8b4d90",
+    "textures/fern_02_diff_1k.jpg": "dd90f7585987df57c5fb31c5a7688d2058492c3b2f22d78f43ca33fe8b9cdbcc",
+    "textures/fern_02_nor_gl_1k.jpg": "9c88777a16590e2c62a85088a93d5495b90738802dc29907d0bd1f12fc257e31"
+   },
+   "page": "https://polyhaven.com/a/fern_02",
+   "scale": 0.8,
+   "sourceFiles": {
+    "fern_02.bin": "fe1abb762bcbbc7ad9e86925c8080437a62add257d9280e9142fdc85c226e64c",
+    "gltf": "33974295ee19670af4877705fc7d91f33f42d6302f0d44a625e072271223031f",
+    "textures/fern_02_arm_1k.jpg": "ebfb5d76ce9cbdaec20bcd22dce9b755f0b1b8650ef29ca13555e3e6961025d7",
+    "textures/fern_02_diff_1k.jpg": "a828a6e7b4c01c826911e2eac4b3afc7457dab7b3b392a31c681ed88b7d50029",
+    "textures/fern_02_nor_gl_1k.jpg": "45bce132c6e96a0864bc89ab5da51361ab3f4afa83a6669ae499ab5ca811f621"
+   },
+   "textureSize": 1024,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "fern in shade at the house foot"
+  },
+  "garden_hose_wall_mounted_01": {
+   "authors": {
+    "Kuutti Siitonen": "All"
+   },
+   "deliveryFiles": {
+    "garden_hose_wall_mounted_01.bin": "f55d43656b3be5a968eaa4ac6b833e11e466c8f7fb32615861c432d527a70296",
+    "garden_hose_wall_mounted_01_1k.gltf": "7746484fbf4cea3e0d36526b3ceb05aee3ea4cb6a20d54a8c331a95e4e15a45c",
+    "textures/garden_hose_wall_mounted_01_arm_1k.jpg": "3a726fa701edfe09ee8a30e89b0a391b2626d91114b986e5a1981a9a0868af04",
+    "textures/garden_hose_wall_mounted_01_diff_1k.jpg": "a5b7452a00d61c8c82f2a46ce577dad87a0f56e41dd4c885db07ddea6c08c3c8",
+    "textures/garden_hose_wall_mounted_01_nor_gl_1k.jpg": "1be77a73fdea64231e3c8f5a50c21d3aa7a7ca85eb052473f2f1e06cca1ccc23"
+   },
+   "page": "https://polyhaven.com/a/garden_hose_wall_mounted_01",
+   "scale": 1.0,
+   "sourceFiles": {
+    "garden_hose_wall_mounted_01.bin": "f55d43656b3be5a968eaa4ac6b833e11e466c8f7fb32615861c432d527a70296",
+    "gltf": "7746484fbf4cea3e0d36526b3ceb05aee3ea4cb6a20d54a8c331a95e4e15a45c",
+    "textures/garden_hose_wall_mounted_01_arm_1k.jpg": "a046e6e3bdfc5a91513f897df0f315039282df17ffa7217096e23fd2353dd0bc",
+    "textures/garden_hose_wall_mounted_01_diff_1k.jpg": "164ec96f0f2131f7ffb806eb0c55f9fd202e7855cd0d4883130d5438cedea0b5",
+    "textures/garden_hose_wall_mounted_01_nor_gl_1k.jpg": "39ea8429455828b523bcff93ebe03ac4673873cb55df94cb894f1b232d9c90d4"
+   },
+   "textureSize": 512,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "wall-mounted hose reel by the water butt"
+  },
+  "grass_ground": {
+   "authors": {
+    "Charlotte Baglioni": "All"
+   },
+   "deliveryFiles": {
+    "grass_ground_color.jpg": "bb81b251bd2d01952168f4ba3f08023870f5cb548ec027e0e34b75bf5fb5e335",
+    "grass_ground_normal.jpg": "a6a9a622d6c094495338f4e4d170c1a3e018a7aab82bca3637fba9becb5c12cf",
+    "grass_ground_orm.jpg": "21d6c647f05e05402ff102677f523d1d00e9ff08998cf1db7dd96476a57d868c"
+   },
+   "page": "https://polyhaven.com/a/grass_ground",
+   "repeatMetres": [
+    2.5,
+    2.5
+   ],
+   "size": 1024,
+   "sourceFiles": {
+    "AO": "ae4739457175ab2add4421a8ae803c7ef5005c946f942828d2adf7abe9843850",
+    "Diffuse": "4272bddc71a7fa659d1deeb13a9df8c42e68a5ac8cde7523187e4a081e028258",
+    "Rough": "afaed95537e894b8054db38c81712a6d9504b05b560274526621d91d5a95fbe7",
+    "nor_gl": "effa95c06af273c974476d9a74a234668a1c9292f60fffb4fa40348d638ee7f3"
+   },
+   "type": "texture",
+   "use": "lawn / meadow ground under the blades"
+  },
+  "gravel_floor_02": {
+   "authors": {
+    "Dimitrios Savva": "Photography",
+    "Jenelle van Heerden": "Processing"
+   },
+   "deliveryFiles": {
+    "gravel_floor_02_color.jpg": "00bf1e4cb4c661f445487b2e3aac54a872fbb814e37b4568105335bd0979e345",
+    "gravel_floor_02_normal.jpg": "f2f1c843456c587620c54ef89962c49c9cbfb1cc7e74fb8efeac4952c0a4048c",
+    "gravel_floor_02_orm.jpg": "5b4078690c500dc4d1da1351bd7e50344265deb1428daceacacd523a2e691f02"
+   },
+   "page": "https://polyhaven.com/a/gravel_floor_02",
+   "repeatMetres": [
+    2.0,
+    2.0
+   ],
+   "size": 1024,
+   "sourceFiles": {
+    "AO": "f40680eaf50c5c456b72d1b7466c2c32e26e04559c2b188e92c1adf87ce614d7",
+    "Diffuse": "27c8953655dd2f289106106bb2c2c4845f77152bf1621b3d7091bd43b5083ffc",
+    "Rough": "76f84ef27c72cffb1b1906c6a5b06cb06db664d2d6cb6c0ba2ee996c04e2607d",
+    "nor_gl": "90f2f22016142f5ad725f8fc5540d8c9ad347db233b7540e2ab33f25ba9298e4"
+   },
+   "type": "texture",
+   "use": "flat-roof gravel ballast"
+  },
+  "periwinkle_plant": {
+   "authors": {
+    "Amal Kumar": "All"
+   },
+   "deliveryFiles": {
+    "periwinkle_plant.bin": "f039855d84d59f764838285c2b041a5cf255d103afc856e219a62482826d9655",
+    "periwinkle_plant_1k.gltf": "df781eea76123fc6eee97e6e8d466743e3a5fb08e1a2c3f5025a57e090d2cc55",
+    "textures/periwinkle_plant_arm_1k.jpg": "f2399f24a337696951be4cc278e3e22ec9ff547118b1e9c86b666e72ea0f8254",
+    "textures/periwinkle_plant_diff_1k.jpg": "2bcb44a26a7b74f8a7fcfa26b34b556a3b234f63ea3bdc7b922cfa9a4a429cda",
+    "textures/periwinkle_plant_nor_gl_1k.jpg": "8aa4305a837527541eb6c59ab855036fcce5124873e1ff38fbd44e2db4addebc"
+   },
+   "page": "https://polyhaven.com/a/periwinkle_plant",
+   "scale": 1.2,
+   "sourceFiles": {
+    "gltf": "df781eea76123fc6eee97e6e8d466743e3a5fb08e1a2c3f5025a57e090d2cc55",
+    "periwinkle_plant.bin": "f039855d84d59f764838285c2b041a5cf255d103afc856e219a62482826d9655",
+    "textures/periwinkle_plant_arm_1k.jpg": "d964e2e1118c2ca88c137b45590f48d83d3471fef48e913cbd57bf7122bbe4a3",
+    "textures/periwinkle_plant_diff_1k.jpg": "32d61084e6c07fa3ca8e03b35b347a12717f971efc90e8fe1185931ee2298c56",
+    "textures/periwinkle_plant_nor_gl_1k.jpg": "36d2464e7500f741500228b955c1fb0f26d954e869bd26f93dd25c0fafc5087d"
+   },
+   "textureSize": 512,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "periwinkle ground cover in beds"
+  },
+  "shrub_02": {
+   "authors": {
+    "Rico Cilliers": "All"
+   },
+   "deliveryFiles": {
+    "shrub_02.bin": "5c1b79da1cfdbac90599542ccd1f75ba433a3a4d356b1ea03655adb39b0e2c96",
+    "shrub_02_1k.gltf": "99de0a70fe88ad414615cc8d8e020617c8512e2abfe08b911b153a6fcc40d93e",
+    "textures/shrub_02_arm_1k.jpg": "a5ed1971c130328bdc4e05ddd33cb7b92847fce2972f6fae2830e9f0d66cdecb",
+    "textures/shrub_02_diff_1k.jpg": "7b018a56e4ce2e80d61b7a8f4ac5a82bb07c0ec34241f08fdccb093e19aa6368",
+    "textures/shrub_02_nor_gl_1k.jpg": "fcfe3689fdb33969dff9e18c9a2b1362af1c4d6a9e00b1420cc6c1d985022574"
+   },
+   "page": "https://polyhaven.com/a/shrub_02",
+   "scale": 0.55,
+   "sourceFiles": {
+    "gltf": "99de0a70fe88ad414615cc8d8e020617c8512e2abfe08b911b153a6fcc40d93e",
+    "shrub_02.bin": "5c1b79da1cfdbac90599542ccd1f75ba433a3a4d356b1ea03655adb39b0e2c96",
+    "textures/shrub_02_arm_1k.jpg": "7186bf604d5c02f873aef6de2346cc06b6fa48f47d054edbef36d2c3772c0890",
+    "textures/shrub_02_diff_1k.jpg": "9956eff294034d70516d867e9668428a23d782feb3d4c34061dce5e44bacd5a8",
+    "textures/shrub_02_nor_gl_1k.jpg": "54c24e433365d5410223b7ebd2b33042b80831f80976e10768114db5ef6911d7"
+   },
+   "textureSize": 1024,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "large garden shrub (beds)"
+  },
+  "shrub_03": {
+   "authors": {
+    "Rico Cilliers": "All"
+   },
+   "deliveryFiles": {
+    "shrub_03.bin": "bf4df21e6d2a2bc5f00b4c9142f776171fe7da00cf960001825748067af542b6",
+    "shrub_03_1k.gltf": "b76d7c14bc027e834e82d3f984c32b5d060e62908aa90ff9420a637ca253a8ea",
+    "textures/shrub_03_arm_1k.jpg": "021424dfe5d3b2934a99008044409ab12f966f872656b4afedfd6abbf6c7fc58",
+    "textures/shrub_03_diff_1k.jpg": "91684cef930a1182aa4dbede5f958547ef5e9e9cb7fdd85af576d805bfe5a226",
+    "textures/shrub_03_nor_gl_1k.jpg": "1e7cab084cab0e5c93753bdfdcdb7d7d58dbedd869ea43a5496ae21003146e33"
+   },
+   "page": "https://polyhaven.com/a/shrub_03",
+   "scale": 1.6,
+   "sourceFiles": {
+    "gltf": "b76d7c14bc027e834e82d3f984c32b5d060e62908aa90ff9420a637ca253a8ea",
+    "shrub_03.bin": "bf4df21e6d2a2bc5f00b4c9142f776171fe7da00cf960001825748067af542b6",
+    "textures/shrub_03_arm_1k.jpg": "3e2b16812a623037138eedace958210c5f3443a827bbe69663045bba5612f815",
+    "textures/shrub_03_diff_1k.jpg": "3cadc7aba46d3aabbd7d6d2b1d04aa32e2a7da0bc87c2d38ef3cb1ee42cb03ec",
+    "textures/shrub_03_nor_gl_1k.jpg": "ff856bacfce859b8a7555dd9a3b92fbd36b2e775d486be71df485afb4235d6c9"
+   },
+   "textureSize": 512,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "small sprig shrub (bed fill)"
+  },
+  "shrub_04": {
+   "authors": {
+    "Rico Cilliers": "All"
+   },
+   "deliveryFiles": {
+    "shrub_04.bin": "cb442c39682e54cc63f912aa78ab17a03566f947a61adbbbaaa6473166744f01",
+    "shrub_04_1k.gltf": "782832cbc57e96686b78c6ef9df6234c25f564f78421c8ed4bd42c3631f5aeae",
+    "textures/shrub_04_arm_1k.jpg": "3c78fb1c065b2f560795821d00824a08478f9e0cd30d082b85c4ac01e1d96f70",
+    "textures/shrub_04_diff_1k.jpg": "e2fa3ac69d73a1285402b78d4bc7899efed001d0225bff627c561ce47890a33d",
+    "textures/shrub_04_nor_gl_1k.jpg": "5b0d436b65e75549ae1696632099141c10ba1d1321669b5f4d37fad8927cc57a"
+   },
+   "page": "https://polyhaven.com/a/shrub_04",
+   "scale": 1.4,
+   "sourceFiles": {
+    "gltf": "782832cbc57e96686b78c6ef9df6234c25f564f78421c8ed4bd42c3631f5aeae",
+    "shrub_04.bin": "cb442c39682e54cc63f912aa78ab17a03566f947a61adbbbaaa6473166744f01",
+    "textures/shrub_04_arm_1k.jpg": "d1085df021928b29b0f38dde7e58e9a2e304c4e8d838e390b37cf57f8aa492e8",
+    "textures/shrub_04_diff_1k.jpg": "0b0fa0a474753d13f3093858cea79d0de05da1e6a0c5d6e181cd351080980b6c",
+    "textures/shrub_04_nor_gl_1k.jpg": "200d791e0474495bfc876ba1c289dade669c6a5b124647c55bc840a875f6b51c"
+   },
+   "textureSize": 512,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "low spreading shrub (bed front)"
+  },
+  "weed_plant_02": {
+   "authors": {
+    "Rico Cilliers": "Modeling",
+    "Rob Tuytel": "Photography"
+   },
+   "deliveryFiles": {
+    "textures/weed_plant_02_arm_1k.jpg": "0809440a76fa0f4984032625ba8584607b7721160633a245104e041c60b300d4",
+    "textures/weed_plant_02_diff_1k.jpg": "868d9ee88d36fc1d59d159e7d52ace4c45b802c283dc528a8a1eb67e308e0a21",
+    "textures/weed_plant_02_nor_gl_1k.jpg": "c21b897189e4372af6545d2a70ba3a1f7440df665b0f497dbb92d9dc89457df3",
+    "weed_plant_02.bin": "2b77b91a881055365a56156e8a131277187f72b82c1d55806bb5b0a5053e5e9d",
+    "weed_plant_02_1k.gltf": "20fe9aa14ec8160de54d8027422ce6db93bcc6211299509067ee3edbceff218b"
+   },
+   "page": "https://polyhaven.com/a/weed_plant_02",
+   "scale": 1.0,
+   "sourceFiles": {
+    "gltf": "20fe9aa14ec8160de54d8027422ce6db93bcc6211299509067ee3edbceff218b",
+    "textures/weed_plant_02_arm_1k.jpg": "82dd00b135a605aecf09d46bdaa6e71cdfc221d7b53e20e6f446da6e9e5bf942",
+    "textures/weed_plant_02_diff_1k.jpg": "6bcbf7f0b8eaf5156b9021f998dd9233ba4b095aa590f3621b94f47550e21eb9",
+    "textures/weed_plant_02_nor_gl_1k.jpg": "53e277362656eaea87a59bc7c5b551e73d2cdb5b852b21d0ffb84becfc7b941d",
+    "weed_plant_02.bin": "2b77b91a881055365a56156e8a131277187f72b82c1d55806bb5b0a5053e5e9d"
+   },
+   "textureSize": 512,
+   "type": "model",
+   "upAxis": "Y",
+   "use": "weeds along wall bases and paving edges"
+  },
+  "white_plaster_rough_02": {
+   "authors": {
+    "Rob Tuytel": "All"
+   },
+   "deliveryFiles": {
+    "white_plaster_rough_02_color.jpg": "85934483b4820b91217750763cad798d566303260a1a289281bbd0505ef733a3",
+    "white_plaster_rough_02_normal.jpg": "90eb9757223d84f3ec23fb1ee4e07875dfecfb910eadce5ce4210f05e31e0459",
+    "white_plaster_rough_02_orm.jpg": "bffaf79b5482e7ec8520e0af3f5f15c377e319252221754e80cd9b2928655ac1"
+   },
+   "page": "https://polyhaven.com/a/white_plaster_rough_02",
+   "repeatMetres": [
+    1.0,
+    1.0
+   ],
+   "size": 1024,
+   "sourceFiles": {
+    "AO": "cc4cd4b031409f0124ebdcc94dcc6fc5dc50500e3dac09ab4a7c52c1b25dcff8",
+    "Diffuse": "36491f4237808049b438cfce7aea34db30e3c2c3e14ee17ff97b1357d7d04f2b",
+    "Rough": "3e84d3b5e50e4587312495ae087f48c0216bf61a593341ca987a2c2607ff24f6",
+    "nor_gl": "e3085595e98121f25e34f395f21cbf5113e816099b405eb8ec20bffaaaf3c64b"
+   },
+   "type": "texture",
+   "use": "exterior wall render (outdoor faces)"
+  },
+  "wood_chips": {
+   "authors": {
+    "eye-candy.xyz": "All"
+   },
+   "deliveryFiles": {
+    "wood_chips_color.jpg": "de897dff4c891bbb968543684095f7e93de5c9cd7e50a68b79c48f3e30cdcc7f",
+    "wood_chips_normal.jpg": "ca1a26a365a22e5a016953d324de05de5e6e4f89ab9c53304fa663cfbcab3326",
+    "wood_chips_orm.jpg": "4cdb6cfa88e3f335cedfadbc3b88e60da0c6dcc5143aa59f15fbc602679c80f8"
+   },
+   "page": "https://polyhaven.com/a/wood_chips",
+   "repeatMetres": [
+    2.0,
+    2.0
+   ],
+   "size": 1024,
+   "sourceFiles": {
+    "AO": "1508b6fb36f1a6098513fb177fa1aa286d34ae7842ae3ae4c3093e1190706e78",
+    "Diffuse": "e938bf4508e4fb08e78d1e6a402e7705f0dd48cdd3386c143964b2a902d81946",
+    "Rough": "309b4c2ea461acf08aa71bbc27c4e3e2e5f2eca4a26e9206f2102e443765a126",
+    "nor_gl": "ba24d480dce4552a2f4869e731e2110d944701e4836c8d0a54ab3f832c027aa5"
+   },
+   "type": "texture",
+   "use": "bark mulch in planted beds"
+  }
+ },
+ "license": "CC0 1.0",
+ "recipe": "assets/recipes/scanned/polyhaven.json",
+ "source": "https://polyhaven.com"
+}

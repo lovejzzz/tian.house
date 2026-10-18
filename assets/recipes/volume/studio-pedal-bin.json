@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-studio-pedal-bin",
+  "version": 1,
+  "generator": "src/studio-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "original detailed model; visual acceptance pending",
+  "parameters": {
+    "kind": "pedal-bin"
+  },
+  "materials": {
+    "steel": {
+      "color": 10198944,
+      "roughness": 0.38,
+      "metalness": 1,
+      "bumpScale": 6e-05,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 128,
+        "seed": 23,
+        "repeatMetres": [
+          0.08,
+          0.08
+        ]
+      }
+    },
+    "dark": {
+      "color": 2829100,
+      "roughness": 0.55,
+      "texture": {
+        "kind": "paint",
+        "size": 512,
+        "seed": 67,
+        "repeatMetres": [
+          0.6,
+          0.6
+        ]
+      },
+      "bumpScale": 0.15
+    },
+    "liner": {
+      "color": 1447704,
+      "roughness": 0.35,
+      "texture": {
+        "kind": "plastic",
+        "size": 256,
+        "seed": 72,
+        "repeatMetres": [
+          0.2,
+          0.2
+        ]
+      },
+      "bumpScale": 0.2
+    }
+  },
+  "semantics": {
+    "kind": "pedal-bin",
+    "mount": "floor",
+    "units": "metres",
+    "geometryEvidence": "original authored model with filleted shell, liner, hinged lid",
+    "knownLimits": [
+      "Lid opens on storage inspection; liner is representative, contents are listed in the inventory, not modelled individually",
+      "Capacity is a gameplay weight budget (10), not a measured litre volume"
+    ],
+    "paletteEvidence": "Authored household palette; not measured product colour."
+  },
+  "migration": {
+    "S": [
+      "tian_studio_pedal_bin_S_0"
+    ],
+    "E": [
+      "tian_studio_pedal_bin_E_0"
+    ],
+    "N": [
+      "tian_studio_pedal_bin_N_0"
+    ],
+    "W": [
+      "tian_studio_pedal_bin_W_0"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_studio_pedal_bin_S_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "tian_studio_pedal_bin_E_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "tian_studio_pedal_bin_N_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_studio_pedal_bin_W_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "sourceFiles": [
+    "src/studio-furniture-volume.js",
+    "src/detail-geometry.js",
+    "src/scene-slab-volumes.js",
+    "src/convex-solid.js"
+  ]
+}

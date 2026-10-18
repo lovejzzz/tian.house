@@ -1,10 +1,10 @@
-import {resolveBoneMask} from './bone-mask.js?v=5c5c6755f6e4';
+import {resolveBoneMask} from './bone-mask.js?v=a890ced93fdd';
 import * as THREE from 'three';
-import {characterProjection,characterModelTransform,CHARACTER_ELEVATION,CHARACTER_TEXTURE} from './character-projection.js?v=5c5c6755f6e4';
-import {AnimationBlend} from './animation-blend.js?v=5c5c6755f6e4';
-import {sampleClip} from './animation-clock.js?v=5c5c6755f6e4';
-import {counterRotationTrack,deferredRotationSampler} from './deferred-animation.js?v=5c5c6755f6e4';
-import {HeldModels,heldSelection} from './held-models.js?v=5c5c6755f6e4';
+import {characterProjection,characterModelTransform,CHARACTER_ELEVATION,CHARACTER_TEXTURE} from './character-projection.js?v=a890ced93fdd';
+import {AnimationBlend} from './animation-blend.js?v=a890ced93fdd';
+import {sampleClip} from './animation-clock.js?v=a890ced93fdd';
+import {counterRotationTrack,deferredRotationSampler} from './deferred-animation.js?v=a890ced93fdd';
+import {HeldModels,heldSelection} from './held-models.js?v=a890ced93fdd';
 
 // Original mesh topology, UVs, weights and animation keys, decoded from local X
 // assets. Rasterization is a browser adapter; calibration is still in progress.
@@ -36,7 +36,7 @@ export class CharacterRenderer {
   this.actor=new THREE.Group();this.scene.add(this.actor);this.mixers=[];this.actions=[];this.readingActions=[];
   const loader=new THREE.TextureLoader();
   for(const part of data.parts){
-   const group=new THREE.Group();this.actor.add(group);const bones=new Map();
+   const group=new THREE.Group();group.userData.characterPart=part.name;this.actor.add(group);const bones=new Map();
    for(const def of part.bones){const b=new THREE.Bone();b.name=def.name;new THREE.Matrix4().fromArray(def.matrix).decompose(b.position,b.quaternion,b.scale);bones.set(def.name,b);}
    for(const def of part.bones)(bones.get(def.parent)||group).add(bones.get(def.name));
    if(part.name==='body')this.bodyBones=bones;
@@ -49,7 +49,9 @@ export class CharacterRenderer {
     const skin=[],weights=[];for(const list of influences){list.sort((a,b)=>b[1]-a[1]);const top=list.slice(0,4);const total=top.reduce((n,v)=>n+v[1],0)||1;for(let i=0;i<4;i++){skin.push(top[i]?.[0]||0);weights.push((top[i]?.[1]||0)/total);}}
     g.setAttribute('skinIndex',new THREE.Uint16BufferAttribute(skin,4));g.setAttribute('skinWeight',new THREE.Float32BufferAttribute(weights,4));
     const colors={body:0xffffff,shirt:0x729b87,trousers:0xffffff,hair:0x45372d};
-    const material=new THREE.MeshLambertMaterial({map:texture,color:texture?0xffffff:colors[part.name],side:THREE.DoubleSide});
+    // The body skin's lower atlas corners are transparent (PZ masks the legs under clothing); drawn
+    // opaque they showed as a dark patch through the trousers, so cut them out.
+    const material=new THREE.MeshLambertMaterial({map:texture,color:texture?0xffffff:colors[part.name],side:THREE.DoubleSide,alphaTest:texture?.5:0});
     const mesh=new THREE.SkinnedMesh(g,material);mesh.frustumCulled=false;group.add(mesh);
     const skelBones=def.weights.map(w=>bones.get(w.bone));if(skelBones.some(b=>!b))throw new Error('Incomplete character bone mapping');
     group.updateMatrixWorld(true);
@@ -87,7 +89,7 @@ export class CharacterRenderer {
   this.heldModels=new HeldModels(await heldResponse.json(),this.bodyBones);await this.heldModels.init(heldBase,loader);
   this.ready=true;
  }
- frame(actor,time,zombie=false,preview=null,inventory=null){
+ frame(actor,time,zombie=false,preview=null,inventory=null,{poseOnly=false}={}){
   if(!this.ready)return null;
   let sample;
   if(preview){
@@ -101,7 +103,7 @@ export class CharacterRenderer {
   if(preview&&this.deferredRotations[preview.clip])sample.deferredRotation=deferred;
   const dir=((angle%(Math.PI*2))+Math.PI*2)%(Math.PI*2);this.lastSample=sample;if(!zombie)this.lastPlayerSample=sample;
   const held=zombie?[]:heldSelection(inventory,actor.readMotion?.handModels??(actor.buildMotion&&!actor.buildMotion.turn?actor.buildMotion.handModels:undefined));
-  const key=`${dir}:${sample.layers.map(l=>`${l.clip}:${l.frame}:${l.weight}`).join('|')}:${zombie}:${JSON.stringify(held)}`;if(this.cache.has(key))return this.cache.get(key);
+  const key=`${dir}:${sample.layers.map(l=>`${l.clip}:${l.frame}:${l.weight}`).join('|')}:${zombie}:${JSON.stringify(held)}`;if(!poseOnly&&this.cache.has(key))return this.cache.get(key);
   this.heldModels.select(held);
   const transform=characterModelTransform(angle);this.actor.rotation.y=transform.yaw;this.actor.scale.z=transform.scaleZ;
   this.actions.forEach((actions,i)=>{for(const a of Object.values(actions))a.stop();
@@ -117,6 +119,7 @@ export class CharacterRenderer {
    }else for(const layer of sample.layers){const a=actions[layer.clip];a.reset().setEffectiveWeight(layer.weight);a.setLoop(this.data.animationMetadata?.[layer.clip]?.loop===false?THREE.LoopOnce:THREE.LoopRepeat,Infinity);a.clampWhenFinished=true;a.play();a.time=layer.time;}
    this.mixers[i].update(0);
   });
+  if(poseOnly){this.actor.updateMatrixWorld(true);return this.actor;}
   this.renderer.render(this.scene,this.camera);
   const out=document.createElement('canvas');out.width=CHARACTER_TEXTURE.width;out.height=CHARACTER_TEXTURE.height;out.getContext('2d').drawImage(this.renderer.domElement,0,0);
   if(zombie){const c=out.getContext('2d');c.globalCompositeOperation='source-atop';c.fillStyle='rgba(73,87,45,.2)';c.fillRect(0,0,out.width,out.height);}

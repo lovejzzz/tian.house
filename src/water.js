@@ -1,4 +1,4 @@
-import {Inventory} from './inventory.js?v=5c5c6755f6e4';
+import {Inventory} from './inventory.js?v=a890ced93fdd';
 // Source-static basis: ISTakeWaterAction and IsoObject.getFluidAmount.
 // Plumbing networks, mixtures and native timing/animation still require validation.
 export function waterSource(world,state,object){
@@ -9,7 +9,7 @@ export function waterSource(world,state,object){
 export function planWater(world,state,inventory,object,itemId=null){
  if(!world.interactions(state.player).some(o=>o.id===object.id&&o.type==='water'))return {ok:false,reason:'Move closer to the water source'};
  const source=waterSource(world,state,object);if(source.amount<=0)return {ok:false,reason:'The water source is empty'};
- const free=Math.max(0,state.player.capacity-inventory.encumbrance());if(free<=0)return {ok:false,reason:'Your inventory is full'};
+ const free=Math.max(0,state.player.capacity-inventory.encumbrance());if(itemId&&free<=0)return {ok:false,reason:'Your inventory is full'};
  let item,amount;
  if(itemId){item=inventory.state.items[itemId];if(!item?.fluid||inventory.root(item.container)!=='player')return {ok:false,reason:'Carry a fluid container first'};
   if(item.fluid.amount>0&&item.fluid.type!=='Water')return {ok:false,reason:'Empty the container before adding water'};

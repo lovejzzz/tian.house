@@ -1,0 +1,96 @@
+{
+ "id": "tian-scanned-polyhaven",
+ "version": 1,
+ "kind": "raster-and-mesh-import",
+ "note": "Photographic scans imported from Poly Haven (CC0 1.0). Conversion only (resize, re-encode, AO/roughness packing); not procedural reconstruction. Sources: private-assets/polyhaven (sha256 in source-manifest.json).",
+ "assets": {
+  "white_plaster_rough_02": {
+   "use": "exterior wall render (outdoor faces)",
+   "size": 1024,
+   "repeatMetres": [
+    1.0,
+    1.0
+   ]
+  },
+  "gravel_floor_02": {
+   "use": "flat-roof gravel ballast",
+   "size": 1024,
+   "repeatMetres": [
+    2.0,
+    2.0
+   ]
+  },
+  "wood_chips": {
+   "use": "bark mulch in planted beds",
+   "size": 1024,
+   "repeatMetres": [
+    2.0,
+    2.0
+   ]
+  },
+  "bark_willow": {
+   "use": "garden tree bark",
+   "size": 1024,
+   "repeatMetres": [
+    1.0,
+    1.0
+   ]
+  },
+  "grass_ground": {
+   "use": "lawn / meadow ground under the blades",
+   "size": 1024,
+   "repeatMetres": [
+    2.5,
+    2.5
+   ]
+  },
+  "shrub_02": {
+   "use": "large garden shrub (beds)",
+   "textureSize": 1024,
+   "upAxis": "Y",
+   "scale": 0.55
+  },
+  "shrub_03": {
+   "use": "small sprig shrub (bed fill)",
+   "textureSize": 512,
+   "upAxis": "Y",
+   "scale": 1.6
+  },
+  "shrub_04": {
+   "use": "low spreading shrub (bed front)",
+   "textureSize": 512,
+   "upAxis": "Y",
+   "scale": 1.4
+  },
+  "fern_02": {
+   "use": "fern in shade at the house foot",
+   "textureSize": 1024,
+   "upAxis": "Y",
+   "scale": 0.8
+  },
+  "weed_plant_02": {
+   "use": "weeds along wall bases and paving edges",
+   "textureSize": 512,
+   "upAxis": "Y",
+   "scale": 1.0
+  },
+  "dandelion_01": {
+   "use": "dandelions in the lawn margins",
+   "textureSize": 512,
+   "upAxis": "Y",
+   "scale": 1.0
+  },
+  "periwinkle_plant": {
+   "use": "periwinkle ground cover in beds",
+   "textureSize": 512,
+   "upAxis": "Y",
+   "scale": 1.2
+  },
+  "garden_hose_wall_mounted_01": {
+   "use": "wall-mounted hose reel by the water butt",
+   "textureSize": 512,
+   "upAxis": "Y",
+   "scale": 1.0
+  }
+ }
+}

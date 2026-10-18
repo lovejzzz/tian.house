@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-wall-sconce",
+  "version": 4,
+  "generator": "src/wall-light-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "width": 0.3,
+    "height": 0.45,
+    "depth": 0.12,
+    "elevation": 1.5
+  },
+  "light": {
+    "color": 16766624,
+    "intensity": 16,
+    "beam": {
+      "aim": [
+        0.35,
+        -1
+      ],
+      "angle": 1.0,
+      "penumbra": 0.85,
+      "distance": 4.5,
+      "origin": "bottom"
+    }
+  },
+  "materials": {
+    "metal": {
+      "color": 8483931,
+      "roughness": 0.42,
+      "metalness": 0.55,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 256,
+        "seed": 23,
+        "repeatMetres": [
+          0.4,
+          0.4
+        ]
+      },
+      "bumpScale": 0.12
+    },
+    "diffuser": {
+      "color": 15327947,
+      "roughness": 0.65,
+      "fixtureEmission": {
+        "color": 16766624,
+        "intensity": 0.65
+      }
+    }
+  },
+  "semantics": {
+    "kind": "lamp",
+    "mount": "wall",
+    "geometryEvidence": "approximate",
+    "knownLimits": [
+      "Original approximate wall diffuser; broad outward emission, not measured IES photometry",
+      "Finite source approximated by shadowed samples; cached room transport handles static indirect light"
+    ]
+  },
+  "migration": {
+    "N": [
+      "tian_wall_sconce_N"
+    ],
+    "W": [
+      "tian_wall_sconce_W"
+    ]
+  },
+  "sourceLayout": {
+    "N": [
+      {
+        "tile": "tian_wall_sconce_N",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_wall_sconce_W",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "sourceFiles": [
+    "src/detail-geometry.js"
+  ]
+}

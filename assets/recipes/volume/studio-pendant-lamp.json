@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-studio-pendant-lamp",
+  "version": 1,
+  "generator": "src/studio-furniture-volume.js",
+  "sourceKind": "procedural",
+  "status": "original detailed model; visual acceptance pending",
+  "parameters": {
+    "kind": "pendant-lamp",
+    "ceiling": 2.95,
+    "rimHeight": 1.62
+  },
+  "light": {
+    "color": 16767400,
+    "intensity": 8,
+    "distance": 3.2,
+    "angle": 0.75,
+    "penumbra": 0.6
+  },
+  "materials": {
+    "brass": {
+      "color": 11176277,
+      "roughness": 0.36,
+      "metalness": 0.65,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 256,
+        "seed": 24,
+        "repeatMetres": [
+          0.3,
+          0.3
+        ]
+      },
+      "bumpScale": 0.12
+    },
+    "bulb": {
+      "color": 16772826,
+      "roughness": 0.5,
+      "fixtureEmission": {
+        "color": 16764068,
+        "intensity": 2
+      }
+    },
+    "enamel": {
+      "color": 15130578,
+      "roughness": 0.32,
+      "metalness": 0,
+      "texture": {
+        "kind": "paint",
+        "size": 512,
+        "seed": 68,
+        "repeatMetres": [
+          0.6,
+          0.6
+        ]
+      },
+      "bumpScale": 0.12
+    },
+    "cord": {
+      "color": 3814961,
+      "roughness": 0.8,
+      "texture": {
+        "kind": "plastic",
+        "size": 256,
+        "seed": 75,
+        "repeatMetres": [
+          0.05,
+          0.05
+        ]
+      },
+      "bumpScale": 0.3
+    }
+  },
+  "semantics": {
+    "kind": "pendant-lamp",
+    "mount": "ceiling",
+    "units": "metres",
+    "geometryEvidence": "original authored pendant: canopy, cord, spun enamel dome, socket, bulb",
+    "knownLimits": [
+      "Down-only lobe (fixture shadow budget); no shade transmission or up-glow",
+      "Hung height assumes a ~2.95 m ceiling and 0.925 m worktop; not adjustable per room yet",
+      "Light distribution is authored, not a measured IES profile"
+    ],
+    "paletteEvidence": "Warm off-white enamel with brass fittings; authored, not a specific product."
+  },
+  "migration": {
+    "S": [
+      "tian_studio_pendant_lamp_S_0"
+    ],
+    "E": [
+      "tian_studio_pendant_lamp_E_0"
+    ],
+    "N": [
+      "tian_studio_pendant_lamp_N_0"
+    ],
+    "W": [
+      "tian_studio_pendant_lamp_W_0"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_studio_pendant_lamp_S_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "E": [
+      {
+        "tile": "tian_studio_pendant_lamp_E_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "N": [
+      {
+        "tile": "tian_studio_pendant_lamp_N_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ],
+    "W": [
+      {
+        "tile": "tian_studio_pendant_lamp_W_0",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "sourceFiles": [
+    "src/studio-furniture-volume.js",
+    "src/detail-geometry.js",
+    "src/scene-slab-volumes.js",
+    "src/convex-solid.js"
+  ]
+}

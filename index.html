@@ -1,10 +1,15 @@
 <!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title><link rel="stylesheet" href="style.css?v=5c5c6755f6e4">
-<link rel="stylesheet" href="portfolio.css?v=5c5c6755f6e4">
-<link rel="stylesheet" href="workshop.css?v=5c5c6755f6e4">
-<link rel="stylesheet" href="menu.css?v=5c5c6755f6e4">
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Tian’s House · Interactive Portfolio</title>
+<meta name="description" content="Walk around Tian’s house, a 3D home in the browser, and use the computer on the desk to see Tian’s work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tian’s House · Interactive Portfolio">
+<meta property="og:description" content="Walk around Tian’s house, a 3D home in the browser, and use the computer on the desk to see Tian’s work.">
+<meta name="theme-color" content="#18251f"><link rel="stylesheet" href="style.css?v=a890ced93fdd">
+<link rel="stylesheet" href="portfolio.css?v=a890ced93fdd">
+<link rel="stylesheet" href="workshop.css?v=a890ced93fdd">
+<link rel="stylesheet" href="menu.css?v=a890ced93fdd">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%235b6549'/%3E%3C/svg%3E">
-<script type="importmap">{"imports":{"three":"./vendor/three/three.module.js"}}</script></head>
+<script type="importmap">{"imports":{"hls.js":"./vendor/hls/hls.mjs","three":"./vendor/three/three.module.js"}}</script></head>
 <body>
 <canvas id="game" aria-label="Tian’s House single-player game view" tabindex="0"></canvas>
 <section id="loading"><h1 class="wordmark">Welcome. Make yourself at home.</h1><p id="load-status">Loading Rosewood map and assets…</p><progress></progress><small>Browser recreation · In development · Full gameplay and visual parity are still in progress</small></section>
@@ -19,5 +24,5 @@
 <aside id="controls-help" class="hud-tray" hidden aria-label="Keyboard controls"><header>Make yourself at home<button id="close-help" aria-label="Close controls">×</button></header><p>Explore the house. Look for <kbd>E</kbd> beside objects.</p><dl><dt>Move</dt><dd><kbd>W A S D</kbd></dd><dt>Run / Sneak</dt><dd><kbd>Shift</kbd> / <kbd>Ctrl</kbd></dd><dt>Interact</dt><dd><kbd>E</kbd></dd><dt>Other nearby actions</dt><dd><kbd>Q</kbd></dd><dt>Inventory</dt><dd><kbd>I</kbd></dd><dt>Pause</dt><dd><kbd>P</kbd></dd><dt>Attack</dt><dd><kbd>Space</kbd></dd><dt>Zoom</dt><dd>Scroll</dd></dl></aside>
 <section id="death" class="window" hidden><header>This is how you died</header><div><h2>You did not survive.</h2><p id="death-info"></p><button id="restart">Start a new journey</button><p>You can export your previous save from the Save menu first.</p></div></section>
 <input id="import-save" type="file" accept="application/json,.json" hidden>
-<script type="module" src="src/bootstrap.js?v=5c5c6755f6e4"></script>
+<script type="module" src="src/bootstrap.js?v=a890ced93fdd"></script>
 </body></html>

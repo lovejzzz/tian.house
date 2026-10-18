@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "id": "tian-volume-floor-lamp",
+  "version": 7,
+  "generator": "src/lamp-volume.js",
+  "sourceKind": "procedural",
+  "status": "prototype",
+  "parameters": {
+    "height": 1.9,
+    "baseRadius": 0.18,
+    "baseHeight": 0.035,
+    "stemRadius": 0.012,
+    "shadeBottom": 1.55,
+    "shadeRadius": 0.28,
+    "shadeTopRadius": 0.17,
+    "segments": 24
+  },
+  "light": {
+    "color": 16768164,
+    "down": {
+      "intensity": 6,
+      "angle": 0.85,
+      "penumbra": 0.7,
+      "distance": 3.5
+    },
+    "up": {
+      "intensity": 2,
+      "angle": 0.85,
+      "penumbra": 0.8,
+      "distance": 2.5
+    }
+  },
+  "materials": {
+    "brass": {
+      "color": 11176277,
+      "roughness": 0.36,
+      "metalness": 0.65,
+      "texture": {
+        "kind": "brushed-steel",
+        "size": 256,
+        "seed": 24,
+        "repeatMetres": [
+          0.3,
+          0.3
+        ]
+      },
+      "bumpScale": 0.12
+    },
+    "linen": {
+      "color": 14273712,
+      "roughness": 0.9,
+      "fixtureEmission": {
+        "color": 16764068,
+        "intensity": 0.6
+      },
+      "fibre": {
+        "sheen": 0.35,
+        "roughness": 0.85,
+        "specular": 0.35
+      },
+      "texture": {
+        "kind": "fabric",
+        "weave": "linen",
+        "size": 512,
+        "threads": [
+          64,
+          64
+        ],
+        "seed": 47,
+        "repeatMetres": [
+          0.1,
+          0.1
+        ]
+      },
+      "bumpScale": 0.6
+    },
+    "bulb": {
+      "color": 16772826,
+      "roughness": 0.5,
+      "fixtureEmission": {
+        "color": 16764068,
+        "intensity": 2
+      }
+    },
+    "lining": {
+      "color": 15791080,
+      "roughness": 0.92,
+      "metalness": 0,
+      "fixtureEmission": {
+        "color": 16764068,
+        "intensity": 0.75
+      }
+    }
+  },
+  "semantics": {
+    "kind": "lamp",
+    "mount": "floor",
+    "geometryEvidence": "approximate",
+    "units": "metres at assumed 1m grid / 3m storey",
+    "knownLimits": [
+      "Fine weave is filtered at play distance; near-view visual quality remains unaccepted",
+      "No source-style fidelity acceptance",
+      "Shade emission approximates diffuse transmission; no volumetric fabric scattering",
+      "Two source samples approximate a small emitter; shadow budget not accepted",
+      "Textile colour detail sampled from reviewed PZ upholstery patch; weave relief is authored, not measured fabric or cloth simulation.",
+      "Runtime textile colour includes authored yarn-dye variation; original imported pixels remain unchanged.",
+      "Up/down aperture lights approximate shade output; distribution is not photometrically calibrated"
+    ]
+  },
+  "migration": {
+    "S": [
+      "tian_floor_lamp"
+    ]
+  },
+  "sourceLayout": {
+    "S": [
+      {
+        "tile": "tian_floor_lamp",
+        "dx": 0,
+        "dy": 0
+      }
+    ]
+  },
+  "placement": {
+    "cells": [
+      1,
+      1
+    ],
+    "offset": [
+      0,
+      0
+    ]
+  },
+  "sourceFiles": [
+    "src/detail-geometry.js"
+  ]
+}
